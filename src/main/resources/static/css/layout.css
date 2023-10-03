@@ -107,8 +107,7 @@ article img {
     float: left;
     max-width: 100%;
     height: auto;
-    margin-top: 1.5em;
-    margin-right: 2em;
+    margin: 1.5em 3em 0em 2em;
     /* border: 1px solid #000; */
 }
 
