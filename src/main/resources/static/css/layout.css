@@ -54,8 +54,8 @@
 .main-nav {
     /* border: 2px solid red; */
     position: absolute;
-    bottom: 0;
-    right: 2%;
+    bottom: 10%;
+    right: 5%;
     transform: translateY(-40%);
 }
 
@@ -71,6 +71,7 @@ article { /* Can be put on .site-main article */
     margin-bottom: 1em;
     margin-left: 1em;
     padding-left: 1em;
+    overflow: hidden;
 }
 
 .site-main article {
@@ -99,7 +100,7 @@ article img {
     float: right;
     max-width: 100%;
     height: auto;
-    margin: 1.5em 7em 0em 3em;
+    margin: 1.5em 3em 0em 3em;
 }
 
 .float-left-img img {

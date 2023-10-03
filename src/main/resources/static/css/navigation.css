@@ -1,25 +1,10 @@
 .main-nav {
     max-width: 100%;
+    z-index: 1;
     /* position: absolute;
     bottom: 0;
     right: 2%;
     transform: translateY(-40%); */
-}
-
-.main-nav ul {
-    padding: 0;
-    /* border: 1px solid red; */
-}
-
-.main-nav li {
-    list-style: none outside;
-    position: relative;
-    /* border: 1px solid greenyellow; */
-}
-
-.main-nav > ul > li {
-    display: inline-block;
-    margin: 0 0.1em; /* space between li > <a href>(button) */
 }
 
 .main-nav a {
@@ -35,7 +20,44 @@
     text-align: center;
 }
 
+.main-nav ul {
+    padding: 0;
+    /* border: 1px solid red; */
+}
+
+.main-nav li {
+    list-style: none outside;
+    position: relative;
+    /* border: 1px solid greenyellow; */
+}
+
+.main-nav ul ul {
+    display: none;
+}
+
+
+.main-nav > ul > li {
+    display: inline-block;
+    margin: 0 0.1em; /* space between li > <a href>(button) */
+}
+
+.main-nav ul ul li {
+    display: block;
+    margin-bottom: 0.2em;
+}
+
+.main-nav li:hover > ul {
+    display: block;
+    width: 120px;
+    /* border: 8px solid blue; */
+    position: absolute;
+    top: 100%;
+    left: 0;
+    padding: 4px 0;
+}
+
 /* .main-nav li:hover > a, - when you have a drop down menu */
+.main-nav li:hover > a,
 .main-nav a:hover {
     color: #ffb7c5;
     background: #fff;
