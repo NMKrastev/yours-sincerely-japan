@@ -1,0 +1,48 @@
+.main-nav {
+    max-width: 100%;
+    /* position: absolute;
+    bottom: 0;
+    right: 2%;
+    transform: translateY(-40%); */
+}
+
+.main-nav ul {
+    padding: 0;
+    /* border: 1px solid red; */
+}
+
+.main-nav li {
+    list-style: none outside;
+    position: relative;
+    /* border: 1px solid greenyellow; */
+}
+
+.main-nav > ul > li {
+    display: inline-block;
+    margin: 0 0.1em; /* space between li > <a href>(button) */
+}
+
+.main-nav a {
+    display: block;
+    padding: 0.5em 1em;
+    text-decoration: none;
+    font-weight: bold;
+    color: #fff;
+    background: #ffb7c5;
+    border: 2px solid #fff;
+    border-radius: 0.5em;
+    transition: all 0.3s ease-in-out;
+    text-align: center;
+}
+
+/* .main-nav li:hover > a, - when you have a drop down menu */
+.main-nav a:hover {
+    color: #ffb7c5;
+    background: #fff;
+    border: 2px solid #ffb7c5;
+}
+
+
+
+
+

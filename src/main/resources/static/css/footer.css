@@ -1,0 +1,40 @@
+.site-footer {
+    position: relative;
+    border-top: 2px solid #ffb7c5;
+    max-width: 100%;
+    padding-top: 0.5em;
+    clear: both;
+}
+
+.footer-nav {
+    border: 2px solid greenyellow;
+    position: absolute;
+    max-width: 35%;
+    height: auto;
+    top: 0;
+    right: 0;
+    transform: translateX(-15%);
+}
+
+.site-footer p {
+    border: 2px solid red;
+    max-width: 25%;
+}
+
+.footer-nav a {
+    text-decoration: none;
+    display: inline-block;
+    color: #000;
+    margin: 0.2em 3em 0 3em;
+    text-align: center;
+    border: 2px solid blue;
+}
+
+.footer-nav li {
+    list-style-type: none;
+    display: inline-block;
+}
+
+.footer-nav a:hover {
+    color: #BC002D;
+}
