@@ -2,11 +2,12 @@
     position: relative;
     border-top: 2px solid #ffb7c5;
     max-width: 100%;
-    padding-top: 0.5em;
+    padding-top: 2em;
+    margin-bottom: 2em;
     clear: both;
 }
 
-.footer-nav {
+/* .footer-nav {
     border: 2px solid greenyellow;
     position: absolute;
     max-width: 35%;
@@ -37,4 +38,98 @@
 
 .footer-nav a:hover {
     color: #BC002D;
+} */
+
+/* @media(min-width: 1220px) */
+/* .container {
+    max-width: 95%;
+    margin-right: auto;
+    margin-left: auto;
+    padding-right: 10px;
+    padding-left: 10px;
+}
+
+.container::before, .row::before,
+.container::after, .row::after {
+    content: " ";
+    display: table;
+    clear: both;
+}
+
+.row {
+    display: inline-block;
+}
+
+.footer-wrapper-links {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 50%;
+}
+
+.footer-wrapper-links a,
+.footer-wrapper-logos a {
+    padding-right: 3em;
+}
+
+.footer-wrapper-logos {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 50%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    transform: translateY(83%);
+} */
+
+.container {
+    max-width: 95%;
+    margin-right: auto;
+    margin-left: auto;
+    padding-right: 10px;
+    padding-left: 10px;
+}
+
+.row {
+    display: flex;
+}
+
+.copyright {
+    width: 33.3%;
+    text-align: left;
+    /* margin-right: 2em; */
+}
+
+.footer-wrapper-logos {
+    width: 33.3%;
+    text-align: center;
+    /* margin: 0 2em; */
+}
+
+.footer-wrapper-links {
+    width: 33.3%;
+    text-align: right;
+    /* margin: 0 2em; */
+}
+
+.footer-wrapper-logos a {
+    margin-right: 15%;
+}
+
+.footer-wrapper-logos a:last-child {
+    margin-right: 0;
+}
+
+.footer-wrapper-logos > a > i {
+    font-size: 25px;
+}
+
+.footer-wrapper-links a {
+    padding-right: 2em;
+}
+
+.footer-wrapper-links a:last-child,
+.footer-wrapper-logos a:last-child {
+    padding-right: 0;
 }

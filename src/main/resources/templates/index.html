@@ -36,7 +36,7 @@
       <h3 class="article-title-one">Heading level 1</h3>
       <p class="posted-by">Posted by:</p>
       <div class="float-right-img">
-        <img src="/images/second-image.jpg" alt="" />
+        <img src="/static/images/second-image.jpg" alt="" />
         <div class="inner-shadow"></div>
       </div>
       <p>
@@ -114,7 +114,7 @@
     <article class="site-article-three">
       <h3 class="article-title-three">Heading level 3</h3>
       <div class="float-left-img">
-        <img src="/images/first-image.jpg" alt="" />
+        <img src="/static/images/first-image.jpg" alt="" />
         <div class="inner-shadow"></div>
       </div>
       <p>
@@ -160,15 +160,22 @@
   </aside>
 
   <footer class="site-footer">
-    <p>1990 - 2023 &copy; All rights reserved.</p>
-
-    <nav class="footer-nav">
-      <ul>
-        <li><a href="#">Contacts</a></li>
-        <li><a href="#">About</a></li>
-        <li><a href="#">Privacy policy</a></li>
-      </ul>
-    </nav>
+    <div class="container">
+      <div class="row">
+        <section class="copyright">
+          1990 - 2023 &copy; All rights reserved.
+        </section>
+        <section class="footer-wrapper-logos">
+          <a href="#"><i class="fa-brands fa-facebook"></i></a>
+          <a href="#"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
+        </section>
+        <section class="footer-wrapper-links">
+          <a href="#">Contacts</a>
+          <a href="#">About</a>
+          <a href="#">Privacy policy</a>
+        </section>
+      </div>
   </footer>
 </div>
 </body>
