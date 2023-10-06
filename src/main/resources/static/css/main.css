@@ -1,0 +1,117 @@
+.main {
+  display: flex;
+  justify-content: space-around;
+  flex-grow: 1;
+  flex-wrap: wrap;
+  padding: 0 2em;
+}
+
+.main main {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  flex-basis: 80%;
+}
+
+.site-content .main-section-content {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  flex-shrink: 1;
+}
+
+.site-content > p {
+  padding-bottom: 0;
+}
+
+.site-content .latest-posts,
+.article-container .posted-by {
+  font-style: italic;
+}
+
+.main-section-content .section-title {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+
+.section-category {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1em;
+}
+
+.section-category:last-child {
+  margin-bottom: 0.2em;
+}
+
+.section-category > p {
+  padding-bottom: 0;
+}
+
+.section-category p:first-child {
+  padding-top: 0;
+}
+
+.section-category > h3 {
+  margin-left: 0.5em;
+}
+
+.section-category .article-container {
+  /* border: 2px solid red; */
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.article-container {
+    justify-content: space-between;
+}
+
+.article-container article {
+  display: flex;
+  flex-direction: column;
+  flex-basis: 350px;
+  flex-grow: 1; /* when wrapped on a new line the box remains same as the others if this is "turned off" */
+  flex-shrink: 1;
+  flex-wrap: nowrap;
+  margin: 0em 1.5em 1.5em 1.5em;
+  /* border: 1px solid black; */
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
+}
+
+.article-container article .article-title {
+  padding-left: 0.3em;
+}
+
+.article-container article .article-title > a {
+  text-decoration: none;
+  color: #bc002d;
+}
+
+.article-container article .posted-by {
+  color: #cccccc;
+  padding-top: 0.1em;
+  padding-bottom: 0.3em;
+}
+
+.article-container article .article-content {
+  padding-top: 0.3em;
+}
+
+.article-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: auto;
+}
+
+.article-img {
+    padding: 0 1.2em;
+}
+
+.article-text,
+.article-img {
+  max-width: 100%;
+  flex: 1 1 50%;
+}
+

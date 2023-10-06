@@ -1,18 +1,36 @@
-div {
-    display: block;
+.site-header {
+    background-image: url(../images/header.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
 }
 
-.main-nav {
-    max-width: 100%;
-    z-index: 1;
-    /* position: absolute;
-    bottom: 0;
-    right: 2%;
-    transform: translateY(-40%); */
+.site-header .h1-container {
+    /* border: 2px solid magenta; */
+    margin-top: 1em;
+    margin-bottom: 2.5em;
+    padding: 0.5em;
+    flex-basis: 35%;
+    align-self: flex-start;
 }
 
-.main-nav a {
-    display: block;
+.site-header .nav-container {
+    /* border: 2px solid greenyellow; */
+    margin-bottom: 1em;
+    margin-top: 2.5em;
+    padding: 0.5em 5em 0.5em 0.5em;
+    flex-basis: 65%;
+    align-items: flex-end;
+    align-self: flex-end;
+}
+
+.navigation a {
+    display: flex;
     padding: 0.5em 1em;
     text-decoration: none;
     font-weight: bold;
@@ -24,45 +42,41 @@ div {
     text-align: center;
 }
 
-.main-nav ul {
-    padding: 0;
-    /* border: 1px solid red; */
+.navigation ul {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 0.2em 0;
 }
 
-.main-nav li {
+.navigation li {
     list-style: none outside;
-    position: relative;
-    /* border: 1px solid greenyellow; */
+    padding: 0.1em 0;
 }
 
-.main-nav ul ul {
-    display: none;
-}
-
-
-.main-nav > ul > li {
-    display: inline-block;
-    margin: 0 0.1em; /* space between li > <a href>(button) */
-}
-
-.main-nav ul ul li {
+.navigation > ul > li {
     display: block;
-    margin-bottom: 0.2em;
+    padding: 0.5em;
 }
 
-.main-nav li:hover > ul {
-    display: block;
-    width: 120px;
-    /* border: 8px solid blue; */
+.navigation ul > li > a > i {
+    font-size: 24px;
+}
+
+.navigation > ul > li > ul {
     position: absolute;
-    top: 100%;
-    left: 0;
-    padding: 4px 0;
+    display: none;
+    flex-direction: column;
+    align-content: flex-end;
 }
 
-/* .main-nav li:hover > a, - when you have a drop down menu */
-.main-nav li:hover > a,
-.main-nav a:hover {
+.navigation li:hover > ul {
+    display: block;
+}
+
+.navigation li:hover > a,
+.navigation a:hover {
     color: #ffb7c5;
     background: #fff;
     border: 2px solid #ffb7c5;
