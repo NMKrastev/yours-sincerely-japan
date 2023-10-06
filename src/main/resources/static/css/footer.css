@@ -10,9 +10,9 @@
     flex-wrap: wrap;
 }
 
-.copyright, .footer-wrapper-logos, .footer-wrapper-links {
-    /* border: 1px solid yellowgreen; */   
-}
+/* .copyright, .footer-wrapper-logos, .footer-wrapper-links {
+    border: 1px solid yellowgreen;
+} */
 
 .footer-wrapper-logos > p > a {
     margin: 0 2em;

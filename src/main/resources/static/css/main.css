@@ -4,6 +4,10 @@
   flex-grow: 1;
   flex-wrap: wrap;
   padding: 0 2em;
+  /* background-image: url(/static/images/header-2.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center; */
 }
 
 .main main {
@@ -31,8 +35,11 @@
 
 .main-section-content .section-title {
   display: flex;
-  flex-direction: column;
   flex-wrap: wrap;
+}
+
+.main-section-content .section-title > a {
+  margin-left: 1em;
 }
 
 .section-category {
@@ -114,4 +121,3 @@
   max-width: 100%;
   flex: 1 1 50%;
 }
-
