@@ -10,7 +10,7 @@
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  flex-basis: 80%;
+  flex-basis: 90%; /* looks good at 100%, 90% and 80%. */
 }
 
 .site-content .main-section-content {
@@ -64,14 +64,14 @@
 }
 
 .article-container {
-    justify-content: space-between;
+  justify-content: space-between;
 }
 
 .article-container article {
   display: flex;
   flex-direction: column;
   flex-basis: 350px;
-  flex-grow: 1; /* when wrapped on a new line the box remains same as the others if this is "turned off" */
+  flex-grow: 1; /* when wrapped on a new line the box remains same as the others if this is "turned off". */
   flex-shrink: 1;
   flex-wrap: nowrap;
   margin: 0em 1.5em 1.5em 1.5em;
@@ -106,7 +106,7 @@
 }
 
 .article-img {
-    padding: 0 1.2em;
+  padding: 0 1.2em;
 }
 
 .article-text,
