@@ -55,6 +55,31 @@
   flex: 1 1 20%; /* Items per row - at the moment 3. 25% for four items per row */
   flex-direction: column;
   margin-bottom: 1em;
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 1500px) {
+  .section-category {
+    flex: 1 1 25%;
+  }
+}
+
+@media (max-width: 1240px) {
+  .section-category {
+    flex: 1 1 33.33%;
+  }
+}
+
+@media (max-width: 960px) {
+  .section-category {
+    flex: 1 1 50%;
+  }
+}
+
+@media (max-width: 700px) {
+  .section-category {
+    flex: 1 1 100%;
+  }
 }
 
 .section-category:last-child {
