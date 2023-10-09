@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+    <link rel="stylesheet" href="/css/site.css" />
+    <link rel="stylesheet" href="/css/bootstrap.min.css" />
+  </head>
+  <body>
+
+    <div class="site">
+
+      <header class="site-header">
+
+        <div class="h1-container">
+          <h1 class="header-title">Yours sincerely, Japan</h1>
+        </div>
+
+        <div class="nav-container">
+
+          <nav class="navigation">
+
+            <ul>
+              <li>
+                <a href="#" class="text-decoration-none">Japan</a>
+                <ul>
+                  <li><a href="#" class="text-decoration-none">News</a></li>
+                  <li><a href="#" class="text-decoration-none">History</a></li>
+                  <li><a href="#" class="text-decoration-none">Travel guide</a></li>
+                  <li><a href="#" class="text-decoration-none">Wildlife</a></li>
+                  <li><a href="#" class="text-decoration-none">Interesting facts</a></li>
+                </ul>
+              </li>
+              <li>
+                <a href="#" class="section text-decoration-none">Category</a>
+                <ul>
+                  <li><a href="#" class="text-decoration-none">Category 1</a></li>
+                  <li><a href="#" class="text-decoration-none">Category 2</a></li>
+                  <li><a href="#" class="text-decoration-none">Category 3</a></li>
+                </ul>
+              </li>
+              <li><a href="#" class="text-decoration-none">Login</a></li>
+              <li><a href="#" class="text-decoration-none">Sign up</a></li>
+              <li>
+                <a href="#" class="text-decoration-none"><i class="fa-regular fa-user"></i></a>
+                <ul>
+                  <li><a href="#" class="text-decoration-none">Settings</a></li>
+                  <li><a href="#" class="text-decoration-none">My articles</a></li>
+                  <li><a href="#" class="text-decoration-none">Logout</a></li>
+                </ul>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </header>
+
+      <div class="main" id="main-login">
+
+        <main class="site-login">
+
+          <form class="mx-auto w-auto h-auto bg-blur"
+                action="/account/create"
+                method="POST">
+
+              <div class="text-danger">Incorrect username or password!</div>
+              <div class="alert alert-danger" role="alert">
+                This is a danger alert—check it out!
+              </div>
+
+              <div class="form-group">
+                <div class="label-holder text-white d-flex justify-content-center">
+                  <label for="username" class="h3 mb-2">Username</label>
+                </div>
+                <input type="text"
+                       class="form-control mb-2"
+                       id="username"
+                       name="username"/>
+                <small class="text-danger">Error message</small>
+              </div>
+
+              <div class="form-group">
+                <div class="label-holder text-white d-flex justify-content-center">
+                  <label for="password" class="h3 mb-2">Password</label>
+                </div>
+                <input type="password"
+                       class="form-control"
+                       id="password"
+                       name="password"/>
+                <small class="text-danger"><span>Error Message</span></small>
+              </div>
+
+              <div class="button-holder d-flex justify-content-center">
+                <button type="submit"
+                        class="btn btn-lg btn-primary mt-3 mb-2 border">
+                  Login
+                </button>
+              </div>
+
+            </form>
+        </main>
+      </div>
+
+      <footer class="site-footer">
+        <div class="copyright">
+          <p>All rights reserved. &copy; 2023</p>
+        </div>
+        <div class="footer-wrapper-logos">
+          <p>
+            <a href="https://www.facebook.com/YoursSincerelyJapan"><i class="fa-brands fa-facebook"></i></a>
+            <a href="https://www.instagram.com/yourssincerelyjapan/"><i class="fa-brands fa-instagram"></i></a>
+            <a href="https://twitter.com/YoursJapan"><i class="fa-brands fa-x-twitter"></i></a>
+          </p>
+        </div>
+        <div class="footer-wrapper-links">
+          <p>
+            <a href="#">Contacts</a>
+            <a href="#">About</a>
+            <a href="#">Privacy policy</a>
+          </p>
+        </div>
+      </footer>
+      
+    </div>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"
+      integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
