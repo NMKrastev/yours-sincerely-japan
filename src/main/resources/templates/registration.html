@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration</title>
+    <link rel="stylesheet" href="/css/site.css" />
+    <link rel="stylesheet" href="/css/bootstrap.min.css" />
+</head>
+<body>
+
+    <div class="site">
+
+        <header class="site-header">
+
+            <div class="h1-container">
+              <h1 class="header-title">Yours sincerely, Japan</h1>
+            </div>
+    
+            <div class="nav-container">
+    
+              <nav class="navigation">
+    
+                <ul>
+                  <li>
+                    <a href="#"><i class="fa-regular fa-user"></i></a>
+                    <ul>
+                      <li><a href="#">Settings</a></li>
+                      <li><a href="#">My articles</a></li>
+                      <li><a href="#">Logout</a></li>
+                    </ul>
+                  </li>
+                  <li>
+                    <a href="#">Japan</a>
+                    <ul>
+                      <li><a href="#">News</a></li>
+                      <li><a href="#">History</a></li>
+                      <li><a href="#">Travel guide</a></li>
+                      <li><a href="#">Wildlife</a></li>
+                      <li><a href="#">Interesting facts</a></li>
+                    </ul>
+                  </li>
+                  <li>
+                    <a href="#" class="section">Category</a>
+                    <ul>
+                      <li><a href="#">Category 1</a></li>
+                      <li><a href="#">Category 2</a></li>
+                      <li><a href="#">Category 3</a></li>
+                    </ul>
+                  </li>
+                  <<li><a th:href="@{/users/login}">Login</a></li>
+                  <<li><a th:href="@{/users/registration}">Sign up</a></li>
+                </ul>
+              </nav>
+            </div>
+          </header>
+  
+        <div class="main" id="main-registration">
+  
+          <main class="site-registration">
+  
+            <!-- <form class="mx-auto w-auto h-auto bg-blur needs-validation" novalidate>
+                <div class="col-md-4 justify-content-center">
+                  <label for="validationCustom01" class="form-label">First name</label>
+                  <input type="text" class="form-control" id="validationCustom01" value="" required>
+                  <div class="valid-feedback">
+                    Looks good!
+                  </div>
+                </div>
+                <div class="col-md-4 justify-content-center">
+                  <label for="validationCustom02" class="form-label">Last name</label>
+                  <input type="text" class="form-control" id="validationCustom02" value="" required>
+                  <div class="valid-feedback">
+                    Looks good!
+                  </div>
+                </div>
+                <div class="col-md-4 justify-content-center">
+                  <label for="validationCustom03" class="form-label">City</label>
+                  <input type="text" class="form-control" id="validationCustom03" required>
+                  <div class="invalid-feedback">
+                    Please provide a valid city.
+                  </div>
+                </div>
+                <div class="col-md-4 justify-content-center">
+                  <label for="validationCustom05" class="form-label">Password</label>
+                  <input type="password" class="form-control" id="validationCustom05" required>
+                  <div class="invalid-feedback">
+                    Please provide a valid zip.
+                  </div>
+                </div>
+                <div class="col-md-4 justify-content-center">
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
+                    <label class="form-check-label" for="invalidCheck">
+                      Agree to terms and conditions
+                    </label>
+                    <div class="invalid-feedback">
+                      You must agree before submitting.
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12">
+                  <button class="btn btn-primary" type="submit">Submit form</button>
+                </div>
+              </form> -->
+
+            <form class="mx-auto w-auto h-auto bg-blur needs-validation"
+                  novalidate>
+
+                <div class="form-group">
+                    <div class="label-holder text-white d-flex justify-content-center">
+                      <h3><label for="displayName" >Display name:</label></h3>
+                    </div>
+                    <input type="text"
+                           class="form-control"
+                           id="displayName"
+                           name="displayName"
+                           placeholder="John Doe"
+                           required/>
+                    <div class="alert alert-danger"><span>Error Message</span></div>
+                </div>
+
+                <div class="form-group">
+                    <div class="label-holder text-white d-flex justify-content-center">
+                    <label for="email" class="h3">Email:</label>
+                    </div>
+                    <input type="text"
+                         class="form-control"
+                         id="email"
+                         name="email"
+                         placeholder="name@example.com"
+                         required/>
+                    <div class="alert alert-danger"><span>Error Message</span></div>
+                </div>
+  
+                <div class="form-group">
+                    <div class="label-holder text-white d-flex justify-content-center">
+                        <label for="password" class="h3">Password:</label>
+                    </div>
+                    <input type="password"
+                         class="form-control"
+                         id="password"
+                         name="password"
+                         errorclass="is-invalid"
+                         required/>
+                    <div class="alert alert-danger"><span>Error Message</span></div>
+                </div>
+
+                <div class="form-group">
+                    <div class="label-holder text-white d-flex justify-content-center">
+                      <label for="confirmPassword" class="h3">Confirm password:</label>
+                    </div>
+                    <input type="password"
+                           class="form-control"
+                           id="confirmPassword"
+                           name="confirmPassword"
+                           errorclass="is-invalid"
+                           required/>
+                    <div class="alert alert-danger" role="alert"><span>Error Message</span></div>
+                  </div>
+  
+                <div class="text-danger">Incorrect email or password!</div>
+                <div class="alert alert-danger" role="alert">
+                  This is a danger alert—check it out!
+                </div>
+  
+                <div class="alert alert-danger d-flex align-items-center" role="alert">
+                  <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+                  <div>
+                    An example danger alert with an icon
+                  </div>
+                </div>
+  
+                <div class="button-holder d-flex justify-content-center">
+                  <button type="submit"
+                          class="btn btn-lg btn-primary mt-3 mb-2 border">
+                    Login
+                  </button>
+                </div>
+  
+              </form>
+          </main>
+        </div>
+  
+        <footer class="site-footer">
+          <div class="copyright">
+            <p>All rights reserved. &copy; 2023</p>
+          </div>
+          <div class="footer-wrapper-logos">
+            <p>
+              <a href="https://www.facebook.com/YoursSincerelyJapan"><i class="fa-brands fa-facebook"></i></a>
+              <a href="https://www.instagram.com/yourssincerelyjapan/"><i class="fa-brands fa-instagram"></i></a>
+              <a href="https://twitter.com/YoursJapan"><i class="fa-brands fa-x-twitter"></i></a>
+            </p>
+          </div>
+          <div class="footer-wrapper-links">
+            <p>
+              <a href="#">Contacts</a>
+              <a href="#">About</a>
+              <a href="#">Privacy policy</a>
+            </p>
+          </div>
+        </footer>
+  
+      </div>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"
+      integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" 
+      crossorigin="anonymous"></script>
+
+    <script>
+        // Example starter JavaScript for disabling form submissions if there are invalid fields
+        (() => {
+            'use strict'
+
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            const forms = document.querySelectorAll('.needs-validation')
+
+            // Loop over them and prevent submission
+            Array.from(forms).forEach(form => {
+                    form.addEventListener('submit', event => {
+                        if (!form.checkValidity()) {
+                        event.preventDefault()
+                        event.stopPropagation()
+                    }
+
+                    form.classList.add('was-validated')
+                    }, false)
+                })
+        })()
+    </script>
+</body>
+</html>
