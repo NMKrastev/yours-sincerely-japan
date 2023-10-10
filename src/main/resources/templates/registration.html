@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registration</title>
     <link rel="stylesheet" href="/css/site.css"/>
-    <link rel="stylesheet" href="/css/bootstrap.min.css"/>
 </head>
 <body>
 
@@ -14,7 +13,7 @@
     <header class="site-header">
 
         <div class="h1-container">
-            <h1 class="header-title">Yours sincerely, Japan</h1>
+            <a th:href="@{/}" class="text-decoration-none"><h1 class="header-title">Yours sincerely, Japan</h1></a>
         </div>
 
         <div class="nav-container">
@@ -41,7 +40,7 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="#" class="section text-decoration-none">Category</a>
+                        <a href="#" class="section text-decoration-none">Categories</a>
                         <ul>
                             <li><a href="#" class="text-decoration-none">Category 1</a></li>
                             <li><a href="#" class="text-decoration-none">Category 2</a></li>
@@ -103,6 +102,10 @@
                   <button class="btn btn-primary" type="submit">Submit form</button>
                 </div>
               </form> -->
+
+            <div class="h2 mt-2 mb-4 pb-2 text-white text-center border-bottom border-black">
+                Create account
+            </div>
 
             <form class="mx-auto w-auto h-auto bg-blur needs-validation"
                   novalidate>
@@ -190,9 +193,9 @@
         </div>
         <div class="footer-wrapper-logos">
             <p>
-                <a href="https://www.facebook.com/YoursSincerelyJapan"><i class="fa-brands fa-facebook"></i></a>
-                <a href="https://www.instagram.com/yourssincerelyjapan/"><i class="fa-brands fa-instagram"></i></a>
-                <a href="https://twitter.com/YoursJapan"><i class="fa-brands fa-x-twitter"></i></a>
+                <a href="https://www.facebook.com/YoursSincerelyJapan" target="_blank"><i class="fa-brands fa-facebook"></i></a>
+                <a href="https://www.instagram.com/yourssincerelyjapan/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+                <a href="https://twitter.com/YoursJapan" target="_blank"><i class="fa-brands fa-x-twitter"></i></a>
             </p>
         </div>
         <div class="footer-wrapper-links">
@@ -206,16 +209,20 @@
 
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"
+<script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"
         integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V"
         crossorigin="anonymous"></script>
 
 <script>
+    // Example starter JavaScript for disabling form submissions if there are invalid fields
     (() => {
         'use strict'
 
+        // Fetch all the forms we want to apply custom Bootstrap validation styles to
         const forms = document.querySelectorAll('.needs-validation')
 
+        // Loop over them and prevent submission
         Array.from(forms).forEach(form => {
             form.addEventListener('submit', event => {
                 if (!form.checkValidity()) {

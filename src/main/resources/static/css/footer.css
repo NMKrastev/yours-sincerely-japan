@@ -1,10 +1,10 @@
 .site-footer {
-    border-top: 2px solid #ffb7c5;
-    background-color: #797979;
-    display: flex;
-    justify-content: center;
-    align-content: center;
-    flex-wrap: wrap;
+  border-top: 2px solid #ffb7c5;
+  background-color: #797979;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  flex-wrap: wrap;
 }
 
 @media (max-width: 960px) {
@@ -26,43 +26,39 @@
 .copyright,
 .footer-wrapper-logos,
 .footer-wrapper-links {
-    /* border: 1px solid yellowgreen; */
-    flex: 1;
-    display: flex;
-    justify-content: center;
+  /* border: 1px solid yellowgreen; */
+  flex: 1;
+  display: flex;
+  justify-content: center;
 }
 
 .copyright > P {
-    margin-right: auto;
+  margin-right: auto;
 }
 
 .footer-wrapper-logos > p > a {
-    margin: 0 2em;
+  margin: 0 2em;
 }
 
 .footer-wrapper-logos > p > a > i {
-    font-size: 20px;
-}
-
-.footer-wrapper-logos > p > a > i:hover {
-    font-size: 25px;
+  font-size: 20px;
 }
 
 .fa-brands.fa-instagram {
-    color: rgb(228, 64, 95);
+  color: rgb(228, 64, 95);
 }
 
 .fa-brands.fa-x-twitter {
-    color: rgb(0, 0, 0);
+  color: rgb(0, 0, 0);
 }
 
 .footer-wrapper-links > p {
-    margin-left: auto;
+  margin-left: auto;
 }
 
 .footer-wrapper-links > p > a {
-    text-decoration: none;
-    margin-right: 3em;
+  text-decoration: none;
+  margin-right: 3em;
 }
 
 .footer-wrapper-links > p > a:last-child {
@@ -71,9 +67,9 @@
 
 .copyright,
 .footer-wrapper-links > p > a {
-    color: #ffffff;
+  color: #ffffff;
 }
 
 .footer-wrapper-links > p > a:hover {
-    color: #bc002d;
+  color: #bc002d;
 }

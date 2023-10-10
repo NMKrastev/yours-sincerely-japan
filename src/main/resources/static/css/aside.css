@@ -24,18 +24,18 @@
     text-decoration: none;
     color: rgb(255, 255, 255);
     font-size: 18px;
-    text-shadow:
-            -1px 0px 0px #BC002D,
-            1px 0px 0px #BC002D,
-            0px -1px 0px #BC002D,
-            0px 1px 0px #BC002D;
+    text-shadow: 
+    -1px 0px 0px #BC002D,
+    1px 0px 0px #BC002D,
+    0px -1px 0px #BC002D,
+    0px 1px 0px #BC002D;
 }
 
 .site-sidebar section a:hover {
     color: #BC002D;
-    text-shadow:
-            -1px 0px 0px white,
-            1px 0px 0px white,
-            0px -1px 0px white,
-            0px 1px 0px white;
+    text-shadow: 
+    -1px 0px 0px white,
+    1px 0px 0px white,
+    0px -1px 0px white,
+    0px 1px 0px white;
 }
