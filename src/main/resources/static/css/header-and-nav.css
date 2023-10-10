@@ -23,7 +23,7 @@
     /* border: 2px solid greenyellow; */
     margin-bottom: 1em;
     margin-top: 2.5em;
-    padding: 0.5em 5em 0.5em 0.5em;
+    padding: 0.5em 1.2em 0.5em 1.2em; /* 1em if the button is not with dropdown, otherwise for now make it 3+ */
     flex-basis: 65%;
     align-items: flex-end;
     align-self: flex-end;
@@ -46,7 +46,7 @@
     list-style: none;
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: center;
     padding: 0.2em 0;
 }
 
@@ -84,6 +84,7 @@
     align-content: flex-end;
     animation: fade 0.7s ease forwards;
     transition-delay: 0.7s;
+    z-index: 1;
 }
 
 .navigation li:hover > ul {
