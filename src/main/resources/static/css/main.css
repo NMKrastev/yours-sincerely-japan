@@ -63,11 +63,11 @@
   font-size: 14px;
   background-color: #ffffff;
   color: #ffffff;
-  padding: 5px 8px;
+  padding: 3px 6px;
   width: 80px;
   text-align: center;
   border-radius: 5px;
-  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
   opacity: 0;
   pointer-events: none;
   transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
@@ -90,6 +90,10 @@
   left: 50%;
   transform: translate(-50%) rotate(45deg);
   transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.section-title .icon a {
+  color: inherit;
 }
 
 .section-title .icon:hover a,

@@ -5,8 +5,20 @@
     background-position: center center;
 }
 
+.site-registration,
 .site-login {
     display: flex;
     flex-direction: column;
     justify-content: center;
+}
+
+.site-registration h2,
+.site-login h2,
+.label-holder label {
+    color: #ffb7c5;
+    text-shadow:
+            -1px 0px 0px #000000,
+            1px 0px 0px #000000,
+            0px -1px 0px #000000,
+            0px 1px 0px #000000;
 }

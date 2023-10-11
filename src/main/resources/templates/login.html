@@ -1,173 +1,190 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Login</title>
-    <link rel="stylesheet" href="/css/site.css" />
-  </head>
-  <body>
+    <link rel="stylesheet" href="/css/site.css"/>
+</head>
+<body>
 
-  <div class="site">
+<div class="site">
 
     <header class="site-header">
 
-      <div class="h1-container">
-        <a th:href="@{/}" class="text-decoration-none"><h1 class="header-title">Yours sincerely, Japan</h1></a>
-      </div>
+        <div class="h1-container">
+            <a th:href="@{/}" class="text-decoration-none"><h1 class="header-title">Yours sincerely, Japan</h1></a>
+        </div>
 
-      <div class="nav-container">
+        <div class="nav-container">
 
-        <nav class="navigation">
+            <nav class="navigation">
 
-          <ul>
-            <li>
-              <a href="#" class="text-decoration-none"><i class="fa-regular fa-user"></i></a>
-              <ul>
-                <li><a href="#" class="text-decoration-none">Settings</a></li>
-                <li><a href="#" class="text-decoration-none">My articles</a></li>
-                <li><a href="#" class="text-decoration-none">Logout</a></li>
-              </ul>
-            </li>
-            <li>
-              <a href="#" class="text-decoration-none">Japan</a>
-              <ul>
-                <li><a href="#" class="text-decoration-none">News</a></li>
-                <li><a href="#" class="text-decoration-none">History</a></li>
-                <li><a href="#" class="text-decoration-none">Travel guide</a></li>
-                <li><a href="#" class="text-decoration-none">Wildlife</a></li>
-                <li><a href="#" class="text-decoration-none">Interesting facts</a></li>
-              </ul>
-            </li>
-            <li>
-              <a href="#" class="section text-decoration-none">Categories</a>
-              <ul>
-                <li><a href="#" class="text-decoration-none">Category 1</a></li>
-                <li><a href="#" class="text-decoration-none">Category 2</a></li>
-                <li><a href="#" class="text-decoration-none">Category 3</a></li>
-              </ul>
-            </li>
-            <li><a th:href="@{/users/login}" class="text-decoration-none">Login</a></li>
-            <li><a th:href="@{/users/registration}" class="text-decoration-none">Sign up</a></li>
-          </ul>
-        </nav>
-      </div>
+                <ul>
+                    <li>
+                        <a href="#" class="text-decoration-none"><i class="fa-regular fa-user"></i></a>
+                        <ul>
+                            <li><a href="#" class="text-decoration-none">Settings</a></li>
+                            <li><a href="#" class="text-decoration-none">My articles</a></li>
+                            <li><a href="#" class="text-decoration-none">Logout</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#" class="text-decoration-none">Japan</a>
+                        <ul>
+                            <li><a href="#" class="text-decoration-none">News</a></li>
+                            <li><a href="#" class="text-decoration-none">History</a></li>
+                            <li><a href="#" class="text-decoration-none">Travel guide</a></li>
+                            <li><a href="#" class="text-decoration-none">Wildlife</a></li>
+                            <li><a href="#" class="text-decoration-none">Interesting facts</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#" class="section text-decoration-none">Categories</a>
+                        <ul>
+                            <li><a href="#" class="text-decoration-none">Category 1</a></li>
+                            <li><a href="#" class="text-decoration-none">Category 2</a></li>
+                            <li><a href="#" class="text-decoration-none">Category 3</a></li>
+                        </ul>
+                    </li>
+                    <li><a th:href="@{/users/login}" class="text-decoration-none">Login</a></li>
+                    <li><a th:href="@{/users/registration}" class="text-decoration-none">Sign up</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
 
     <div class="main" id="main-login">
 
-      <main class="site-login">
+        <main class="site-login">
 
-        <div class="h2 mt-2 mb-4 pb-2 text-white text-center border-bottom border-black">
-          Login
-        </div>
+            <div class="mt-2 mb-4 pb-2 text-white text-center border-bottom border-3 border-black"><h2>Login</h2></div>
 
-        <form class="mx-auto w-auto h-auto bg-blur needs-validation"
-              novalidate>
+            <form class="mx-auto w-auto h-auto bg-blur needs-validation"
+                  novalidate>
 
-          <div class="form-group">
-            <div class="label-holder text-white d-flex justify-content-center">
-              <label for="email" class="h3">Email:</label>
-            </div>
-            <input type="text"
-                   class="form-control"
-                   id="email"
-                   name="email"
-                   placeholder="name@example.com"
-                   required/>
-            <div class="alert alert-danger"><span>Error Message</span></div>
-          </div>
+                <div class="form-group">
+                    <div class="label-holder text-white text-center justify-content-center">
+                        <h3><label for="email">Email:</label></h3>
+                    </div>
+                    <input type="text"
+                           class="form-control"
+                           id="email"
+                           name="email"
+                           placeholder="name@example.com"
+                           required/>
+                    <div class="alert alert-danger"><span>Error Message</span></div>
+                </div>
 
-          <div class="form-group">
-            <div class="label-holder text-white d-flex justify-content-center">
-              <label for="password" class="h3">Password:</label>
-            </div>
-            <input type="password"
-                   class="form-control"
-                   id="password"
-                   name="password"
-                   errorclass="is-invalid"
-                   required/>
-            <div class="alert alert-danger"><span>Error Message</span></div>
-          </div>
+                <div class="form-group">
+                    <div class="label-holder text-white text-center d-flex justify-content-center">
+                        <h3><label for="password">Password:</label></h3>
+                    </div>
+                    <input type="password"
+                           class="form-control"
+                           id="password"
+                           name="password"
+                           errorclass="is-invalid"
+                           required/>
+                    <div class="alert alert-danger"><span>Error Message</span></div>
+                </div>
 
-          <div class="text-danger">Incorrect email or password!</div>
-          <div class="alert alert-danger" role="alert">
-            This is a danger alert—check it out!
-          </div>
+                <div class="text-danger">Incorrect email or password!</div>
+                <div class="alert alert-danger" role="alert">
+                    This is a danger alert—check it out!
+                </div>
 
-          <div class="alert alert-danger d-flex align-items-center" role="alert">
-            <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg>
-            <div>
-              An example danger alert with an icon
-            </div>
-          </div>
+                <div class="alert alert-danger d-flex align-items-center" role="alert">
+                    <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:">
+                        <use xlink:href="#exclamation-triangle-fill"/>
+                    </svg>
+                    <div>
+                        An example danger alert with an icon
+                    </div>
+                </div>
 
-          <div class="button-holder d-flex justify-content-center">
-            <button type="submit"
-                    class="btn btn-lg btn-primary mt-3 mb-2 border">
-              Login
-            </button>
-          </div>
+                <div class="button-holder d-flex justify-content-center">
+                    <button type="submit"
+                            class="btn btn-lg btn-primary mt-3 mb-2 border">
+                        Login
+                    </button>
+                </div>
 
-        </form>
+            </form>
 
-      </main>
+        </main>
     </div>
 
     <footer class="site-footer">
-      <div class="copyright">
-        <p>All rights reserved. &copy; 2023</p>
-      </div>
-      <div class="footer-wrapper-logos">
-        <p>
-          <a href="https://www.facebook.com/YoursSincerelyJapan" target="_blank"><i class="fa-brands fa-facebook"></i></a>
-          <a href="https://www.instagram.com/yourssincerelyjapan/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
-          <a href="https://twitter.com/YoursJapan" target="_blank"><i class="fa-brands fa-x-twitter"></i></a>
-        </p>
-      </div>
-      <div class="footer-wrapper-links">
-        <p>
-          <a href="#">Contacts</a>
-          <a href="#">About</a>
-          <a href="#">Privacy policy</a>
-        </p>
-      </div>
+        <div class="copyright">
+            <p>All rights reserved. &copy; 2023</p>
+        </div>
+        <!-- <div class="footer-wrapper-logos">
+          <p>
+            <a href="https://www.facebook.com/YoursSincerelyJapan" target="_blank"><i class="fa-brands fa-facebook"></i></a>
+            <a href="https://www.instagram.com/yourssincerelyjapan/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+            <a href="https://twitter.com/YoursJapan" target="_blank"><i class="fa-brands fa-x-twitter"></i></a>
+          </p>
+        </div> -->
+
+        <div class="wrapper">
+            <div class="icon facebook">
+                <div class="tooltip">Facebook</div>
+                <a href="https://www.facebook.com/YoursSincerelyJapan" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            </div>
+            <div class="icon instagram">
+                <div class="tooltip">Instagram</div>
+                <a href="https://www.instagram.com/yourssincerelyjapan/" target="_blank"><i
+                        class="fab fa-instagram"></i></a>
+            </div>
+            <div class="icon twitter">
+                <div class="tooltip">Twitter</div>
+                <a href="https://twitter.com/YoursJapan" target="_blank"><i class="fab fa-x-twitter"></i></a>
+            </div>
+        </div>
+
+        <div class="footer-wrapper-links">
+            <p>
+                <a href="#">Contacts</a>
+                <a href="#">About</a>
+                <a href="#">Privacy policy</a>
+            </p>
+        </div>
     </footer>
 
-  </div>
+</div>
 
-    <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
-      <symbol id="exclamation-triangle-fill" fill="currentColor" viewBox="0 0 16 16">
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+    <symbol id="exclamation-triangle-fill" fill="currentColor" viewBox="0 0 16 16">
         <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
-      </symbol>
-    </svg>
+    </symbol>
+</svg>
 
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"
-      integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" 
-      crossorigin="anonymous"></script>
+<script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"
+        integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V"
+        crossorigin="anonymous"></script>
 
-      <script>
-        // Example starter JavaScript for disabling form submissions if there are invalid fields
-        (() => {
-            'use strict'
+<script>
+    // Example starter JavaScript for disabling form submissions if there are invalid fields
+    (() => {
+        'use strict'
 
-            // Fetch all the forms we want to apply custom Bootstrap validation styles to
-            const forms = document.querySelectorAll('.needs-validation')
+        // Fetch all the forms we want to apply custom Bootstrap validation styles to
+        const forms = document.querySelectorAll('.needs-validation')
 
-            // Loop over them and prevent submission
-            Array.from(forms).forEach(form => {
-                    form.addEventListener('submit', event => {
-                        if (!form.checkValidity()) {
-                        event.preventDefault()
-                        event.stopPropagation()
-                    }
+        // Loop over them and prevent submission
+        Array.from(forms).forEach(form => {
+            form.addEventListener('submit', event => {
+                if (!form.checkValidity()) {
+                    event.preventDefault()
+                    event.stopPropagation()
+                }
 
-                    form.classList.add('was-validated')
-                    }, false)
-                })
-        })()
-    </script>
-  </body>
+                form.classList.add('was-validated')
+            }, false)
+        })
+    })()
+</script>
+</body>
 </html>
