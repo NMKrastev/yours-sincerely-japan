@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>
-      Yours sincerely, Japan<!-- Sincerely yours, Japan(American english) -->
+        Category
     </title>
     <link rel="stylesheet" href="/css/site.css" />
   </head>
@@ -15,7 +15,7 @@
       <header class="site-header">
 
         <div class="h1-container">
-          <a th:href="@{/}" class="text-decoration-none"><h1 class="header-title">Yours sincerely, Japan</h1></a>
+          <a href="index.html" class="text-decoration-none"><h1 class="header-title">Yours sincerely, Japan</h1></a>
         </div>
 
         <div class="nav-container">
@@ -43,10 +43,10 @@
               </li>
               <li>
                 <a th:href="@{/categories/all}" class="section">Categories</a>
-                <ul>
-                  <li><a th:href="@{/categories/category}">Category 1</a></li>
-                  <li><a th:href="@{/categories/category}">Category 2</a></li>
-                  <li><a th:href="@{/categories/category}">Category 3</a></li>
+                <ul th:each="category : ${categories}">
+                  <li><a th:href="@{/categories/{category}(category = ${category.getName()})}">Category 1</a></li>
+                  <li><a th:href="@{/categories/{category}(category = ${category.getName()})}">Category 2</a></li>
+                  <li><a th:href="@{/categories/{category}(category = ${category.getName()})}">Category 3</a></li>
                 </ul>
               </li>
               <li><a th:href="@{/users/login}">Login</a></li>
@@ -62,19 +62,17 @@
 
           <div class="main-section-content" id="main-categories">
 
-            <div class="mt-2 pb-2 text-center border-bottom border-3 border-danger-subtle"><h2>All categories</h2></div>
-
             <section class="section-category" id="section-categories">
             
               <!-- <p><h3 class="section-title">Travel <a href="#"><i class="fa-solid fa-plus"></i></a></h3></p> -->
 
-              <div class="section-title">
+              <div class="section-title text-center border-bottom border-3 border-danger-subtle mb-4" id="section-title-category">
                 <h3>Travel</h3>
                 <a href="#" class="text-decoration-none">
-                <div class="icon new-post">
-                  <div class="tooltip">New post</div>
-                  <i class="fa-solid fa-plus"></i>
-                </div>
+                  <div class="icon new-post">
+                    <div class="tooltip">New post</div>
+                    <i class="fa-solid fa-plus"></i>
+                  </div>
                 </a>
               </div>
 
@@ -134,26 +132,6 @@
                     </div>
                   </div>
                 </article>
-              </div>
-            </section>
-
-            <div class="border-bottom border-2 border-danger-subtle"></div>
-
-            <section class="section-category" id="section-categories">
-
-              <!-- <p><h3>Cars</h3></p> -->
-
-              <div class="section-title">
-                <h3>Cars</h3>
-                <a href="#" class="text-decoration-none">
-                <div class="icon new-post">
-                  <div class="tooltip">New post</div>
-                  <i class="fa-solid fa-plus"></i>
-                </div>
-                </a>
-              </div>
-
-              <div class="article-container" id="article-container-categories">
 
                 <article>
                   <h4 class="article-title"><a href="#">Article title</a></h4>
@@ -187,27 +165,6 @@
                     </div>
                   </div>
                 </article>
-              
-              </div>
-            </section>
-
-            <div class="border-bottom border-2 border-danger-subtle"></div>
-
-            <section class="section-category" id="section-categories">
-
-              <!-- <p><h3 class="section-title">Tips</h3></p> -->
-
-              <div class="section-title">
-                <h3>Tips</h3>
-                <a href="#" class="text-decoration-none">
-                <div class="icon new-post">
-                  <div class="tooltip">New post</div>
-                  <i class="fa-solid fa-plus"></i>
-                </div>
-                </a>
-              </div>
-
-              <div class="article-container" id="article-container-categories">
 
                 <article>
                   <h4 class="article-title"><a href="#">Article title</a></h4>
@@ -241,26 +198,6 @@
                     </div>
                   </div>
                 </article>
-              </div>
-            </section>
-
-            <div class="border-bottom border-2 border-danger-subtle"></div>
-
-            <section class="section-category" id="section-categories">
-
-              <!-- <p><h3 class="section-title">Guides</h3></p> -->
-
-              <div class="section-title">
-                <h3>Guides</h3>
-                <a href="#" class="text-decoration-none">
-                <div class="icon new-post">
-                  <div class="tooltip">New post</div>
-                  <i class="fa-solid fa-plus"></i>
-                </div>
-                </a>
-              </div>
-
-              <div class="article-container" id="article-container-categories">
 
                 <article>
                   <h4 class="article-title"><a href="#">Article title</a></h4>
@@ -294,26 +231,6 @@
                     </div>
                   </div>
                 </article>
-              </div>
-            </section>
-
-            <div class="border-bottom border-2 border-danger-subtle"></div>
-
-            <section class="section-category" id="section-categories">
-
-              <!-- <p><h3 class="section-title">Food</h3></p> -->
-
-              <div class="section-title">
-                <h3>Food</h3>
-                <a href="#" class="text-decoration-none">
-                <div class="icon new-post">
-                  <div class="tooltip">New post</div>
-                  <i class="fa-solid fa-plus"></i>
-                </div>
-                </a>
-              </div>
-
-              <div class="article-container" id="article-container-categories">
 
                 <article>
                   <h4 class="article-title"><a href="#">Article title</a></h4>

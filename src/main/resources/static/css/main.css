@@ -32,6 +32,10 @@
   flex-wrap: wrap;
 }
 
+#main-categories > div > h2 {
+  color: #bc002d;
+}
+
 @media (max-width: 960px) {
   .main-section-content {
     flex-direction: column;
@@ -51,6 +55,10 @@
 .main-section-content .section-title {
   display: inline-flex;
   margin: 0 0 0.5em 1em;
+}
+
+#section-categories #section-title-category {
+  justify-content: center;
 }
 
 .section-title .icon {
@@ -118,13 +126,13 @@
   display: flex;
   flex: 1 1 20%; /* Items per row - at the moment 3. 25% for four items per row */
   flex-direction: column;
-  margin-top: 0;
+  margin-top: 1em;
   /* margin-bottom: 1em; */
   overflow-wrap: anywhere; /* word-wrap or word-break */
 }
 
-#section-categories {
-  margin-top: 2em;
+#section-categories:first-child {
+  margin-top: 1.3em;
 }
 
 @media (max-width: 1500px) {
