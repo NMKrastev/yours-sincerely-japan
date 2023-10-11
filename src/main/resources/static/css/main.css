@@ -1,5 +1,6 @@
 .main {
   display: flex;
+  flex-direction: column;
   justify-content: space-around;
   flex-grow: 1;
   flex-wrap: wrap;
@@ -23,6 +24,12 @@
   flex-wrap: wrap;
   /* flex-grow: 1;
   flex-shrink: 1; */
+}
+
+#main-categories {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
 }
 
 @media (max-width: 960px) {
@@ -82,7 +89,7 @@
 
 .section-title .tooltip::before {
   position: absolute;
-  content: '';
+  content: "";
   height: 8px;
   width: 8px;
   background-color: #000;
@@ -111,7 +118,8 @@
   display: flex;
   flex: 1 1 20%; /* Items per row - at the moment 3. 25% for four items per row */
   flex-direction: column;
-  margin-bottom: 1em;
+  margin-top: 2em;
+  /* margin-bottom: 1em; */
   overflow-wrap: anywhere; /* word-wrap or word-break */
 }
 
@@ -168,12 +176,27 @@
   justify-content: space-between;
 }
 
+#article-container-categories {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-around;
+}
+
 .article-container article {
   display: flex;
   flex-direction: column;
-  flex-basis: 350px;
-  flex-grow: 1; /* when wrapped on a new line the box remains same as the others if this is "turned off". */
-  flex-shrink: 1;
+  flex: 1 1 350px; /* when wrapped on a new line the box remains same as the others if this is "turned off". */
+  flex-wrap: nowrap;
+  margin: 0em 1.5em 1.5em 1.5em;
+  /* border: 1px solid black; */
+  box-shadow: 0 0 1em 0.2em rgba(0, 0, 0, 0.2);
+}
+
+#main-categories article {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 300px; /* when wrapped on a new line the box remains same as the others if this is "turned off". */
   flex-wrap: nowrap;
   margin: 0em 1.5em 1.5em 1.5em;
   /* border: 1px solid black; */

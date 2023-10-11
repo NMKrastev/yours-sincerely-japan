@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      Yours sincerely, Japan<!-- Sincerely yours, Japan(American english) -->
+    </title>
+    <link rel="stylesheet" href="/css/site.css" />
+  </head>
+  <body>
+
+    <div class="site">
+
+      <header class="site-header">
+
+        <div class="h1-container">
+          <a th:href="@{/}" class="text-decoration-none"><h1 class="header-title">Yours sincerely, Japan</h1></a>
+        </div>
+
+        <div class="nav-container">
+
+          <nav class="navigation">
+
+            <ul>
+              <li>
+                <a href="#"><i class="fa-regular fa-user"></i></a>
+                <ul>
+                  <li><a href="#">Settings</a></li>
+                  <li><a href="#">My articles</a></li>
+                  <li><a href="#">Logout</a></li>
+                </ul>
+              </li>
+              <li>
+                <a href="#">Japan</a>
+                <ul>
+                  <li><a href="#">News</a></li>
+                  <li><a href="#">History</a></li>
+                  <li><a href="#">Travel guide</a></li>
+                  <li><a href="#">Wildlife</a></li>
+                  <li><a href="#">Interesting facts</a></li>
+                </ul>
+              </li>
+              <li>
+                <a th:href="@{/categories/all}" class="section">Categories</a>
+                <ul>
+                  <li><a href="#">Category 1</a></li>
+                  <li><a href="#">Category 2</a></li>
+                  <li><a href="#">Category 3</a></li>
+                </ul>
+              </li>
+              <li><a th:href="@{/users/login}">Login</a></li>
+              <li><a th:href="@{/users/registration}">Sign up</a></li>
+            </ul>
+          </nav>
+        </div>
+      </header>
+
+      <div class="main">
+
+        <main class="site-content">
+
+          <div class="main-section-content" id="main-categories">
+
+            <section class="section-category">
+            
+              <!-- <p><h3 class="section-title">Travel <a href="#"><i class="fa-solid fa-plus"></i></a></h3></p> -->
+
+              <div class="section-title">
+                <h3>Travel</h3>
+                <a href="#" class="text-decoration-none">
+                <div class="icon new-post">
+                  <div class="tooltip">New post</div>
+                  <i class="fa-solid fa-plus"></i>
+                </div>
+                </a>
+              </div>
+
+              <div class="article-container" id="article-container-categories">
+
+                <article>
+                  <h4 class="article-title"><a href="#">Article title</a></h4>
+                  <p class="posted-by">Posted by: {name}{time}</p>
+                  <div class="article-content">
+                    <div class="article-text">
+                      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero, dicta aspernatur nam perferendis quam alias hic praesentium nemo vitae pariatur illo <a href="#">...read more</a></p>
+                      <img src="/images/header.jpg" class="article-img">
+                    </div>
+                  </div>
+                </article>
+
+                <article>
+                  <h4 class="article-title"><a href="#">Article title</a></h4>
+                  <p class="posted-by">Posted by: {name}{time}</p>
+                  <div class="article-content">
+                    <div class="article-text">
+                      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero, dicta aspernatur nam perferendis quam alias hic praesentium nemo vitae pariatur illo <a href="#">...read more</a></p>
+                      <img src="/images/shrine.jpg" class="article-img">
+                    </div>
+                  </div>
+                </article>
+
+                <article>
+                  <h4 class="article-title"><a href="#">Article title</a></h4>
+                  <p class="posted-by">Posted by: {name}{time}</p>
+                  <div class="article-content">
+                    <div class="article-text">
+                      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero, dicta aspernatur nam perferendis quam alias hic praesentium nemo vitae pariatur illo <a href="#">...read more</a></p>
+                      <img src="/images/h-c-UCaGli9BqF0-unsplash.jpg" class="article-img">
+                    </div>
+                  </div>
+                </article>
+
+                <article>
+                  <h4 class="article-title"><a href="#">Article title</a></h4>
+                  <p class="posted-by">Posted by: {name}{time}</p>
+                  <div class="article-content">
+                    <div class="article-text">
+                      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero, dicta aspernatur nam perferendis quam alias hic praesentium nemo vitae pariatur illo <a href="#">...read more</a></p>
+                      <img src="/images/h-c-UCaGli9BqF0-unsplash.jpg" class="article-img">
+                    </div>
+                  </div>
+                </article>
+
+                <article>
+                  <h4 class="article-title"><a href="#">Article title</a></h4>
+                  <p class="posted-by">Posted by: {name}{time}</p>
+                  <div class="article-content">
+                    <div class="article-text">
+                      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero, dicta aspernatur nam perferendis quam alias hic praesentium nemo vitae pariatur illo <a href="#">...read more</a></p>
+                      <img src="/images/h-c-UCaGli9BqF0-unsplash.jpg" class="article-img">
+                    </div>
+                  </div>
+                </article>
+              </div>
+            </section>
+
+            <div class="border-bottom border-2 border-danger-subtle"></div>
+
+            <section class="section-category">
+
+              <!-- <p><h3>Cars</h3></p> -->
+
+              <div class="section-title">
+                <h3>Cars</h3>
+                <a href="#" class="text-decoration-none">
+                <div class="icon new-post">
+                  <div class="tooltip">New post</div>
+                  <i class="fa-solid fa-plus"></i>
+                </div>
+                </a>
+              </div>
+
+              <div class="article-container" id="article-container-categories">
+
+                <article>
+                  <h4 class="article-title"><a href="#">Article title</a></h4>
+                  <p class="posted-by">Posted by: {name}{time}</p>
+                  <div class="article-content">
+                    <div class="article-text">
+                      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero, dicta aspernatur nam perferendis quam alias hic praesentium nemo vitae pariatur illo <a href="#">...read more</a></p>
+                      <img src="https://images.unsplash.com/photo-1605907153179-8b364644a241?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1930&q=80" class="article-img">
+                    </div>
+                  </div>
+                </article>
+
+                <article>
+                  <h4 class="article-title"><a href="#">Article title</a></h4>
+                  <p class="posted-by">Posted by: {name}{time}</p>
+                  <div class="article-content">
+                    <div class="article-text">
+                      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero, dicta aspernatur nam perferendis quam alias hic praesentium nemo vitae pariatur illo <a href="#">...read more</a></p>
+                      <img src="https://images.unsplash.com/photo-1580427331730-b38f8dc1f355?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1935&q=80" class="article-img">
+                    </div>
+                  </div>
+                </article>
+
+                <article>
+                  <h4 class="article-title"><a href="#">Article title</a></h4>
+                  <p class="posted-by">Posted by: {name}{time}</p>
+                  <div class="article-content">
+                    <div class="article-text">
+                      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero, dicta aspernatur nam perferendis quam alias hic praesentium nemo vitae pariatur illo <a href="#">...read more</a></p>
+                      <img src="https://images.unsplash.com/photo-1619022975927-b37c4982cc49?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80" class="article-img">
+                    </div>
+                  </div>
+                </article>
+              
+              </div>
+            </section>
+
+            <div class="border-bottom border-2 border-danger-subtle"></div>
+
+            <section class="section-category">
+
+              <!-- <p><h3 class="section-title">Tips</h3></p> -->
+
+              <div class="section-title">
+                <h3>Tips</h3>
+                <a href="#" class="text-decoration-none">
+                <div class="icon new-post">
+                  <div class="tooltip">New post</div>
+                  <i class="fa-solid fa-plus"></i>
+                </div>
+                </a>
+              </div>
+
+              <div class="article-container" id="article-container-categories">
+
+                <article>
+                  <h4 class="article-title"><a href="#">Article title</a></h4>
+                  <p class="posted-by">Posted by: {name}{time}</p>
+                  <div class="article-content">
+                    <div class="article-text">
+                      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero, dicta aspernatur nam perferendis quam alias hic praesentium nemo vitae pariatur illo <a href="#">...read more</a></p>
+                      <img src="/images/header.jpg" class="article-img">
+                    </div>
+                  </div>
+                </article>
+                
+                <article>
+                  <h4 class="article-title"><a href="#">Article title</a></h4>
+                  <p class="posted-by">Posted by: {name}{time}</p>
+                  <div class="article-content">
+                    <div class="article-text">
+                      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero, dicta aspernatur nam perferendis quam alias hic praesentium nemo vitae pariatur illo <a href="#">...read more</a></p>
+                      <img src="/images/header.jpg" class="article-img">
+                    </div>
+                  </div>
+                </article>
+
+                <article>
+                  <h4 class="article-title"><a href="#">Article title</a></h4>
+                  <p class="posted-by">Posted by: {name}{time}</p>
+                  <div class="article-content">
+                    <div class="article-text">
+                      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero, dicta aspernatur nam perferendis quam alias hic praesentium nemo vitae pariatur illo <a href="#">...read more</a></p>
+                      <img src="/images/header.jpg" class="article-img">
+                    </div>
+                  </div>
+                </article>
+              </div>
+            </section>
+
+            <div class="border-bottom border-2 border-danger-subtle"></div>
+
+            <section class="section-category">
+
+              <!-- <p><h3 class="section-title">Guides</h3></p> -->
+
+              <div class="section-title">
+                <h3>Guides</h3>
+                <a href="#" class="text-decoration-none">
+                <div class="icon new-post">
+                  <div class="tooltip">New post</div>
+                  <i class="fa-solid fa-plus"></i>
+                </div>
+                </a>
+              </div>
+
+              <div class="article-container" id="article-container-categories">
+
+                <article>
+                  <h4 class="article-title"><a href="#">Article title</a></h4>
+                  <p class="posted-by">Posted by: {name}{time}</p>
+                  <div class="article-content">
+                    <div class="article-text">
+                      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero, dicta aspernatur nam perferendis quam alias hic praesentium nemo vitae pariatur illo <a href="#">...read more</a></p>
+                      <img src="/images/header.jpg" class="article-img">
+                    </div>
+                  </div>
+                </article>
+  
+                <article>
+                  <h4 class="article-title"><a href="#">Article title</a></h4>
+                  <p class="posted-by">Posted by: {name}{time}</p>
+                  <div class="article-content">
+                    <div class="article-text">
+                      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero, dicta aspernatur nam perferendis quam alias hic praesentium nemo vitae pariatur illo <a href="#">...read more</a></p>
+                      <img src="/images/header.jpg" class="article-img">
+                    </div>
+                  </div>
+                </article>
+          
+                <article>
+                  <h4 class="article-title"><a href="#">Article title</a></h4>
+                  <p class="posted-by">Posted by: {name}{time}</p>
+                  <div class="article-content">
+                    <div class="article-text">
+                      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero, dicta aspernatur nam perferendis quam alias hic praesentium nemo vitae pariatur illo <a href="#">...read more</a></p>
+                      <img src="/images/header.jpg" class="article-img">
+                    </div>
+                  </div>
+                </article>
+              </div>
+            </section>
+
+            <div class="border-bottom border-2 border-danger-subtle"></div>
+
+            <section class="section-category">
+
+              <!-- <p><h3 class="section-title">Food</h3></p> -->
+
+              <div class="section-title">
+                <h3>Food</h3>
+                <a href="#" class="text-decoration-none">
+                <div class="icon new-post">
+                  <div class="tooltip">New post</div>
+                  <i class="fa-solid fa-plus"></i>
+                </div>
+                </a>
+              </div>
+
+              <div class="article-container" id="article-container-categories">
+
+                <article>
+                  <h4 class="article-title"><a href="#">Article title</a></h4>
+                  <p class="posted-by">Posted by: {name}{time}</p>
+                  <div class="article-content">
+                    <div class="article-text">
+                      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero, dicta aspernatur nam perferendis quam alias hic praesentium nemo vitae pariatur illo <a href="#">...read more</a></p>
+                      <img src="https://images.unsplash.com/photo-1584583570840-0a3d88497593?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2127&q=80" class="article-img">
+                    </div>
+                  </div>
+                </article>
+        
+                <article>
+                  <h4 class="article-title"><a href="#">Article title</a></h4>
+                  <p class="posted-by">Posted by: {name}{time}</p>
+                  <div class="article-content">
+                    <div class="article-text">
+                      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero, dicta aspernatur nam perferendis quam alias hic praesentium nemo vitae pariatur illo <a href="#">...read more</a></p>
+                      <img src="https://images.unsplash.com/photo-1526318896980-cf78c088247c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80" class="article-img">
+                    </div>
+                  </div>
+                </article>
+             
+                <article>
+                  <h4 class="article-title"><a href="#">Article title</a></h4>
+                  <p class="posted-by">Posted by: {name}{time}</p>
+                  <div class="article-content">
+                    <div class="article-text">
+                      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero, dicta aspernatur nam perferendis quam alias hic praesentium nemo vitae pariatur illo <a href="#">...read more</a></p>
+                      <img src="https://images.unsplash.com/photo-1514190051997-0f6f39ca5cde?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" class="article-img">
+                    </div>
+                  </div>
+                </article>
+              </div>
+            </section>
+          </div>
+        </main>
+      </div>
+
+      <footer class="site-footer">
+          <div class="copyright">
+            <p>All rights reserved. &copy; 2023</p>
+          </div>
+          <!-- <div class="footer-wrapper-logos">
+            <p>
+              <a href="https://www.facebook.com/YoursSincerelyJapan" target="_blank"><i class="fa-brands fa-facebook"></i></a>
+              <a href="https://www.instagram.com/yourssincerelyjapan/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+              <a href="https://twitter.com/YoursJapan" target="_blank"><i class="fa-brands fa-x-twitter"></i></a>
+            </p>
+          </div> -->
+
+          <div class="wrapper">
+              <div class="icon facebook">
+                <div class="tooltip">Facebook</div>
+                  <a href="https://www.facebook.com/YoursSincerelyJapan" target="_blank"><i class="fab fa-facebook-f"></i></a>
+              </div>
+              <div class="icon instagram">
+                <div class="tooltip">Instagram</div>
+                <a href="https://www.instagram.com/yourssincerelyjapan/" target="_blank"><i class="fab fa-instagram"></i></a>
+              </div>
+            <div class="icon twitter">
+              <div class="tooltip">Twitter</div>
+              <a href="https://twitter.com/YoursJapan" target="_blank"><i class="fab fa-x-twitter"></i></a>
+            </div>
+          </div>
+
+          <div class="footer-wrapper-links">
+            <p>
+              <a href="#">Contacts</a>
+              <a href="#">About</a>
+              <a href="#">Privacy policy</a>
+            </p>
+          </div>
+      </footer>
+
+    </div>
+
+    <script>window.addEventListener('scroll', this.handleScroll, true);</script>
+  </body>
+</html>
