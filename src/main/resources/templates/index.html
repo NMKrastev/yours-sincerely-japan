@@ -85,15 +85,26 @@
                             <div class="modal-dialog modal-xl modal-dialog-centered">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Create new article</h1>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
-                                        <input type="text" id="firstName" name="firstName">
+                                        <div class="mb-3">
+                                            <label for="articleTitle" class="form-label">Title:</label>
+                                            <input type="email" class="form-control" id="articleTitle" name="articleTitle" placeholder="Title">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="articleContent" class="form-label">Story:</label>
+                                            <textarea class="form-control" id="articleContent" name="articleContent" rows="15" placeholder="Your story is waiting to be told..."></textarea>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="uploadImages" class="form-label">Choose images: </label>
+                                            <input class="form-control" type="file" id="uploadImages" name="uploadImages" multiple>
+                                        </div>
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                        <button type="submit" class="btn btn-primary">Save changes</button>
+                                        <button type="submit" class="btn btn-primary">Create post</button>
                                     </div>
                                 </div>
                             </div>
