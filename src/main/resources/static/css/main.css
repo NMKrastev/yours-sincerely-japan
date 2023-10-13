@@ -77,7 +77,7 @@
   position: relative;
   cursor: pointer;
   transition: all 0.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-  /*margin-left: 1em;*/
+  /* margin-left: 1em; */
 }
 
 .section-title .tooltip {
@@ -121,7 +121,7 @@
 
 .section-title .icon:hover a,
 .section-title .icon:hover .tooltip {
-  text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.1);
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.1);
 }
 
 .section-title .new-post:hover .tooltip,
@@ -143,25 +143,47 @@
   margin-top: 1.3em;
 }
 
+/* NOTE: Redusing the size ot text also reduces nav button size and they don't wrap */
 @media (max-width: 1500px) {
+
+  html {
+    font-size: 14px;
+  }
+
   .section-category {
     flex: 1 1 25%;
   }
 }
 
 @media (max-width: 1240px) {
+
+  html {
+    font-size: 12px;
+  }
+
   .section-category {
     flex: 1 1 33.33%;
   }
 }
 
 @media (max-width: 960px) {
+
+  html {
+    font-size: 11px;
+  }
+
   .section-category {
     flex: 1 1 50%;
   }
 }
 
+/* I think it looks better at max-width: 600px */
 @media (max-width: 700px) {
+
+  html {
+    font-size: 10px;
+  }
+
   .section-category {
     flex: 1 1 100%;
   }
@@ -208,7 +230,7 @@
   flex-direction: column;
   flex: 1 1 350px; /* when wrapped on a new line the box remains same as the others if this is "turned off". */
   flex-wrap: nowrap;
-  margin: 0em 1.5em 1.5em 1.5em;
+  margin: 0 1.5em 1.5em 1.5em;
   /* border: 1px solid black; */
   box-shadow: 0 0 1em 0.2em rgba(0, 0, 0, 0.2);
 }
@@ -218,7 +240,7 @@
   flex-direction: column;
   flex: 1 1 300px; /* when wrapped on a new line the box remains same as the others if this is "turned off". */
   flex-wrap: nowrap;
-  margin: 0em 1.5em 1.5em 1.5em;
+  margin: 0 1.5em 1.5em 1.5em;
   /* border: 1px solid black; */
   box-shadow: 0 0 1em 0.2em rgba(0, 0, 0, 0.2);
 }

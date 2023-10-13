@@ -1,16 +1,114 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
 
 html {
-    font-family: 'Poppins', sans-serif;
+    font-family: "Poppins", sans-serif;
     font-size: 16px;
-    line-height: 1.5;
+    line-height: 1.4;
 }
 
-body, input, textarea {
+body,
+table,
+input,
+button,
+textarea {
     font: inherit;
     background: #ffffff;
 }
 
-p, ul , ol {
+p,
+ul,
+ol {
     padding: 1.2em;
+}
+
+/* p,
+* + ol,
+* + ul {
+  padding-bottom: 1.5em;
+} */
+
+ul ul,
+ol ol,
+ul ol,
+ol ul {
+    padding-bottom: 0;
+}
+
+ol,
+ul,
+blockquote {
+    padding-left: 1.5em;
+}
+
+ol,
+ul {
+    list-style-position: inside;
+}
+
+blockquote {
+    border-left: 4px solid #ccc;
+    margin-bottom: 1.5em;
+    font-style: italic;
+    color: #666;
+}
+
+blockquote p:first-child:before,
+blockquote:has(.author) p:nth-last-child(2):not(.author):after,
+blockquote p:nth-last-child(1):not(.author):after {
+    display: inline-block;
+    content: '"';
+}
+
+blockquote p:last-child {
+    padding-bottom: 0;
+}
+
+blockquote p.author {
+    text-align: right;
+    color: #111;
+}
+
+blockquote p.author::before {
+    display: inline-block;
+    content: "— ";
+    padding-right: 0.5em;
+}
+
+table {
+    width: 100%;
+    /* border-spacing: 10px; */
+    border-collapse: collapse;
+}
+
+table,
+th,
+td {
+    border: 1px solid #ccc;
+}
+
+th,
+td {
+    padding: 0.5em 0.7em;
+}
+
+table thead th {
+    background: #ddd;
+}
+
+table tbody tr:nth-child(even) td {
+    background: #eee;
+}
+
+img[class^="align"] {
+    margin-bottom: 0.5em;
+}
+
+img.align-left {
+    float: left;
+    margin-right: 0.5em;
+}
+
+img.align-right {
+    float: right;
+    margin-left: 0.5em;
 }
