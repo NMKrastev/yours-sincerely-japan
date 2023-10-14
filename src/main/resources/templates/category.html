@@ -44,11 +44,12 @@
                 </ul>
               </li>
               <li>
-                <a th:href="@{/categories/all}" class="section">Categories</a>
-                <ul th:each="category : ${categories}">
-                  <li><a th:href="@{/categories/{category}(category = ${category.getName()})}">Category 1</a></li>
-                  <li><a th:href="@{/categories/{category}(category = ${category.getName()})}">Category 2</a></li>
-                  <li><a th:href="@{/categories/{category}(category = ${category.getName()})}">Category 3</a></li>
+                <a href="#" class="section">Categories</a>
+                <ul>
+                  <li><a th:href="@{/categories/all}">All Categories</a></li>
+                  <li><a th:href="@{/categories/category}">Category 1</a></li>
+                  <li><a th:href="@{/categories/category}">Category 2</a></li>
+                  <li><a th:href="@{/categories/category}">Category 3</a></li>
                 </ul>
               </li>
               <li><a th:href="@{/users/login}">Login</a></li>
