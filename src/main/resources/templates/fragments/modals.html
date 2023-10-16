@@ -9,19 +9,19 @@
 </head>
 <body>
 
-<div th:fragment="modals">
+<div th:fragment="new-post-modal">
     <!-- Modal Travel-->
     <form th:action="@{/post/new}" th:method="POST">
         <div
                 class="modal fade"
-                id="createNewPostTravel"
+                id="createNewPost"
                 tabindex="-1"
-                aria-labelledby="createNewPostTravelLabel"
+                aria-labelledby="createNewPostLabel"
                 aria-hidden="true">
             <div class="modal-dialog modal-xl modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="createNewPostTravelLabel">
+                        <h1 class="modal-title fs-5" id="createNewPostLabel">
                             Create new article
                         </h1>
                         <button
@@ -93,7 +93,7 @@
         </div>
     </form>
 
-    <!-- Modal Cars -->
+<!--    &lt;!&ndash; Modal Cars &ndash;&gt;
     <form th:action="@{/post/new}" th:method="POST">
         <div
                 class="modal fade"
@@ -176,7 +176,7 @@
         </div>
     </form>
 
-    <!-- Modal Tips -->
+    &lt;!&ndash; Modal Tips &ndash;&gt;
     <form th:action="@{/post/new}" th:method="POST">
         <div
                 class="modal fade"
@@ -259,7 +259,7 @@
         </div>
     </form>
 
-    <!-- Modal Guides -->
+    &lt;!&ndash; Modal Guides &ndash;&gt;
     <form th:action="@{/post/new}" th:method="POST">
         <div
                 class="modal fade"
@@ -342,7 +342,7 @@
         </div>
     </form>
 
-    <!-- Modal Food -->
+    &lt;!&ndash; Modal Food &ndash;&gt;
     <form th:action="@{/post/new}" th:method="POST">
         <div
                 class="modal fade"
@@ -423,9 +423,9 @@
                 </div>
             </div>
         </div>
-    </form>
+    </form>-->
 
-    <script>
+<!--    <script>
         $('.modal').on('show.bs.modal', function (event) {
             var button = $(event.relatedTarget);
             var category = button.data('val');
@@ -433,6 +433,20 @@
             var modal = $(this);
             // Find and check the corresponding checkbox
             modal.find('#' + category).prop('checked', true);
+        });
+    </script>-->
+
+    <script>
+        $('.modal').on('show.bs.modal', function (event) {
+            const button = $(event.relatedTarget);
+            const category = button.data('val');
+            const modal = $(this);
+
+            // Uncheck all checkboxes
+            modal.find('.form-check-input').prop('checked', false);
+
+            // Check the checkbox with the selected category
+            modal.find('input[name="' + category + '"]').prop('checked', true);
         });
     </script>
 
