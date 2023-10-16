@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Header</title>
+    <link rel="stylesheet" href="/css/site.css"/>
+</head>
+<body>
+<header class="site-header" th:fragment="header">
+
+    <div class="h1-container">
+        <a th:href="@{/}" class="text-decoration-none"><h1 class="header-title">Yours sincerely, Japan</h1></a>
+    </div>
+
+    <div class="nav-container">
+
+        <nav class="navigation">
+
+            <ul>
+                <li>
+                    <a href="#"><i class="fa-regular fa-user"></i></a>
+                    <ul>
+                        <li><a href="#">Settings</a></li>
+                        <li><a href="#">My articles</a></li>
+                        <li><a href="#">Logout</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#">Japan</a>
+                    <ul>
+                        <li><a href="#">News</a></li>
+                        <li><a href="#">History</a></li>
+                        <li><a href="#">Travel guide</a></li>
+                        <li><a href="#">Wildlife</a></li>
+                        <li><a href="#">Interesting facts</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#" class="section">Categories</a>
+                    <ul>
+                        <li><a th:href="@{/categories/all}">All Categories</a></li>
+                        <li><a th:href="@{/categories/category}">Category 1</a></li>
+                        <li><a th:href="@{/categories/category}">Category 2</a></li>
+                        <li><a th:href="@{/categories/category}">Category 3</a></li>
+                    </ul>
+                </li>
+                <li><a th:href="@{/users/login}">Login</a></li>
+                <li><a th:href="@{/users/registration}">Sign up</a></li>
+            </ul>
+        </nav>
+    </div>
+    <!--<div class="hamburger" id="hamburger-icon" onclick="toggleMobileMenu(this)">
+      <div class="bar1"></div>
+      <div class="bar2"></div>
+      <div class="bar3"></div>
+      <ul class="mobile-menu">
+        <ul>
+          <li>
+            <a href="#"><i class="fa-regular fa-user"></i></a>
+            <ul>
+              <li><a href="#">Settings</a></li>
+              <li><a href="#">My articles</a></li>
+              <li><a href="#">Logout</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="#">Japan</a>
+            <ul>
+              <li><a href="#">News</a></li>
+              <li><a href="#">History</a></li>
+              <li><a href="#">Travel guide</a></li>
+              <li><a href="#">Wildlife</a></li>
+              <li><a href="#">Interesting facts</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="all-categories.html" class="section">Categories</a>
+            <ul>
+              <li><a href="category.html">Category 1</a></li>
+              <li><a href="category.html">Category 2</a></li>
+              <li><a href="category.html">Category 3</a></li>
+            </ul>
+          </li>
+          <li><a href="/templates/login.html">Login</a></li>
+          <li><a href="/templates/registration.html">Sign up</a></li>
+        </ul>
+      </ul>
+    </div>-->
+</header>
+</body>
+</html>

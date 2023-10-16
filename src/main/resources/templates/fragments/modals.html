@@ -1,0 +1,416 @@
+<div>
+    <!-- Modal Travel-->
+    <form th:action="@{/post/new}" th:method="POST">
+        <div
+                class="modal fade"
+                id="createNewPostTravel"
+                tabindex="-1"
+                aria-labelledby="createNewPostTravelLabel"
+                aria-hidden="true">
+            <div class="modal-dialog modal-xl modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="createNewPostTravelLabel">
+                            Create new article
+                        </h1>
+                        <button
+                                type="button"
+                                class="btn-close"
+                                data-bs-dismiss="modal"
+                                aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label for="articleTitle" class="form-label">Title:</label>
+                            <input
+                                    type="text"
+                                    class="form-control"
+                                    id="articleTitle"
+                                    name="articleTitle"
+                                    placeholder="Title"/>
+                        </div>
+                        <div class="mb-3">
+                            <label for="articleContent" class="form-label">Story:</label>
+                            <textarea
+                                    class="form-control"
+                                    id="articleContent"
+                                    name="articleContent"
+                                    rows="15"
+                                    placeholder="Your story is waiting to be told..."></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="uploadImages" class="form-label">Choose images:</label>
+                            <input
+                                    class="form-control"
+                                    type="file"
+                                    id="uploadImages"
+                                    name="uploadImages"
+                                    multiple/>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" value="travel" id="travel" name="travel">
+                            <label class="form-check-label" for="travel">Travel</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" value="cars" id="cars" name="cars">
+                            <label class="form-check-label" for="cars">Cars</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" value="tips" id="tips" name="tips">
+                            <label class="form-check-label" for="tips">Tips</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" value="guides" id="guides" name="guides">
+                            <label class="form-check-label" for="guides">Guides</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" value="food" id="food" name="food">
+                            <label class="form-check-label" for="food">Food</label>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button
+                                type="button"
+                                class="btn btn-secondary"
+                                data-bs-dismiss="modal">
+                            Close
+                        </button>
+                        <button type="submit" class="btn btn-primary">Create post</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <!-- Modal Cars -->
+    <form th:action="@{/post/new}" th:method="POST">
+        <div
+                class="modal fade"
+                id="createNewPostCars"
+                tabindex="-1"
+                aria-labelledby="createNewPostCarsLabel"
+                aria-hidden="true">
+            <div class="modal-dialog modal-xl modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="createNewPostCarsLabel">
+                            Create new article
+                        </h1>
+                        <button
+                                type="button"
+                                class="btn-close"
+                                data-bs-dismiss="modal"
+                                aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label for="articleTitle" class="form-label">Title:</label>
+                            <input
+                                    type="text"
+                                    class="form-control"
+                                    id="articleTitle"
+                                    name="articleTitle"
+                                    placeholder="Title"/>
+                        </div>
+                        <div class="mb-3">
+                            <label for="articleContent" class="form-label">Story:</label>
+                            <textarea
+                                    class="form-control"
+                                    id="articleContent"
+                                    name="articleContent"
+                                    rows="15"
+                                    placeholder="Your story is waiting to be told..."></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="uploadImages" class="form-label">Choose images:</label>
+                            <input
+                                    class="form-control"
+                                    type="file"
+                                    id="uploadImages"
+                                    name="uploadImages"
+                                    multiple/>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" value="travel" id="travel" name="travel">
+                            <label class="form-check-label" for="travel">Travel</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" value="cars" id="cars" name="cars">
+                            <label class="form-check-label" for="cars">Cars</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" value="tips" id="tips" name="tips">
+                            <label class="form-check-label" for="tips">Tips</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" value="guides" id="guides" name="guides">
+                            <label class="form-check-label" for="guides">Guides</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" value="food" id="food" name="food">
+                            <label class="form-check-label" for="food">Food</label>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button
+                                type="button"
+                                class="btn btn-secondary"
+                                data-bs-dismiss="modal">
+                            Close
+                        </button>
+                        <button type="submit" class="btn btn-primary">Create post</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <!-- Modal Tips -->
+    <form th:action="@{/post/new}" th:method="POST">
+        <div
+                class="modal fade"
+                id="createNewPostTips"
+                tabindex="-1"
+                aria-labelledby="createNewPostTipsLabel"
+                aria-hidden="true">
+            <div class="modal-dialog modal-xl modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="createNewPostTipsLabel">
+                            Create new article
+                        </h1>
+                        <button
+                                type="button"
+                                class="btn-close"
+                                data-bs-dismiss="modal"
+                                aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label for="articleTitle" class="form-label">Title:</label>
+                            <input
+                                    type="text"
+                                    class="form-control"
+                                    id="articleTitle"
+                                    name="articleTitle"
+                                    placeholder="Title"/>
+                        </div>
+                        <div class="mb-3">
+                            <label for="articleContent" class="form-label">Story:</label>
+                            <textarea
+                                    class="form-control"
+                                    id="articleContent"
+                                    name="articleContent"
+                                    rows="15"
+                                    placeholder="Your story is waiting to be told..."></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="uploadImages" class="form-label">Choose images:</label>
+                            <input
+                                    class="form-control"
+                                    type="file"
+                                    id="uploadImages"
+                                    name="uploadImages"
+                                    multiple/>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" value="travel" id="travel" name="travel">
+                            <label class="form-check-label" for="travel">Travel</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" value="cars" id="cars" name="cars">
+                            <label class="form-check-label" for="cars">Cars</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" value="tips" id="tips" name="tips">
+                            <label class="form-check-label" for="tips">Tips</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" value="guides" id="guides" name="guides">
+                            <label class="form-check-label" for="guides">Guides</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" value="food" id="food" name="food">
+                            <label class="form-check-label" for="food">Food</label>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button
+                                type="button"
+                                class="btn btn-secondary"
+                                data-bs-dismiss="modal">
+                            Close
+                        </button>
+                        <button type="submit" class="btn btn-primary">Create post</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <!-- Modal Guides -->
+    <form th:action="@{/post/new}" th:method="POST">
+        <div
+                class="modal fade"
+                id="createNewPostGuides"
+                tabindex="-1"
+                aria-labelledby="createNewPostGuidesLabel"
+                aria-hidden="true">
+            <div class="modal-dialog modal-xl modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="createNewPostGuidesLabel">
+                            Create new article
+                        </h1>
+                        <button
+                                type="button"
+                                class="btn-close"
+                                data-bs-dismiss="modal"
+                                aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label for="articleTitle" class="form-label">Title:</label>
+                            <input
+                                    type="text"
+                                    class="form-control"
+                                    id="articleTitle"
+                                    name="articleTitle"
+                                    placeholder="Title"/>
+                        </div>
+                        <div class="mb-3">
+                            <label for="articleContent" class="form-label">Story:</label>
+                            <textarea
+                                    class="form-control"
+                                    id="articleContent"
+                                    name="articleContent"
+                                    rows="15"
+                                    placeholder="Your story is waiting to be told..."></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="uploadImages" class="form-label">Choose images:</label>
+                            <input
+                                    class="form-control"
+                                    type="file"
+                                    id="uploadImages"
+                                    name="uploadImages"
+                                    multiple/>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" value="travel" id="travel" name="travel">
+                            <label class="form-check-label" for="travel">Travel</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" value="cars" id="cars" name="cars">
+                            <label class="form-check-label" for="cars">Cars</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" value="tips" id="tips" name="tips">
+                            <label class="form-check-label" for="tips">Tips</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" value="guides" id="guides" name="guides">
+                            <label class="form-check-label" for="guides">Guides</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" value="food" id="food" name="food">
+                            <label class="form-check-label" for="food">Food</label>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button
+                                type="button"
+                                class="btn btn-secondary"
+                                data-bs-dismiss="modal">
+                            Close
+                        </button>
+                        <button type="submit" class="btn btn-primary">Create post</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <!-- Modal Food -->
+    <form th:action="@{/post/new}" th:method="POST">
+        <div
+                class="modal fade"
+                id="createNewPostFood"
+                tabindex="-1"
+                aria-labelledby="createNewPostFoodLabel"
+                aria-hidden="true">
+            <div class="modal-dialog modal-xl modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="createNewPostFoodLabel">
+                            Create new article
+                        </h1>
+                        <button
+                                type="button"
+                                class="btn-close"
+                                data-bs-dismiss="modal"
+                                aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label for="articleTitle" class="form-label">Title:</label>
+                            <input
+                                    type="text"
+                                    class="form-control"
+                                    id="articleTitle"
+                                    name="articleTitle"
+                                    placeholder="Title"/>
+                        </div>
+                        <div class="mb-3">
+                            <label for="articleContent" class="form-label">Story:</label>
+                            <textarea
+                                    class="form-control"
+                                    id="articleContent"
+                                    name="articleContent"
+                                    rows="15"
+                                    placeholder="Your story is waiting to be told..."></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="uploadImages" class="form-label">Choose images:</label>
+                            <input
+                                    class="form-control"
+                                    type="file"
+                                    id="uploadImages"
+                                    name="uploadImages"
+                                    multiple/>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" value="travel" id="travel" name="travel">
+                            <label class="form-check-label" for="travel">Travel</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" value="cars" id="cars" name="cars">
+                            <label class="form-check-label" for="cars">Cars</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" value="tips" id="tips" name="tips">
+                            <label class="form-check-label" for="tips">Tips</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" value="guides" id="guides" name="guides">
+                            <label class="form-check-label" for="guides">Guides</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" value="food" id="food" name="food">
+                            <label class="form-check-label" for="food">Food</label>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button
+                                type="button"
+                                class="btn btn-secondary"
+                                data-bs-dismiss="modal">
+                            Close
+                        </button>
+                        <button type="submit" class="btn btn-primary">Create post</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
