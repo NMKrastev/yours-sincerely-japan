@@ -10,24 +10,26 @@
     <header th:replace="~{fragments/header.html :: header}"></header>
 
     <div class="main">
+
         <main class="site-content">
+
             <div
                     class="mt-2 mb-4 pb-2 fst-italic border-bottom border-3 border-danger-subtle">
                 <h2>Latest in:</h2>
             </div>
 
             <div class="main-section-content">
+
                 <section class="section-category">
                     <!-- <p><h3 class="section-title">Travel <a href="#"><i class="fa-solid fa-plus"></i></a></h3></p> -->
 
                     <div class="section-title">
                         <h3>Travel</h3>
-                        <a
-                                href="#"
-                                class="text-decoration-none"
-                                data-bs-toggle="modal"
-                                data-bs-target="#createNewPostTravel"
-                                data-val="travel">
+                        <a href="#"
+                           class="text-decoration-none"
+                           data-bs-toggle="modal"
+                           data-bs-target="#createNewPostTravel"
+                           data-val="travel">
                             <div class="icon new-post">
                                 <div class="tooltip">New post</div>
                                 <i class="fa-solid fa-plus"></i>
@@ -381,17 +383,6 @@
 </div>
 
 <div th:replace="~{fragments/modals}"></div>
-
-<script>
-    $('.modal').on('show.bs.modal', function (event) {
-        var button = $(event.relatedTarget);
-        var category = button.data('val');
-
-        var modal = $(this);
-        // Find and check the corresponding checkbox
-        modal.find('#' + category).prop('checked', true);
-    });
-</script>
 
 </body>
 </html>

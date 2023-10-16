@@ -1,59 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registration</title>
     <link rel="stylesheet" href="/css/site.css"/>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+            crossorigin="anonymous"></script>
 </head>
 <body>
 
 <div class="site">
 
-    <header class="site-header">
-
-        <div class="h1-container">
-            <a th:href="@{/}" class="text-decoration-none"><h1 class="header-title">Yours sincerely, Japan</h1></a>
-        </div>
-
-        <div class="nav-container">
-
-            <nav class="navigation">
-
-                <ul>
-                    <li>
-                        <a href="#"><i class="fa-regular fa-user"></i></a>
-                        <ul>
-                            <li><a href="#">Settings</a></li>
-                            <li><a href="#">My articles</a></li>
-                            <li><a href="#">Logout</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="#">Japan</a>
-                        <ul>
-                            <li><a href="#">News</a></li>
-                            <li><a href="#">History</a></li>
-                            <li><a href="#">Travel guide</a></li>
-                            <li><a href="#">Wildlife</a></li>
-                            <li><a href="#">Interesting facts</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="#" class="section">Categories</a>
-                        <ul>
-                            <li><a th:href="@{/categories/all}">All Categories</a></li>
-                            <li><a th:href="@{/categories/category}">Category 1</a></li>
-                            <li><a th:href="@{/categories/category}">Category 2</a></li>
-                            <li><a th:href="@{/categories/category}">Category 3</a></li>
-                        </ul>
-                    </li>
-                    <li><a th:href="@{/users/login}">Login</a></li>
-                    <li><a th:href="@{/users/registration}">Sign up</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
+    <header th:replace="~{fragments/header.html :: header}"></header>
 
     <div class="main" id="main-registration">
 
@@ -104,7 +64,8 @@
                 </div>
               </form> -->
 
-            <div class="mt-2 mb-4 pb-2 text-white text-center border-bottom border-3 border-danger-subtle"><h2>Create account</h2>
+            <div class="mt-2 mb-4 pb-2 text-white text-center border-bottom border-3 border-danger-subtle"><h2>Create
+                account</h2>
             </div>
 
             <form class="mx-auto w-auto h-auto bg-blur needs-validation"
@@ -119,6 +80,7 @@
                            id="displayName"
                            name="displayName"
                            placeholder="John Doe"
+                           errorclass="is-invalid"
                            required/>
                     <div class="alert alert-danger"><span>Error Message</span></div>
                 </div>
@@ -132,6 +94,7 @@
                            id="email"
                            name="email"
                            placeholder="name@example.com"
+                           errorclass="is-invalid"
                            required/>
                     <div class="alert alert-danger"><span>Error Message</span></div>
                 </div>
@@ -187,49 +150,9 @@
         </main>
     </div>
 
-    <footer class="site-footer">
-        <div class="copyright">
-            <p>All rights reserved. &copy; 2023</p>
-        </div>
-        <!-- <div class="footer-wrapper-logos">
-          <p>
-            <a href="https://www.facebook.com/YoursSincerelyJapan" target="_blank"><i class="fa-brands fa-facebook"></i></a>
-            <a href="https://www.instagram.com/yourssincerelyjapan/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
-            <a href="https://twitter.com/YoursJapan" target="_blank"><i class="fa-brands fa-x-twitter"></i></a>
-          </p>
-        </div> -->
-
-        <div class="wrapper">
-            <div class="icon facebook">
-                <div class="tooltip">Facebook</div>
-                <a href="https://www.facebook.com/YoursSincerelyJapan" target="_blank"><i class="fab fa-facebook-f"></i></a>
-            </div>
-            <div class="icon instagram">
-                <div class="tooltip">Instagram</div>
-                <a href="https://www.instagram.com/yourssincerelyjapan/" target="_blank"><i
-                        class="fab fa-instagram"></i></a>
-            </div>
-            <div class="icon twitter">
-                <div class="tooltip">Twitter</div>
-                <a href="https://twitter.com/YoursJapan" target="_blank"><i class="fab fa-x-twitter"></i></a>
-            </div>
-        </div>
-
-        <div class="footer-wrapper-links">
-            <p>
-                <a href="#">Contacts</a>
-                <a href="#">About</a>
-                <a href="#">Privacy policy</a>
-            </p>
-        </div>
-    </footer>
+    <footer th:replace="~{fragments/footer.html :: footer}"></footer>
 
 </div>
-
-<script
-        src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"
-        integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V"
-        crossorigin="anonymous"></script>
 
 <script>
     // Example starter JavaScript for disabling form submissions if there are invalid fields

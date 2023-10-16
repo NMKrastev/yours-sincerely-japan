@@ -1,4 +1,15 @@
-<div>
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+<div th:fragment="modals">
     <!-- Modal Travel-->
     <form th:action="@{/post/new}" th:method="POST">
         <div
@@ -413,4 +424,19 @@
             </div>
         </div>
     </form>
+
+    <script>
+        $('.modal').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget);
+            var category = button.data('val');
+
+            var modal = $(this);
+            // Find and check the corresponding checkbox
+            modal.find('#' + category).prop('checked', true);
+        });
+    </script>
+
 </div>
+
+</body>
+</html>
