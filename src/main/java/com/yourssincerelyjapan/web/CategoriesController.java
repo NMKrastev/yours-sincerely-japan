@@ -25,9 +25,10 @@ public class CategoriesController {
 
 //        Category category = this.categoryService.findByName(categoryName);
 
+//        modelAndView.addObject("category", category);
+
         modelAndView.setViewName("category");
 
-//        modelAndView.addObject("category", category);
 
         return modelAndView;
     }

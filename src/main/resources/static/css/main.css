@@ -51,6 +51,7 @@
 .site-content .latest-posts,
 .article-container .posted-by {
   font-style: italic;
+  font-size: 13px;
 }
 
 .main-section-content .section-title {
@@ -247,7 +248,7 @@
 }
 
 .article-container article .article-title {
-  padding-left: 0.3em;
+  padding: 0.5em 0.5em 0 0.5em;
 }
 
 .article-container article .article-title > a {
