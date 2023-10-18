@@ -5,7 +5,7 @@
   }
 }
 
-/* NOTE: Reducing the size of text also reduces nav button size and they don't wrap */
+/* NOTE: Redusing the size of text also reduces nav button size and they don't wrap */
 @media (max-width: 1500px) {
   html {
     font-size: 15px;
@@ -34,6 +34,14 @@
   .section-category {
     flex: 1 1 50%;
   }
+
+  .main-single-post {
+    margin: 1em 0;
+  }
+
+  .main-single-post .single-post-site-content .single-post-section-category {
+    max-width: 90%;
+  }
 }
 
 /* I think it looks better at max-width: 600px */
@@ -44,6 +52,14 @@
 
   .section-category {
     flex: 1 1 100%;
+  }
+
+  .main-single-post {
+    margin: 1em 0;
+  }
+
+  .main-single-post .single-post-site-content .single-post-section-category {
+    max-width: 100%;
   }
 }
 

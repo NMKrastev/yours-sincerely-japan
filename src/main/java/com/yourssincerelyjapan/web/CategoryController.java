@@ -8,7 +8,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @RequestMapping("/categories")
-public class CategoriesController {
+public class CategoryController {
 
     @GetMapping("/all")
     public ModelAndView allCategories(ModelAndView modelAndView) {

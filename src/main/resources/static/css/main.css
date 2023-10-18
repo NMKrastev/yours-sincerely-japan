@@ -53,6 +53,10 @@
   align-items: center;
 }
 
+#main-categories #section-title-category {
+  margin: 0 0 0.5em 0;
+}
+
 #section-categories #section-title-category {
   justify-content: center;
 }
@@ -181,7 +185,7 @@
   flex: 1 1 350px; /* when wrapped on a new line the box remains same as the others if this is "turned off". */
   flex-wrap: nowrap;
   margin: 0 1.5em 1.5em 1.5em;
-  /* border: 1px solid black; */
+  border-radius: 0.5em;
   box-shadow: 0 0 1em 0.2em rgba(0, 0, 0, 0.2);
 }
 
@@ -191,7 +195,6 @@
   flex: 1 1 300px; /* when wrapped on a new line the box remains same as the others if this is "turned off". */
   flex-wrap: nowrap;
   margin: 0 1.5em 1.5em 1.5em;
-  /* border: 1px solid black; */
   box-shadow: 0 0 1em 0.2em rgba(0, 0, 0, 0.2);
 }
 
