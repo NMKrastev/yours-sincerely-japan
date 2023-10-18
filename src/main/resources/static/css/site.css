@@ -1,7 +1,5 @@
 @import url(https://use.fontawesome.com/releases/v6.4.2/css/all.css);
 
-/* @import url(https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css); */
-
 @import url(bootstrap.min.css);
 
 @import url(reset.css);
@@ -19,3 +17,5 @@
 @import url(footer.css);
 
 @import url(registration-login.css);
+
+@import url(responsive.css);

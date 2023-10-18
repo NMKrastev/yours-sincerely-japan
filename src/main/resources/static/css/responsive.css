@@ -1,0 +1,48 @@
+@media (max-width: 960px) {
+  .main-section-content {
+    flex-direction: column;
+    flex-wrap: wrap;
+  }
+}
+
+/* NOTE: Reducing the size of text also reduces nav button size and they don't wrap */
+@media (max-width: 1500px) {
+  html {
+    font-size: 15px;
+  }
+
+  .section-category {
+    flex: 1 1 25%;
+  }
+}
+
+@media (max-width: 1240px) {
+  html {
+    font-size: 14px;
+  }
+
+  .section-category {
+    flex: 1 1 33.33%;
+  }
+}
+
+@media (max-width: 900px) {
+  html {
+    font-size: 13px;
+  }
+
+  .section-category {
+    flex: 1 1 50%;
+  }
+}
+
+/* I think it looks better at max-width: 600px */
+@media (max-width: 600px) {
+  html {
+    font-size: 12px;
+  }
+
+  .section-category {
+    flex: 1 1 100%;
+  }
+}

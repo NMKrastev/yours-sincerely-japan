@@ -37,13 +37,6 @@
   color: #bc002d;
 }
 
-@media (max-width: 960px) {
-  .main-section-content {
-    flex-direction: column;
-    flex-wrap: wrap;
-  }
-}
-
 .site-content > p {
   padding-bottom: 0;
 }
@@ -57,6 +50,7 @@
 .main-section-content .section-title {
   display: inline-flex;
   margin: 0 0 0.5em 1em;
+  align-items: center;
 }
 
 #section-categories #section-title-category {
@@ -143,52 +137,6 @@
 
 #section-categories:first-child {
   margin-top: 1.3em;
-}
-
-/* NOTE: Redusing the size ot text also reduces nav button size and they don't wrap */
-@media (max-width: 1500px) {
-
-  html {
-    font-size: 15px;
-  }
-
-  .section-category {
-    flex: 1 1 25%;
-  }
-}
-
-@media (max-width: 1240px) {
-
-  html {
-    font-size: 14px;
-  }
-
-  .section-category {
-    flex: 1 1 33.33%;
-  }
-}
-
-@media (max-width: 960px) {
-
-  html {
-    font-size: 13px;
-  }
-
-  .section-category {
-    flex: 1 1 50%;
-  }
-}
-
-/* I think it looks better at max-width: 600px */
-@media (max-width: 700px) {
-
-  html {
-    font-size: 12px;
-  }
-
-  .section-category {
-    flex: 1 1 100%;
-  }
 }
 
 .section-category:last-child {
