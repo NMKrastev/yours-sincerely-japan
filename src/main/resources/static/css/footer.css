@@ -7,22 +7,6 @@
     flex-wrap: wrap;
 }
 
-@media (max-width: 960px) {
-
-    .site-footer {
-        flex-direction: column;
-        align-items: center;
-    }
-}
-
-@media (max-width: 960px) {
-
-    .site-footer > div > p {
-        margin: 0;
-        padding: 0.5em;
-    }
-}
-
 .copyright,
 .footer-wrapper-logos,
 .footer-wrapper-links {

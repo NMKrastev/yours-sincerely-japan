@@ -46,3 +46,19 @@
     flex: 1 1 100%;
   }
 }
+
+/* Footer */
+@media (max-width: 960px) {
+  .site-footer {
+    flex-direction: column;
+    align-items: center;
+    gap: 1em;
+  }
+}
+
+@media (max-width: 960px) {
+  .site-footer > div > p {
+    margin: 0;
+    padding: 0.5em;
+  }
+}
