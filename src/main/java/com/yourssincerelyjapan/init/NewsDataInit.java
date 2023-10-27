@@ -12,7 +12,7 @@ import java.util.Map;
 @Component
 public class NewsDataInit implements CommandLineRunner {
 
-    private final NewsDataConfiguration newsDataConfiguration;
+    /*private final NewsDataConfiguration newsDataConfiguration;
     private final RestTemplate restTemplate;
     private final NewsDataService newsDataService;
 
@@ -22,31 +22,33 @@ public class NewsDataInit implements CommandLineRunner {
         this.newsDataConfiguration = newsDataConfiguration;
         this.restTemplate = restTemplate;
         this.newsDataService = newsDataService;
-    }
+    }*/
 
     @Override
     public void run(String... args) throws Exception {
 
-        if (this.newsDataConfiguration.isEnabled()) {
-            String newsDataUrlTemplate =
+        /*if (this.newsDataConfiguration.isEnabled()) {
+            final String newsDataUrlTemplate =
                     this.newsDataConfiguration.getSchema()
                     + "://"
                     + this.newsDataConfiguration.getHost()
                     + this.newsDataConfiguration.getPath()
                     + "?apikey={apikey}&country={country}&language={language}";
 
-            Map<String, String> requestParams = Map.of(
+            final Map<String, String> requestParams = Map.of(
                     "apikey", this.newsDataConfiguration.getApikey(),
                     "country", this.newsDataConfiguration.getCountry(),
                     "language", this.newsDataConfiguration.getLanguage()
             );
 
-            NewsDataWrapperDTO newsDataWrapperDTO = this.restTemplate
+            final NewsDataWrapperDTO newsDataWrapperDTO = this.restTemplate
                     .getForObject(newsDataUrlTemplate,
                             NewsDataWrapperDTO.class,
                             requestParams);
 
             this.newsDataService.getNewsData(newsDataWrapperDTO);
-        }
+        }*/
+
+        //this.newsDataService.getNewsData();
     }
 }
