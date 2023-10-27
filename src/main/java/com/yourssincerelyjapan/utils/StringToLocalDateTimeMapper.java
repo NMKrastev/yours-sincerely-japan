@@ -13,10 +13,11 @@ import java.time.LocalDateTime;
 public class StringToLocalDateTimeMapper {
 
     @StringToLocalDateTime
-    public String convertToLocalDateTime(String value) {
+    public LocalDateTime convertToLocalDateTime(String value) {
+
         final String date = value.split("\\s+")[0];
         final String time = value.split("\\s+")[1];
 
-        return date.concat("T").concat(time);
+        return LocalDateTime.parse(date.concat("T").concat(time))/*.plusHours(8)*/;
     }
 }

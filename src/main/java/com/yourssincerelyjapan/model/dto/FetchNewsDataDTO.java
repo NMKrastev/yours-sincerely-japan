@@ -11,6 +11,8 @@ public class FetchNewsDataDTO {
 
     private Long id;
 
+    private String article_id;
+
     private String title;
 
     private String link;

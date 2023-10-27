@@ -11,6 +11,7 @@ import org.mapstruct.Mapping;
 @Mapper(componentModel = "spring", uses = StringToLocalDateTimeMapper.class)
 public interface NewsDataMapper {
 
+    @Mapping(source = "article_id", target = "fetchArticleId")
     @Mapping(source = "link", target = "newsUrl")
     @Mapping(source = "image_url", target = "imageUrl")
     @Mapping(source = "pubDate", target = "createdOn", qualifiedBy = StringToLocalDateTime.class)

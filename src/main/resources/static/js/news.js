@@ -1,5 +1,3 @@
-loadNews();
-
 function loadNews() {
 
     let articleContainer = document.getElementById('news-article-container');
@@ -37,11 +35,13 @@ function loadNews() {
             aReadMore.setAttribute('href', news.newsUrl);
             aReadMore.setAttribute('target', '_blank');
             aReadMore.textContent = 'Read More.';
-            aReadMore.style.fontSize = '14px';
+            aReadMore.style.fontSize = '12px';
 
             a.textContent = news.title;
             pPublished.textContent = 'Published on: ' + news.createdOn.replace('T', " at ");
-            pText.textContent = news.description;
+            pText.textContent = news.description
+                .trim()
+                .concat(news.description.charAt(news.description.length - 1) === '.' ? '..' : '...');
             pText.appendChild(aReadMore);
             divText.appendChild(pText);
             divContent.appendChild(divText);
@@ -51,6 +51,7 @@ function loadNews() {
             article.appendChild(divContent);
 
             articleContainer.appendChild(article);
-
-        }))
+        }));
 }
+
+loadNews();

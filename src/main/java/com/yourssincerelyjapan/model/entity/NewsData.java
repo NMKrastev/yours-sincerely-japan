@@ -18,6 +18,9 @@ import java.time.LocalDateTime;
 @Table(name = "news_data")
 public class NewsData extends BaseEntity {
 
+    @Column(name = "fetch_article_id")
+    private String fetchArticleId;
+
     @Column
     private String title;
 

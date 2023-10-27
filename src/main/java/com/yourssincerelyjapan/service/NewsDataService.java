@@ -55,22 +55,41 @@ public class NewsDataService {
         }
     }
 
-    private void saveNewsData(List<FetchNewsDataDTO> newsDataDTOS) {
-
-        final List<NewsData> newsData = newsDataDTOS
-                .stream()
-                .map(this.newsDataMapper::newsDataDtoToNewsData)
-                .toList();
-
-        this.newsDataRepository.saveAll(newsData);
-    }
-
     public List<NewsDataDTO> getLatestNews() {
 
         return this.newsDataRepository.findAllByOrderByCreatedOnDesc()
                 .stream()
                 .limit(10)
                 .map(this.newsDataMapper::newsDataToNewsDataDto)
+                .toList();
+    }
+
+
+    private void saveNewsData(List<FetchNewsDataDTO> newsDataDTOS) {
+
+        final List<FetchNewsDataDTO> noDuplicatesNewsDataDTOS =
+                this.checkForDuplicates(newsDataDTOS);
+
+        if (!noDuplicatesNewsDataDTOS.isEmpty()) {
+
+            noDuplicatesNewsDataDTOS
+                    .forEach(n -> n.setDescription(n.getDescription().replace("…", "")));
+
+            final List<NewsData> newsData = noDuplicatesNewsDataDTOS
+                    .stream()
+                    .map(this.newsDataMapper::newsDataDtoToNewsData)
+                    .toList();
+
+            this.newsDataRepository.saveAll(newsData);
+        }
+    }
+
+    private List<FetchNewsDataDTO> checkForDuplicates(List<FetchNewsDataDTO> fetchNewsDataDTO) {
+
+        return fetchNewsDataDTO
+                .stream()
+                .filter(e ->
+                        this.newsDataRepository.findNewsByFetchArticleId(e.getArticle_id()).isEmpty())
                 .toList();
     }
 }
