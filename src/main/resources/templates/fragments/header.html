@@ -23,7 +23,19 @@
                     <ul>
                         <li><a href="#">Settings</a></li>
                         <li><a th:href="@{/users/posts}">My articles</a></li>
-                        <li><a href="#">Logout</a></li>
+                        <li>
+                            <form id="Logout"
+                                  th:method="POST"
+                                  th:action="@{/users/logout}">
+                                <a href="#" onclick="formSubmit()">Logout</a>
+                            </form>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#">Admin</a>
+                    <ul>
+                        <li><a th:href="@{/users/all}">Edit user</a></li>
                     </ul>
                 </li>
                 <li>
@@ -87,6 +99,11 @@
         </ul>
       </ul>
     </div>-->
+    <script>
+        function formSubmit() {
+            document.getElementById("Logout").submit();
+        }
+    </script>
 </header>
 
 </body>
