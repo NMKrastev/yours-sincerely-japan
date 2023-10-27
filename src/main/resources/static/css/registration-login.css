@@ -13,7 +13,9 @@
 }
 
 .site-registration h2,
+.site-registration h3,
 .site-login h2,
+.site-login h3,
 .label-holder label {
     color: #ffb7c5;
     text-shadow:

@@ -1,5 +1,6 @@
 package com.yourssincerelyjapan.model.mapper;
 
+import com.yourssincerelyjapan.model.dto.FetchNewsDataDTO;
 import com.yourssincerelyjapan.model.dto.NewsDataDTO;
 import com.yourssincerelyjapan.model.entity.NewsData;
 import com.yourssincerelyjapan.utils.StringToLocalDateTime;
@@ -13,5 +14,7 @@ public interface NewsDataMapper {
     @Mapping(source = "link", target = "newsUrl")
     @Mapping(source = "image_url", target = "imageUrl")
     @Mapping(source = "pubDate", target = "createdOn", qualifiedBy = StringToLocalDateTime.class)
-    NewsData newsDataDtoToNewsData(NewsDataDTO newsDataDTO);
+    NewsData newsDataDtoToNewsData(FetchNewsDataDTO newsDataDTO);
+
+    NewsDataDTO newsDataToNewsDataDto(NewsData newsData);
 }

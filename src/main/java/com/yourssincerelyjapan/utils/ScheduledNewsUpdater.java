@@ -11,7 +11,7 @@ import java.util.concurrent.TimeUnit;
 @EnableScheduling
 public class ScheduledNewsUpdater {
 
-    private final NewsDataService newsDataService;
+/*    private final NewsDataService newsDataService;
 
     public ScheduledNewsUpdater(NewsDataService newsDataService) {
 
@@ -21,5 +21,5 @@ public class ScheduledNewsUpdater {
     @Scheduled(fixedRate = 15, timeUnit = TimeUnit.MINUTES)
     public void fetchAndSaveNews() {
         this.newsDataService.fetchAndSaveNews();
-    }
+    }*/
 }

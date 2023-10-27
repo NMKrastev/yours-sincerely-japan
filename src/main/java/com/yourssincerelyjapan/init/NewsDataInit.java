@@ -1,13 +1,7 @@
 package com.yourssincerelyjapan.init;
 
-import com.yourssincerelyjapan.config.NewsDataConfiguration;
-import com.yourssincerelyjapan.model.dto.NewsDataWrapperDTO;
-import com.yourssincerelyjapan.service.NewsDataService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
-import org.springframework.web.client.RestTemplate;
-
-import java.util.Map;
 
 @Component
 public class NewsDataInit implements CommandLineRunner {

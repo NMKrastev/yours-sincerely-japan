@@ -1,8 +1,9 @@
 package com.yourssincerelyjapan.service;
 
 import com.yourssincerelyjapan.config.NewsDataConfiguration;
+import com.yourssincerelyjapan.model.dto.FetchNewsDataDTO;
+import com.yourssincerelyjapan.model.dto.FetchNewsDataWrapperDTO;
 import com.yourssincerelyjapan.model.dto.NewsDataDTO;
-import com.yourssincerelyjapan.model.dto.NewsDataWrapperDTO;
 import com.yourssincerelyjapan.model.entity.NewsData;
 import com.yourssincerelyjapan.model.mapper.NewsDataMapper;
 import com.yourssincerelyjapan.repository.NewsDataRepository;
@@ -45,16 +46,16 @@ public class NewsDataService {
                     "language", this.newsDataConfiguration.getLanguage()
             );
 
-            final NewsDataWrapperDTO newsDataWrapperDTO = this.restTemplate
+            final FetchNewsDataWrapperDTO newsDataWrapperDTO = this.restTemplate
                     .getForObject(newsDataUrlTemplate,
-                            NewsDataWrapperDTO.class,
+                            FetchNewsDataWrapperDTO.class,
                             requestParams);
 
             this.saveNewsData(newsDataWrapperDTO.getResults());
         }
     }
 
-    private void saveNewsData(List<NewsDataDTO> newsDataDTOS) {
+    private void saveNewsData(List<FetchNewsDataDTO> newsDataDTOS) {
 
         final List<NewsData> newsData = newsDataDTOS
                 .stream()
@@ -62,5 +63,14 @@ public class NewsDataService {
                 .toList();
 
         this.newsDataRepository.saveAll(newsData);
+    }
+
+    public List<NewsDataDTO> getLatestNews() {
+
+        return this.newsDataRepository.findAllByOrderByCreatedOnDesc()
+                .stream()
+                .limit(10)
+                .map(this.newsDataMapper::newsDataToNewsDataDto)
+                .toList();
     }
 }

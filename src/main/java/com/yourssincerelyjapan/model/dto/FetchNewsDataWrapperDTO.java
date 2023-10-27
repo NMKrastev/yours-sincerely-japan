@@ -9,11 +9,11 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @ToString
-public class NewsDataWrapperDTO {
+public class FetchNewsDataWrapperDTO {
 
-    private final List<NewsDataDTO> results;
+    private final List<FetchNewsDataDTO> results;
 
-    public NewsDataWrapperDTO() {
+    public FetchNewsDataWrapperDTO() {
         this.results = new ArrayList<>();
     }
 }

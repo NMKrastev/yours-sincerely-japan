@@ -14,6 +14,10 @@
   .section-category {
     flex: 1 1 25%;
   }
+
+  .main-news .news-site-content .news-section-category article {
+    flex: 1 1 21%;
+  }
 }
 
 @media (max-width: 1240px) {
@@ -23,6 +27,10 @@
 
   .section-category {
     flex: 1 1 33.33%;
+  }
+
+  .main-news .news-site-content .news-section-category article {
+    flex: 1 1 28%;
   }
 }
 
@@ -42,6 +50,10 @@
   .main-single-post .single-post-site-content .single-post-section-category {
     max-width: 90%;
   }
+
+  .main-news .news-site-content .news-section-category article {
+    flex: 1 1 40%;
+  }
 }
 
 /* I think it looks better at max-width: 600px */
@@ -60,6 +72,10 @@
 
   .main-single-post .single-post-site-content .single-post-section-category {
     max-width: 100%;
+  }
+
+  .main-news .news-site-content .news-section-category article {
+    flex: 1 1 45%;
   }
 }
 

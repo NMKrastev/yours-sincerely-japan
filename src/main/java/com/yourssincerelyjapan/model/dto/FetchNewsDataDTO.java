@@ -7,17 +7,17 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class NewsDataDTO {
+public class FetchNewsDataDTO {
 
     private Long id;
 
     private String title;
 
-    private String newsUrl;
+    private String link;
 
     private String description;
 
-    private String imageUrl;
+    private String image_url;
 
-    private String createdOn;
+    private String pubDate;
 }

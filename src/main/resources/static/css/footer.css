@@ -16,7 +16,7 @@
     justify-content: center;
 }
 
-.copyright > P {
+.copyright > p {
     margin-right: auto;
 }
 
@@ -35,6 +35,11 @@
 .fa-brands.fa-x-twitter {
   color: rgb(0, 0, 0);
 } */
+
+.copyright > p,
+.footer-wrapper-links > p {
+    font-size: 14px;
+}
 
 .footer-wrapper-links > p {
     margin-left: auto;
