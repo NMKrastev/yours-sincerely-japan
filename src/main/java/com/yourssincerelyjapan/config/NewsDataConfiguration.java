@@ -19,5 +19,7 @@ public class NewsDataConfiguration {
     private String apikey;
     private String country;
     private String language;
+    private String image;
+    private String timeframe;
     private boolean enabled;
 }

@@ -38,15 +38,26 @@ public class NewsDataService {
                             + "://"
                             + this.newsDataConfiguration.getHost()
                             + this.newsDataConfiguration.getPath()
-                            + "?apikey={apikey}&country={country}&language={language}";
-                            //Not every news site provides pictures, so by observing,
-                            //you can choose the ones that provide images by their domain or domainUrl
-                            // + "domain={domain}" OR + "&domainurl={domainurl}";
+                            + "?apikey={apikey}&country={country}&language={language}&image={image}";
+                            //Choose from which domains to receive news.
+                            // + "&domain={domain}" OR + "&domainurl={domainurl}";
+
+                            //Search the news articles for a specific timeframe (Minutes and Hours).
+                            //For hours, you can set a timeframe of 1 to 48, and for minutes, you can define a timeframe of 1m to 2880m.
+                            //For example, if you want to get the news for the past 6 hours then use timeframe=6
+                            //and if you want to get news for the last 15 min then use timeframe=15m.
+                            //Note - You can only use timeframe either in hours or minutes.
+                            //For Hours
+                            // + "&timeframe={timeframe}";
+                            //For Minutes
+                            // + "timeframe={timeframe}m";
 
             final Map<String, String> requestParams = Map.of(
                     "apikey", this.newsDataConfiguration.getApikey(),
                     "country", this.newsDataConfiguration.getCountry(),
-                    "language", this.newsDataConfiguration.getLanguage()
+                    "language", this.newsDataConfiguration.getLanguage(),
+                    "image", this.newsDataConfiguration.getImage()
+                    //"timeframe", this.newsDataConfiguration.getTimeframe()
             );
 
             final FetchNewsDataWrapperDTO newsDataWrapperDTO = this.restTemplate
