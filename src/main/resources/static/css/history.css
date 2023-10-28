@@ -1,0 +1,73 @@
+.main .history-site-content .history-title h2 {
+    color: #bc002d;
+}
+
+.main .history-site-content .section-history {
+    display: flex;
+    gap: 1em;
+    max-width: 95%;
+    margin: 0 auto;
+}
+
+.main .history-site-content .section-history .history-periods {
+    flex: 1 0 20%;
+    padding-top: 1em;
+}
+
+.main .history-site-content .section-history .history-periods ul {
+    padding-top: 0.3em;
+    list-style: none;
+}
+
+.main .history-site-content .section-history .history-periods ul li {
+    padding-bottom: 0.4em;
+}
+
+.main .history-site-content .section-history .history-periods ul li a {
+    text-decoration: none;
+    color: #bc002d;
+    font-size: 14px;
+}
+
+.main .history-site-content .section-history .history-periods ul li a:hover,
+.history-content > p a:hover {
+    color: #ffb7c5;
+}
+
+.history-periods.sidebar {
+    position: sticky;
+    top: 0;
+    /* overflow-y: scroll; */
+    max-height: 100vh;
+}
+
+.main .history-site-content .section-history .history-content {
+    flex: 1 1 70%;
+    margin: 0 auto;
+}
+
+.history-content > p {
+    font-size: 12px;
+}
+
+.history-content > p a {
+    text-decoration: none;
+    color: #bc002d;
+}
+
+.history-content article h4,
+.history-content article h5 {
+    text-indent: 2em;
+}
+
+.history-content article h5 {
+    font-weight: 600;
+}
+
+.history-content article p:first-child {
+    text-indent: 3em;
+}
+
+.history-content article p {
+    padding: 0.5em 1em;
+}
