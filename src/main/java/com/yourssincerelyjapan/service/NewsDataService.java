@@ -39,6 +39,9 @@ public class NewsDataService {
                             + this.newsDataConfiguration.getHost()
                             + this.newsDataConfiguration.getPath()
                             + "?apikey={apikey}&country={country}&language={language}";
+                            //Not every news site provides pictures, so by observing,
+                            //you can choose the ones that provide images by their domain or domainUrl
+                            // + "domain={domain}" OR + "&domainurl={domainurl}";
 
             final Map<String, String> requestParams = Map.of(
                     "apikey", this.newsDataConfiguration.getApikey(),

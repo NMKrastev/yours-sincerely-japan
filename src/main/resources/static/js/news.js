@@ -19,9 +19,9 @@ function loadNews() {
             a.setAttribute('href', news.newsUrl);
             a.setAttribute('target', '_blank');
 
-            let pPublished = document.createElement('p');
+            /*let pPublished = document.createElement('p');
             pPublished.classList.add('posted-by', 'pt-2');
-            pPublished.style.fontSize = '12px';
+            pPublished.style.fontSize = '12px';*/
 
             let divContent = document.createElement('div')
             divContent.classList.add('article-content');
@@ -37,17 +37,25 @@ function loadNews() {
             aReadMore.textContent = 'Read More.';
             aReadMore.style.fontSize = '12px';
 
+            let img = document.createElement('img');
+            img.setAttribute('src', news.imageUrl);
+            img.classList.add('article-img')
+
+
             a.textContent = news.title;
-            pPublished.textContent = 'Published on: ' + news.createdOn.replace('T', " at ");
+            //pPublished.textContent = 'Published on: ' + news.createdOn.replace('T', " at ");
             pText.textContent = news.description
                 .trim()
                 .concat(news.description.charAt(news.description.length - 1) === '.' ? '..' : '...');
             pText.appendChild(aReadMore);
             divText.appendChild(pText);
+            if (news.imageUrl !== null) {
+                    divText.appendChild(img);
+            }
             divContent.appendChild(divText);
             h4.appendChild(a);
             article.appendChild(h4);
-            article.appendChild(pPublished);
+            //article.appendChild(pPublished);
             article.appendChild(divContent);
 
             articleContainer.appendChild(article);
