@@ -9,7 +9,7 @@ import java.util.Optional;
 
 @Repository
 public interface NewsDataRepository extends JpaRepository<NewsData, Long> {
-    List<NewsData> findAllByOrderByCreatedOnDesc();
+    List<NewsData> findAllByOrderByIdDesc();
 
     Optional<NewsData> findNewsByFetchArticleId(String articleId);
 }

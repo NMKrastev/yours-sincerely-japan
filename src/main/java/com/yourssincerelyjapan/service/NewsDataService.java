@@ -57,7 +57,7 @@ public class NewsDataService {
 
     public List<NewsDataDTO> getLatestNews() {
 
-        return this.newsDataRepository.findAllByOrderByCreatedOnDesc()
+        return this.newsDataRepository.findAllByOrderByIdDesc()
                 .stream()
                 .limit(10)
                 .map(this.newsDataMapper::newsDataToNewsDataDto)

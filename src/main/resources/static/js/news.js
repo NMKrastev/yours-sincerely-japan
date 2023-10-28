@@ -4,7 +4,7 @@ function loadNews() {
 
     articleContainer.innerHTML = '';
 
-    fetch('http://localhost:8080/api/news')
+    fetch('http://localhost:8080/japan/api/news')
         .then(response => response.json())
         .then(json => json.forEach(news => {
 
