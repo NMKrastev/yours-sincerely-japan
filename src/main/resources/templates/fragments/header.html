@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Header</title>
@@ -19,6 +20,13 @@
 
             <ul>
                 <li>
+                    <form id="sendEmail"
+                          th:method="POST"
+                          th:action="@{/sendMail}">
+                            <a href="#" onclick="formSendEmailSubmit()">Send email</a>
+                    </form>
+                </li>
+                <li>
                     <a href="#"><i class="fa-regular fa-user"></i></a>
                     <ul>
                         <li><a href="#">Settings</a></li>
@@ -27,7 +35,7 @@
                             <form id="Logout"
                                   th:method="POST"
                                   th:action="@{/users/logout}">
-                                <a href="#" onclick="formSubmit()">Logout</a>
+                                <a href="#" onclick="formLogoutSubmit()">Logout</a>
                             </form>
                         </li>
                     </ul>
@@ -35,7 +43,7 @@
                 <li>
                     <a href="#">Admin</a>
                     <ul>
-                        <li><a th:href="@{/users/all}">Edit user</a></li>
+                        <li><a th:href="@{/users/all}">All Users</a></li>
                     </ul>
                 </li>
                 <li>
@@ -100,8 +108,13 @@
       </ul>
     </div>-->
     <script>
-        function formSubmit() {
+        function formLogoutSubmit() {
             document.getElementById("Logout").submit();
+        }
+    </script>
+    <script>
+        function formSendEmailSubmit() {
+            document.getElementById("sendEmail").submit();
         }
     </script>
 </header>
