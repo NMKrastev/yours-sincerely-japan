@@ -13,7 +13,7 @@ import org.springframework.context.annotation.Configuration;
 @ConfigurationProperties(prefix = "news.data")
 public class NewsDataConfiguration {
 
-    private String schema;
+    private String protocol;
     private String host;
     private String path;
     private String apikey;

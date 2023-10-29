@@ -13,6 +13,8 @@ import org.springframework.web.client.RestTemplate;
 import java.util.List;
 import java.util.Map;
 
+import static com.yourssincerelyjapan.constant.NewsDataConstant.*;
+
 @Service
 public class NewsDataService {
 
@@ -33,24 +35,16 @@ public class NewsDataService {
     public void fetchAndSaveNews() {
 
         if (this.newsDataConfiguration.isEnabled()) {
-            final String newsDataUrlTemplate =
-                    this.newsDataConfiguration.getSchema()
-                            + "://"
-                            + this.newsDataConfiguration.getHost()
-                            + this.newsDataConfiguration.getPath()
-                            + "?apikey={apikey}&country={country}&language={language}&image={image}";
-                            //Choose from which domains to receive news.
-                            // + "&domain={domain}" OR + "&domainurl={domainurl}";
 
-                            //Search the news articles for a specific timeframe (Minutes and Hours).
-                            //For hours, you can set a timeframe of 1 to 48, and for minutes, you can define a timeframe of 1m to 2880m.
-                            //For example, if you want to get the news for the past 6 hours then use timeframe=6
-                            //and if you want to get news for the last 15 min then use timeframe=15m.
-                            //Note - You can only use timeframe either in hours or minutes.
-                            //For Hours
-                            // + "&timeframe={timeframe}";
-                            //For Minutes
-                            // + "timeframe={timeframe}m";
+            final StringBuilder newsDataUrlTemplate = new StringBuilder();
+
+                    newsDataUrlTemplate.append(this.newsDataConfiguration.getProtocol())
+                            .append(this.newsDataConfiguration.getHost())
+                            .append(this.newsDataConfiguration.getPath())
+                            .append(API_KEY)
+                            .append(COUNTRY_PARAM)
+                            .append(LANGUAGE_PARAM)
+                            .append(IMAGE_PARAM);
 
             final Map<String, String> requestParams = Map.of(
                     "apikey", this.newsDataConfiguration.getApikey(),
@@ -61,7 +55,7 @@ public class NewsDataService {
             );
 
             final FetchNewsDataWrapperDTO newsDataWrapperDTO = this.restTemplate
-                    .getForObject(newsDataUrlTemplate,
+                    .getForObject(newsDataUrlTemplate.toString(),
                             FetchNewsDataWrapperDTO.class,
                             requestParams);
 
@@ -77,7 +71,6 @@ public class NewsDataService {
                 .map(this.newsDataMapper::newsDataToNewsDataDto)
                 .toList();
     }
-
 
     private void saveNewsData(List<FetchNewsDataDTO> newsDataDTOS) {
 
@@ -103,7 +96,9 @@ public class NewsDataService {
         return fetchNewsDataDTO
                 .stream()
                 .filter(e ->
-                        this.newsDataRepository.findNewsByFetchArticleId(e.getArticle_id()).isEmpty())
+                        this.newsDataRepository
+                                .findNewsByFetchArticleId(e.getArticle_id())
+                                .isEmpty())
                 .toList();
     }
 }
