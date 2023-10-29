@@ -1,6 +1,6 @@
 package com.yourssincerelyjapan.utils;
 
-import com.yourssincerelyjapan.service.NewsDataService;
+import com.yourssincerelyjapan.service.impl.NewsDataServiceImpl;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
@@ -11,9 +11,9 @@ import java.util.concurrent.TimeUnit;
 @EnableScheduling
 public class ScheduledNewsUpdater {
 
-    private final NewsDataService newsDataService;
+    private final NewsDataServiceImpl newsDataService;
 
-    public ScheduledNewsUpdater(NewsDataService newsDataService) {
+    public ScheduledNewsUpdater(NewsDataServiceImpl newsDataService) {
 
         this.newsDataService = newsDataService;
     }

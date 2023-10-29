@@ -1,7 +1,7 @@
 package com.yourssincerelyjapan.web;
 
 import com.yourssincerelyjapan.model.dto.NewsDataDTO;
-import com.yourssincerelyjapan.service.NewsDataService;
+import com.yourssincerelyjapan.service.impl.NewsDataServiceImpl;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,9 +16,9 @@ import java.util.List;
 @RequestMapping("/japan")
 public class NewsController {
 
-    private final NewsDataService newsDataService;
+    private final NewsDataServiceImpl newsDataService;
 
-    public NewsController(NewsDataService newsDataService) {
+    public NewsController(NewsDataServiceImpl newsDataService) {
         this.newsDataService = newsDataService;
     }
 

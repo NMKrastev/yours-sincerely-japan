@@ -64,29 +64,36 @@
                 </div>
               </form> -->
 
-            <div class="mt-2 mb-4 pb-2 text-white text-center border-bottom border-3 border-danger-subtle"><h2>Create
-                account</h2>
+            <div class="mt-2 mb-4 pb-2 text-center border-bottom border-3 border-danger-subtle"><h2>Create account:</h2>
             </div>
 
-            <form class="mx-auto w-auto h-auto bg-blur needs-validation"
-                  novalidate>
+            <form class="pb-5 mx-auto w-auto h-auto bg-blur needs-validation" id="registration-form"
+                  novalidate th:action="@{/users/registration}" th:method="POST" th:object="${userRegistrationDTO}">
 
-                <div class="form-group">
-                    <div class="label-holder text-white d-flex justify-content-center">
-                        <h3><label for="displayName">Display name:</label></h3>
+                <div class="form-group pb-3">
+                    <div class="label-holder text-white text-center justify-content-center">
+                        <h3><label for="fullName">Full name:</label></h3>
                     </div>
                     <input type="text"
                            class="form-control"
-                           id="displayName"
-                           name="displayName"
+                           id="fullName"
+                           name="fullName"
                            placeholder="John Doe"
-                           errorclass="is-invalid"
+                           minlength="1"
+                           maxlength="50"
+                           th:errorclass="is-invalid"
+                           th:field="*{fullName}"
+                           size="40"
                            required/>
-                    <div class="alert alert-danger"><span>Error Message</span></div>
+                    <div class="invalid-feedback alert alert-danger" id="full-name-alert">
+                        <th:block th:if="${#fields.hasErrors()}"
+                                  th:errorclass="error"
+                                  th:errors="*{fullName}"></th:block>
+                    </div>
                 </div>
 
-                <div class="form-group">
-                    <div class="label-holder text-white d-flex justify-content-center">
+                <div class="form-group pb-3">
+                    <div class="label-holder text-white text-center justify-content-center">
                         <h3><label for="email">Email:</label></h3>
                     </div>
                     <input type="text"
@@ -94,59 +101,61 @@
                            id="email"
                            name="email"
                            placeholder="name@example.com"
-                           errorclass="is-invalid"
+                           th:errorclass="is-invalid"
+                           th:field="*{email}"
                            required/>
-                    <div class="alert alert-danger"><span>Error Message</span></div>
+                    <div class="invalid-feedback alert alert-danger" id="email-alert">
+                        <th:block th:if="${#fields.hasErrors()}"
+                                  th:errorclass="error"
+                                  th:errors="*{email}"></th:block>
+                    </div>
                 </div>
 
-                <div class="form-group">
-                    <div class="label-holder text-white d-flex justify-content-center">
+                <div class="form-group pb-3">
+                    <div class="label-holder text-white text-center d-flex justify-content-center">
                         <h3><label for="password">Password:</label></h3>
                     </div>
                     <input type="password"
                            class="form-control"
                            id="password"
                            name="password"
-                           errorclass="is-invalid"
+                           th:errorclass="is-invalid"
+                           th:field="*{password}"
                            required/>
-                    <div class="alert alert-danger"><span>Error Message</span></div>
+                    <div class="invalid-feedback alert alert-danger" id="password-alert">
+                        <th:block th:if="${#fields.hasErrors()}"
+                                  th:errorclass="error"
+                                  th:errors="*{password}"></th:block>
+                    </div>
                 </div>
 
-                <div class="form-group">
-                    <div class="label-holder text-white d-flex justify-content-center">
+                <div class="form-group pb-3">
+                    <div class="label-holder text-white text-center d-flex justify-content-center">
                         <h3><label for="confirmPassword">Confirm password:</label></h3>
                     </div>
                     <input type="password"
                            class="form-control"
                            id="confirmPassword"
                            name="confirmPassword"
-                           errorclass="is-invalid"
+                           th:errorclass="is-invalid"
+                           th:field="*{confirmPassword}"
                            required/>
-                    <div class="alert alert-danger" role="alert"><span>Error Message</span></div>
-                </div>
-
-                <div class="text-danger">Incorrect email or password!</div>
-                <div class="alert alert-danger" role="alert">
-                    This is a danger alert—check it out!
-                </div>
-
-                <div class="alert alert-danger d-flex align-items-center" role="alert">
-                    <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:">
-                        <use xlink:href="#exclamation-triangle-fill"/>
-                    </svg>
-                    <div>
-                        An example danger alert with an icon
+                    <div class="invalid-feedback alert alert-danger" id="confirm-password-alert">
+                        <th:block th:if="${#fields.hasErrors()}"
+                                  th:errorclass="error"
+                                  th:errors="*{confirmPassword}"></th:block>
                     </div>
                 </div>
 
                 <div class="button-holder d-flex justify-content-center">
                     <button type="submit"
                             class="btn btn-lg btn-primary mt-3 mb-2 border">
-                        Login
+                        Sign up
                     </button>
                 </div>
 
             </form>
+
         </main>
     </div>
 
@@ -154,7 +163,8 @@
 
 </div>
 
-<script>
+<script src="/js/validateRegistrationForm.js"></script>
+<!--<script>
     // Example starter JavaScript for disabling form submissions if there are invalid fields
     (() => {
         'use strict'
@@ -174,6 +184,7 @@
             }, false)
         })
     })()
-</script>
+</script>-->
+
 </body>
 </html>

@@ -13,5 +13,9 @@ import org.springframework.context.annotation.Configuration;
 @ConfigurationProperties(prefix = "yours.sincerely.japan.admin")
 public class AdminConfiguration {
 
+    private String fullName;
+
+    private String email;
+
     private String password;
 }
