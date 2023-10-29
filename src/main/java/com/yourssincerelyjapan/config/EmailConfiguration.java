@@ -14,6 +14,4 @@ import org.springframework.context.annotation.Configuration;
 public class EmailConfiguration {
 
     private String username;
-
-    private String password;
 }
