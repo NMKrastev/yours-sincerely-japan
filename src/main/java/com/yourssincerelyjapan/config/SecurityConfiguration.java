@@ -2,11 +2,12 @@ package com.yourssincerelyjapan.config;
 
 import com.yourssincerelyjapan.model.enums.UserRoleEnum;
 import com.yourssincerelyjapan.repository.UserRepository;
-import com.yourssincerelyjapan.security.AppUserDetailsService;
+import com.yourssincerelyjapan.user.AppUserDetailsService;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.crypto.password.Pbkdf2PasswordEncoder;
@@ -23,10 +24,10 @@ public class SecurityConfiguration {
                         // All static resources which are situated in js, images, css are available for anyone
                         .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
                         // Allow anyone to see the home page, the registration page and the login form
-                        .requestMatchers("/", "/users/login", "/users/registration", "/users/login-error", "/users/account-verification").permitAll()
-                        .requestMatchers("/japan/news", "/japan/history").permitAll()
+                        .requestMatchers("/", "/users/registration", "/users/login", "/users/login-error", "/users/account-verification").permitAll()
+                        .requestMatchers("/japan/api/news", "/japan/news", "/japan/history").permitAll()
                         .requestMatchers("/categories/all", "/categories/category/").permitAll()
-                        .requestMatchers("/users/post").hasRole(UserRoleEnum.USER.name())
+                        .requestMatchers("/users/post", "/post/new").hasRole(UserRoleEnum.USER.name())
                         .requestMatchers("/users/all").hasRole(UserRoleEnum.ADMIN.name())
                         // all other requests are authenticated.
                         .anyRequest()
@@ -49,24 +50,28 @@ public class SecurityConfiguration {
                             // the URL where we should POST something in order to perform the logout
                             .logoutUrl("/users/logout")
                             // where to go when logged out?
-                            .logoutSuccessUrl("/")
+                            .logoutSuccessUrl("/index")
                             // invalidate the HTTP session
                             .invalidateHttpSession(true)
                             .deleteCookies("JSESSIONID");
                 }
-        )/*.rememberMe(
+        )
+                /*.csrf(AbstractHttpConfigurer::disable)*/
+                .build();
+
+        /*.rememberMe(
                 rememberMe -> {
                     rememberMe
                             .key(rememberMeKey)
                             .rememberMeParameter("rememberme")
                             .rememberMeCookieName("rememberme");
                 }
-        )*/.build();
+        )*/
     }
 
     @Bean
     public UserDetailsService userDetailsService(UserRepository userRepository) {
-        // This service translates the mobilelele users and roles
+        // This service translates the application users and roles
         // to representation which spring security understands.
         return new AppUserDetailsService(userRepository);
     }

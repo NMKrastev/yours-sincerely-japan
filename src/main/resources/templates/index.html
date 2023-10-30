@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head th:replace="~{fragments/head.html :: head}"></head>
 
@@ -25,7 +27,7 @@
 
                     <div class="section-title">
                         <h3>Travel</h3>
-                        <a href="#"
+                        <a sec:authorize="isAuthenticated()" href="#"
                            class="text-decoration-none"
                            data-bs-toggle="modal"
                            data-bs-target="#createNewPost"

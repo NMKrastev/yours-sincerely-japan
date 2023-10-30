@@ -5,9 +5,7 @@ import com.yourssincerelyjapan.model.entity.UserAccountConfirmation;
 import com.yourssincerelyjapan.registration.OnRegistrationCompleteEvent;
 import com.yourssincerelyjapan.service.UserAccountConfirmationService;
 import com.yourssincerelyjapan.service.EmailService;
-import com.yourssincerelyjapan.service.UserService;
 import org.springframework.context.ApplicationListener;
-import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Component;
 
 import java.io.UnsupportedEncodingException;
@@ -15,15 +13,11 @@ import java.io.UnsupportedEncodingException;
 @Component
 public class RegistrationListener implements ApplicationListener<OnRegistrationCompleteEvent> {
 
-    private final UserService userService;
-    private final MessageSource message;
     private final UserAccountConfirmationService confirmationService;
     private final EmailService emailService;
 
-    public RegistrationListener(UserService userService, MessageSource message,
-                                UserAccountConfirmationService confirmationService, EmailService emailService) {
-        this.userService = userService;
-        this.message = message;
+    public RegistrationListener(UserAccountConfirmationService confirmationService, EmailService emailService) {
+
         this.confirmationService = confirmationService;
         this.emailService = emailService;
     }

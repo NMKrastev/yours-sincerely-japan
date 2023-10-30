@@ -20,7 +20,7 @@
         <nav class="navigation">
 
             <ul>
-                <li sec>
+                <li sec:authorize="isAuthenticated()">
                     <a href="#"><i class="fa-regular fa-user"></i></a>
                     <ul>
                         <li><a href="#">Settings</a></li>
@@ -37,7 +37,7 @@
                 <li sec:authorize="hasRole('ADMIN')">
                     <a href="#">Admin</a>
                     <ul>
-                        <li sec:authorize="hasRole('ADMIN')"><a th:href="@{/users/all}">All Users</a></li>
+                        <li><a th:href="@{/users/all}">All Users</a></li>
                     </ul>
                 </li>
                 <li>

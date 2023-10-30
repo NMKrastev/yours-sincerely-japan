@@ -12,7 +12,5 @@ public interface UserService {
 
     boolean registerUser(UserRegistrationDTO userDTO, HttpServletRequest request) throws UnsupportedEncodingException;
 
-    boolean verifyToken(String token);
-
     void saveEnabledUser(User user);
 }

@@ -28,25 +28,20 @@ public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
     private final UserRoleRepository userRoleRepository;
-    private final UserAccountConfirmationRepository confirmationRepository;
-    private final EmailService emailService;
     private final ApplicationEventPublisher eventPublisher;
     private final UserMapper userMapper;
     private final AdminConfiguration adminConfiguration;
     private final PasswordEncoder passwordEncoder;
 
     public UserServiceImpl(UserRepository userRepository, UserMapper userMapper,
-                           UserAccountConfirmationRepository confirmationRepository, EmailService emailService,
                            AdminConfiguration adminConfiguration, PasswordEncoder passwordEncoder,
                            UserRoleRepository userRoleRepository, ApplicationEventPublisher eventPublisher) {
 
         this.userRepository = userRepository;
         this.userRoleRepository = userRoleRepository;
-        this.confirmationRepository = confirmationRepository;
         this.userMapper = userMapper;
         this.adminConfiguration = adminConfiguration;
         this.passwordEncoder = passwordEncoder;
-        this.emailService = emailService;
         this.eventPublisher = eventPublisher;
     }
 
@@ -56,7 +51,7 @@ public class UserServiceImpl implements UserService {
 
         if (this.userRepository.count() == 0) {
 
-            List<UserRole> roles = this.userRoleRepository.findAll();
+            final List<UserRole> roles = this.userRoleRepository.findAll();
 
             final User admin = User
                     .builder()
@@ -95,25 +90,6 @@ public class UserServiceImpl implements UserService {
         //this.confirmationRepository.save(confirmation);
 
         //this.emailService.sendHtmlEmail(savedUser.getFullName(), savedUser.getEmail(), confirmation.getToken());
-
-        return true;
-    }
-
-    @Override
-    public boolean verifyToken(String token) {
-
-        final UserAccountConfirmation confirmation = this.confirmationRepository.findByToken(token);
-
-        final Optional<User> optUser = this.userRepository.findByEmailIgnoreCase(confirmation.getUser().getEmail());
-
-        if (optUser.isEmpty()) {
-            return false;
-        }
-
-        final User user = optUser.get();
-        user.setEnabled(true);
-
-        this.userRepository.save(user);
 
         return true;
     }

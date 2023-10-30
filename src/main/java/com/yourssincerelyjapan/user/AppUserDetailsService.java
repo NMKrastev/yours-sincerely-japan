@@ -1,4 +1,4 @@
-package com.yourssincerelyjapan.security;
+package com.yourssincerelyjapan.user;
 
 import com.yourssincerelyjapan.model.entity.User;
 import com.yourssincerelyjapan.model.entity.UserRole;
@@ -8,15 +8,8 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.Optional;
-
-@Service("userDetailsService")
 @Transactional
 public class AppUserDetailsService implements UserDetailsService {
 
@@ -27,6 +20,28 @@ public class AppUserDetailsService implements UserDetailsService {
     }
 
     @Override
+    public UserDetails loadUserByUsername(final String email) throws UsernameNotFoundException {
+
+        return this.userRepository
+                .findByEmailIgnoreCase(email)
+                .map(AppUserDetailsService::getUserDetails)
+                .orElseThrow(() -> new UsernameNotFoundException("Email: " + email + " is not found!"));
+    }
+
+    private static UserDetails getUserDetails(User user) {
+
+        return org.springframework.security.core.userdetails.User
+                .withUsername(user.getFullName())
+                .password(user.getPassword())
+                .authorities(user.getRoles().stream().map(AppUserDetailsService::getGranterAuthorities).toList())
+                .build();
+    }
+
+    private static GrantedAuthority getGranterAuthorities(UserRole userRole) {
+        return new SimpleGrantedAuthority("ROLE_" + userRole.getName().name());
+    }
+
+    /*@Override
     public UserDetails loadUserByUsername(final String email) throws UsernameNotFoundException {
 
         boolean enabled = true;
@@ -52,9 +67,9 @@ public class AppUserDetailsService implements UserDetailsService {
                 accountNonLocked,
                 getAuthorities(user.getRoles())
         );
-    }
+    }*/
 
-    private Collection<? extends GrantedAuthority> getAuthorities(final List<UserRole> roles) {
+    /*private Collection<? extends GrantedAuthority> getAuthorities(final List<UserRole> roles) {
         return getGrantedAuthorities(roles);
     }
 
@@ -66,5 +81,5 @@ public class AppUserDetailsService implements UserDetailsService {
             authorities.add(new SimpleGrantedAuthority(String.valueOf(role.getName())));
         }
         return authorities;
-    }
+    }*/
 }
