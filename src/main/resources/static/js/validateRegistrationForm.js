@@ -16,7 +16,7 @@ function validateRegistrationForm(event) {
 
     if (fullNameValue.length < 1 || fullNameValue.length > 30) {
         isValid = false;
-        smallFullName.textContent = 'Full name must be between 1 and 30 characters';
+        smallFullName.textContent = 'Full name must be between 1 and 30 characters.';
         fullNameInput.classList.add('is-invalid');
         fullNameAlert.appendChild(smallFullName);
         event.preventDefault();
@@ -25,7 +25,7 @@ function validateRegistrationForm(event) {
     let emailInput = document.getElementById('email');
     let emailValue = emailInput.value.trim();
     let emailAlert = document.getElementById('email-alert');
-    let emailRegex = /^[A-Za-z0-9._%-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/;
+    let emailRegex = /^[a-zA-Z0-9_!#$%&’*+/=?`{|}~^-]+(?:\.[a-zA-Z0-9_!#$%&’*+/=?`{|}~^-]+)*@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
     let smallEmail = document.getElementById('email-error');
 
     if (!smallEmail) {
@@ -38,7 +38,7 @@ function validateRegistrationForm(event) {
 
     if (!emailRegex.test(emailValue)) {
         isValid = false;
-        smallEmail.textContent = 'Enter a valid email address';
+        smallEmail.textContent = 'Enter a valid email address.';
         emailInput.classList.add('is-invalid');
         emailAlert.appendChild(smallEmail);
         event.preventDefault();
@@ -59,14 +59,14 @@ function validateRegistrationForm(event) {
 
     if (passwordValue.length < 8) {
         isValid = false;
-        smallPassword.textContent = 'Password must be at least 8 characters long';
+        smallPassword.textContent = 'Password must be at least 8 characters long.';
         passwordInput.classList.add('is-invalid');
         passwordAlert.appendChild(smallPassword);
         event.preventDefault();
         return;
     } else if (passwordValue.length > 20) {
         isValid = false;
-        smallPassword.textContent = 'Password must not be longer than 20 characters';
+        smallPassword.textContent = 'Password must not be longer than 20 characters.';
         passwordInput.classList.add('is-invalid');
         passwordAlert.appendChild(smallPassword);
         event.preventDefault();
@@ -102,7 +102,7 @@ function validateRegistrationForm(event) {
 
     if (passwordValue !== confirmPasswordValue) {
         isValid = false;
-        smallConfirmPassword.textContent = 'Passwords do not match';
+        smallConfirmPassword.textContent = 'Passwords do not match.';
         confirmPasswordInput.classList.add('is-invalid');
         confirmPasswordAlert.appendChild(smallConfirmPassword);
         event.preventDefault();

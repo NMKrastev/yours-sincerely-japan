@@ -18,14 +18,13 @@ import java.util.List;
 public class User extends BaseEntity {
 
     @Column(nullable = false)
-    @Size(min = 1, max = 30)
     private String fullName;
 
     @Column(nullable = false, unique = true)
     @Email
     private String email;
 
-    @Column
+    @Column(nullable = false)
     private String password;
 
     @Column(name = "created_on", nullable = false)
@@ -34,16 +33,16 @@ public class User extends BaseEntity {
     @Column(name = "modified_on")
     private LocalDateTime modifiedOn;
 
-    @OneToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "users_roles",
-                joinColumns = @JoinColumn(name = "user_id"),
-                inverseJoinColumns = @JoinColumn(name = "role_id"))
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id"))
     private List<UserRole> roles;
 
     @OneToOne(fetch = FetchType.EAGER)
     private ProfilePicture profilePicture;
 
-    @OneToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "users_articles",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "article_id"))

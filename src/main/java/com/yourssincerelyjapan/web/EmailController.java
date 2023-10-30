@@ -16,12 +16,12 @@ public class EmailController {
         this.emailService = emailService;
     }
 
-    @PostMapping("/sendMail")
+    /*@PostMapping("/sendMail")
     public String sendMail() throws MessagingException, UnsupportedEncodingException {
 
         //{recipientEmail} - {emailTitle} - {emailMessage}
         this.emailService.sendMail("{recipientEmail}", "{emailTitle}", "{emailMessage}");
 
         return "redirect:/";
-    }
+    }*/
 }

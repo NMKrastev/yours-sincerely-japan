@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.io.UnsupportedEncodingException;
+
 @Controller
 @RequestMapping("/users")
 public class UserRegistrationController {
@@ -41,7 +43,7 @@ public class UserRegistrationController {
     public ModelAndView userRegistration(ModelAndView modelAndView,
                                          @Valid UserRegistrationDTO userRegistrationDTO,
                                          BindingResult bindingResult,
-                                         RedirectAttributes redirectAttributes) {
+                                         RedirectAttributes redirectAttributes) throws UnsupportedEncodingException {
 
         if (bindingResult.hasErrors()) {
 

@@ -14,29 +14,31 @@ import lombok.*;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import static com.yourssincerelyjapan.constant.DTOValidationMessage.*;
+
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@FieldMatch(first = "password", second = "confirmPassword", message = "Password does not match!")
+@FieldMatch(first = "password", second = "confirmPassword", message = PASSWORD_DOES_NOT_MATCH)
 public class UserRegistrationDTO {
 
-    @NotEmpty
-    @Size(min = 1, max = 30)
+    @NotEmpty(message = MANDATORY_FIELD)
+    @Size(min = 1, max = 30, message = FULL_NAME_LENGTH)
     private String fullName;
 
-    @NotEmpty(message = "User email should be provided.")
-    @Email(message = "User email should be valid.")
-    @UniqueUserEmail(message = "Email is already in use!")
+    @NotEmpty(message = MANDATORY_FIELD)
+    @Pattern(regexp = EMAIL_REGEX, message = VALID_EMAIL)
+    @UniqueUserEmail(message = EMAIL_ALREADY_IN_USE)
     private String email;
 
-    @NotEmpty
-    @Size(min = 8, max = 20, message = "TODO: Password length message!")
-    @Pattern(regexp = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#%&$*])", message = "TODO: Password special symbols message!")
+    @NotEmpty(message = MANDATORY_FIELD)
+    @Size(min = 8, max = 20, message = PASSWORD_LENGTH)
+    @Pattern(regexp = PASSWORD_REGEX, message = PASSWORD_SPECIAL_SYMBOL)
     private String password;
 
-    @NotEmpty
-    @Size(min = 8)
+    @NotEmpty(message = MANDATORY_FIELD)
+    @Size(min = 8, max = 20, message = PASSWORD_LENGTH)
     private String confirmPassword;
 
     private LocalDateTime createdOn;
