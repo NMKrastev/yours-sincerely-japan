@@ -7,11 +7,14 @@ import com.yourssincerelyjapan.model.entity.UserAccountConfirmation;
 import com.yourssincerelyjapan.model.entity.UserRole;
 import com.yourssincerelyjapan.model.enums.UserRoleEnum;
 import com.yourssincerelyjapan.model.mapper.UserMapper;
+import com.yourssincerelyjapan.registration.OnRegistrationCompleteEvent;
 import com.yourssincerelyjapan.repository.UserAccountConfirmationRepository;
 import com.yourssincerelyjapan.repository.UserRepository;
 import com.yourssincerelyjapan.repository.UserRoleRepository;
 import com.yourssincerelyjapan.service.EmailService;
 import com.yourssincerelyjapan.service.UserService;
+import jakarta.servlet.http.HttpServletRequest;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -27,6 +30,7 @@ public class UserServiceImpl implements UserService {
     private final UserRoleRepository userRoleRepository;
     private final UserAccountConfirmationRepository confirmationRepository;
     private final EmailService emailService;
+    private final ApplicationEventPublisher eventPublisher;
     private final UserMapper userMapper;
     private final AdminConfiguration adminConfiguration;
     private final PasswordEncoder passwordEncoder;
@@ -34,7 +38,7 @@ public class UserServiceImpl implements UserService {
     public UserServiceImpl(UserRepository userRepository, UserMapper userMapper,
                            UserAccountConfirmationRepository confirmationRepository, EmailService emailService,
                            AdminConfiguration adminConfiguration, PasswordEncoder passwordEncoder,
-                           UserRoleRepository userRoleRepository) {
+                           UserRoleRepository userRoleRepository, ApplicationEventPublisher eventPublisher) {
 
         this.userRepository = userRepository;
         this.userRoleRepository = userRoleRepository;
@@ -43,6 +47,7 @@ public class UserServiceImpl implements UserService {
         this.adminConfiguration = adminConfiguration;
         this.passwordEncoder = passwordEncoder;
         this.emailService = emailService;
+        this.eventPublisher = eventPublisher;
     }
 
 
@@ -68,25 +73,28 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public boolean registerUser(UserRegistrationDTO userDTO) throws UnsupportedEncodingException {
+    public boolean registerUser(UserRegistrationDTO userDTO, HttpServletRequest request) throws UnsupportedEncodingException {
 
         if (this.userRepository.findByEmail(userDTO.getEmail()).isPresent()
                 || !userDTO.getPassword().equals(userDTO.getConfirmPassword())) {
             return false;
         }
 
-        //Using MapStruct for mapping entities
         final User newUser = this.userMapper.userDtoToUserEntity(userDTO);
         newUser.setRoles(this.userRoleRepository.findByName(UserRoleEnum.USER));
         newUser.setCreatedOn(LocalDateTime.now());
 
         final User savedUser = this.userRepository.save(newUser);
 
-        final UserAccountConfirmation confirmation = new UserAccountConfirmation(savedUser);
+        final String appUrl = request.getContextPath();
 
-        this.confirmationRepository.save(confirmation);
+        this.eventPublisher.publishEvent(new OnRegistrationCompleteEvent(savedUser, request.getLocale(), appUrl));
 
-        this.emailService.sendHtmlEmail(savedUser.getFullName(), savedUser.getEmail(), confirmation.getToken());
+        //final UserAccountConfirmation confirmation = new UserAccountConfirmation(savedUser);
+
+        //this.confirmationRepository.save(confirmation);
+
+        //this.emailService.sendHtmlEmail(savedUser.getFullName(), savedUser.getEmail(), confirmation.getToken());
 
         return true;
     }
@@ -108,5 +116,10 @@ public class UserServiceImpl implements UserService {
         this.userRepository.save(user);
 
         return true;
+    }
+
+    @Override
+    public void saveEnabledUser(User user) {
+        this.userRepository.save(user);
     }
 }

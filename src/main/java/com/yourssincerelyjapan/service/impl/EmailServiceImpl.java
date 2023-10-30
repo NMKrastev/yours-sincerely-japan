@@ -96,7 +96,7 @@ public class EmailServiceImpl implements EmailService {
 
     @Override
     @Async
-    public void sendHtmlEmail(String name, String emailTo, String token) throws UnsupportedEncodingException {
+    public void sendHtmlVerificationEmail(String name, String emailTo, String token) throws UnsupportedEncodingException {
 
         final InternetAddress fromAddress = new InternetAddress(this.emailConfiguration.getUsername(), "Yours Sincerely Japan");
         final MimeMessage message = this.javaMailSender.createMimeMessage();

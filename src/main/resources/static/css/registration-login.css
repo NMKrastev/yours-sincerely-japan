@@ -3,6 +3,7 @@
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center center;
+    justify-content: flex-start;
 }
 
 .site-registration,

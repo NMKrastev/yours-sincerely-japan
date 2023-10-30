@@ -1,27 +1,6 @@
-function validateRegistrationForm(event) {
+function validateLoginForm(event) {
 
     let isValid = true;
-
-    let fullNameInput = document.getElementById('fullName');
-    let fullNameValue = fullNameInput.value.trim();
-    let fullNameAlert = document.getElementById('full-name-alert');
-    let smallFullName = document.getElementById('full-name-error');
-
-    if (!smallFullName) {
-        smallFullName = document.createElement('small');
-        smallFullName.setAttribute('id', 'full-name-error');
-    }
-
-    fullNameInput.classList.remove('is-invalid');
-    fullNameAlert.innerHTML = '';
-
-    if (fullNameValue.length < 1 || fullNameValue.length > 30) {
-        isValid = false;
-        smallFullName.textContent = 'Full name must be between 1 and 30 characters.';
-        fullNameInput.classList.add('is-invalid');
-        fullNameAlert.appendChild(smallFullName);
-        event.preventDefault();
-    }
 
     let emailInput = document.getElementById('email');
     let emailValue = emailInput.value.trim();
@@ -88,27 +67,6 @@ function validateRegistrationForm(event) {
         event.preventDefault();
     }
 
-    let confirmPasswordInput = document.getElementById('confirmPassword');
-    let confirmPasswordValue = confirmPasswordInput.value;
-    let confirmPasswordAlert = document.getElementById('confirm-password-alert');
-    let smallConfirmPassword = document.getElementById('confirm-password-error');
-
-    if (!smallConfirmPassword) {
-        smallConfirmPassword = document.createElement('small');
-        smallConfirmPassword.setAttribute('id', 'confirm-password-error');
-    }
-
-    confirmPasswordInput.classList.remove('is-invalid');
-    confirmPasswordAlert.innerHTML = '';
-
-    if (passwordValue !== confirmPasswordValue) {
-        isValid = false;
-        smallConfirmPassword.textContent = 'Passwords do not match.';
-        confirmPasswordInput.classList.add('is-invalid');
-        confirmPasswordAlert.appendChild(smallConfirmPassword);
-        event.preventDefault();
-    }
-
     if (isValid) {
         return true;
     }
@@ -116,4 +74,4 @@ function validateRegistrationForm(event) {
     event.preventDefault();
 }
 
-document.getElementById('registration-form').addEventListener('submit', validateRegistrationForm);
+document.getElementById('login-form').addEventListener('submit', validateLoginForm);

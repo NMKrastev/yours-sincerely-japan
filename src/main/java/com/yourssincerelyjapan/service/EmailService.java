@@ -1,7 +1,5 @@
 package com.yourssincerelyjapan.service;
 
-import jakarta.mail.MessagingException;
-
 import java.io.UnsupportedEncodingException;
 
 public interface EmailService {
@@ -12,6 +10,6 @@ public interface EmailService {
 
     void sendMimeEmailWithAttachments(String name, String to, String token) throws UnsupportedEncodingException;
 
-    void sendHtmlEmail(String name, String to, String token) throws UnsupportedEncodingException;
+    void sendHtmlVerificationEmail(String name, String to, String token) throws UnsupportedEncodingException;
 
 }

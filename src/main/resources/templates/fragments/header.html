@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en"
-      xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <title>Header</title>
@@ -19,14 +20,7 @@
         <nav class="navigation">
 
             <ul>
-                <li>
-                    <form id="sendEmail"
-                          th:method="POST"
-                          th:action="@{/sendMail}">
-                            <a href="#" onclick="formSendEmailSubmit()">Send email</a>
-                    </form>
-                </li>
-                <li>
+                <li sec>
                     <a href="#"><i class="fa-regular fa-user"></i></a>
                     <ul>
                         <li><a href="#">Settings</a></li>
@@ -40,10 +34,10 @@
                         </li>
                     </ul>
                 </li>
-                <li>
+                <li sec:authorize="hasRole('ADMIN')">
                     <a href="#">Admin</a>
                     <ul>
-                        <li><a th:href="@{/users/all}">All Users</a></li>
+                        <li sec:authorize="hasRole('ADMIN')"><a th:href="@{/users/all}">All Users</a></li>
                     </ul>
                 </li>
                 <li>
@@ -65,8 +59,19 @@
                         <li><a th:href="@{/categories/category}">Category 3</a></li>
                     </ul>
                 </li>
-                <li><a th:href="@{/users/login}">Login</a></li>
-                <li><a th:href="@{/users/registration}">Sign up</a></li>
+                <li sec:authorize="!isAuthenticated()"><a th:href="@{/users/login}">Login</a></li>
+                <li sec:authorize="!isAuthenticated()"><a th:href="@{/users/registration}">Sign up</a></li>
+                <li class="nav-item" sec:authorize="isAuthenticated()">
+                    <div class="form-inline my-2 my-lg-0 border px-3">
+                        <div class="logged-user">
+                            Welcome, <th:block sec:authentication="name"></th:block>!
+                        </div>
+                        <form th:method="POST"
+                              th:action="@{/users/logout}">
+                            <input type="submit" class="btn btn-link" value="Logout"/>
+                        </form>
+                    </div>
+                </li>
             </ul>
         </nav>
     </div>
@@ -110,11 +115,6 @@
     <script>
         function formLogoutSubmit() {
             document.getElementById("Logout").submit();
-        }
-    </script>
-    <script>
-        function formSendEmailSubmit() {
-            document.getElementById("sendEmail").submit();
         }
     </script>
 </header>
