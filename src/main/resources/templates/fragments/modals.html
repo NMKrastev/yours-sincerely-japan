@@ -11,7 +11,7 @@
 
 <div th:fragment="new-post-modal">
     <!-- Modal Travel-->
-    <form th:action="@{/post/new}" th:method="POST">
+    <form action="/post/new" th:method="POST">
         <div
                 class="modal fade"
                 id="createNewPost"
@@ -20,6 +20,7 @@
                 aria-hidden="true">
             <div class="modal-dialog modal-xl modal-dialog-centered">
                 <div class="modal-content">
+
                     <div class="modal-header">
                         <h1 class="modal-title fs-5" id="createNewPostLabel">
                             Create new article
@@ -61,25 +62,23 @@
                         <fieldset class="border rounded-2 p-3">
                             <legend class="float-none w-auto px-2">Categories:</legend>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" value="travel" id="travel"
-                                       name="travel">
+                                <input class="form-check-input" type="checkbox" value="travel" id="travel" name="selected">
                                 <label class="form-check-label" for="travel">Travel</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" value="cars" id="cars" name="cars">
+                                <input class="form-check-input" type="checkbox" value="cars" id="cars" name="selected">
                                 <label class="form-check-label" for="cars">Cars</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" value="tips" id="tips" name="tips">
+                                <input class="form-check-input" type="checkbox" value="tips" id="tips" name="selected">
                                 <label class="form-check-label" for="tips">Tips</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" value="guides" id="guides"
-                                       name="guides">
+                                <input class="form-check-input" type="checkbox" value="guides" id="guides" name="selected">
                                 <label class="form-check-label" for="guides">Guides</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" value="food" id="food" name="food">
+                                <input class="form-check-input" type="checkbox" value="food" id="food" name="selected">
                                 <label class="form-check-label" for="food">Food</label>
                             </div>
                         </fieldset>
@@ -441,7 +440,7 @@
             });
         </script>-->
 
-    <script>
+    <script th:inline="javascript">
         $('.modal').on('show.bs.modal', function (event) {
             const button = $(event.relatedTarget);
             const category = button.data('val');
@@ -451,7 +450,7 @@
             modal.find('.form-check-input').prop('checked', false);
 
             // Check the checkbox with the selected category
-            modal.find('input[name="' + category + '"]').prop('checked', true);
+            modal.find('input[value="' + category + '"]').prop('checked', true);
         });
     </script>
 

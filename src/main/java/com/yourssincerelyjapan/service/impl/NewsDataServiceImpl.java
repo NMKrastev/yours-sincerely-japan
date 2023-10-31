@@ -52,8 +52,8 @@ public class NewsDataServiceImpl implements NewsDataService {
                     "apikey", this.newsDataConfiguration.getApikey(),
                     "country", this.newsDataConfiguration.getCountry(),
                     "language", this.newsDataConfiguration.getLanguage(),
-                    "image", this.newsDataConfiguration.getImage()
-                    //"timeframe", this.newsDataConfiguration.getTimeframe()
+                    "image", this.newsDataConfiguration.getImage(),
+                    "timeframe", this.newsDataConfiguration.getTimeframe()
             );
 
             final FetchNewsDataWrapperDTO newsDataWrapperDTO = this.restTemplate
