@@ -15,8 +15,7 @@
 
         <main class="site-content">
 
-            <div
-                    class="mt-2 mb-4 pb-2 fst-italic border-bottom border-3 border-danger-subtle">
+            <div class="mt-2 mb-4 pb-2 fst-italic border-bottom border-3 border-danger-subtle">
                 <h2>Latest in:</h2>
             </div>
 
@@ -27,16 +26,18 @@
 
                     <div class="section-title">
                         <h3>Travel</h3>
-                        <a th:href="@{/post/new}"
-                           class="text-decoration-none">
-                           <!--data-bs-toggle="modal"
+                        <th:block th:if="${#authorization.expression('hasRole(''USER'')')}">
+                        <a href="#"
+                           class="text-decoration-none"
+                           data-bs-toggle="modal"
                            data-bs-target="#createNewPost"
-                           data-val="travel">-->
+                           data-val="travel">
                             <div class="icon new-post">
                                 <div class="tooltip">New post</div>
                                 <i class="fa-solid fa-plus"></i>
                             </div>
                         </a>
+                        </th:block>
                     </div>
 
                     <div class="article-container">

@@ -47,14 +47,14 @@ public class NewsDataServiceImpl implements NewsDataService {
                             .append(COUNTRY_PARAM)
                             .append(LANGUAGE_PARAM)
                             /*.append(IMAGE_PARAM)*/
-                            .append(TIMEFRAME_IN_HOURS_PARAM);
+                            /*.append(TIMEFRAME_IN_HOURS_PARAM)*/;
 
             final Map<String, String> requestParams = Map.of(
                     "apikey", this.newsDataConfiguration.getApikey(),
                     "country", this.newsDataConfiguration.getCountry(),
-                    "language", this.newsDataConfiguration.getLanguage(),
+                    "language", this.newsDataConfiguration.getLanguage()
                     /*"image", this.newsDataConfiguration.getImage(),*/
-                    "timeframe", this.newsDataConfiguration.getTimeframe()
+                    /*"timeframe", this.newsDataConfiguration.getTimeframe()*/
             );
 
             final FetchNewsDataWrapperDTO newsDataWrapperDTO = this.restTemplate
