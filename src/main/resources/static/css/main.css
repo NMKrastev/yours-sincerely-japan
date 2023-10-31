@@ -164,7 +164,8 @@
   font-size: 25px;
 }
 
-.article-container {
+.article-container,
+.form-container {
   /* border: 2px solid red; */
   display: flex;
   flex-wrap: wrap;
@@ -179,7 +180,8 @@
   justify-content: space-around;
 }
 
-.article-container article {
+.article-container article,
+.form-container form {
   display: flex;
   flex-direction: column;
   flex: 1 1 350px; /* when wrapped on a new line the box remains same as the others if this is "turned off". */
@@ -187,6 +189,10 @@
   margin: 0 1.5em 1.5em 1.5em;
   border-radius: 0.5em;
   box-shadow: 0 0 1em 0.2em rgba(0, 0, 0, 0.2);
+}
+
+.form-container form {
+  padding: 1em;
 }
 
 #main-categories article {

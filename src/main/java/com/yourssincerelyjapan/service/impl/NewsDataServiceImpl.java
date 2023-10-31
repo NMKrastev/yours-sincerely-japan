@@ -34,7 +34,7 @@ public class NewsDataServiceImpl implements NewsDataService {
     }
 
     @Override
-    public void fetchAndSaveNews() {
+    public void fetchNews() {
 
         if (this.newsDataConfiguration.isEnabled()) {
 
@@ -46,13 +46,14 @@ public class NewsDataServiceImpl implements NewsDataService {
                             .append(API_KEY)
                             .append(COUNTRY_PARAM)
                             .append(LANGUAGE_PARAM)
-                            .append(IMAGE_PARAM);
+                            /*.append(IMAGE_PARAM)*/
+                            .append(TIMEFRAME_IN_HOURS_PARAM);
 
             final Map<String, String> requestParams = Map.of(
                     "apikey", this.newsDataConfiguration.getApikey(),
                     "country", this.newsDataConfiguration.getCountry(),
                     "language", this.newsDataConfiguration.getLanguage(),
-                    "image", this.newsDataConfiguration.getImage(),
+                    /*"image", this.newsDataConfiguration.getImage(),*/
                     "timeframe", this.newsDataConfiguration.getTimeframe()
             );
 

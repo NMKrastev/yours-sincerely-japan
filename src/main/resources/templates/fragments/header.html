@@ -26,7 +26,7 @@
                         <li><a href="#">Settings</a></li>
                         <li><a th:href="@{/users/posts}">My articles</a></li>
                         <li>
-                            <form id="Logout"
+                            <form id="logout"
                                   th:method="POST"
                                   th:action="@{/users/logout}">
                                 <a href="#" onclick="formLogoutSubmit()">Logout</a>
@@ -114,7 +114,7 @@
     </div>-->
     <script>
         function formLogoutSubmit() {
-            document.getElementById("Logout").submit();
+            document.getElementById("logout").submit();
         }
     </script>
 </header>

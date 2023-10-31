@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface NewsDataService {
 
-    void fetchAndSaveNews();
+    void fetchNews();
 
     List<NewsDataDTO> getLatestNews();
 }
