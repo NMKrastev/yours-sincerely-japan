@@ -98,13 +98,13 @@ td {
     padding: 0.5em 0.7em;
 }
 
-table thead th {
+/*table thead th {
     background: #ddd;
-}
+}*/
 
-table tbody tr:nth-child(even) td {
+/*table tbody tr:nth-child(even) td {
     background: #eee;
-}
+}*/
 
 img[class^="align"] {
     margin-bottom: 0.5em;

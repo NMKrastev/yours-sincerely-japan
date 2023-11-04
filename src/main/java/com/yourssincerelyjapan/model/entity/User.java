@@ -11,6 +11,7 @@ import java.util.List;
 
 @Getter
 @Setter
+@NoArgsConstructor
 @AllArgsConstructor
 @Builder
 @Entity
@@ -46,13 +47,9 @@ public class User extends BaseEntity {
     @JoinTable(name = "users_articles",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "article_id"))
-    private List<Article> articles;
+    private List<Article> articles = new ArrayList<>();
 
     @Column(name = "enabled")
-    private boolean enabled;
+    private boolean enabled = false;
 
-    public User() {
-        this.articles = new ArrayList<>();
-        this.enabled = false;
-    }
 }

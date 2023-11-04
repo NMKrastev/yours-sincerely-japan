@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Forbidden</title>
+    <link rel="stylesheet" href="/css/site.css"/>
+</head>
+<body>
+
+<div class="site">
+
+    <header th:replace="~{fragments/header.html :: header}"></header>
+
+    <div class="main" id="main-error">
+
+        <main class="site-error">
+
+            <h1>Error - 403</h1>
+
+            <p class="error-content">Sorry, you don't have access to the page you are looking for.</p>
+
+            <a th:href="@{/}" class="more-link">Visit the Home page</a>
+
+        </main>
+    </div>
+
+    <footer th:replace="~{fragments/footer.html :: footer}"></footer>
+
+</div>
+</body>
+</html>

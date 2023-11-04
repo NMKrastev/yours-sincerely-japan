@@ -1,5 +1,6 @@
 package com.yourssincerelyjapan.model.mapper;
 
+import com.yourssincerelyjapan.model.dto.UserDTO;
 import com.yourssincerelyjapan.model.dto.UserRegistrationDTO;
 import com.yourssincerelyjapan.model.entity.User;
 import com.yourssincerelyjapan.utils.*;
@@ -10,5 +11,9 @@ import org.mapstruct.Mapping;
 public interface UserMapper {
 
     @Mapping(target = "password", qualifiedBy = PasswordEncoderMapping.class)
-    User userDtoToUserEntity(UserRegistrationDTO userDTO);
+    User userRegistrationDtoToUserEntity(UserRegistrationDTO userDTO);
+
+    UserDTO userToUserDto(User user);
+
+    User userDtoToUserEntity(UserDTO userDTO);
 }

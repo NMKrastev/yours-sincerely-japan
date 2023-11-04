@@ -30,18 +30,27 @@ public class AppUserDetailsService implements UserDetailsService {
 
     private static UserDetails getUserDetails(User user) {
 
-        return org.springframework.security.core.userdetails.User
-                .withUsername(user.getFullName())
-                .password(user.getPassword())
-                .authorities(user.getRoles().stream().map(AppUserDetailsService::getGranterAuthorities).toList())
-                .build();
+        boolean accountNonExpired = true;
+        boolean credentialsNonExpired = true;
+        boolean accountNonLocked = true;
+
+        return new org.springframework.security.core.userdetails.User(
+                user.getEmail(),
+                user.getPassword(),
+                user.isEnabled(),
+                accountNonExpired,
+                credentialsNonExpired,
+                accountNonLocked,
+                user.getRoles().stream().map(AppUserDetailsService::getGranterAuthorities).toList()
+        );
+
     }
 
     private static GrantedAuthority getGranterAuthorities(UserRole userRole) {
         return new SimpleGrantedAuthority("ROLE_" + userRole.getName().name());
     }
 
-    /*@Override
+/*    @Override
     public UserDetails loadUserByUsername(final String email) throws UsernameNotFoundException {
 
         boolean enabled = true;
@@ -57,7 +66,6 @@ public class AppUserDetailsService implements UserDetailsService {
 
         final User user = optUser.get();
 
-
         return new org.springframework.security.core.userdetails.User(
                 user.getEmail(),
                 user.getPassword(),
@@ -65,17 +73,17 @@ public class AppUserDetailsService implements UserDetailsService {
                 accountNonExpired,
                 credentialsNonExpired,
                 accountNonLocked,
-                getAuthorities(user.getRoles())
+                user.getRoles().stream().map(AppUserDetailsService::getGranterAuthorities).toList()
         );
     }*/
 
     /*private Collection<? extends GrantedAuthority> getAuthorities(final List<UserRole> roles) {
         return getGrantedAuthorities(roles);
-    }
+    }*/
 
 
     //TODO: Might need to accept List instead of Collection
-    private List<GrantedAuthority> getGrantedAuthorities(final List<UserRole> roles) {
+    /*private List<GrantedAuthority> getGrantedAuthorities(final List<UserRole> roles) {
         final List<GrantedAuthority> authorities = new ArrayList<>();
         for (final UserRole role : roles) {
             authorities.add(new SimpleGrantedAuthority(String.valueOf(role.getName())));

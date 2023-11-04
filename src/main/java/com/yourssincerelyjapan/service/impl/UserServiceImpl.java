@@ -1,25 +1,26 @@
 package com.yourssincerelyjapan.service.impl;
 
 import com.yourssincerelyjapan.config.AdminConfiguration;
+import com.yourssincerelyjapan.model.dto.UserDTO;
 import com.yourssincerelyjapan.model.dto.UserRegistrationDTO;
 import com.yourssincerelyjapan.model.entity.User;
-import com.yourssincerelyjapan.model.entity.UserAccountConfirmation;
 import com.yourssincerelyjapan.model.entity.UserRole;
 import com.yourssincerelyjapan.model.enums.UserRoleEnum;
 import com.yourssincerelyjapan.model.mapper.UserMapper;
 import com.yourssincerelyjapan.registration.OnRegistrationCompleteEvent;
-import com.yourssincerelyjapan.repository.UserAccountConfirmationRepository;
 import com.yourssincerelyjapan.repository.UserRepository;
 import com.yourssincerelyjapan.repository.UserRoleRepository;
-import com.yourssincerelyjapan.service.EmailService;
 import com.yourssincerelyjapan.service.UserService;
+import com.yourssincerelyjapan.user.AppUserDetailsService;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.context.ApplicationEventPublisher;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.io.UnsupportedEncodingException;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -75,7 +76,7 @@ public class UserServiceImpl implements UserService {
             return false;
         }
 
-        final User newUser = this.userMapper.userDtoToUserEntity(userDTO);
+        final User newUser = this.userMapper.userRegistrationDtoToUserEntity(userDTO);
         newUser.setRoles(this.userRoleRepository.findByName(UserRoleEnum.USER));
         newUser.setCreatedOn(LocalDateTime.now());
 
@@ -97,5 +98,54 @@ public class UserServiceImpl implements UserService {
     @Override
     public void saveEnabledUser(User user) {
         this.userRepository.save(user);
+    }
+
+    @Override
+    public List<UserDTO> getAllUsers() {
+
+        List<User> all = this.userRepository.findAll();
+
+        List<UserDTO> allDTO = new ArrayList<>();
+
+        for (User user : all) {
+            allDTO.add(this.userMapper.userToUserDto(user));
+        }
+
+        return allDTO;
+    }
+
+    @Override
+    public UserDTO findUser(Long id) {
+
+        return this.userRepository
+                .findById(id)
+                .map(this.userMapper::userToUserDto)
+                .get();
+    }
+
+    @Override
+    public boolean saveEditedUser(UserDTO userDTO) {
+
+        User user = this.userRepository.findById(userDTO.getId()).get();
+
+        if (!user.getFullName().equals(userDTO.getFullName())) {
+            user.setFullName(userDTO.getFullName());
+        }
+
+        //TODO: check if email exist!
+        if (this.userRepository.findByEmail(userDTO.getEmail()).isEmpty()) {
+            user.setEmail(userDTO.getEmail());
+        } else {
+            return false;
+        }
+
+        if (user.isEnabled() != userDTO.isEnabled()) {
+            user.setEnabled(userDTO.isEnabled());
+        }
+
+        //TODO: maybe do it with try/catch
+        final User saved = this.userRepository.save(user);
+
+        return this.userRepository.findById(saved.getId()).isPresent();
     }
 }

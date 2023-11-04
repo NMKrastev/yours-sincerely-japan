@@ -51,8 +51,7 @@ public class UserRegistrationController {
                                          @Valid UserRegistrationDTO userRegistrationDTO,
                                          BindingResult bindingResult,
                                          RedirectAttributes redirectAttributes,
-                                         HttpServletRequest request,
-                                         Errors errors) throws UnsupportedEncodingException {
+                                         HttpServletRequest request) throws UnsupportedEncodingException {
 
         if (bindingResult.hasErrors()) {
 

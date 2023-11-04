@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>All Users</title>
+    <link rel="stylesheet" href="/css/site.css"/>
+</head>
+<body>
+
+<div class="site">
+
+    <header th:replace="~{fragments/header.html :: header}"></header>
+
+    <div class="m-5 justify-content-start">
+
+    <table class="table table-striped table-dark border-4 border-danger-subtle">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Id</th>
+            <th scope="col">First</th>
+            <th scope="col">Last</th>
+            <th scope="col">Handle</th>
+            <th scope="col">Edit user</th>
+            <th scope="col">Delete user</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="user : ${allUsers}" th:object="${user}">
+            <th scope="row">
+                <th:block th:text="${userStat.count}"></th:block>
+            </th>
+            <td>
+                <th:block th:text="*{id}"></th:block>
+            </td>
+            <td>
+                <th:block th:text="*{fullName}"></th:block>
+            </td>
+            <td>
+                <th:block th:text="*{email}"></th:block>
+            </td>
+            <td>
+                <th:block th:text="*{isEnabled()}"></th:block>
+            </td>
+            <td>
+                <a th:href="@{/users/edit/{id}(id=${user.id})}">Edit user</a>
+            </td>
+            <td>
+                <a th:href="@{/users/delete/{id}(id=${user.id})}">Delete user</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    </div>
+
+    <footer th:replace="~{fragments/footer.html :: footer}"></footer>
+
+</div>
+
+</body>
+</html>

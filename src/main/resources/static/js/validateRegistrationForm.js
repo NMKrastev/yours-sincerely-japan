@@ -26,7 +26,7 @@ function validateRegistrationForm(event) {
     let emailInput = document.getElementById('email');
     let emailValue = emailInput.value.trim();
     let emailAlert = document.getElementById('email-alert');
-    let emailRegex = /^[a-zA-Z0-9_!#$%&’*+/=?`{|}~^-]+(?:\.[a-zA-Z0-9_!#$%&’*+/=?`{|}~^-]+)*@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+    let emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     let smallEmail = document.getElementById('email-error');
 
     if (!smallEmail) {

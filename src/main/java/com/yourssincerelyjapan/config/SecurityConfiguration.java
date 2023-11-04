@@ -6,6 +6,7 @@ import com.yourssincerelyjapan.user.AppUserDetailsService;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -35,6 +36,7 @@ public class SecurityConfiguration {
                                 .requestMatchers("/post/new").hasRole(UserRoleEnum.USER.name())
                                 .requestMatchers("/users/post").hasRole(UserRoleEnum.USER.name())
                                 .requestMatchers("/users/all").hasRole(UserRoleEnum.ADMIN.name())
+                                .requestMatchers(HttpMethod.PATCH, "/users/edit/{id}", "/users/delete/{id}").hasRole(UserRoleEnum.ADMIN.name())
                                 // all other requests are authenticated.
                                 .anyRequest()
                                 .authenticated()
