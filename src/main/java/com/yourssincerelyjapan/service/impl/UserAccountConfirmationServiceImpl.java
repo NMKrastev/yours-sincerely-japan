@@ -42,6 +42,13 @@ public class UserAccountConfirmationServiceImpl implements UserAccountConfirmati
         user.setEnabled(true);
         this.userService.saveEnabledUser(user);
 
+        this.deleteVerificationToken(confirmation);
+
         return true;
+    }
+
+    private void deleteVerificationToken(UserAccountConfirmation confirmation) {
+
+        this.confirmationRepository.delete(confirmation);
     }
 }

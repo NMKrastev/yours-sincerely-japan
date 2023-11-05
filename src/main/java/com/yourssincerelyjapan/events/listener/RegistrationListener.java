@@ -1,8 +1,8 @@
-package com.yourssincerelyjapan.registration.listener;
+package com.yourssincerelyjapan.events.listener;
 
 import com.yourssincerelyjapan.model.entity.User;
 import com.yourssincerelyjapan.model.entity.UserAccountConfirmation;
-import com.yourssincerelyjapan.registration.OnRegistrationCompleteEvent;
+import com.yourssincerelyjapan.events.OnRegistrationCompleteEvent;
 import com.yourssincerelyjapan.service.UserAccountConfirmationService;
 import com.yourssincerelyjapan.service.EmailService;
 import org.springframework.context.ApplicationListener;

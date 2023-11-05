@@ -9,4 +9,5 @@ public interface UserAccountConfirmationService {
     UserAccountConfirmation getVerificationToken(String token);
 
     boolean accountVerification(String token);
+
 }

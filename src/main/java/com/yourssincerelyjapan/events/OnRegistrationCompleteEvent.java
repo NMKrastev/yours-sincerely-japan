@@ -1,4 +1,4 @@
-package com.yourssincerelyjapan.registration;
+package com.yourssincerelyjapan.events;
 
 import com.yourssincerelyjapan.model.entity.User;
 import lombok.Getter;

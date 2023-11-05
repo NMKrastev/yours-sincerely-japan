@@ -7,14 +7,12 @@ import com.yourssincerelyjapan.model.entity.User;
 import com.yourssincerelyjapan.model.entity.UserRole;
 import com.yourssincerelyjapan.model.enums.UserRoleEnum;
 import com.yourssincerelyjapan.model.mapper.UserMapper;
-import com.yourssincerelyjapan.registration.OnRegistrationCompleteEvent;
+import com.yourssincerelyjapan.events.OnRegistrationCompleteEvent;
 import com.yourssincerelyjapan.repository.UserRepository;
 import com.yourssincerelyjapan.repository.UserRoleRepository;
 import com.yourssincerelyjapan.service.UserService;
-import com.yourssincerelyjapan.user.AppUserDetailsService;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.context.ApplicationEventPublisher;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -22,7 +20,6 @@ import java.io.UnsupportedEncodingException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class UserServiceImpl implements UserService {
