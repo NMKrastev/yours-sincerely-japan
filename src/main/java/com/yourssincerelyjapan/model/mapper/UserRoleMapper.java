@@ -13,4 +13,6 @@ public interface UserRoleMapper {
 
     @Mapping(target = "roles", qualifiedBy = UserRoleMapping.class)
     List<UserRole> userRoleDtoToUserRole(List<UserRoleDTO> userRoles);
+
+    UserRoleDTO userRoleToUserRoleDTO(UserRole userRole);
 }

@@ -43,7 +43,6 @@ public class UserServiceImpl implements UserService {
         this.eventPublisher = eventPublisher;
     }
 
-
     @Override
     public void administratorInit() {
 
@@ -117,11 +116,12 @@ public class UserServiceImpl implements UserService {
             user.setFullName(userDTO.getFullName());
         }
 
-        //TODO: check if email exist!
-        if (this.userRepository.findByEmail(userDTO.getEmail()).isEmpty()) {
-            user.setEmail(userDTO.getEmail());
-        } else {
-            return false;
+        if (!userDTO.getEmail().equals(user.getEmail())) {
+            if (this.userRepository.findByEmail(userDTO.getEmail()).isEmpty()) {
+                user.setEmail(userDTO.getEmail());
+            } else {
+                return false;
+            }
         }
 
         if (user.isEnabled() != userDTO.isEnabled()) {

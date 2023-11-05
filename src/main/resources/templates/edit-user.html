@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Edit User</title>
@@ -64,6 +65,27 @@
                     </div>
                 </div>
 
+                <!--<div class="form-group pb-3">
+                    <div class="label-holder text-white text-center justify-content-center">
+                        <h3><label>Roles:</label></h3>
+                    </div>
+                    <div class="form-check form-check-inline" th:each="role : ${allRoles}">
+                        <input class="form-check-input" type="checkbox" name="roles"
+                               th:id="'inlineCheckbox' + ${roleStat.count}"
+                               th:value="${role.getName()}"
+                               th:each="userRole, iterStat : *{roles}"
+                               th:checked="${role.getId() == userRole.getId()}">
+                        <label class="form-check-label"
+                               th:for="'inlineCheckbox' + ${roleStat.count}"
+                               th:text="${role.getName()}"></label>
+                    </div>
+                    <div class="invalid-feedback alert alert-danger" id="role-alert">
+                        <th:block th:if="${#fields.hasErrors()}"
+                                  th:errorclass="error"
+                                  th:errors="*{roles}"></th:block>
+                    </div>
+                </div>-->
+
                 <div class="form-group pb-3">
                     <div class="label-holder text-white text-center justify-content-center">
                         <h3><label for="enabled">Is enabled:</label></h3>
@@ -86,7 +108,7 @@
                 <th:block th:if="${badCredentials}">
                     <div class="invalid-feedback alert alert-danger d-flex align-items-center"
                          role="alert">
-                        <p>The email is already in use</p>
+                        <p>Email is already in use!</p>
                     </div>
                 </th:block>
 

@@ -4631,7 +4631,7 @@ fieldset:disabled .btn {
   display: block;
   padding: var(--bs-pagination-padding-y) var(--bs-pagination-padding-x);
   font-size: var(--bs-pagination-font-size);
-  color: var(--bs-pagination-color);
+  color: #bc002d;
   text-decoration: none;
   background-color: var(--bs-pagination-bg);
   border: var(--bs-pagination-border-width) solid
@@ -4646,13 +4646,13 @@ fieldset:disabled .btn {
 }
 .page-link:hover {
   z-index: 2;
-  color: var(--bs-pagination-hover-color);
+  color: #ffb7c5;
   background-color: var(--bs-pagination-hover-bg);
   border-color: var(--bs-pagination-hover-border-color);
 }
 .page-link:focus {
   z-index: 3;
-  color: var(--bs-pagination-focus-color);
+  color: #ffb7c5;
   background-color: var(--bs-pagination-focus-bg);
   outline: 0;
   box-shadow: var(--bs-pagination-focus-box-shadow);

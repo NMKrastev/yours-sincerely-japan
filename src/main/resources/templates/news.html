@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -25,6 +25,8 @@
         <h2 class="fst-italic">Latest news from Japan</h2>
       </div>
 
+      <nav th:replace="~{fragments/pagination.html :: pagination}"></nav>
+
       <div class="news-main-section-content">
 
         <section class="news-section-category">
@@ -35,6 +37,9 @@
           </div>
         </section>
       </div>
+
+      <nav th:replace="~{fragments/pagination.html :: pagination}"></nav>
+
     </main>
   </div>
 

@@ -20,7 +20,8 @@
             <th scope="col">Id</th>
             <th scope="col">First</th>
             <th scope="col">Last</th>
-            <th scope="col">Handle</th>
+            <!--<th scope="col">Roles</th>-->
+            <th scope="col">Is enabled</th>
             <th scope="col">Edit user</th>
             <th scope="col">Delete user</th>
         </tr>
@@ -39,6 +40,10 @@
             <td>
                 <th:block th:text="*{email}"></th:block>
             </td>
+            <!--<td>
+                <th:block th:each="role, iterStat : *{roles}"
+                      th:text="${role.name} + ${!iterStat.last ? ', ' : ''}"></th:block>
+            </td>-->
             <td>
                 <th:block th:text="*{isEnabled()}"></th:block>
             </td>
