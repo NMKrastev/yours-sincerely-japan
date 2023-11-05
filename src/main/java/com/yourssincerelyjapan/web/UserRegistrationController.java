@@ -50,8 +50,7 @@ public class UserRegistrationController {
     public ModelAndView userRegistration(ModelAndView modelAndView,
                                          @Valid UserRegistrationDTO userRegistrationDTO,
                                          BindingResult bindingResult,
-                                         RedirectAttributes redirectAttributes,
-                                         HttpServletRequest request) throws UnsupportedEncodingException {
+                                         RedirectAttributes redirectAttributes) throws UnsupportedEncodingException {
 
         if (bindingResult.hasErrors()) {
 
@@ -64,7 +63,7 @@ public class UserRegistrationController {
             return modelAndView;
         }
 
-        boolean isUserRegistered = this.userService.registerUser(userRegistrationDTO, request);
+        boolean isUserRegistered = this.userService.registerUser(userRegistrationDTO);
 
         if (isUserRegistered) {
 
@@ -91,7 +90,7 @@ public class UserRegistrationController {
 
             modelAndView.addObject("badToken", true);
             //TODO: create token-not-exist.html page;
-            modelAndView.setViewName("redirect:/users/token-not-exist");
+            modelAndView.setViewName("redirect:/users/account-verification/token-not-exist");
 
             return modelAndView;
         }

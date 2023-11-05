@@ -26,6 +26,7 @@ public class RegistrationListener implements ApplicationListener<OnRegistrationC
     public void onApplicationEvent(OnRegistrationCompleteEvent event) {
 
         final User user = event.getUser();
+
         final UserAccountConfirmation confirmation = new UserAccountConfirmation(user);
 
         this.confirmationService.saveVerificationToken(confirmation);

@@ -13,7 +13,7 @@ public interface UserService {
 
     void administratorInit();
 
-    boolean registerUser(UserRegistrationDTO userDTO, HttpServletRequest request) throws UnsupportedEncodingException;
+    boolean registerUser(UserRegistrationDTO userDTO) throws UnsupportedEncodingException;
 
     void saveEnabledUser(User user);
 

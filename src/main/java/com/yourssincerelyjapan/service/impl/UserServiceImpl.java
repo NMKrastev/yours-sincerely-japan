@@ -66,7 +66,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public boolean registerUser(UserRegistrationDTO userDTO, HttpServletRequest request) throws UnsupportedEncodingException {
+    public boolean registerUser(UserRegistrationDTO userDTO) {
 
         if (this.userRepository.findByEmail(userDTO.getEmail()).isPresent()
                 || !userDTO.getPassword().equals(userDTO.getConfirmPassword())) {
@@ -79,15 +79,7 @@ public class UserServiceImpl implements UserService {
 
         final User savedUser = this.userRepository.save(newUser);
 
-        final String appUrl = request.getContextPath();
-
-        this.eventPublisher.publishEvent(new OnRegistrationCompleteEvent(savedUser, request.getLocale(), appUrl));
-
-        //final UserAccountConfirmation confirmation = new UserAccountConfirmation(savedUser);
-
-        //this.confirmationRepository.save(confirmation);
-
-        //this.emailService.sendHtmlEmail(savedUser.getFullName(), savedUser.getEmail(), confirmation.getToken());
+        this.eventPublisher.publishEvent(new OnRegistrationCompleteEvent(savedUser));
 
         return true;
     }
@@ -100,15 +92,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<UserDTO> getAllUsers() {
 
-        List<User> all = this.userRepository.findAll();
-
-        List<UserDTO> allDTO = new ArrayList<>();
-
-        for (User user : all) {
-            allDTO.add(this.userMapper.userToUserDto(user));
-        }
-
-        return allDTO;
+        return this.userRepository
+                .findAll()
+                .stream()
+                .map(this.userMapper::userToUserDto)
+                .toList();
     }
 
     @Override
