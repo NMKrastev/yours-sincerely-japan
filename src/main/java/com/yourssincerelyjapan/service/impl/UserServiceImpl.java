@@ -151,4 +151,14 @@ public class UserServiceImpl implements UserService {
 
         return this.userRepository.findById(saved.getId()).isPresent();
     }
+
+    @Override
+    public boolean deleteUser(Long id) {
+
+        this.userRepository.deleteById(id);
+
+        return this.userRepository
+                .findById(id)
+                .isEmpty();
+    }
 }

@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>New post modal</title>
+</head>
+<body>
+
+<div th:fragment="delete-user-modal">
+
+    <!-- Modal -->
+    <div class="modal fade" id="deleteUserModal" tabindex="-1" aria-labelledby="deleteUserModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="deleteUserModalLabel">Delete user</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Are you sure you want to delete user <span id="username"></span>?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+
+                    <form id="delete" th:action="@{/users/delete/}" th:method="DELETE">
+                        <button type="submit" class="btn btn-primary">Delete</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script th:inline="javascript">
+        $('.modal').on('show.bs.modal', function (event) {
+            const button = $(event.relatedTarget);
+            const username = button.data('username');
+            const userId = button.data('id');
+            const modal = $(this);
+
+            modal.find('#username').text(username);
+
+            const form = modal.find('#delete');
+            const originalAction = form.attr('action');
+            const newAction = originalAction + userId;
+            form.attr('action', newAction);
+        });
+    </script>
+
+</div>
+
+</body>
+</html>

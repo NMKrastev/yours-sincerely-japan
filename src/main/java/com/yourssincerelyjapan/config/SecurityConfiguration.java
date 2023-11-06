@@ -37,6 +37,7 @@ public class SecurityConfiguration {
                                 .requestMatchers("/users/post").hasRole(UserRoleEnum.USER.name())
                                 .requestMatchers("/users/all").hasRole(UserRoleEnum.ADMIN.name())
                                 .requestMatchers(HttpMethod.PATCH, "/users/edit/{id}", "/users/delete/{id}").hasRole(UserRoleEnum.ADMIN.name())
+                                .requestMatchers(HttpMethod.PATCH, "/users/delete/{id}").hasRole(UserRoleEnum.ADMIN.name())
                                 // all other requests are authenticated.
                                 .anyRequest()
                                 .authenticated()

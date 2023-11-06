@@ -122,5 +122,27 @@ public class AdminController {
 
         return modelAndView;
     }
-}
 
+    @DeleteMapping("/delete/{id}")
+    public ModelAndView deleteUser(ModelAndView modelAndView,
+                                   @PathVariable("id") Long id) {
+
+        System.out.println();
+
+        boolean isDeleted = this.userService.deleteUser(id);
+
+        if (isDeleted) {
+
+            modelAndView.setViewName("redirect:/users/all");
+
+        } else {
+
+            modelAndView.addObject("userNotDeleted", true);
+
+            modelAndView.setViewName("redirect:/users/all");
+
+        }
+
+        return modelAndView;
+    }
+}
