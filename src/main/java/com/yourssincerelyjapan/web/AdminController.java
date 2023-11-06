@@ -28,12 +28,12 @@ public class AdminController {
         this.userRoleService = userRoleService;
     }
 
-    /*@ModelAttribute("allRoles")
+    @ModelAttribute("allRoles")
     public void initUserRoles(Model model) {
         final List<UserRoleDTO> allRoles = this.userRoleService.getAllRoles();
         //final Map<Long, UserRoleDTO> allRoles = this.userRoleService.getAllRolesMap();
         model.addAttribute("allRoles", allRoles);
-    }*/
+    }
 
     @GetMapping("/all")
     public ModelAndView getAllUsers(ModelAndView modelAndView) {
@@ -56,11 +56,18 @@ public class AdminController {
         Object badCredentials = session.getAttribute("badCredentials");
 
         if (userDTO == null) {
+
             if (badCredentials == null) {
+
                 userDTO = this.userService.findUser(id);
+                modelAndView.addObject("userRoles", this.userRoleService.rolesListToRolesMap(userDTO.getRoles()));
+
             } else {
+
                 userDTO = (UserDTO) session.getAttribute("userDTOEmailExist");
+
                 modelAndView.addObject("badCredentials", true);
+
                 session.removeAttribute("badCredentials");
                 session.removeAttribute("userDTOEmailExist");
             }
@@ -82,6 +89,7 @@ public class AdminController {
                                  @Valid UserDTO userDTO,
                                  BindingResult bindingResult,
                                  RedirectAttributes redirectAttributes,
+                                 @RequestParam("selectedRoles") List<String> selectedRoles,
                                  HttpSession session) {
 
         if (bindingResult.hasErrors()) {

@@ -26,8 +26,8 @@ public class UserDTO {
     @Pattern(regexp = EMAIL_REGEX, message = VALID_EMAIL)
     private String email;
 
-    /*@NotEmpty(message = "Choose a role!")
-    private List<UserRoleDTO> roles;*/
+    @NotEmpty(message = "Choose a role!")
+    private List<UserRoleDTO> roles;
 
     @NotNull
     private boolean enabled;

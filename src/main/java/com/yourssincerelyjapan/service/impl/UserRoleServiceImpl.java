@@ -48,4 +48,15 @@ public class UserRoleServiceImpl implements UserRoleService {
 
         return allRolesMap;
     }
+
+    @Override
+    public Map<Long, String> rolesListToRolesMap(List<UserRoleDTO> roles) {
+
+        final Map<Long, String> userRoles = new HashMap<>();
+
+        for (UserRoleDTO role : roles) {
+            userRoles.put(role.getId(), role.getName());
+        }
+        return userRoles;
+    }
 }

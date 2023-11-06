@@ -11,4 +11,6 @@ public interface UserRoleService {
     List<UserRoleDTO> getAllRoles();
 
     Map<Long, UserRoleDTO> getAllRolesMap();
+
+    Map<Long, String> rolesListToRolesMap(List<UserRoleDTO> roles);
 }
