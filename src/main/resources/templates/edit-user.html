@@ -76,8 +76,8 @@
                     <div class="form-check form-check-inline" th:each="role : ${allRoles}">
                         <input class="form-check-input" type="checkbox" name="selectedRoles"
                                th:id="'inlineCheckbox' + ${roleStat.count}"
-                               th:value="${role.getName()}"
-                               th:checked="${#maps.containsKey(userRoles, role.id)}">
+                               th:value="${role.getId()}"
+                               th:checked="${#maps.containsKey(userRoles, role.getId())}">
                         <label class="form-check-label"
                                th:for="'inlineCheckbox' + ${roleStat.count}"
                                th:text="${role.getName()}"></label>
@@ -111,7 +111,8 @@
                 <th:block th:if="${badCredentials}">
                     <div class="invalid-feedback alert alert-danger d-flex align-items-center"
                          role="alert">
-                        <p>Email is already in use!</p>
+                        <p>Make sure the email is correct or not in use!<br>
+                        Make sure to select at least one role!</p>
                     </div>
                 </th:block>
 

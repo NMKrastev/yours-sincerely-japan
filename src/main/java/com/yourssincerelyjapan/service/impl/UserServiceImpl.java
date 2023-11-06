@@ -108,7 +108,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public boolean saveEditedUser(UserDTO userDTO) {
+    public boolean saveEditedUser(UserDTO userDTO, List<Long> selectedRoles) {
 
         User user = this.userRepository.findById(userDTO.getId()).get();
 
@@ -124,9 +124,27 @@ public class UserServiceImpl implements UserService {
             }
         }
 
+        final List<UserRole> roles = new ArrayList<>();
+        if (selectedRoles != null) {
+
+            for (Long selectedRole : selectedRoles) {
+                final UserRole userRole = this.userRoleRepository.findById(selectedRole).get();
+                roles.add(userRole);
+            }
+
+            user.getRoles().clear();
+            user.setRoles(roles);
+
+        } else {
+            //TODO: see how to tell that the user has to have selected roles
+            return false;
+        }
+
         if (user.isEnabled() != userDTO.isEnabled()) {
             user.setEnabled(userDTO.isEnabled());
         }
+
+        user.setModifiedOn(LocalDateTime.now());
 
         //TODO: maybe do it with try/catch
         final User saved = this.userRepository.save(user);

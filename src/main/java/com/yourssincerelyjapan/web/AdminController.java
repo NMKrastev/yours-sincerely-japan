@@ -31,7 +31,6 @@ public class AdminController {
     @ModelAttribute("allRoles")
     public void initUserRoles(Model model) {
         final List<UserRoleDTO> allRoles = this.userRoleService.getAllRoles();
-        //final Map<Long, UserRoleDTO> allRoles = this.userRoleService.getAllRolesMap();
         model.addAttribute("allRoles", allRoles);
     }
 
@@ -65,6 +64,7 @@ public class AdminController {
             } else {
 
                 userDTO = (UserDTO) session.getAttribute("userDTOEmailExist");
+                modelAndView.addObject("userRoles", this.userRoleService.rolesListToRolesMap(userDTO.getRoles()));
 
                 modelAndView.addObject("badCredentials", true);
 
@@ -89,7 +89,7 @@ public class AdminController {
                                  @Valid UserDTO userDTO,
                                  BindingResult bindingResult,
                                  RedirectAttributes redirectAttributes,
-                                 @RequestParam("selectedRoles") List<String> selectedRoles,
+                                 @RequestParam(name = "selectedRoles", required = false) List<Long> selectedRoles,
                                  HttpSession session) {
 
         if (bindingResult.hasErrors()) {
@@ -105,7 +105,7 @@ public class AdminController {
             return modelAndView;
         }
 
-        boolean isUpdated = this.userService.saveEditedUser(userDTO);
+        boolean isUpdated = this.userService.saveEditedUser(userDTO, selectedRoles);
 
         if (isUpdated) {
 
