@@ -44,7 +44,7 @@
                         <article>
                             <h5 class="article-title pt-2"><a href="#">Article title</a></h5>
                             <div class="person-info" th:object="${userDTO}">
-                                <div class="ratio ratio-1x1 rounded-circle overflow-hidden">
+                                <div class="ratio ratio-1x1 rounded-circle overflow-hidden" th:if="${userDTO.getProfilePicture() != null}">
                                     <img th:src="'data:' + *{profilePicture.getType()} + ';base64,' + *{profilePicture.getImageDataBase64()}" class="card-img-top img-cover">
                                 </div>
                                 <p class="posted-by">Posted by: {name}{time}</p>

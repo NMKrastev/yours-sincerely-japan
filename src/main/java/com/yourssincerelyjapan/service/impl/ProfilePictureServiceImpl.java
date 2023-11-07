@@ -34,16 +34,14 @@ public class ProfilePictureServiceImpl implements ProfilePictureService {
             byte[] fileBytes = image.getBytes();
             base64String = Base64.getEncoder().encodeToString(fileBytes);
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new RuntimeException(e.getMessage());
         }
 
-        final ProfilePicture profilePicture = ProfilePicture
+        return ProfilePicture
                 .builder()
                 .name(image.getOriginalFilename())
                 .type(image.getContentType())
                 .imageDataBase64(base64String)
                 .build();
-
-        return profilePicture;
     }
 }

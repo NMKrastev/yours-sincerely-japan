@@ -76,12 +76,10 @@ public class UserServiceImpl implements UserService {
             return false;
         }
 
-        final MultipartFile image = userDTO.getProfilePicture();
-
         ProfilePicture profilePicture = null;
 
-        if (!image.isEmpty()) {
-            profilePicture = this.pictureService.saveProfilePicture(image);
+        if (!userDTO.getProfilePicture().isEmpty()) {
+            profilePicture = this.pictureService.saveProfilePicture(userDTO.getProfilePicture());
         }
 
         final User newUser = this.userMapper.userRegistrationDtoToUserEntity(userDTO);
