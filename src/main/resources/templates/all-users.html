@@ -59,7 +59,7 @@
                 </form>
             </td>
             <td>
-                <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#deleteUserModal"
                         th:data-username="*{fullName}" th:data-id="*{id}">
                     Delete user
                 </button>
@@ -74,7 +74,7 @@
 
 </div>
 
-<div th:replace="~{fragments/delete-user-modal.html :: delete-user-modal}"></div>
+<div th:replace="~{fragments/modal-delete-user.html :: modal-delete-user}"></div>
 
 </body>
 </html>

@@ -127,8 +127,6 @@ public class AdminController {
     public ModelAndView deleteUser(ModelAndView modelAndView,
                                    @PathVariable("id") Long id) {
 
-        System.out.println();
-
         boolean isDeleted = this.userService.deleteUser(id);
 
         if (isDeleted) {
