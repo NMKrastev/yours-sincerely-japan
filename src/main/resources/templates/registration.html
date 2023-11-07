@@ -23,11 +23,11 @@
             </div>
 
             <form class="pb-5 mx-auto w-auto h-auto bg-blur needs-validation" id="registration-form"
-                  novalidate th:action="@{/users/registration}" th:method="POST" th:object="${userRegistrationDTO}">
+                  novalidate th:action="@{/users/registration}" th:method="POST" th:object="${userRegistrationDTO}" enctype="multipart/form-data">
 
                 <div class="form-group pb-3">
                     <div class="label-holder text-white text-center justify-content-center">
-                        <h3><label for="fullName">Full name:</label></h3>
+                        <h3><label for="fullName">Full name</label></h3>
                     </div>
                     <input type="text"
                            class="form-control"
@@ -49,7 +49,7 @@
 
                 <div class="form-group pb-3">
                     <div class="label-holder text-white text-center justify-content-center">
-                        <h3><label for="email">Email:</label></h3>
+                        <h3><label for="email">Email</label></h3>
                     </div>
                     <input type="text"
                            class="form-control"
@@ -68,7 +68,7 @@
 
                 <div class="form-group pb-3">
                     <div class="label-holder text-white text-center d-flex justify-content-center">
-                        <h3><label for="password">Password:</label></h3>
+                        <h3><label for="password">Password</label></h3>
                     </div>
                     <input type="password"
                            class="form-control"
@@ -86,7 +86,7 @@
 
                 <div class="form-group pb-3">
                     <div class="label-holder text-white text-center d-flex justify-content-center">
-                        <h3><label for="confirmPassword">Confirm password:</label></h3>
+                        <h3><label for="confirmPassword">Confirm password</label></h3>
                     </div>
                     <input type="password"
                            class="form-control"
@@ -99,6 +99,15 @@
                         <th:block th:if="${#fields.hasErrors()}"
                                   th:errorclass="error"
                                   th:errors="*{confirmPassword}"></th:block>
+                    </div>
+                </div>
+
+                <div class="form-group pb-3">
+                    <div class="label-holder text-white text-center d-flex justify-content-center">
+                        <h3>Choose a profile picture</h3>
+                    </div>
+                    <div class="mb-3">
+                        <input class="form-control" type="file" id="formFile" name="profilePicture" accept="image/png, image/jpeg">
                     </div>
                 </div>
 

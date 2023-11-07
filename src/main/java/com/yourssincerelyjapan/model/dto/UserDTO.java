@@ -31,4 +31,6 @@ public class UserDTO {
 
     @NotNull
     private boolean enabled;
+
+    private ProfilePictureDTO profilePicture;
 }

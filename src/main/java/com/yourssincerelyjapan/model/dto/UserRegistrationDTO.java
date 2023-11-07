@@ -1,15 +1,12 @@
 package com.yourssincerelyjapan.model.dto;
 
-import com.yourssincerelyjapan.model.entity.ProfilePicture;
-import com.yourssincerelyjapan.model.entity.UserRole;
 import com.yourssincerelyjapan.validation.FieldMatch;
 import com.yourssincerelyjapan.validation.UniqueUserEmail;
-import jakarta.persistence.*;
-import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import lombok.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -45,5 +42,5 @@ public class UserRegistrationDTO {
 
     private List<UserRoleDTO> roles;
 
-    //private ProfilePicture profilePicture;
+    private MultipartFile profilePicture;
 }

@@ -213,6 +213,24 @@
   color: #bc002d;
 }
 
+.person-info {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.2em;
+}
+
+.ratio {
+  width: 50px; /* Adjust the size of the circular image as needed */
+  height: 50px;
+  margin-left: 0.5em;
+}
+
+.img-cover{
+  object-fit: cover;
+  object-position: center;
+}
+
 .article-container article .posted-by {
   color: #cccccc;
   padding-top: 0.1em;

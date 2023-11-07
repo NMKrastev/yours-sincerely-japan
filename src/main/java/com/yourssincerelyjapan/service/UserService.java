@@ -24,4 +24,6 @@ public interface UserService {
     boolean saveEditedUser(UserDTO userDTO, List<Long> selectedRoles);
 
     boolean deleteUser(Long id);
+
+    User findUserUser(Long id);
 }

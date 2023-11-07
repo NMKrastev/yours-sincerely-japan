@@ -38,6 +38,11 @@
   padding-top: 0.3em;
 }
 
+.in-article {
+  width: 100px;
+  height: 100px;
+}
+
 .article-single-post-content {
   display: flex;
   flex-direction: column;

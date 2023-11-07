@@ -3,6 +3,7 @@ package com.yourssincerelyjapan.service.impl;
 import com.yourssincerelyjapan.config.AdminConfiguration;
 import com.yourssincerelyjapan.model.dto.UserDTO;
 import com.yourssincerelyjapan.model.dto.UserRegistrationDTO;
+import com.yourssincerelyjapan.model.entity.ProfilePicture;
 import com.yourssincerelyjapan.model.entity.User;
 import com.yourssincerelyjapan.model.entity.UserRole;
 import com.yourssincerelyjapan.model.enums.UserRoleEnum;
@@ -10,13 +11,13 @@ import com.yourssincerelyjapan.model.mapper.UserMapper;
 import com.yourssincerelyjapan.events.OnRegistrationCompleteEvent;
 import com.yourssincerelyjapan.repository.UserRepository;
 import com.yourssincerelyjapan.repository.UserRoleRepository;
+import com.yourssincerelyjapan.service.ProfilePictureService;
 import com.yourssincerelyjapan.service.UserService;
-import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
-import java.io.UnsupportedEncodingException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -26,16 +27,19 @@ public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
     private final UserRoleRepository userRoleRepository;
+    private final ProfilePictureService pictureService;
     private final ApplicationEventPublisher eventPublisher;
     private final UserMapper userMapper;
     private final AdminConfiguration adminConfiguration;
     private final PasswordEncoder passwordEncoder;
 
-    public UserServiceImpl(UserRepository userRepository, UserMapper userMapper,
+    public UserServiceImpl(UserRepository userRepository, UserRoleRepository userRoleRepository,
+                           ProfilePictureService pictureService, UserMapper userMapper,
                            AdminConfiguration adminConfiguration, PasswordEncoder passwordEncoder,
-                           UserRoleRepository userRoleRepository, ApplicationEventPublisher eventPublisher) {
+                           ApplicationEventPublisher eventPublisher) {
 
         this.userRepository = userRepository;
+        this.pictureService = pictureService;
         this.userRoleRepository = userRoleRepository;
         this.userMapper = userMapper;
         this.adminConfiguration = adminConfiguration;
@@ -72,7 +76,16 @@ public class UserServiceImpl implements UserService {
             return false;
         }
 
+        final MultipartFile image = userDTO.getProfilePicture();
+
+        ProfilePicture profilePicture = null;
+
+        if (!image.isEmpty()) {
+            profilePicture = this.pictureService.saveProfilePicture(image);
+        }
+
         final User newUser = this.userMapper.userRegistrationDtoToUserEntity(userDTO);
+        newUser.setProfilePicture(profilePicture);
         newUser.setRoles(this.userRoleRepository.findByName(UserRoleEnum.USER));
         newUser.setCreatedOn(LocalDateTime.now());
 
@@ -160,5 +173,10 @@ public class UserServiceImpl implements UserService {
         return this.userRepository
                 .findById(id)
                 .isEmpty();
+    }
+
+    @Override
+    public User findUserUser(Long id) {
+        return this.userRepository.findById(id).get();
     }
 }
