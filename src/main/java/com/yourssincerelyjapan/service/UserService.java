@@ -25,5 +25,6 @@ public interface UserService {
 
     boolean deleteUser(Long id);
 
-    User findUserUser(Long id);
+    //Just for test purpose
+    //User findUserUser(Long id);
 }

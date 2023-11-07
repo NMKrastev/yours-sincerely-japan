@@ -175,8 +175,8 @@ public class UserServiceImpl implements UserService {
                 .isEmpty();
     }
 
-    @Override
+    /*@Override
     public User findUserUser(Long id) {
         return this.userRepository.findById(id).get();
-    }
+    }*/
 }

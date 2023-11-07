@@ -19,7 +19,7 @@ public class HomeController {
     @GetMapping("/")
     public ModelAndView index(ModelAndView modelAndView) {
 
-        User userDTO = this.userService.findUserUser(1L);
+        UserDTO userDTO = this.userService.findUser(1L);
 
         modelAndView.addObject("userDTO", userDTO);
 
