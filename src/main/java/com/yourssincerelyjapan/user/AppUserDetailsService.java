@@ -43,7 +43,6 @@ public class AppUserDetailsService implements UserDetailsService {
                 accountNonLocked,
                 user.getRoles().stream().map(AppUserDetailsService::getGranterAuthorities).toList()
         );
-
     }
 
     private static GrantedAuthority getGranterAuthorities(UserRole userRole) {

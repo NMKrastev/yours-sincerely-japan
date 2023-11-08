@@ -22,21 +22,22 @@
             <div class="main-section-content">
 
                 <section class="section-category">
+
                     <!-- <p><h3 class="section-title">Travel <a href="#"><i class="fa-solid fa-plus"></i></a></h3></p> -->
 
                     <div class="section-title">
                         <h3>Travel</h3>
                         <th:block th:if="${#authorization.expression('hasRole(''USER'')')}">
-                        <a href="#"
-                           class="text-decoration-none"
-                           data-bs-toggle="modal"
-                           data-bs-target="#createNewPost"
-                           data-val="travel">
-                            <div class="icon new-post">
-                                <div class="tooltip">New post</div>
-                                <i class="fa-solid fa-plus"></i>
-                            </div>
-                        </a>
+                            <a href="#"
+                               class="text-decoration-none"
+                               data-bs-toggle="modal"
+                               data-bs-target="#createNewPost"
+                               data-val="travel">
+                                <div class="icon new-post">
+                                    <div class="tooltip">New post</div>
+                                    <i class="fa-solid fa-plus"></i>
+                                </div>
+                            </a>
                         </th:block>
                     </div>
 
@@ -45,7 +46,7 @@
                             <h5 class="article-title pt-2"><a href="#">Article title</a></h5>
                             <div class="person-info" th:object="${userDTO}">
                                 <div class="ratio ratio-1x1 rounded-circle overflow-hidden" th:if="${userDTO.getProfilePicture() != null}">
-                                    <img th:src="'data:' + *{profilePicture.getType()} + ';base64,' + *{profilePicture.getImageDataBase64()}" class="card-img-top img-cover">
+                                    <img th:src="'data:' + *{profilePicture.type} + ';base64,' + *{profilePicture.imageDataBase64}" th:alt="*{profilePicture.name}" class="card-img-top img-cover">
                                 </div>
                                 <p class="posted-by">Posted by: {name}{time}</p>
                             </div>

@@ -215,12 +215,13 @@
 
 .person-info {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   padding: 0.2em;
 }
 
 .ratio {
+  flex: 0 0 50px;
   width: 50px; /* Adjust the size of the circular image as needed */
   height: 50px;
   margin-left: 0.5em;
