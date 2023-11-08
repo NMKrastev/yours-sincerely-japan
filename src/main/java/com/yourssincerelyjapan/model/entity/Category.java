@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -26,9 +27,9 @@ public class Category extends BaseEntity {
     @JoinTable(name = "categories_articles",
             joinColumns = @JoinColumn(name = "category_id"),
             inverseJoinColumns = @JoinColumn(name = "article_id"))
-    private List<Article> articles;
+    private List<Article> articles = new ArrayList<>();
 
-    @Column(name = "latest_created_article", nullable = false)
+    @Column(name = "latest_created_article")
     private LocalDateTime latestCreatedArticle;
 
 }

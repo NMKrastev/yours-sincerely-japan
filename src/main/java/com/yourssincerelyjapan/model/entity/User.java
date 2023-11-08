@@ -2,7 +2,6 @@ package com.yourssincerelyjapan.model.entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.Size;
 import lombok.*;
 
 import java.time.LocalDateTime;
@@ -41,9 +40,9 @@ public class User extends BaseEntity {
     private List<UserRole> roles;
 
     @OneToOne(fetch = FetchType.EAGER)
-    private ProfilePicture profilePicture;
+    private UserProfilePicture profilePicture;
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @OneToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "users_articles",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "article_id"))

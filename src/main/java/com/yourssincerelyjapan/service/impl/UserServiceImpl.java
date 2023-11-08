@@ -3,7 +3,7 @@ package com.yourssincerelyjapan.service.impl;
 import com.yourssincerelyjapan.config.AdminConfiguration;
 import com.yourssincerelyjapan.model.dto.UserDTO;
 import com.yourssincerelyjapan.model.dto.UserRegistrationDTO;
-import com.yourssincerelyjapan.model.entity.ProfilePicture;
+import com.yourssincerelyjapan.model.entity.UserProfilePicture;
 import com.yourssincerelyjapan.model.entity.User;
 import com.yourssincerelyjapan.model.entity.UserRole;
 import com.yourssincerelyjapan.model.enums.UserRoleEnum;
@@ -16,7 +16,6 @@ import com.yourssincerelyjapan.service.UserService;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -76,7 +75,7 @@ public class UserServiceImpl implements UserService {
             return false;
         }
 
-        ProfilePicture profilePicture = null;
+        UserProfilePicture profilePicture = null;
 
         if (!userDTO.getProfilePicture().isEmpty()) {
             profilePicture = this.pictureService.saveProfilePicture(userDTO.getProfilePicture());

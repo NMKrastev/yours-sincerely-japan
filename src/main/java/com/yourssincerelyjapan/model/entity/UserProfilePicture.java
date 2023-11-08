@@ -10,7 +10,7 @@ import lombok.*;
 @Builder
 @Entity
 @Table(name = "profile_pictures")
-public class ProfilePicture extends BaseEntity {
+public class UserProfilePicture extends BaseEntity {
 
     @Column
     private String name;

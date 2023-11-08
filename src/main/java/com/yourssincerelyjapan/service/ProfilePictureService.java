@@ -1,9 +1,9 @@
 package com.yourssincerelyjapan.service;
 
-import com.yourssincerelyjapan.model.entity.ProfilePicture;
+import com.yourssincerelyjapan.model.entity.UserProfilePicture;
 import org.springframework.web.multipart.MultipartFile;
 
 public interface ProfilePictureService {
 
-    ProfilePicture saveProfilePicture(MultipartFile image);
+    UserProfilePicture saveProfilePicture(MultipartFile image);
 }

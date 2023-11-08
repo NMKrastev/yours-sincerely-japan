@@ -1,6 +1,6 @@
 package com.yourssincerelyjapan.service.impl;
 
-import com.yourssincerelyjapan.model.entity.ProfilePicture;
+import com.yourssincerelyjapan.model.entity.UserProfilePicture;
 import com.yourssincerelyjapan.repository.ProfilePictureRepository;
 import com.yourssincerelyjapan.service.ProfilePictureService;
 import org.springframework.stereotype.Service;
@@ -19,14 +19,14 @@ public class ProfilePictureServiceImpl implements ProfilePictureService {
     }
 
     @Override
-    public ProfilePicture saveProfilePicture(MultipartFile image) {
+    public UserProfilePicture saveProfilePicture(MultipartFile image) {
 
-        final ProfilePicture profilePicture = getProfilePicture(image);
+        final UserProfilePicture profilePicture = getProfilePicture(image);
 
         return this.pictureRepository.save(profilePicture);
     }
 
-    private ProfilePicture getProfilePicture(MultipartFile image) {
+    private UserProfilePicture getProfilePicture(MultipartFile image) {
 
         final String base64String;
 
@@ -37,7 +37,7 @@ public class ProfilePictureServiceImpl implements ProfilePictureService {
             throw new RuntimeException(e.getMessage());
         }
 
-        return ProfilePicture
+        return UserProfilePicture
                 .builder()
                 .name(image.getOriginalFilename())
                 .type(image.getContentType())

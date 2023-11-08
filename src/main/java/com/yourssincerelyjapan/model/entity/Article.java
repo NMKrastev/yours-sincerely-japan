@@ -1,10 +1,9 @@
 package com.yourssincerelyjapan.model.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.*;
-import org.springframework.web.multipart.MultipartFile;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Getter
@@ -16,9 +15,24 @@ import java.util.List;
 @Table(name = "articles")
 public class Article extends BaseEntity {
 
-    private String articleTitle;
+    @Column(nullable = false)
+    private String title;
 
-    private String articleContent;
+    @Column(nullable = false)
+    private String content;
 
-    private List<String> selected;
+    @Column(name = "created_on")
+    private LocalDateTime createdOn;
+
+    @Column(name = "modified_on")
+    private LocalDateTime modifiedOn;
+
+    @ManyToOne
+    private User user;
+
+    @OneToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "articles__articles_pictures",
+            joinColumns = @JoinColumn(name = "article_id"),
+            inverseJoinColumns = @JoinColumn(name = "picture_id"))
+    private List<ArticlePicture> pictures;
 }
