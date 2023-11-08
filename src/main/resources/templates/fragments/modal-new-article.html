@@ -14,7 +14,7 @@
 </head>
 <body>
 
-<div th:fragment="modal-new-post">
+<div th:fragment="modal-new-article">
 
             <!-- Modal -->
 
@@ -25,7 +25,8 @@
             aria-hidden="true">
         <div class="modal-dialog modal-xl modal-dialog-centered">
             <div class="modal-content">
-                <form th:action="@{/post/new}" th:method="POST" enctype="multipart/form-data" id="new-post-form">
+                <form th:action="@{/articles/new}" th:method="POST"
+                      enctype="multipart/form-data" id="new-post-form">
                     <div class="modal-header">
                         <h1 class="modal-title fs-5" id="createNewPostLabel">
                             Create new article
@@ -41,7 +42,7 @@
                             <input type="text"
                                     class="form-control"
                                     id="articleTitle"
-                                    name="articleTitle"
+                                    name="title"
                                     placeholder="Title"/>
                             <div class="invalid-feedback alert alert-danger" id="new-post-alert">
 
@@ -51,7 +52,7 @@
                             <label for="articleContent" class="form-label">Story:</label>
                             <textarea   class="form-control"
                                         id="articleContent"
-                                        name="articleContent"
+                                        name="content"
                                         rows="15"
                                         placeholder="Your story is waiting to be told..."></textarea>
                             <div class="invalid-feedback alert alert-danger" id="article-content-alert">

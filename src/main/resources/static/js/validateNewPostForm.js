@@ -17,7 +17,7 @@ function validateNewPostForm(event) {
 
     if (articleTitleValue.length < 1 || articleTitleValue.length > 50) {
         isValid = false;
-        articleTitleError.textContent = 'Full name must be between 1 and 50 characters.';
+        articleTitleError.textContent = 'Title must be between 1 and 50 characters.';
         articleTitleInput.classList.add('is-invalid');
         newPostAlert.appendChild(articleTitleError);
         event.preventDefault();
@@ -38,7 +38,7 @@ function validateNewPostForm(event) {
 
     if (articleContentValue.length < 20) {
         isValid = false;
-        articleContentError.textContent = 'Article content must be at least 20 characters.';
+        articleContentError.textContent = 'Your story must be at least 20 characters.';
         articleContentInput.classList.add('is-invalid');
         articleContentAlert.appendChild(articleContentError);
         event.preventDefault();

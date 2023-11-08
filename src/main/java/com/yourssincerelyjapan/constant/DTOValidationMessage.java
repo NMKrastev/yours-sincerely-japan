@@ -13,4 +13,7 @@ public enum DTOValidationMessage {
     public static final String PASSWORD_SPECIAL_SYMBOL = "Password does not meet the requirements.";
     public static final String PASSWORD_REGEX = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#%&$*]).*$";
     public static final String PASSWORD_DOES_NOT_MATCH = "Password does not match!";
+    public static final String ARTICLE_TITLE_LENGTH = "Title must be between 1 and 50 characters.";
+    public static final String ARTICLE_CONTENT_LENGTH = "Your story must be at least 20 characters.";
+    public static final String CHOOSE_ROLE = "Choose a role!";
 }
