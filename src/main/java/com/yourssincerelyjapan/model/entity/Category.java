@@ -23,13 +23,10 @@ public class Category extends BaseEntity {
     @Column(nullable = false, unique = true)
     private CategoryEnum name;
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "categories_articles",
-            joinColumns = @JoinColumn(name = "category_id"),
-            inverseJoinColumns = @JoinColumn(name = "article_id"))
-    private List<Article> articles = new ArrayList<>();
-
     @Column(name = "latest_created_article")
     private LocalDateTime latestCreatedArticle;
+
+    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "categories")
+    private List<Article> articles;
 
 }

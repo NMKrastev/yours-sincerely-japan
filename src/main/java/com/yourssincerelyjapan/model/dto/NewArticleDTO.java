@@ -6,17 +6,15 @@ import lombok.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 
-import static com.yourssincerelyjapan.constant.DTOValidationMessage.ARTICLE_CONTENT_LENGTH;
-import static com.yourssincerelyjapan.constant.DTOValidationMessage.ARTICLE_TITLE_LENGTH;
+import static com.yourssincerelyjapan.constant.DTOValidationMessage.*;
 
 @Getter
 @Setter
 @AllArgsConstructor
 @Builder
-public class ArticleDTO {
+public class NewArticleDTO {
 
     @NotEmpty
     @Size(min = 1, max = 50, message = ARTICLE_TITLE_LENGTH)
@@ -28,11 +26,14 @@ public class ArticleDTO {
 
     private List<MultipartFile> uploadImages;
 
+    @NotEmpty(message = ARTICLE_CATEGORIES_SELECT)
     private List<String> selected;
 
     private LocalDateTime createdOn;
 
-    public ArticleDTO() {
+    private String username;
+
+    public NewArticleDTO() {
         this.createdOn = LocalDateTime.now();
     }
 }

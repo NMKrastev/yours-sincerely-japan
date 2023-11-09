@@ -42,10 +42,7 @@ public class User extends BaseEntity {
     @OneToOne(fetch = FetchType.EAGER)
     private UserProfilePicture profilePicture;
 
-    @OneToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "users_articles",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "article_id"))
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "user")
     private List<Article> articles = new ArrayList<>();
 
     @Column(name = "enabled")

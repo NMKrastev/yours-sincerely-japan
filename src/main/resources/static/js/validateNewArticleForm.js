@@ -1,4 +1,4 @@
-function validateNewPostForm(event) {
+function validateNewArticleForm(event) {
 
     let isValid = true;
 
@@ -60,7 +60,7 @@ function validateNewPostForm(event) {
 
     if (articleCheckedCheckboxes.length === 0) {
         isValid = false;
-        articleCheckboxError.textContent = 'Please select at least one category.';
+        articleCheckboxError.textContent = 'You must select at least one category.';
         articleCheckboxFieldset.classList.add('is-invalid');
         articleCheckboxAlert.appendChild(articleCheckboxError);
         event.preventDefault();
@@ -73,4 +73,4 @@ function validateNewPostForm(event) {
     event.preventDefault();
 }
 
-document.getElementById('new-post-form').addEventListener('submit', validateNewPostForm);
+document.getElementById('new-post-form').addEventListener('submit', validateNewArticleForm);

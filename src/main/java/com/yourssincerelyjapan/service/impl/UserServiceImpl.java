@@ -3,6 +3,7 @@ package com.yourssincerelyjapan.service.impl;
 import com.yourssincerelyjapan.config.AdminConfiguration;
 import com.yourssincerelyjapan.model.dto.UserDTO;
 import com.yourssincerelyjapan.model.dto.UserRegistrationDTO;
+import com.yourssincerelyjapan.model.entity.Article;
 import com.yourssincerelyjapan.model.entity.UserProfilePicture;
 import com.yourssincerelyjapan.model.entity.User;
 import com.yourssincerelyjapan.model.entity.UserRole;
@@ -170,6 +171,24 @@ public class UserServiceImpl implements UserService {
         return this.userRepository
                 .findById(id)
                 .isEmpty();
+    }
+
+    @Override
+    public User findUserByEmail(String username) {
+
+        return this.userRepository
+                .findByEmail(username)
+                .get();
+    }
+
+    @Override
+    public void saveUserWithArticle(String username, Article savedArticle) {
+
+        final User articleOwner = this.userRepository.findByEmail(username).get();
+
+        articleOwner.getArticles().add(savedArticle);
+
+        this.userRepository.save(articleOwner);
     }
 
     /*@Override

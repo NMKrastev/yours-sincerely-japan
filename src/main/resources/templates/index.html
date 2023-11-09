@@ -26,7 +26,7 @@
 
                     <!-- <p><h3 class="section-title">Travel <a href="#"><i class="fa-solid fa-plus"></i></a></h3></p> -->
 
-                    <div class="section-title">
+                    <div class="section-title" th:object="${category}">
                         <h3>Travel</h3>
                         <th:block th:if="${#authorization.expression('hasRole(''USER'')')}">
                             <a href="#"

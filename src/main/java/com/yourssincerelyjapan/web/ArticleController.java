@@ -1,19 +1,21 @@
 package com.yourssincerelyjapan.web;
 
-import com.yourssincerelyjapan.model.dto.ArticleDTO;
-import com.yourssincerelyjapan.model.entity.Article;
+import com.yourssincerelyjapan.model.dto.NewArticleDTO;
+import com.yourssincerelyjapan.service.ArticleService;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
-
-import java.util.List;
 
 @Controller
 @RequestMapping("/articles")
 public class ArticleController {
+
+    private final ArticleService articleService;
+
+    public ArticleController(ArticleService articleService) {
+        this.articleService = articleService;
+    }
 
     @GetMapping("/single-article")
     public ModelAndView getSingleArticle(ModelAndView modelAndView) {
@@ -23,18 +25,10 @@ public class ArticleController {
         return modelAndView;
     }
 
-   /* @GetMapping("/new")
-    public ModelAndView createNewPost(ModelAndView modelAndView) {
-
-        modelAndView.setViewName("new-article");
-
-        return modelAndView;
-    }*/
-
     @PostMapping("/new")
-    public ModelAndView createNewPost(ModelAndView modelAndView,
-                                      @Valid ArticleDTO articleDTO,
-                                      @RequestParam("username") String username) {
+    public ModelAndView createNewArticle(ModelAndView modelAndView, @Valid NewArticleDTO newArticleDTO) {
+
+        boolean isArticleCreated = this.articleService.createArticle(newArticleDTO);
 
         modelAndView.setViewName("redirect:/");
 
