@@ -70,9 +70,12 @@ public class ArticleServiceImpl implements ArticleService {
 
         newArticle.setPictures(savedArticlePictures);
 
+        final User articleOwner = this.userService.findUserByEmail(newArticleDTO.getUsername());
+        newArticle.setUser(articleOwner);
+
         final Article savedArticle = this.articleRepository.save(newArticle);
 
-        this.userService.saveUserWithArticle(newArticleDTO.getUsername(), savedArticle);
+        //this.userService.saveUserWithArticle(newArticleDTO.getUsername(), savedArticle);
 
         return this.articleRepository.findById(savedArticle.getId()).isPresent();
     }

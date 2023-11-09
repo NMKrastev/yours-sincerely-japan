@@ -28,7 +28,7 @@ public interface UserService {
 
     User findUserByEmail(String username);
 
-    void saveUserWithArticle(String username, Article savedArticle);
+    //void saveUserWithArticle(String username, Article savedArticle);
 
     //Just for test purpose
     //User findUserUser(Long id);

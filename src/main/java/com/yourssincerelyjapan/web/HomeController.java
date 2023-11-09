@@ -2,6 +2,7 @@ package com.yourssincerelyjapan.web;
 
 import com.yourssincerelyjapan.model.dto.UserDTO;
 import com.yourssincerelyjapan.model.entity.Category;
+import com.yourssincerelyjapan.model.entity.User;
 import com.yourssincerelyjapan.service.CategoryService;
 import com.yourssincerelyjapan.service.UserService;
 import org.springframework.stereotype.Controller;
@@ -25,6 +26,8 @@ public class HomeController {
         UserDTO userDTO = this.userService.findUser(1L);
 
         Category travel = this.categoryService.findCategoryByName("CARS");
+
+        User user = this.userService.findUserByEmail("nikola.malinov.krastev@gmail.com");
 
         modelAndView.addObject("userDTO", userDTO);
         modelAndView.addObject("category", travel);

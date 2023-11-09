@@ -181,7 +181,7 @@ public class UserServiceImpl implements UserService {
                 .get();
     }
 
-    @Override
+   /* @Override
     public void saveUserWithArticle(String username, Article savedArticle) {
 
         final User articleOwner = this.userRepository.findByEmail(username).get();
@@ -189,7 +189,7 @@ public class UserServiceImpl implements UserService {
         articleOwner.getArticles().add(savedArticle);
 
         this.userRepository.save(articleOwner);
-    }
+    }*/
 
     /*@Override
     public User findUserUser(Long id) {
