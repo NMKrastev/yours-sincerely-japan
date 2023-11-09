@@ -22,8 +22,7 @@ public class Article extends BaseEntity {
     @Size(min = 1, max = 50)
     private String title;
 
-    @Lob
-    @Column(nullable = false)
+    @Column(nullable = false, columnDefinition = "LONGTEXT")
     @Size(min = 20)
     private String content;
 

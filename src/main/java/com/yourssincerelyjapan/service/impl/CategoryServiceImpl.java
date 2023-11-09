@@ -6,6 +6,9 @@ import com.yourssincerelyjapan.repository.CategoryRepository;
 import com.yourssincerelyjapan.service.CategoryService;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 public class CategoryServiceImpl implements CategoryService {
 
@@ -20,5 +23,21 @@ public class CategoryServiceImpl implements CategoryService {
 
         return this.categoryRepository
                 .findByName(CategoryEnum.valueOf(name.toUpperCase()));
+    }
+
+    @Override
+    public void saveCategories(List<Category> selectedCategories) {
+
+        this.categoryRepository.saveAll(selectedCategories);
+    }
+
+    @Override
+    public List<Category> findFiveLatestCategoriesWithArticles() {
+
+        return this.categoryRepository
+                .findAllByAndLatestCreatedArticleNotNullOrderByLatestCreatedArticleDesc()
+                .stream()
+                .limit(5)
+                .toList();
     }
 }

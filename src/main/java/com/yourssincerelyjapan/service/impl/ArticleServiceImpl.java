@@ -13,6 +13,7 @@ import com.yourssincerelyjapan.service.CategoryService;
 import com.yourssincerelyjapan.service.UserService;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -56,6 +57,11 @@ public class ArticleServiceImpl implements ArticleService {
 
             return false;
         }
+
+        selectedCategories
+                .forEach(e -> e.setLatestCreatedArticle(LocalDateTime.now()));
+
+        this.categoryService.saveCategories(selectedCategories);
 
         newArticle.setCategories(selectedCategories);
 

@@ -1,36 +1,34 @@
 package com.yourssincerelyjapan.web;
 
 import com.yourssincerelyjapan.model.dto.UserDTO;
+import com.yourssincerelyjapan.model.entity.Article;
 import com.yourssincerelyjapan.model.entity.Category;
 import com.yourssincerelyjapan.model.entity.User;
+import com.yourssincerelyjapan.repository.ArticleRepository;
 import com.yourssincerelyjapan.service.CategoryService;
 import com.yourssincerelyjapan.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.List;
+
 @Controller
 public class HomeController {
 
-    private final UserService userService;
     private final CategoryService categoryService;
 
-    public HomeController(UserService userService, CategoryService categoryService) {
-        this.userService = userService;
+    public HomeController(CategoryService categoryService) {
+
         this.categoryService = categoryService;
     }
 
     @GetMapping("/")
     public ModelAndView index(ModelAndView modelAndView) {
 
-        UserDTO userDTO = this.userService.findUser(1L);
+        List<Category> categories = this.categoryService.findFiveLatestCategoriesWithArticles();
 
-        Category travel = this.categoryService.findCategoryByName("CARS");
-
-        User user = this.userService.findUserByEmail("nikola.malinov.krastev@gmail.com");
-
-        modelAndView.addObject("userDTO", userDTO);
-        modelAndView.addObject("category", travel);
+        modelAndView.addObject("categories", categories);
 
         modelAndView.setViewName("index");
 
