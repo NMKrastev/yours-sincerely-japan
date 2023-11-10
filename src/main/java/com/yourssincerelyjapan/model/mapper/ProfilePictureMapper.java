@@ -1,6 +1,7 @@
 package com.yourssincerelyjapan.model.mapper;
 
 import com.yourssincerelyjapan.model.dto.ProfilePictureDTO;
+import com.yourssincerelyjapan.model.dto.index.GetUserProfilePictureDTO;
 import com.yourssincerelyjapan.model.entity.UserProfilePicture;
 import org.mapstruct.Mapper;
 
@@ -8,4 +9,6 @@ import org.mapstruct.Mapper;
 public interface ProfilePictureMapper {
 
     ProfilePictureDTO profilePictureToProfilePictureDto(UserProfilePicture profilePicture);
+
+    GetUserProfilePictureDTO profilePictureToGetProfilePictureDto(UserProfilePicture profilePicture);
 }

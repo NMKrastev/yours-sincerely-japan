@@ -42,7 +42,7 @@
                         </th:block>
                     </div>
 
-                    <div class="article-container" th:each="article : ${category.getArticles()}" th:object="${article}">
+                    <div class="article-container" th:each="article : ${category.articles}" th:object="${article}">
                         <article>
                             <h5 class="article-title pt-2">
                                 <a th:href="@{/articles/single-article/{id}(id=${article.id})}">
@@ -82,6 +82,10 @@
     <footer th:replace="~{fragments/footer.html :: footer}"></footer>
 
 </div>
+
+<!--<script th:inline="text">
+    let articleDTO = /*[[${articleDTO}]]*/ null;
+</script>-->
 
 <div th:replace="~{fragments/modal-new-article.html :: modal-new-article}"></div>
 

@@ -44,6 +44,12 @@
   height: 100px;
 }
 
+.article-content .article-text .pre {
+  white-space: pre-wrap; /* Preserve line breaks and wrap long lines */
+  font-family: inherit;
+  font-size: inherit;
+}
+
 .article-single-post-content {
   display: flex;
   flex-direction: column;
@@ -60,6 +66,12 @@
   max-width: 100%;
   flex: 1 1 50%;
 }
+
+/*pre {
+  white-space: pre-wrap; !* Preserve line breaks and wrap long lines *!
+  font-family: inherit;
+  font-size: inherit;
+}*/
 
 .fullscreen-button {
   display: none;

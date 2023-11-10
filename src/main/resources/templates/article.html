@@ -50,29 +50,32 @@
 
                             <div class="article-content">
                                 <div class="article-text">
-                                    <p>
-                                        <th:block th:text="*{content}"></th:block>
-                                    </p>
+                                        <p class="text-start pre">
+                                            <th:block th:text="*{content}"></th:block>
+                                        </p>
+                                </div>
+                                <div id="articlePicturesCarousel" class="carousel slide carousel-fade p-4"
+                                     th:if="*{pictures != null || !pictures.isEmpty()}">
 
-                                    <div id="articlePicturesCarousel" class="carousel slide carousel-fade p-4"
-                                         th:if="*{pictures != null || !pictures.isEmpty()}">
-
-                                        <div class="carousel-inner">
-                                            <div class="carousel-item fullscreen-image"
-                                                 th:each="picture, iterStat : *{pictures}"
-                                                 th:classappend="${iterStat.index == 0} ? 'active' : ''">
-                                                <img th:src="'data:' + ${picture.type} + ';base64,' + ${picture.imageData}"
-                                                     th:alt="${picture.name}" class="d-block w-100">
-                                            </div>
-
-                                            <div class="carousel-indicators">
-                                                <button type="button" data-bs-target="#articlePicturesCarouselIndicators"
-                                                        th:each="picture, iterStat : *{pictures}"
-                                                        th:data-bs-slide-to="${iterStat.index}" class="active" aria-current="true"
-                                                        th:aria-label="'Slide ' + ${iterStat.index + 1}"></button>
-                                            </div>
-
+                                    <div class="carousel-inner">
+                                        <div class="carousel-item fullscreen-image"
+                                             th:each="picture, iterStat : *{pictures}"
+                                             th:classappend="${iterStat.index == 0} ? 'active' : ''">
+                                            <img th:src="'data:' + ${picture.type} + ';base64,' + ${picture.imageData}"
+                                                 th:alt="${picture.name}" class="d-block w-100">
                                         </div>
+
+                                        <div class="carousel-indicators">
+                                            <button type="button" data-bs-target="#articlePicturesCarouselIndicators"
+                                                    th:each="picture, iterStat : *{pictures}"
+                                                    th:data-bs-slide-to="${iterStat.index}" class="active"
+                                                    aria-current="true"
+                                                    th:aria-label="'Slide ' + ${iterStat.index + 1}"></button>
+                                        </div>
+
+                                    </div>
+
+                                    <th:block th:if="*{pictures.size() > 1}">
                                         <button class="carousel-control-prev" type="button"
                                                 data-bs-target="#articlePicturesCarousel" data-bs-slide="prev">
                                             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -83,7 +86,7 @@
                                             <span class="carousel-control-next-icon" aria-hidden="true"></span>
                                             <span class="visually-hidden">Next</span>
                                         </button>
-                                    </div>
+                                    </th:block>
                                 </div>
                             </div>
                         </article>

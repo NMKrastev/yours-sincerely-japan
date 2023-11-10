@@ -264,3 +264,9 @@
   flex-direction: column;
   justify-content: center;
 }
+
+/*.article-text p {
+  white-space: pre-wrap; !* Preserve line breaks and wrap long lines *!
+  font-family: inherit;
+  font-size: inherit;
+}*/
