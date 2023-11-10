@@ -20,9 +20,11 @@
     <header th:replace="~{fragments/header.html :: header}"></header>
 
     <div class="main-single-post">
-        <main class="single-post-site-content">
+        <main class="single-post-site-content" th:object="${article}">
             <div class="mt-2 mb-4 pb-2 border-bottom border-3 border-danger-subtle">
-                <h2>Article title</h2>
+                <h2>
+                    <th:block th:text="*{title}"></th:block>
+                </h2>
             </div>
 
             <div class="single-post-main-section-content">
@@ -34,108 +36,50 @@
                         <article>
 
                             <div class="person-info pt-3">
-                                <div class="ratio in-article ratio-1x1 rounded-circle overflow-hidden">
-                                    <img src="https://images.unsplash.com/photo-1605907153179-8b364644a241?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1930&q=80" class="card-img-top img-cover">
+                                <div class="ratio in-article ratio-1x1 rounded-circle overflow-hidden"
+                                     th:if="*{user.profilePicture != null}">
+                                    <img th:src="'data:' + *{user.profilePicture.type} + ';base64,' + *{user.profilePicture.imageDataBase64}"
+                                         th:alt="*{user.profilePicture.name}" class="card-img-top img-cover">
                                 </div>
-                                <p class="posted-by">Posted by: {name}{time}</p>
+                                <p class="posted-by">Posted by:
+                                    <th:block th:text="*{user.fullName}"></th:block>
+                                    on
+                                    <th:block th:text="*{#temporals.format(createdOn, 'dd-MM-yyyy')}"></th:block>
+                                </p>
                             </div>
 
                             <div class="article-content">
                                 <div class="article-text">
-                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero, dicta aspernatur
-                                        nam perferendis quam alias hic praesentium nemo vitae pariatur illo. Lorem ipsum
-                                        dolor sit amet consectetur adipisicing elit. Libero, dicta aspernatur nam
-                                        perferendis quam alias hic praesentium nemo vitae pariatur illo.Lorem ipsum
-                                        dolor sit amet consectetur adipisicing elit. Libero, dicta aspernatur nam
-                                        perferendis quam alias hic praesentium nemo vitae pariatur illo.Lorem ipsum
-                                        dolor sit amet consectetur adipisicing elit. Libero, dicta aspernatur nam
-                                        perferendis quam alias hic praesentium nemo vitae pariatur illo.Lorem ipsum
-                                        dolor sit amet consectetur adipisicing elit. Libero, dicta aspernatur nam
-                                        perferendis quam alias hic praesentium nemo vitae pariatur illo.Lorem ipsum
-                                        dolor sit amet consectetur adipisicing elit. Libero, dicta aspernatur nam
-                                        perferendis quam alias hic praesentium nemo vitae pariatur illo.Lorem ipsum
-                                        dolor sit amet consectetur adipisicing elit. Libero, dicta aspernatur nam
-                                        perferendis quam alias hic praesentium nemo vitae pariatur illo.Lorem ipsum
-                                        dolor sit amet consectetur adipisicing elit. Libero, dicta aspernatur nam
-                                        perferendis quam alias hic praesentium nemo vitae pariatur illo.Lorem ipsum
-                                        dolor sit amet consectetur adipisicing elit. Libero, dicta aspernatur nam
-                                        perferendis quam alias hic praesentium nemo vitae pariatur illo.Lorem ipsum
-                                        dolor sit amet consectetur adipisicing elit. Libero, dicta aspernatur nam
-                                        perferendis quam alias hic praesentium nemo vitae pariatur illo.Lorem ipsum
-                                        dolor sit amet consectetur adipisicing elit. Libero, dicta aspernatur nam
-                                        perferendis quam alias hic praesentium nemo vitae pariatur illo.Lorem ipsum
-                                        dolor sit amet consectetur adipisicing elit. Libero, dicta aspernatur nam
-                                        perferendis quam alias hic praesentium nemo vitae pariatur illo.Lorem ipsum
-                                        dolor sit amet consectetur adipisicing elit. Libero, dicta aspernatur nam
-                                        perferendis quam alias hic praesentium nemo vitae pariatur illo.Lorem ipsum
-                                        dolor sit amet consectetur adipisicing elit. Libero, dicta aspernatur nam
-                                        perferendis quam alias hic praesentium nemo vitae pariatur illo.Lorem ipsum
-                                        dolor sit amet consectetur adipisicing elit. Libero, dicta aspernatur nam
-                                        perferendis quam alias hic praesentium nemo vitae pariatur illo.Lorem ipsum
-                                        dolor sit amet consectetur adipisicing elit. Libero, dicta aspernatur nam
-                                        perferendis quam alias hic praesentium nemo vitae pariatur illo.</p>
+                                    <p>
+                                        <th:block th:text="*{content}"></th:block>
+                                    </p>
 
-                                    <div id="carouselExample" class="carousel slide carousel-fade p-4">
+                                    <div id="articlePicturesCarousel" class="carousel slide carousel-fade p-4"
+                                         th:if="*{pictures != null || !pictures.isEmpty()}">
+
                                         <div class="carousel-inner">
-                                            <div class="carousel-item active fullscreen-image">
-                                                <img src="/images/h-c-UCaGli9BqF0-unsplash.jpg" class="d-block w-100"
-                                                     alt="...">
-
-                                            </div>
-                                            <div class="carousel-item fullscreen-image">
-                                                <img src="/images/header.jpg" class="d-block w-100" alt="...">
-                                            </div>
-                                            <div class="carousel-item fullscreen-image">
-                                                <img src="/images/header-2.jpg" class="d-block w-100" alt="...">
-                                            </div>
-                                            <div class="carousel-item fullscreen-image">
-                                                <img src="https://www.cia.gov/the-world-factbook/static/fc4aa090c581a796d36da8a5fbeec6a7/4fe8c/Japan_Silver_Pavillion_Kyoto_2.jpg"
-                                                     class="d-block w-100" alt="...">
-                                            </div>
-                                            <div class="carousel-item fullscreen-image">
-                                                <img src="/images/shrine.jpg" class="d-block w-100" alt="...">
-                                            </div>
-                                            <div class="carousel-item fullscreen-image">
-                                                <img src="https://images.unsplash.com/photo-1697442427523-52ea33e192a6?auto=format&fit=crop&q=80&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&w=4160"
-                                                     class="d-block w-100" alt="...">
-                                            </div>
-                                            <div class="carousel-item fullscreen-image">
-                                                <img src="https://images.unsplash.com/photo-1697442054123-ddb60f191e6e?auto=format&fit=crop&q=80&w=2070&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                                                     class="d-block w-100" alt="...">
+                                            <div class="carousel-item fullscreen-image"
+                                                 th:each="picture, iterStat : *{pictures}"
+                                                 th:classappend="${iterStat.index == 0} ? 'active' : ''">
+                                                <img th:src="'data:' + ${picture.type} + ';base64,' + ${picture.imageData}"
+                                                     th:alt="${picture.name}" class="d-block w-100">
                                             </div>
 
                                             <div class="carousel-indicators">
-                                                <button type="button" data-bs-target="#carouselExampleIndicators"
-                                                        data-bs-slide-to="0" class="active" aria-current="true"
-                                                        aria-label="Slide 1"></button>
-                                                <button type="button" data-bs-target="#carouselExampleIndicators"
-                                                        data-bs-slide-to="1" class="active" aria-current="true"
-                                                        aria-label="Slide 2"></button>
-                                                <button type="button" data-bs-target="#carouselExampleIndicators"
-                                                        data-bs-slide-to="2" class="active" aria-current="true"
-                                                        aria-label="Slide 3"></button>
-                                                <button type="button" data-bs-target="#carouselExampleIndicators"
-                                                        data-bs-slide-to="3" class="active" aria-current="true"
-                                                        aria-label="Slide 4"></button>
-                                                <button type="button" data-bs-target="#carouselExampleIndicators"
-                                                        data-bs-slide-to="4" class="active" aria-current="true"
-                                                        aria-label="Slide 5"></button>
-                                                <button type="button" data-bs-target="#carouselExampleIndicators"
-                                                        data-bs-slide-to="5" class="active" aria-current="true"
-                                                        aria-label="Slide 6"></button>
-                                                <button type="button" data-bs-target="#carouselExampleIndicators"
-                                                        data-bs-slide-to="6" class="active" aria-current="true"
-                                                        aria-label="Slide 7"></button>
+                                                <button type="button" data-bs-target="#articlePicturesCarouselIndicators"
+                                                        th:each="picture, iterStat : *{pictures}"
+                                                        th:data-bs-slide-to="${iterStat.index}" class="active" aria-current="true"
+                                                        th:aria-label="'Slide ' + ${iterStat.index + 1}"></button>
                                             </div>
 
                                         </div>
                                         <button class="carousel-control-prev" type="button"
-                                                data-bs-target="#carouselExample" data-bs-slide="prev">
+                                                data-bs-target="#articlePicturesCarousel" data-bs-slide="prev">
                                             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                                             <span class="visually-hidden">Previous</span>
                                         </button>
                                         <button class="carousel-control-next" type="button"
-                                                data-bs-target="#carouselExample" data-bs-slide="next">
+                                                data-bs-target="#articlePicturesCarousel" data-bs-slide="next">
                                             <span class="carousel-control-next-icon" aria-hidden="true"></span>
                                             <span class="visually-hidden">Next</span>
                                         </button>

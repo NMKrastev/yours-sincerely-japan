@@ -45,14 +45,14 @@
                     <div class="article-container" th:each="article : ${category.getArticles()}" th:object="${article}">
                         <article>
                             <h5 class="article-title pt-2">
-                                <a th:href="@{/article/single-article/{id}(id=${article.id})}">
+                                <a th:href="@{/articles/single-article/{id}(id=${article.id})}">
                                     <th:block th:text="*{title}"></th:block>
                                 </a>
                             </h5>
                             <div class="person-info">
-                                <div class="ratio ratio-1x1 rounded-circle overflow-hidden" th:if="${article.user.profilePicture != null}">
-                                    <img th:src="'data:' + ${article.user.profilePicture.type} + ';base64,' + ${article.user.profilePicture.imageDataBase64}"
-                                         th:alt="${article.user.profilePicture.name}" class="card-img-top img-cover"/>
+                                <div class="ratio ratio-1x1 rounded-circle overflow-hidden" th:if="*{user.profilePicture != null}">
+                                    <img th:src="'data:' + *{user.profilePicture.type} + ';base64,' + *{user.profilePicture.imageDataBase64}"
+                                         th:alt="*{user.profilePicture.name}" class="card-img-top img-cover"/>
                                 </div>
                                 <p class="posted-by">Posted by:
                                     <th:block th:text="${article.user.fullName}"></th:block> on
@@ -62,11 +62,11 @@
                                 <div class="article-text">
                                     <p>
                                         <th:block th:text="${#strings.abbreviate(article.content, 150)}"></th:block>
-                                        <a th:href="@{/article/single-article/{id}(id=${article.id})}">...read more</a>
+                                        <a th:href="@{/articles/single-article/{id}(id=${article.id})}">...read more</a>
                                     </p>
-                                    <th:block>
-                                    <img th:src="'data:' + ${article.pictures[0].type} + ';base64,' + ${article.pictures[0].imageData}"
-                                         th:alt="${article.pictures[0].name}" class="article-img"/>
+                                    <th:block th:if="*{!pictures.isEmpty()}">
+                                    <img th:src="'data:' + *{pictures[0].type} + ';base64,' + *{pictures[0].imageData}"
+                                         th:alt="*{pictures[0].name}" class="article-img"/>
                                     </th:block>
                                 </div>
                             </div>

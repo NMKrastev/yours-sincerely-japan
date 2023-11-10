@@ -1,6 +1,7 @@
 package com.yourssincerelyjapan.web;
 
 import com.yourssincerelyjapan.model.dto.NewArticleDTO;
+import com.yourssincerelyjapan.model.entity.Article;
 import com.yourssincerelyjapan.service.ArticleService;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
@@ -17,8 +18,13 @@ public class ArticleController {
         this.articleService = articleService;
     }
 
-    @GetMapping("/single-article")
-    public ModelAndView getSingleArticle(ModelAndView modelAndView) {
+    @GetMapping("/single-article/{id}")
+    public ModelAndView getSingleArticle(ModelAndView modelAndView,
+                                         @PathVariable("id") Long id) {
+
+        Article article = this.articleService.getSingleArticle(id);
+
+        modelAndView.addObject("article", article);
 
         modelAndView.setViewName("article");
 

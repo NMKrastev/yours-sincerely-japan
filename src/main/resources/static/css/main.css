@@ -258,3 +258,9 @@
   max-width: 100%;
   flex: 1 1 50%;
 }
+
+.article-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}

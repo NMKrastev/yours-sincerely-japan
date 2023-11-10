@@ -65,12 +65,6 @@ public class ArticleServiceImpl implements ArticleService {
 
         newArticle.setCategories(selectedCategories);
 
-        if (newArticleDTO.getUploadImages().size() == 1) {
-            if (newArticleDTO.getUploadImages().get(0).isEmpty()) {
-                return false;
-            }
-        }
-
         final List<ArticlePicture> savedArticlePictures =
                 this.articlePictureService.saveArticlePictures(newArticleDTO.getUploadImages());
 
@@ -84,5 +78,12 @@ public class ArticleServiceImpl implements ArticleService {
         //this.userService.saveUserWithArticle(newArticleDTO.getUsername(), savedArticle);
 
         return this.articleRepository.findById(savedArticle.getId()).isPresent();
+    }
+
+    @Override
+    public Article getSingleArticle(Long id) {
+        return this.articleRepository
+                .findById(id)
+                .get();
     }
 }

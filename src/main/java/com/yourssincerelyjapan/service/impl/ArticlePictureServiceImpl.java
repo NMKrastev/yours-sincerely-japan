@@ -34,6 +34,13 @@ public class ArticlePictureServiceImpl implements ArticlePictureService {
 
         final List<ArticlePicture> articlePictures = new ArrayList<>();
 
+
+        if (uploadImages.size() == 1) {
+            if (uploadImages.get(0).isEmpty()) {
+                return articlePictures;
+            }
+        }
+
         for (MultipartFile image : uploadImages) {
 
             final String base64String;
