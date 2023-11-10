@@ -26,29 +26,11 @@
                 <h2 class="fst-italic">My articles</h2>
             </div>
 
+            <nav th:replace="~{fragments/user-articles-pagination.html :: user-articles-pagination}"></nav>
+
             <div class="user-posts-main-section-content">
 
                 <section class="user-posts-section-category">
-
-                    <!-- <div id="article-container">
-               --Loop through the articles and create carousels for each
-                    <div th:each="article, articleStat : ${articles}">
-                      <article>
-                        <h4 class="article-title"><a th:href="'/article/' + ${article.id}">Article title ${articleStat.count}</a></h4>
-                        <p class="posted-by pt-3">Posted by: ${article.author} ${article.time}</p>
-                        <div class="article-content">
-                          <div class="article-text">
-                            <p th:text="${article.content}">Article content goes here...</p>
-                            <div th:id="'myArticleCarousel' + ${articleStat.count}" class="carousel slide carousel-fade p-4">
-                              <div class="carousel-inner">
-                               --Add carousel items for the article
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </article>
-                    </div>
-                </div> -->
 
                     <div class="article-container">
 
@@ -106,6 +88,9 @@
                     </div>
                 </section>
             </div>
+
+            <nav th:replace="~{fragments/user-articles-pagination.html :: user-articles-pagination}"></nav>
+
         </main>
     </div>
 

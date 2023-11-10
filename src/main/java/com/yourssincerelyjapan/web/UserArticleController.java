@@ -4,6 +4,9 @@ import com.yourssincerelyjapan.model.dto.index.GetArticleDTO;
 import com.yourssincerelyjapan.service.ArticleService;
 import com.yourssincerelyjapan.service.UserService;
 import jakarta.servlet.http.HttpSession;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -34,10 +37,11 @@ public class UserArticleController {
 
     @GetMapping("/articles")
     public ModelAndView getUserArticles(ModelAndView modelAndView,
-                                        @SessionAttribute(name = "username") String username) {
+                                        @SessionAttribute(name = "username") String username,
+                                        @PageableDefault(size = 6) Pageable pageable) {
 
-        final List<GetArticleDTO> userArticles =
-                this.articleService.findUserArticles(username);
+        final Page<GetArticleDTO> userArticles =
+                this.articleService.findUserArticles(pageable, username);
 
         modelAndView.addObject("userArticles", userArticles);
 

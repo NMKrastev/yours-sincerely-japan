@@ -12,10 +12,13 @@ import com.yourssincerelyjapan.service.ArticlePictureService;
 import com.yourssincerelyjapan.service.ArticleService;
 import com.yourssincerelyjapan.service.CategoryService;
 import com.yourssincerelyjapan.service.UserService;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 @Service
@@ -86,14 +89,19 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
-    public List<GetArticleDTO> findUserArticles(String username) {
+    public Page<GetArticleDTO> findUserArticles(Pageable pageable, String username) {
 
         final User user = this.userService.findUserByEmail(username);
 
-        return this.articleRepository
-                .findArticleByUser(user)
+        final Page<Article> articlePage = this.articleRepository
+                .findArticleByUserOrderByCreatedOnDesc(pageable, user);
+
+        final List<GetArticleDTO> userArticles = articlePage
+                .getContent()
                 .stream()
                 .map(this.articleMapper::articleToGetArticleDto)
                 .toList();
+
+        return new PageImpl<>(userArticles, pageable, articlePage.getTotalElements());
     }
 }

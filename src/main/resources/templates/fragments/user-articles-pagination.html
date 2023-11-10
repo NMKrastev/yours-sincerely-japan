@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>User articles pagination</title>
+</head>
+<body>
+
+<nav aria-label="Page navigation example" th:fragment="user-articles-pagination">
+    <ul class="pagination justify-content-center">
+        <li class="page-item" th:classappend="${userArticles.isFirst()} ? 'disabled' : ''">
+            <a th:unless="${userArticles.isFirst()}" class="page-link"
+               th:href="@{/users/articles(size=${userArticles.getSize()}, page=0)}">First</a>
+            <a th:if="${userArticles.isFirst()}" class="page-link" href="#">First</a>
+        </li>
+        <li class="page-item" th:classappend="${userArticles.hasPrevious() ? '' : 'disabled'}">
+            <a th:if="${userArticles.hasPrevious()}" class="page-link"
+               th:href="@{/users/articles(size=${userArticles.getSize()}, page=${userArticles.getNumber() - 1})}">Previous</a>
+            <a th:unless="${userArticles.hasPrevious()}" class="page-link" href="#">Previous</a>
+        </li>
+        <th:block th:each="pageNumber : ${#numbers.sequence(1, userArticles.getTotalPages())}">
+            <li class="page-item" th:classappend="${pageNumber == userArticles.getNumber() + 1} ? 'active' : ''">
+                <a class="page-link" th:href="@{/users/articles(page=${pageNumber - 1})}" th:text="${pageNumber}"></a>
+            </li>
+        </th:block>
+        <li class="page-item" th:classappend="${userArticles.hasNext() ? '' : 'disabled'}">
+            <a th:if="${userArticles.hasNext()}" class="page-link"
+               th:href="@{/users/articles(size=${userArticles.getSize()}, page=${userArticles.getNumber() + 1})}">Next</a>
+            <a th:unless="${userArticles.hasNext()}" class="page-link" href="#">Next</a>
+        </li>
+        <li class="page-item" th:classappend="${userArticles.isLast()} ? 'disabled' : ''">
+            <a th:unless="${userArticles.isLast()}" class="page-link"
+               th:href="@{/users/articles(size=${userArticles.getSize()}, page=${userArticles.getTotalPages() - 1})}">Last</a>
+            <a th:if="${userArticles.isLast()}" class="page-link" href="#">Last</a>
+        </li>
+    </ul>
+</nav>
+
+</body>
+</html>

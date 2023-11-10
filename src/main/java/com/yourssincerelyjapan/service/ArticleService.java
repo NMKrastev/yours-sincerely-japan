@@ -3,9 +3,8 @@ package com.yourssincerelyjapan.service;
 import com.yourssincerelyjapan.model.dto.NewArticleDTO;
 import com.yourssincerelyjapan.model.dto.index.GetArticleDTO;
 import com.yourssincerelyjapan.model.entity.Article;
-import org.springframework.stereotype.Service;
-
-import java.util.List;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 public interface ArticleService {
 
@@ -13,5 +12,5 @@ public interface ArticleService {
 
     Article getSingleArticle(Long id);
 
-    List<GetArticleDTO> findUserArticles(String username);
+    Page<GetArticleDTO> findUserArticles(Pageable pageable, String username);
 }
