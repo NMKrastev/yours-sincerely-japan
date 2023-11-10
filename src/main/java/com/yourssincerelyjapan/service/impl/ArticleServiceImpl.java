@@ -22,7 +22,6 @@ import java.util.Comparator;
 import java.util.List;
 
 @Service
-
 public class ArticleServiceImpl implements ArticleService {
 
     private final ArticleRepository articleRepository;
@@ -83,6 +82,7 @@ public class ArticleServiceImpl implements ArticleService {
 
     @Override
     public Article getSingleArticle(Long id) {
+
         return this.articleRepository
                 .findById(id)
                 .get();

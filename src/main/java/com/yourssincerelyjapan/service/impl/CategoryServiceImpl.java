@@ -2,6 +2,7 @@ package com.yourssincerelyjapan.service.impl;
 
 import com.yourssincerelyjapan.model.dto.index.GetArticleDTO;
 import com.yourssincerelyjapan.model.dto.index.GetCategoryDTO;
+import com.yourssincerelyjapan.model.dto.index.GetCategoryNameDTO;
 import com.yourssincerelyjapan.model.entity.Article;
 import com.yourssincerelyjapan.model.entity.Category;
 import com.yourssincerelyjapan.model.enums.CategoryEnum;
@@ -70,5 +71,15 @@ public class CategoryServiceImpl implements CategoryService {
         }*/
 
 //        return categories;
+    }
+
+    @Override
+    public List<GetCategoryNameDTO> findAllCategories() {
+
+        return this.categoryRepository
+                .findAll()
+                .stream()
+                .map(this.categoryMapper::categoryToGetCategoryNameDto)
+                .toList();
     }
 }

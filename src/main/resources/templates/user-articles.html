@@ -70,16 +70,19 @@
                                                         th:aria-label="'Slide ' + ${pictureStat.index + 1}"></button>
                                             </div>
                                         </div>
-                                        <button class="carousel-control-prev" type="button"
-                                                th:data-bs-target="'#myArticleCarousel_' + ${articleStat.index}" data-bs-slide="prev">
-                                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                            <span class="visually-hidden">Previous</span>
-                                        </button>
-                                        <button class="carousel-control-next" type="button"
-                                                th:data-bs-target="'#myArticleCarousel_' + ${articleStat.index}" data-bs-slide="next">
-                                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                            <span class="visually-hidden">Next</span>
-                                        </button>
+
+                                        <th:block th:if="*{pictures.size() > 1}">
+                                            <button class="carousel-control-prev" type="button"
+                                                    th:data-bs-target="'#myArticleCarousel_' + ${articleStat.index}" data-bs-slide="prev">
+                                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                                <span class="visually-hidden">Previous</span>
+                                            </button>
+                                            <button class="carousel-control-next" type="button"
+                                                    th:data-bs-target="'#myArticleCarousel_' + ${articleStat.index}" data-bs-slide="next">
+                                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                                <span class="visually-hidden">Next</span>
+                                            </button>
+                                        </th:block>
                                     </div>
                                 </div>
                             </div>
