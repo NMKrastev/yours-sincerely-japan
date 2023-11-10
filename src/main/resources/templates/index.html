@@ -42,8 +42,8 @@
                         </th:block>
                     </div>
 
-                    <div class="article-container" th:each="article : ${category.articles}" th:object="${article}">
-                        <article>
+                    <div class="article-container">
+                        <article th:each="article : ${category.articles}" th:object="${article}">
                             <h5 class="article-title pt-2">
                                 <a th:href="@{/articles/single-article/{id}(id=${article.id})}">
                                     <th:block th:text="*{title}"></th:block>

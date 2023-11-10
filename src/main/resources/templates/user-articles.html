@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>My posts</title>
+    <link rel="stylesheet" href="/css/site.css"/>
+    <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+            crossorigin="anonymous"
+    ></script>
+    <script src="/js/toggleMobileMenu.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css">
+</head>
+
+<body>
+<div class="site">
+
+    <header th:replace="~{fragments/header.html :: header}"></header>
+
+    <div class="main-user-posts">
+        <main class="user-posts-site-content">
+            <div class="mt-2 mb-4 pb-2 border-bottom border-3 border-danger-subtle">
+                <h2 class="fst-italic">My articles</h2>
+            </div>
+
+            <div class="user-posts-main-section-content">
+
+                <section class="user-posts-section-category">
+
+                    <!-- <div id="article-container">
+               --Loop through the articles and create carousels for each
+                    <div th:each="article, articleStat : ${articles}">
+                      <article>
+                        <h4 class="article-title"><a th:href="'/article/' + ${article.id}">Article title ${articleStat.count}</a></h4>
+                        <p class="posted-by pt-3">Posted by: ${article.author} ${article.time}</p>
+                        <div class="article-content">
+                          <div class="article-text">
+                            <p th:text="${article.content}">Article content goes here...</p>
+                            <div th:id="'myArticleCarousel' + ${articleStat.count}" class="carousel slide carousel-fade p-4">
+                              <div class="carousel-inner">
+                               --Add carousel items for the article
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </article>
+                    </div>
+                </div> -->
+
+                    <div class="article-container">
+
+                        <article th:each="article, articleStat : ${userArticles}" th:object="${article}">
+
+                            <h4 class="article-title">
+                                <a th:href="@{/articles/single-article/{id}(id=${article.id})}">
+                                    <th:block th:text="*{title}"></th:block>
+                                </a>
+                            </h4>
+
+                            <p class="posted-by pt-3">Posted on:
+                                <th:block th:text="${#temporals.format(article.createdOn, 'dd-MM-yyyy')}"></th:block>
+                            </p>
+
+                            <div class="article-content">
+                                <div class="article-text">
+                                    <p class="text-start">
+                                        <th:block th:text="${#strings.abbreviate(article.content, 150)}"></th:block>
+                                        <a th:href="@{/articles/single-article/{id}(id=${article.id})}">...read more</a>
+                                    </p>
+
+                                    <div th:id="'myArticleCarousel_' + ${articleStat.index}" class="carousel slide carousel-fade p-4">
+
+                                        <div class="carousel-inner">
+                                            <div class="carousel-item fullscreen-image"
+                                                 th:each="picture, pictureStat : *{pictures}"
+                                                 th:classappend="${pictureStat.index == 0} ? 'active' : ''">
+                                                <img th:src="'data:' + ${picture.type} + ';base64,' + ${picture.imageData}"
+                                                     th:alt="${picture.name}" class="d-block w-100">
+                                            </div>
+
+                                            <div class="carousel-indicators">
+                                                <button type="button" data-bs-target="#myArticleCarouselIndicators"
+                                                        th:each="picture, pictureStat : *{pictures}"
+                                                        th:data-bs-slide-to="${pictureStat.index}" class="active" aria-current="true"
+                                                        th:aria-label="'Slide ' + ${pictureStat.index + 1}"></button>
+                                            </div>
+                                        </div>
+                                        <button class="carousel-control-prev" type="button"
+                                                th:data-bs-target="'#myArticleCarousel_' + ${articleStat.index}" data-bs-slide="prev">
+                                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                            <span class="visually-hidden">Previous</span>
+                                        </button>
+                                        <button class="carousel-control-next" type="button"
+                                                th:data-bs-target="'#myArticleCarousel_' + ${articleStat.index}" data-bs-slide="next">
+                                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                            <span class="visually-hidden">Next</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+                        <!-- <div class="fullscreen-button" id="fullscreen-button"><i class="fa-solid fa-xmark"></i></div> -->
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <footer th:replace="~{fragments/footer.html :: footer}"></footer>
+
+</div>
+
+<!-- Works - when entering full screen to exit on mobile or desktop click on the image again -->
+
+<script>
+
+    const fullscreenImages = document.querySelectorAll('img');
+
+    // Function to enter full-screen
+    function enterFullscreen(element) {
+        if (element.requestFullscreen) {
+            element.requestFullscreen();
+        } else if (element.mozRequestFullScreen) {
+            element.mozRequestFullScreen(); // Firefox
+        } else if (element.webkitRequestFullscreen) {
+            element.webkitRequestFullscreen(); // Chrome, Safari, and Opera
+        } else if (element.msRequestFullscreen) {
+            element.msRequestFullscreen(); // Internet Explorer
+        }
+    }
+
+    // Function to exit full-screen
+    function exitFullscreen() {
+        if (document.exitFullscreen) {
+            document.exitFullscreen();
+        } else if (document.mozCancelFullScreen) {
+            document.mozCancelFullScreen(); // Firefox
+        } else if (document.webkitExitFullscreen) {
+            document.webkitExitFullscreen(); // Chrome, Safari, and Opera
+        } else if (document.msExitFullscreen) {
+            document.msExitFullscreen(); // Internet Explorer
+        }
+    }
+
+    // Toggle full-screen mode when images are clicked
+    fullscreenImages.forEach((img) => {
+        img.addEventListener('click', () => {
+            if (!document.fullscreenElement) {
+                enterFullscreen(img);
+            } else {
+                exitFullscreen();
+            }
+        });
+    });
+
+</script>
+</body>
+</html>

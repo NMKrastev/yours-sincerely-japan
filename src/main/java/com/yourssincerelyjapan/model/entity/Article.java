@@ -26,7 +26,7 @@ public class Article extends BaseEntity {
     @Size(min = 20)
     private String content;
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany
     @JoinTable(name = "articles_categories",
             joinColumns = @JoinColumn(name = "article_id"),
             inverseJoinColumns = @JoinColumn(name = "category_id"))

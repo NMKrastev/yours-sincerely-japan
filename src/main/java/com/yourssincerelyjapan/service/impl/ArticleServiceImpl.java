@@ -1,6 +1,7 @@
 package com.yourssincerelyjapan.service.impl;
 
 import com.yourssincerelyjapan.model.dto.NewArticleDTO;
+import com.yourssincerelyjapan.model.dto.index.GetArticleDTO;
 import com.yourssincerelyjapan.model.entity.Article;
 import com.yourssincerelyjapan.model.entity.ArticlePicture;
 import com.yourssincerelyjapan.model.entity.Category;
@@ -82,5 +83,17 @@ public class ArticleServiceImpl implements ArticleService {
         return this.articleRepository
                 .findById(id)
                 .get();
+    }
+
+    @Override
+    public List<GetArticleDTO> findUserArticles(String username) {
+
+        final User user = this.userService.findUserByEmail(username);
+
+        return this.articleRepository
+                .findArticleByUser(user)
+                .stream()
+                .map(this.articleMapper::articleToGetArticleDto)
+                .toList();
     }
 }

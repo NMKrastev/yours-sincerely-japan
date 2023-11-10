@@ -42,7 +42,7 @@ public class User extends BaseEntity {
     @OneToOne(fetch = FetchType.EAGER)
     private UserProfilePicture profilePicture;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "user")
+    @OneToMany(mappedBy = "user")
     private List<Article> articles = new ArrayList<>();
 
     @Column(name = "enabled")
