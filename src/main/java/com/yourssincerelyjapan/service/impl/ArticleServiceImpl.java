@@ -54,14 +54,8 @@ public class ArticleServiceImpl implements ArticleService {
                     .toList();
 
         } else {
-
             return false;
         }
-
-        selectedCategories
-                .forEach(e -> e.setLatestCreatedArticle(LocalDateTime.now()));
-
-        this.categoryService.saveCategories(selectedCategories);
 
         newArticle.setCategories(selectedCategories);
 
@@ -75,7 +69,10 @@ public class ArticleServiceImpl implements ArticleService {
 
         final Article savedArticle = this.articleRepository.save(newArticle);
 
-        //this.userService.saveUserWithArticle(newArticleDTO.getUsername(), savedArticle);
+        selectedCategories
+                .forEach(e -> e.setLatestCreatedArticle(savedArticle.getCreatedOn()));
+
+        this.categoryService.saveCategories(selectedCategories);
 
         return this.articleRepository.findById(savedArticle.getId()).isPresent();
     }
