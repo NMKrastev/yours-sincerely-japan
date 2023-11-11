@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -25,251 +27,61 @@
             <div class="main-section-content" id="main-categories">
 
                 <div class="section-title mt-2 pb-2 justify-content-center border-bottom border-3 border-danger-subtle" id="section-title-category">
-                    <h2>Travel</h2>
-                    <a href="#" class="text-decoration-none"
-                       data-bs-toggle="modal"
-                       data-bs-target="#createNewPost"
-                       data-val="travel">
-                        <div class="icon new-post">
-                            <div class="tooltip">New post</div>
-                            <i class="fa-solid fa-plus"></i>
-                        </div>
-                    </a>
+                    <h2><th:block th:text="*{#strings.capitalize(#strings.toLowerCase(categoryName))}"></th:block></h2>
+                    <th:block th:if="${#authorization.expression('hasRole(''USER'')')}">
+                        <a href="#" class="text-decoration-none"
+                           data-bs-toggle="modal"
+                           data-bs-target="#createNewPost"
+                           th:data-val="*{#strings.toLowerCase(categoryName)}">
+                            <div class="icon new-post">
+                                <div class="tooltip">New post</div>
+                                <i class="fa-solid fa-plus"></i>
+                            </div>
+                        </a>
+                    </th:block>
                 </div>
+
+                <nav th:replace="~{fragments/category-articles-paginaiton.html :: category-articles-pagination}"></nav>
 
                 <section class="section-category" id="section-categories">
 
                     <!-- <p><h3 class="section-title">Travel <a href="#"><i class="fa-solid fa-plus"></i></a></h3></p> -->
                     <div class="article-container" id="article-container-categories">
 
-                        <article>
-                            <h4 class="article-title"><a href="#">Article title</a></h4>
-                            <p class="posted-by">Posted by: {name}{time}</p>
+                        <article th:each="article : ${allArticlesFromCategory}" th:object="${article}">
+                            <h4 class="article-title">
+                                <a th:href="@{/articles/single-article/{id}(id=${article.id})}">
+                                    <th:block th:text="*{title}"></th:block>
+                                </a>
+                            </h4>
+                            <div class="person-info">
+                                <div class="ratio ratio-1x1 rounded-circle overflow-hidden" th:if="*{user.profilePicture != null}">
+                                    <img th:src="'data:' + *{user.profilePicture.type} + ';base64,' + *{user.profilePicture.imageDataBase64}"
+                                         th:alt="*{user.profilePicture.name}" class="card-img-top img-cover"/>
+                                </div>
+                                <p class="posted-by">Posted by:
+                                    <th:block th:text="${article.user.fullName}"></th:block> on
+                                    <th:block th:text="${#temporals.format(article.createdOn, 'dd-MM-yyyy')}"></th:block></p>
+                            </div>
                             <div class="article-content">
                                 <div class="article-text">
-                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero, dicta
-                                        aspernatur nam perferendis quam alias hic praesentium nemo vitae pariatur
-                                        illo <a href="#">...read more</a></p>
-                                    <img src="/images/header.jpg" class="article-img" alt="">
+                                    <p>
+                                        <th:block th:text="${#strings.abbreviate(article.content, 150)}"></th:block>
+                                        <a th:href="@{/articles/single-article/{id}(id=${article.id})}">...read more</a>
+                                    </p>
+                                    <th:block th:if="*{!pictures.isEmpty()}">
+                                        <img th:src="'data:' + *{pictures[0].type} + ';base64,' + *{pictures[0].imageData}"
+                                             th:alt="*{pictures[0].name}" class="article-img"/>
+                                    </th:block>
                                 </div>
                             </div>
                         </article>
 
-                        <article>
-                            <h4 class="article-title"><a href="#">Article title</a></h4>
-                            <p class="posted-by">Posted by: {name}{time}</p>
-                            <div class="article-content">
-                                <div class="article-text">
-                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero, dicta
-                                        aspernatur nam perferendis quam alias hic praesentium nemo vitae pariatur
-                                        illo <a href="#">...read more</a></p>
-                                    <img src="/images/shrine.jpg" class="article-img" alt="">
-                                </div>
-                            </div>
-                        </article>
-
-                        <article>
-                            <h4 class="article-title"><a href="#">Article title</a></h4>
-                            <p class="posted-by">Posted by: {name}{time}</p>
-                            <div class="article-content">
-                                <div class="article-text">
-                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero, dicta
-                                        aspernatur nam perferendis quam alias hic praesentium nemo vitae pariatur
-                                        illo <a href="#">...read more</a></p>
-                                    <img src="/images/h-c-UCaGli9BqF0-unsplash.jpg" class="article-img" alt="">
-                                </div>
-                            </div>
-                        </article>
-
-                        <article>
-                            <h4 class="article-title"><a href="#">Article title</a></h4>
-                            <p class="posted-by">Posted by: {name}{time}</p>
-                            <div class="article-content">
-                                <div class="article-text">
-                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero, dicta
-                                        aspernatur nam perferendis quam alias hic praesentium nemo vitae pariatur
-                                        illo <a href="#">...read more</a></p>
-                                    <img src="/images/h-c-UCaGli9BqF0-unsplash.jpg" class="article-img" alt="">
-                                </div>
-                            </div>
-                        </article>
-
-                        <article>
-                            <h4 class="article-title"><a href="#">Article title</a></h4>
-                            <p class="posted-by">Posted by: {name}{time}</p>
-                            <div class="article-content">
-                                <div class="article-text">
-                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero, dicta
-                                        aspernatur nam perferendis quam alias hic praesentium nemo vitae pariatur
-                                        illo <a href="#">...read more</a></p>
-                                    <img src="/images/h-c-UCaGli9BqF0-unsplash.jpg" class="article-img" alt="">
-                                </div>
-                            </div>
-                        </article>
-
-                        <article>
-                            <h4 class="article-title"><a href="#">Article title</a></h4>
-                            <p class="posted-by">Posted by: {name}{time}</p>
-                            <div class="article-content">
-                                <div class="article-text">
-                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero, dicta
-                                        aspernatur nam perferendis quam alias hic praesentium nemo vitae pariatur
-                                        illo <a href="#">...read more</a></p>
-                                    <img src="https://images.unsplash.com/photo-1605907153179-8b364644a241?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1930&q=80"
-                                         class="article-img" alt="">
-                                </div>
-                            </div>
-                        </article>
-
-                        <article>
-                            <h4 class="article-title"><a href="#">Article title</a></h4>
-                            <p class="posted-by">Posted by: {name}{time}</p>
-                            <div class="article-content">
-                                <div class="article-text">
-                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero, dicta
-                                        aspernatur nam perferendis quam alias hic praesentium nemo vitae pariatur
-                                        illo <a href="#">...read more</a></p>
-                                    <img src="https://images.unsplash.com/photo-1580427331730-b38f8dc1f355?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1935&q=80"
-                                         class="article-img" alt="">
-                                </div>
-                            </div>
-                        </article>
-
-                        <article>
-                            <h4 class="article-title"><a href="#">Article title</a></h4>
-                            <p class="posted-by">Posted by: {name}{time}</p>
-                            <div class="article-content">
-                                <div class="article-text">
-                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero, dicta
-                                        aspernatur nam perferendis quam alias hic praesentium nemo vitae pariatur
-                                        illo <a href="#">...read more</a></p>
-                                    <img src="https://images.unsplash.com/photo-1619022975927-b37c4982cc49?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80"
-                                         class="article-img" alt="">
-                                </div>
-                            </div>
-                        </article>
-
-                        <article>
-                            <h4 class="article-title"><a href="#">Article title</a></h4>
-                            <p class="posted-by">Posted by: {name}{time}</p>
-                            <div class="article-content">
-                                <div class="article-text">
-                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero, dicta
-                                        aspernatur nam perferendis quam alias hic praesentium nemo vitae pariatur
-                                        illo <a href="#">...read more</a></p>
-                                    <img src="/images/header.jpg" class="article-img" alt="">
-                                </div>
-                            </div>
-                        </article>
-
-                        <article>
-                            <h4 class="article-title"><a href="#">Article title</a></h4>
-                            <p class="posted-by">Posted by: {name}{time}</p>
-                            <div class="article-content">
-                                <div class="article-text">
-                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero, dicta
-                                        aspernatur nam perferendis quam alias hic praesentium nemo vitae pariatur
-                                        illo <a href="#">...read more</a></p>
-                                    <img src="/images/header.jpg" class="article-img" alt="">
-                                </div>
-                            </div>
-                        </article>
-
-                        <article>
-                            <h4 class="article-title"><a href="#">Article title</a></h4>
-                            <p class="posted-by">Posted by: {name}{time}</p>
-                            <div class="article-content">
-                                <div class="article-text">
-                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero, dicta
-                                        aspernatur nam perferendis quam alias hic praesentium nemo vitae pariatur
-                                        illo <a href="#">...read more</a></p>
-                                    <img src="/images/header.jpg" class="article-img" alt="">
-                                </div>
-                            </div>
-                        </article>
-
-                        <article>
-                            <h4 class="article-title"><a href="#">Article title</a></h4>
-                            <p class="posted-by">Posted by: {name}{time}</p>
-                            <div class="article-content">
-                                <div class="article-text">
-                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero, dicta
-                                        aspernatur nam perferendis quam alias hic praesentium nemo vitae pariatur
-                                        illo <a href="#">...read more</a></p>
-                                    <img src="/images/header.jpg" class="article-img" alt="">
-                                </div>
-                            </div>
-                        </article>
-
-                        <article>
-                            <h4 class="article-title"><a href="#">Article title</a></h4>
-                            <p class="posted-by">Posted by: {name}{time}</p>
-                            <div class="article-content">
-                                <div class="article-text">
-                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero, dicta
-                                        aspernatur nam perferendis quam alias hic praesentium nemo vitae pariatur
-                                        illo <a href="#">...read more</a></p>
-                                    <img src="/images/header.jpg" class="article-img" alt="">
-                                </div>
-                            </div>
-                        </article>
-
-                        <article>
-                            <h4 class="article-title"><a href="#">Article title</a></h4>
-                            <p class="posted-by">Posted by: {name}{time}</p>
-                            <div class="article-content">
-                                <div class="article-text">
-                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero, dicta
-                                        aspernatur nam perferendis quam alias hic praesentium nemo vitae pariatur
-                                        illo <a href="#">...read more</a></p>
-                                    <img src="/images/header.jpg" class="article-img" alt="">
-                                </div>
-                            </div>
-                        </article>
-
-                        <article>
-                            <h4 class="article-title"><a href="#">Article title</a></h4>
-                            <p class="posted-by">Posted by: {name}{time}</p>
-                            <div class="article-content">
-                                <div class="article-text">
-                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero, dicta
-                                        aspernatur nam perferendis quam alias hic praesentium nemo vitae pariatur
-                                        illo <a href="#">...read more</a></p>
-                                    <img src="https://images.unsplash.com/photo-1584583570840-0a3d88497593?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2127&q=80"
-                                         class="article-img" alt="">
-                                </div>
-                            </div>
-                        </article>
-
-                        <article>
-                            <h4 class="article-title"><a href="#">Article title</a></h4>
-                            <p class="posted-by">Posted by: {name}{time}</p>
-                            <div class="article-content">
-                                <div class="article-text">
-                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero, dicta
-                                        aspernatur nam perferendis quam alias hic praesentium nemo vitae pariatur
-                                        illo <a href="#">...read more</a></p>
-                                    <img src="https://images.unsplash.com/photo-1526318896980-cf78c088247c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80"
-                                         class="article-img" alt="">
-                                </div>
-                            </div>
-                        </article>
-
-                        <article>
-                            <h4 class="article-title"><a href="#">Article title</a></h4>
-                            <p class="posted-by">Posted by: {name}{time}</p>
-                            <div class="article-content">
-                                <div class="article-text">
-                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero, dicta
-                                        aspernatur nam perferendis quam alias hic praesentium nemo vitae pariatur
-                                        illo <a href="#">...read more</a></p>
-                                    <img src="https://images.unsplash.com/photo-1514190051997-0f6f39ca5cde?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
-                                         class="article-img" alt="">
-                                </div>
-                            </div>
-                        </article>
                     </div>
                 </section>
+
+                <nav th:replace="~{fragments/category-articles-paginaiton.html :: category-articles-pagination}"></nav>
+
             </div>
         </main>
     </div>

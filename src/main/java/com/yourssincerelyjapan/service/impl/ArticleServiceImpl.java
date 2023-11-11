@@ -104,4 +104,19 @@ public class ArticleServiceImpl implements ArticleService {
 
         return new PageImpl<>(userArticles, pageable, articlePage.getTotalElements());
     }
+
+    @Override
+    public Page<GetArticleDTO> findAllArticlesFromCategory(Pageable pageable, Category category) {
+
+        final Page<Article> allCategoryArticles =
+                this.articleRepository.findArticleByCategoriesOrderByCreatedOnDesc(pageable, category);
+
+        final List<GetArticleDTO> allArticles = allCategoryArticles
+                .getContent()
+                .stream()
+                .map(this.articleMapper::articleToGetArticleDto)
+                .toList();
+
+        return new PageImpl<>(allArticles, pageable, allCategoryArticles.getTotalElements());
+    }
 }

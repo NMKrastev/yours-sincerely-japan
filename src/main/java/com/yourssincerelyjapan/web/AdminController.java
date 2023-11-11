@@ -2,6 +2,7 @@ package com.yourssincerelyjapan.web;
 
 import com.yourssincerelyjapan.model.dto.UserDTO;
 import com.yourssincerelyjapan.model.dto.UserRoleDTO;
+import com.yourssincerelyjapan.service.AdminService;
 import com.yourssincerelyjapan.service.UserRoleService;
 import com.yourssincerelyjapan.service.UserService;
 import jakarta.servlet.http.HttpSession;
@@ -20,10 +21,13 @@ import java.util.List;
 @SessionAttributes("userDTO")
 public class AdminController {
 
+    private final AdminService adminService;
     private final UserService userService;
     private final UserRoleService userRoleService;
 
-    public AdminController(UserService userService, UserRoleService userRoleService) {
+    public AdminController(AdminService adminService, UserService userService,
+                           UserRoleService userRoleService) {
+        this.adminService = adminService;
         this.userService = userService;
         this.userRoleService = userRoleService;
     }
@@ -105,7 +109,7 @@ public class AdminController {
             return modelAndView;
         }
 
-        boolean isUpdated = this.userService.saveEditedUser(userDTO, selectedRoles);
+        boolean isUpdated = this.adminService.saveEditedUser(userDTO, selectedRoles);
 
         if (isUpdated) {
 
@@ -127,7 +131,7 @@ public class AdminController {
     public ModelAndView deleteUser(ModelAndView modelAndView,
                                    @PathVariable("id") Long id) {
 
-        boolean isDeleted = this.userService.deleteUser(id);
+        boolean isDeleted = this.adminService.deleteUser(id);
 
         if (isDeleted) {
 

@@ -6,12 +6,16 @@ import com.yourssincerelyjapan.model.dto.index.GetCategoryNameDTO;
 import com.yourssincerelyjapan.model.entity.Article;
 import com.yourssincerelyjapan.model.entity.Category;
 import com.yourssincerelyjapan.model.enums.CategoryEnum;
+import com.yourssincerelyjapan.model.mapper.ArticleMapper;
 import com.yourssincerelyjapan.model.mapper.CategoryMapper;
+import com.yourssincerelyjapan.repository.ArticleRepository;
 import com.yourssincerelyjapan.repository.CategoryRepository;
 import com.yourssincerelyjapan.service.CategoryService;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
@@ -19,11 +23,17 @@ import java.util.List;
 public class CategoryServiceImpl implements CategoryService {
 
     private final CategoryRepository categoryRepository;
+    private final ArticleRepository articleRepository;
     private final CategoryMapper categoryMapper;
+    private final ArticleMapper articleMapper;
 
-    public CategoryServiceImpl(CategoryRepository categoryRepository, CategoryMapper categoryMapper) {
+    public CategoryServiceImpl(CategoryRepository categoryRepository, ArticleRepository articleRepository,
+                               CategoryMapper categoryMapper, ArticleMapper articleMapper) {
+
         this.categoryRepository = categoryRepository;
+        this.articleRepository = articleRepository;
         this.categoryMapper = categoryMapper;
+        this.articleMapper = articleMapper;
     }
 
     @Override
@@ -81,5 +91,22 @@ public class CategoryServiceImpl implements CategoryService {
                 .stream()
                 .map(this.categoryMapper::categoryToGetCategoryNameDto)
                 .toList();
+    }
+
+    @Override
+    public Page<GetArticleDTO> getSingleCategoryWithAllArticles(Pageable pageable, String categoryName) {
+
+        final Category category = this.findCategoryByName(categoryName);
+
+        final Page<Article> allCategoryArticles =
+                this.articleRepository.findArticleByCategoriesOrderByCreatedOnDesc(pageable, category);
+
+        final List<GetArticleDTO> allArticles = allCategoryArticles
+                .getContent()
+                .stream()
+                .map(this.articleMapper::articleToGetArticleDto)
+                .toList();
+
+        return new PageImpl<>(allArticles, pageable, allCategoryArticles.getTotalElements());
     }
 }

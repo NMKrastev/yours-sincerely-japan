@@ -20,10 +20,10 @@ public class HomeController {
         this.categoryService = categoryService;
     }
 
-    @ModelAttribute
+    /*@ModelAttribute
     void initAllCategoriesNames(Model model) {
         model.addAttribute("allCategoriesNames", this.categoryService.findAllCategories());
-    }
+    }*/
 
     @GetMapping("/")
     public ModelAndView index(ModelAndView modelAndView) {

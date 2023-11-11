@@ -1,8 +1,11 @@
 package com.yourssincerelyjapan.service;
 
+import com.yourssincerelyjapan.model.dto.index.GetArticleDTO;
 import com.yourssincerelyjapan.model.dto.index.GetCategoryDTO;
 import com.yourssincerelyjapan.model.dto.index.GetCategoryNameDTO;
 import com.yourssincerelyjapan.model.entity.Category;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 
@@ -15,4 +18,6 @@ public interface CategoryService {
     List<GetCategoryDTO> findFiveLatestCategoriesWithArticles();
 
     List<GetCategoryNameDTO> findAllCategories();
+
+    Page<GetArticleDTO> getSingleCategoryWithAllArticles(Pageable pageable, String categoryName);
 }

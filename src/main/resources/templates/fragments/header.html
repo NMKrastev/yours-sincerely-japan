@@ -54,9 +54,10 @@
                     <a href="#" class="section">Categories</a>
                     <ul>
                         <li><a th:href="@{/categories/all}">All Categories</a></li>
-                        <li><a th:href="@{/categories/category}">Category 1</a></li>
-                        <li><a th:href="@{/categories/category}">Category 2</a></li>
-                        <li><a th:href="@{/categories/category}">Category 3</a></li>
+                        <th:block th:each="category : ${allCategoriesNames}" th:object="${category}">
+                            <li><a th:href="@{/categories/{category}(category=*{#strings.toLowerCase(name)})}"
+                                   th:text="*{#strings.capitalize(#strings.toLowerCase(name))}"></a></li>
+                        </th:block>
                     </ul>
                 </li>
                 <li sec:authorize="!isAuthenticated()"><a th:href="@{/users/login}">Login</a></li>

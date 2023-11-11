@@ -32,9 +32,10 @@ public class SecurityConfiguration {
                                 // Allow anyone to see the home page, the registration page and the login form
                                 .requestMatchers("/", "/users/registration", "/users/login", "/users/login-error", "/users/account-verification").permitAll()
                                 .requestMatchers("/japan/api/news", "/japan/news", "/japan/history").permitAll()
-                                .requestMatchers("/categories/all", "/categories/category", "/articles/single-article/{id}").permitAll()
-                                .requestMatchers("/post/new").hasRole(UserRoleEnum.USER.name())
-                                .requestMatchers("/users/post").hasRole(UserRoleEnum.USER.name())
+                                .requestMatchers("/categories/all", "/categories/{category}").permitAll()
+                                .requestMatchers("/articles/single-article/{id}").permitAll()
+                                .requestMatchers("/articles/new").hasRole(UserRoleEnum.USER.name())
+                                .requestMatchers("/users/articles").hasRole(UserRoleEnum.USER.name())
                                 .requestMatchers("/users/all").hasRole(UserRoleEnum.ADMIN.name())
                                 .requestMatchers(HttpMethod.PATCH, "/users/edit/{id}", "/users/delete/{id}").hasRole(UserRoleEnum.ADMIN.name())
                                 .requestMatchers(HttpMethod.PATCH, "/users/delete/{id}").hasRole(UserRoleEnum.ADMIN.name())

@@ -119,61 +119,6 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public boolean saveEditedUser(UserDTO userDTO, List<Long> selectedRoles) {
-
-        User user = this.userRepository.findById(userDTO.getId()).get();
-
-        if (!user.getFullName().equals(userDTO.getFullName())) {
-            user.setFullName(userDTO.getFullName());
-        }
-
-        if (!userDTO.getEmail().equals(user.getEmail())) {
-            if (this.userRepository.findByEmail(userDTO.getEmail()).isEmpty()) {
-                user.setEmail(userDTO.getEmail());
-            } else {
-                return false;
-            }
-        }
-
-        final List<UserRole> roles = new ArrayList<>();
-        if (selectedRoles != null) {
-
-            for (Long selectedRole : selectedRoles) {
-                final UserRole userRole = this.userRoleRepository.findById(selectedRole).get();
-                roles.add(userRole);
-            }
-
-            user.getRoles().clear();
-            user.setRoles(roles);
-
-        } else {
-            //TODO: see how to tell that the user has to have selected roles
-            return false;
-        }
-
-        if (user.isEnabled() != userDTO.isEnabled()) {
-            user.setEnabled(userDTO.isEnabled());
-        }
-
-        user.setModifiedOn(LocalDateTime.now());
-
-        //TODO: maybe do it with try/catch
-        final User saved = this.userRepository.save(user);
-
-        return this.userRepository.findById(saved.getId()).isPresent();
-    }
-
-    @Override
-    public boolean deleteUser(Long id) {
-
-        this.userRepository.deleteById(id);
-
-        return this.userRepository
-                .findById(id)
-                .isEmpty();
-    }
-
-    @Override
     public User findUserByEmail(String username) {
 
         return this.userRepository
