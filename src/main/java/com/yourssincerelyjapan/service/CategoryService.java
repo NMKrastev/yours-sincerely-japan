@@ -17,7 +17,9 @@ public interface CategoryService {
 
     List<GetCategoryDTO> findFiveLatestCategoriesWithArticles();
 
-    List<GetCategoryNameDTO> findAllCategories();
+    List<GetCategoryNameDTO> findAllCategoriesByName();
 
     Page<GetArticleDTO> getSingleCategoryWithAllArticles(Pageable pageable, String categoryName);
+
+    Page<GetCategoryDTO> getAllCategories(Pageable pageable);
 }

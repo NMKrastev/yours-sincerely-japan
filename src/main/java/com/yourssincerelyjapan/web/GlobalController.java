@@ -16,6 +16,6 @@ public class GlobalController {
 
     @ModelAttribute("allCategoriesNames")
     void initAllCategoriesNames(Model model) {
-        model.addAttribute("allCategoriesNames", this.categoryService.findAllCategories());
+        model.addAttribute("allCategoriesNames", this.categoryService.findAllCategoriesByName());
     }
 }

@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.List;
+
 @Controller
 @RequestMapping("/categories")
 public class CategoryController {
@@ -24,20 +26,19 @@ public class CategoryController {
         this.categoryService = categoryService;
     }
 
-    /*@ModelAttribute
-    void initAllCategoriesNames(Model model) {
-        model.addAttribute("allCategoriesNames", this.categoryService.findAllCategories());
-    }*/
-
     @GetMapping("/all")
-    public ModelAndView allCategories(ModelAndView modelAndView) {
+    public ModelAndView allCategories(ModelAndView modelAndView,
+                                      @PageableDefault(size = 5) Pageable pageable) {
+
+        final Page<GetCategoryDTO> allCategories = this.categoryService.getAllCategories(pageable);
+
+        modelAndView.addObject("allCategories", allCategories);
 
         modelAndView.setViewName("all-categories");
 
         return modelAndView;
     }
 
-    /*Could be categoryId or the categoryName*/
     @GetMapping("/{category}")
     public ModelAndView category(ModelAndView modelAndView,
                                  @PageableDefault Pageable pageable,

@@ -27,351 +27,60 @@
                 <div class="mt-2 pb-2 text-center border-bottom border-3 border-danger-subtle"><h2>All categories</h2>
                 </div>
 
-                <section class="section-category" id="section-categories">
+                <section class="section-category" id="section-categories" th:each="category, categoryStat : ${allCategories}" th:object="${category}">
 
                     <!-- <p><h3 class="section-title">Travel <a href="#"><i class="fa-solid fa-plus"></i></a></h3></p> -->
 
                     <div class="section-title">
-                        <h3>Travel</h3>
-                        <a href="#"
-                           class="text-decoration-none"
-                           data-bs-toggle="modal"
-                           data-bs-target="#createNewPost"
-                           data-val="travel">
-                            <div class="icon new-post">
-                                <div class="tooltip">New post</div>
-                                <i class="fa-solid fa-plus"></i>
-                            </div>
-                        </a>
+                        <h3><th:block th:text="*{#strings.capitalize(#strings.toLowerCase(name))}"></th:block></h3>
+                        <th:block th:if="${#authorization.expression('hasRole(''USER'')')}">
+                            <a href="#"
+                               class="text-decoration-none"
+                               data-bs-toggle="modal"
+                               data-bs-target="#createNewPost"
+                               th:data-val="*{#strings.toLowerCase(name)}">
+                                <div class="icon new-post">
+                                    <div class="tooltip">New post</div>
+                                    <i class="fa-solid fa-plus"></i>
+                                </div>
+                            </a>
+                        </th:block>
                     </div>
 
                     <div class="article-container" id="article-container-categories">
 
-                        <article>
-                            <h4 class="article-title"><a href="#">Article title</a></h4>
-                            <p class="posted-by">Posted by: {name}{time}</p>
-                            <div class="article-content">
-                                <div class="article-text">
-                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero, dicta aspernatur
-                                        nam perferendis quam alias hic praesentium nemo vitae pariatur illo <a href="#">...read
-                                            more</a></p>
-                                    <img src="/images/header.jpg" class="article-img" alt="">
+                        <article th:each="article : ${category.articles}" th:object="${article}">
+                            <h4 class="article-title">
+                                <a th:href="@{/articles/single-article/{id}(id=${article.id})}">
+                                    <th:block th:text="*{title}"></th:block>
+                                </a>
+                            </h4>
+                            <div class="person-info">
+                                <div class="ratio ratio-1x1 rounded-circle overflow-hidden" th:if="*{user.profilePicture != null}">
+                                    <img th:src="'data:' + *{user.profilePicture.type} + ';base64,' + *{user.profilePicture.imageDataBase64}"
+                                         th:alt="*{user.profilePicture.name}" class="card-img-top img-cover"/>
                                 </div>
+                                <p class="posted-by">Posted by:
+                                    <th:block th:text="${article.user.fullName}"></th:block> on
+                                    <th:block th:text="${#temporals.format(article.createdOn, 'dd-MM-yyyy')}"></th:block></p>
                             </div>
-                        </article>
-
-                        <article>
-                            <h4 class="article-title"><a href="#">Article title</a></h4>
-                            <p class="posted-by">Posted by: {name}{time}</p>
                             <div class="article-content">
                                 <div class="article-text">
-                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero, dicta aspernatur
-                                        nam perferendis quam alias hic praesentium nemo vitae pariatur illo <a href="#">...read
-                                            more</a></p>
-                                    <img src="/images/shrine.jpg" class="article-img" alt="">
-                                </div>
-                            </div>
-                        </article>
-
-                        <article>
-                            <h4 class="article-title"><a href="#">Article title</a></h4>
-                            <p class="posted-by">Posted by: {name}{time}</p>
-                            <div class="article-content">
-                                <div class="article-text">
-                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero, dicta aspernatur
-                                        nam perferendis quam alias hic praesentium nemo vitae pariatur illo <a href="#">...read
-                                            more</a></p>
-                                    <img src="/images/h-c-UCaGli9BqF0-unsplash.jpg" class="article-img" alt="">
-                                </div>
-                            </div>
-                        </article>
-
-                        <article>
-                            <h4 class="article-title"><a href="#">Article title</a></h4>
-                            <p class="posted-by">Posted by: {name}{time}</p>
-                            <div class="article-content">
-                                <div class="article-text">
-                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero, dicta aspernatur
-                                        nam perferendis quam alias hic praesentium nemo vitae pariatur illo <a href="#">...read
-                                            more</a></p>
-                                    <img src="/images/h-c-UCaGli9BqF0-unsplash.jpg" class="article-img" alt="">
-                                </div>
-                            </div>
-                        </article>
-
-                        <article>
-                            <h4 class="article-title"><a href="#">Article title</a></h4>
-                            <p class="posted-by">Posted by: {name}{time}</p>
-                            <div class="article-content">
-                                <div class="article-text">
-                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero, dicta aspernatur
-                                        nam perferendis quam alias hic praesentium nemo vitae pariatur illo <a href="#">...read
-                                            more</a></p>
-                                    <img src="/images/h-c-UCaGli9BqF0-unsplash.jpg" class="article-img" alt="">
+                                    <p>
+                                        <th:block th:text="${#strings.abbreviate(article.content, 150)}"></th:block>
+                                        <a th:href="@{/articles/single-article/{id}(id=${article.id})}">...read more</a>
+                                    </p>
+                                    <th:block th:if="*{!pictures.isEmpty()}">
+                                        <img th:src="'data:' + *{pictures[0].type} + ';base64,' + *{pictures[0].imageData}"
+                                             th:alt="*{pictures[0].name}" class="article-img"/>
+                                    </th:block>
                                 </div>
                             </div>
                         </article>
                     </div>
+                    <div th:classappend="${categoryStat.index != allCategories.size - 1} ? 'border-bottom border-2 border-danger-subtle' : ''"></div>
                 </section>
 
-                <div class="border-bottom border-2 border-danger-subtle"></div>
-
-                <section class="section-category" id="section-categories">
-
-                    <!-- <p><h3>Cars</h3></p> -->
-
-                    <div class="section-title">
-                        <h3>Cars</h3>
-                        <a href="#"
-                           class="text-decoration-none"
-                           data-bs-toggle="modal"
-                           data-bs-target="#createNewPost"
-                           data-val="cars">
-                            <div class="icon new-post">
-                                <div class="tooltip">New post</div>
-                                <i class="fa-solid fa-plus"></i>
-                            </div>
-                        </a>
-                    </div>
-
-                    <div class="article-container" id="article-container-categories">
-
-                        <article>
-                            <h4 class="article-title"><a href="#">Article title</a></h4>
-                            <p class="posted-by">Posted by: {name}{time}</p>
-                            <div class="article-content">
-                                <div class="article-text">
-                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero, dicta aspernatur
-                                        nam perferendis quam alias hic praesentium nemo vitae pariatur illo <a href="#">...read
-                                            more</a></p>
-                                    <img src="https://images.unsplash.com/photo-1605907153179-8b364644a241?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1930&q=80"
-                                         class="article-img" alt="">
-                                </div>
-                            </div>
-                        </article>
-
-                        <article>
-                            <h4 class="article-title"><a href="#">Article title</a></h4>
-                            <p class="posted-by">Posted by: {name}{time}</p>
-                            <div class="article-content">
-                                <div class="article-text">
-                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero, dicta aspernatur
-                                        nam perferendis quam alias hic praesentium nemo vitae pariatur illo <a href="#">...read
-                                            more</a></p>
-                                    <img src="https://images.unsplash.com/photo-1580427331730-b38f8dc1f355?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1935&q=80"
-                                         class="article-img" alt="">
-                                </div>
-                            </div>
-                        </article>
-
-                        <article>
-                            <h4 class="article-title"><a href="#">Article title</a></h4>
-                            <p class="posted-by">Posted by: {name}{time}</p>
-                            <div class="article-content">
-                                <div class="article-text">
-                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero, dicta aspernatur
-                                        nam perferendis quam alias hic praesentium nemo vitae pariatur illo <a href="#">...read
-                                            more</a></p>
-                                    <img src="https://images.unsplash.com/photo-1619022975927-b37c4982cc49?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80"
-                                         class="article-img" alt="">
-                                </div>
-                            </div>
-                        </article>
-
-                    </div>
-                </section>
-
-                <div class="border-bottom border-2 border-danger-subtle"></div>
-
-                <section class="section-category" id="section-categories">
-
-                    <!-- <p><h3 class="section-title">Tips</h3></p> -->
-
-                    <div class="section-title">
-                        <h3>Tips</h3>
-                        <a href="#"
-                           class="text-decoration-none"
-                           data-bs-toggle="modal"
-                           data-bs-target="#createNewPost"
-                           data-val="tips">
-                            <div class="icon new-post">
-                                <div class="tooltip">New post</div>
-                                <i class="fa-solid fa-plus"></i>
-                            </div>
-                        </a>
-                    </div>
-
-                    <div class="article-container" id="article-container-categories">
-
-                        <article>
-                            <h4 class="article-title"><a href="#">Article title</a></h4>
-                            <p class="posted-by">Posted by: {name}{time}</p>
-                            <div class="article-content">
-                                <div class="article-text">
-                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero, dicta aspernatur
-                                        nam perferendis quam alias hic praesentium nemo vitae pariatur illo <a href="#">...read
-                                            more</a></p>
-                                    <img src="/images/header.jpg" class="article-img" alt="">
-                                </div>
-                            </div>
-                        </article>
-
-                        <article>
-                            <h4 class="article-title"><a href="#">Article title</a></h4>
-                            <p class="posted-by">Posted by: {name}{time}</p>
-                            <div class="article-content">
-                                <div class="article-text">
-                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero, dicta aspernatur
-                                        nam perferendis quam alias hic praesentium nemo vitae pariatur illo <a href="#">...read
-                                            more</a></p>
-                                    <img src="/images/header.jpg" class="article-img" alt="">
-                                </div>
-                            </div>
-                        </article>
-
-                        <article>
-                            <h4 class="article-title"><a href="#">Article title</a></h4>
-                            <p class="posted-by">Posted by: {name}{time}</p>
-                            <div class="article-content">
-                                <div class="article-text">
-                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero, dicta aspernatur
-                                        nam perferendis quam alias hic praesentium nemo vitae pariatur illo <a href="#">...read
-                                            more</a></p>
-                                    <img src="/images/header.jpg" class="article-img" alt="">
-                                </div>
-                            </div>
-                        </article>
-                    </div>
-                </section>
-
-                <div class="border-bottom border-2 border-danger-subtle"></div>
-
-                <section class="section-category" id="section-categories">
-
-                    <!-- <p><h3 class="section-title">Guides</h3></p> -->
-
-                    <div class="section-title">
-                        <h3>Guides</h3>
-                        <a href="#"
-                           class="text-decoration-none"
-                           data-bs-toggle="modal"
-                           data-bs-target="#createNewPost"
-                           data-val="guides">
-                            <div class="icon new-post">
-                                <div class="tooltip">New post</div>
-                                <i class="fa-solid fa-plus"></i>
-                            </div>
-                        </a>
-                    </div>
-
-                    <div class="article-container" id="article-container-categories">
-
-                        <article>
-                            <h4 class="article-title"><a href="#">Article title</a></h4>
-                            <p class="posted-by">Posted by: {name}{time}</p>
-                            <div class="article-content">
-                                <div class="article-text">
-                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero, dicta aspernatur
-                                        nam perferendis quam alias hic praesentium nemo vitae pariatur illo <a href="#">...read
-                                            more</a></p>
-                                    <img src="/images/header.jpg" class="article-img">
-                                </div>
-                            </div>
-                        </article>
-
-                        <article>
-                            <h4 class="article-title"><a href="#">Article title</a></h4>
-                            <p class="posted-by">Posted by: {name}{time}</p>
-                            <div class="article-content">
-                                <div class="article-text">
-                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero, dicta aspernatur
-                                        nam perferendis quam alias hic praesentium nemo vitae pariatur illo <a href="#">...read
-                                            more</a></p>
-                                    <img src="/images/header.jpg" class="article-img">
-                                </div>
-                            </div>
-                        </article>
-
-                        <article>
-                            <h4 class="article-title"><a href="#">Article title</a></h4>
-                            <p class="posted-by">Posted by: {name}{time}</p>
-                            <div class="article-content">
-                                <div class="article-text">
-                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero, dicta aspernatur
-                                        nam perferendis quam alias hic praesentium nemo vitae pariatur illo <a href="#">...read
-                                            more</a></p>
-                                    <img src="/images/header.jpg" class="article-img">
-                                </div>
-                            </div>
-                        </article>
-                    </div>
-                </section>
-
-                <div class="border-bottom border-2 border-danger-subtle"></div>
-
-                <section class="section-category" id="section-categories">
-
-                    <!-- <p><h3 class="section-title">Food</h3></p> -->
-
-                    <div class="section-title">
-                        <h3>Food</h3>
-                        <a href="#"
-                           class="text-decoration-none"
-                           data-bs-toggle="modal"
-                           data-bs-target="#createNewPost"
-                           data-val="food">
-                            <div class="icon new-post">
-                                <div class="tooltip">New post</div>
-                                <i class="fa-solid fa-plus"></i>
-                            </div>
-                        </a>
-                    </div>
-
-                    <div class="article-container" id="article-container-categories">
-
-                        <article>
-                            <h4 class="article-title"><a href="#">Article title</a></h4>
-                            <p class="posted-by">Posted by: {name}{time}</p>
-                            <div class="article-content">
-                                <div class="article-text">
-                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero, dicta aspernatur
-                                        nam perferendis quam alias hic praesentium nemo vitae pariatur illo <a href="#">...read
-                                            more</a></p>
-                                    <img src="https://images.unsplash.com/photo-1584583570840-0a3d88497593?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2127&q=80"
-                                         class="article-img">
-                                </div>
-                            </div>
-                        </article>
-
-                        <article>
-                            <h4 class="article-title"><a href="#">Article title</a></h4>
-                            <p class="posted-by">Posted by: {name}{time}</p>
-                            <div class="article-content">
-                                <div class="article-text">
-                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero, dicta aspernatur
-                                        nam perferendis quam alias hic praesentium nemo vitae pariatur illo <a href="#">...read
-                                            more</a></p>
-                                    <img src="https://images.unsplash.com/photo-1526318896980-cf78c088247c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80"
-                                         class="article-img">
-                                </div>
-                            </div>
-                        </article>
-
-                        <article>
-                            <h4 class="article-title"><a href="#">Article title</a></h4>
-                            <p class="posted-by">Posted by: {name}{time}</p>
-                            <div class="article-content">
-                                <div class="article-text">
-                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero, dicta aspernatur
-                                        nam perferendis quam alias hic praesentium nemo vitae pariatur illo <a href="#">...read
-                                            more</a></p>
-                                    <img src="https://images.unsplash.com/photo-1514190051997-0f6f39ca5cde?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
-                                         class="article-img">
-                                </div>
-                            </div>
-                        </article>
-                    </div>
-                </section>
             </div>
         </main>
     </div>

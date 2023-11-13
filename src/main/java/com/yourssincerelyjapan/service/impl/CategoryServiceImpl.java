@@ -84,7 +84,7 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public List<GetCategoryNameDTO> findAllCategories() {
+    public List<GetCategoryNameDTO> findAllCategoriesByName() {
 
         return this.categoryRepository
                 .findAll()
@@ -108,5 +108,31 @@ public class CategoryServiceImpl implements CategoryService {
                 .toList();
 
         return new PageImpl<>(allArticles, pageable, allCategoryArticles.getTotalElements());
+    }
+
+    @Override
+    public Page<GetCategoryDTO> getAllCategories(Pageable pageable) {
+
+        final Page<Category> categories = this.categoryRepository
+                .findAllByOrderByName(pageable);
+
+        categories
+                .forEach(c -> {
+
+                    List<Article> articles = c.getArticles()
+                            .stream()
+                            .sorted(Comparator.comparing(Article::getCreatedOn).reversed())
+                            .limit(10)
+                            .toList();
+
+                    c.setArticles(articles);
+                });
+
+        final List<GetCategoryDTO> allCategories = categories
+                .stream()
+                .map(this.categoryMapper::categoryToGetCategoryDto)
+                .toList();
+
+        return new PageImpl<>(allCategories, pageable, categories.getTotalElements());
     }
 }
