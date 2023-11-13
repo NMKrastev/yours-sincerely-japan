@@ -1,6 +1,6 @@
 package com.yourssincerelyjapan.service.impl;
 
-import com.yourssincerelyjapan.model.dto.NewArticleDTO;
+import com.yourssincerelyjapan.model.dto.ArticleDTO;
 import com.yourssincerelyjapan.model.dto.index.GetArticleDTO;
 import com.yourssincerelyjapan.model.entity.Article;
 import com.yourssincerelyjapan.model.entity.ArticlePicture;
@@ -17,8 +17,6 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 
 @Service
@@ -42,7 +40,7 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
-    public boolean createArticle(NewArticleDTO newArticleDTO) {
+    public boolean createArticle(ArticleDTO newArticleDTO) {
 
         final Article newArticle = this.articleMapper.newArticleDtoToArticle(newArticleDTO);
 

@@ -58,9 +58,10 @@
                             <th:block th:each="picture, pictureStat : ${article.pictures}" th:object="${picture}">
                                 <th:block th:text="*{#strings.abbreviate(name, 10)}"></th:block>
                                     <a href="#"
+                                       onclick="deletePicture()"
+                                       th:data-val="*{id}"
                                        class="text-decoration-none"
-                                       style="margin-right: 0.7em;"
-                                       type="submit">
+                                       style="margin-right: 0.7em;">
                                         <div class="icon new-post">
                                             <i class="fa-solid fa-trash-can" style="color: #bc002d;"></i>
                                         </div>
@@ -68,7 +69,7 @@
                             </th:block>
                         </div>-->
                         <div class="mb-3">
-                            <label for="uploadImages" class="form-label">Choose images:</label>
+                            <label for="uploadImages" class="form-label">Choose additional images:</label>
                             <input class="form-control" type="file" id="uploadImages" name="uploadImages" multiple>
                         </div>
                         <fieldset class="border rounded-2 p-3" id="fieldset">
@@ -101,6 +102,28 @@
     </div>
 
     <script th:src="@{/js/validateNewArticleForm.js}"></script>
+
+    <script th:inline="javascript">
+        function deletePicture() {
+
+            const button = $(event.relatedTarget);
+            const pictureId = button.data('val');
+
+            if (confirm('Are you sure you want to delete this picture?')) {
+
+                // Make an AJAX call to delete the picture
+                $.ajax({
+                    url: '/pictures/delete/' + pictureId,
+                    type: 'DELETE',
+                    success: function () {
+                    },
+                    error: function () {
+                        // Handle errors as needed
+                    }
+                });
+            }
+        }
+    </script>
 
 </div>
 

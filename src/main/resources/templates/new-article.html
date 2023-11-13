@@ -22,7 +22,7 @@
     <div class="main-create-post">
         <main class="create-post-site-content">
             <div class="mt-2 mb-4 pb-2 border-bottom border-3 border-danger-subtle">
-                <h2>Create new post</h2>
+                <h2>Create new article</h2>
             </div>
 
             <div class="create-post-main-section-content">
@@ -31,58 +31,66 @@
 
                     <div class="form-container">
 
-                        <form th:method="POST"
-                              th:action="@{/post/new}"
-                              enctype="multipart/form-data">
+                        <form th:method="POST" th:action="@{/articles/new}" th:object="${newArticleDTO}"
+                              enctype="multipart/form-data" id="new-post-form">
 
                             <div class="mb-3 text-start">
-                                <label for="title" class="form-label text-start">Title:</label>
-                                <input type="text" class="form-control" id="title" name="articleTitle" placeholder="Title">
+                                <label for="articleTitle" class="form-label text-start">Title:</label>
+                                <input type="text"
+                                       class="form-control"
+                                       id="articleTitle"
+                                       name="title"
+                                       th:errorclass="is-invalid"
+                                       th:field="*{title}"
+                                       placeholder="Title">
+                                <div class="invalid-feedback alert alert-danger" id="new-post-alert">
+                                    <th:block th:if="${#fields.hasErrors()}"
+                                              th:errorclass="error"
+                                              th:errors="*{title}"></th:block>
+                                </div>
                             </div>
                             <div class="mb-3 text-start">
-                                <label for="story-content" class="form-label">Story:</label>
-                                <textarea class="form-control" id="story-content" name="articleContent" rows="5" placeholder="Your story is waiting to be told..."></textarea>
+                                <label for="articleContent" class="form-label">Story:</label>
+                                <textarea class="form-control"
+                                          id="articleContent"
+                                          name="content"
+                                          rows="5"
+                                          th:errorclass="is-invalid"
+                                          th:field="*{content}"
+                                          placeholder="Your story is waiting to be told..."></textarea>
+                                <div class="invalid-feedback alert alert-danger" id="article-content-alert">
+                                    <th:block th:if="${#fields.hasErrors()}"
+                                              th:errorclass="error"
+                                              th:errors="*{content}"></th:block>
+                                </div>
                             </div>
                             <div class="mb-3 text-start">
                                 <label for="uploadImages" class="form-label">Choose images:</label>
                                 <input class="form-control" type="file" id="uploadImages" name="uploadImages" multiple>
                             </div>
-                            <fieldset class="border rounded-2 p-3">
+                            <fieldset class="border rounded-2 p-3 d-flex" id="fieldset">
                                 <legend class="float-none w-auto px-2 text-start">Categories:</legend>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="checkbox" value="travel" id="travel" name="selected">
-                                    <label class="form-check-label" for="travel">Travel</label>
-                                </div>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="checkbox" value="cars" id="cars" name="selected">
-                                    <label class="form-check-label" for="cars">Cars</label>
-                                </div>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="checkbox" value="tips" id="tips" name="selected">
-                                    <label class="form-check-label" for="tips">Tips</label>
-                                </div>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="checkbox" value="guides" id="guides" name="selected">
-                                    <label class="form-check-label" for="guides">Guides</label>
-                                </div>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="checkbox" value="food" id="food" name="selected">
-                                    <label class="form-check-label" for="food">Food</label>
+                                <div class="form-check form-check-inline"
+                                     th:each="categoryName : ${allCategoriesNames}"
+                                     th:object="${categoryName}">
+                                    <input class="form-check-input" type="checkbox"
+                                           th:value="*{#strings.toLowerCase(name)}"
+                                           th:id="*{#strings.toLowerCase(name)}"
+                                           name="selected">
+                                    <label class="form-check-label"
+                                           th:for="*{#strings.toLowerCase(name)}"
+                                           th:text="*{#strings.capitalize(#strings.toLowerCase(name))}"></label>
                                 </div>
                             </fieldset>
-                            <!--<div class="footer d-flex justify-content-around mt-2 pt-3 border-top">
-                                <a th:href="@{/}">Cancel</a>
-                                <form id="crate-post"
-                                      th:method="POST"
-                                      th:action="@{/post/new}">
-                                    <a href="#" onclick="formCreatePostSubmit()">Create post</a>
-                                </form>
-                            </div>-->
+                            <div class="invalid-feedback alert alert-danger" id="checkbox-alert"></div>
+
+                            <input type="hidden" th:value="${#authentication.getName()}" th:attr="name='username'">
+
                             <div class="modal-footer justify-content-around border-top mt-3">
-                                <button type="button" class="btn btn-secondary mt-3" data-bs-dismiss="modal">
+                                <button type="button" class="btn btn-secondary mt-3" onclick="redirectToHome()">
                                     Cancel
                                 </button>
-                                <button type="submit" class="btn btn-primary mt-3">Create post</button>
+                                <button type="submit" class="btn btn-primary mt-3">Create article</button>
                             </div>
                         </form>
                     </div>
@@ -95,9 +103,12 @@
 
 </div>
 
+<script th:src="@{/js/validateNewArticleForm.js}"></script>
+
 <script>
-    function formCreatePostSubmit() {
-        document.getElementById("crate-post").submit();
+    function redirectToHome() {
+        // Replace 'destination.html' with the actual URL you want to redirect to
+        window.location.href = '/';
     }
 </script>
 

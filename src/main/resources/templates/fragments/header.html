@@ -40,6 +40,7 @@
                         <li><a th:href="@{/admin/users/all}">All Users</a></li>
                     </ul>
                 </li>
+                <li sec:authorize="isAuthenticated()"><a th:href="@{/articles/new}">New article</a></li>
                 <li>
                     <a href="#">Japan</a>
                     <ul>

@@ -5,6 +5,7 @@ public enum DTOValidationMessage {
     ;
 
     public static final String MANDATORY_FIELD = "The field is mandatory.";
+    public static final String FIELD_MUST_NOT_BE_EMPTY = "The field must not be empty.";
     public static final String FULL_NAME_LENGTH = "Full name must be between 1 and 30 characters.";
     public static final String VALID_EMAIL = "Enter a valid email address.";
     public static final String EMAIL_ALREADY_IN_USE = "Email is already in use!";
