@@ -46,7 +46,7 @@ public class ArticleServiceImpl implements ArticleService {
 
         final Article newArticle = this.articleMapper.newArticleDtoToArticle(newArticleDTO);
 
-        List<Category> selectedCategories = new ArrayList<>();
+        final List<Category> selectedCategories;
 
         if (!newArticleDTO.getSelected().isEmpty()) {
 
@@ -64,7 +64,6 @@ public class ArticleServiceImpl implements ArticleService {
 
         final List<ArticlePicture> savedArticlePictures =
                 this.articlePictureService.saveArticlePictures(newArticleDTO.getUploadImages());
-
         newArticle.setPictures(savedArticlePictures);
 
         final User articleOwner = this.userService.findUserByEmail(newArticleDTO.getUsername());
@@ -81,11 +80,12 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
-    public Article getSingleArticle(Long id) {
+    public GetArticleDTO getSingleArticle(Long id) {
 
-        return this.articleRepository
-                .findById(id)
-                .get();
+        return this.articleMapper
+                .articleToGetArticleDto(this.articleRepository
+                        .findById(id)
+                        .get());
     }
 
     @Override

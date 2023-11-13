@@ -22,7 +22,7 @@
     <header th:replace="~{fragments/header.html :: header}"></header>
 
     <div class="main-single-post">
-        <main class="single-post-site-content" >
+        <main class="single-post-site-content">
             <div class="mt-2 mb-4 pb-2 border-bottom border-3 border-danger-subtle">
                 <h2>
                     <th:block th:text="*{title}"></th:block>
@@ -95,17 +95,16 @@
                             <th:block sec:authorize="hasRole('USER')">
                                 <th:block th:if="${article.user.email == #authentication.name}">
                                     <div class="container d-flex justify-content-around pt-1 pb-4">
-
-                                            <button type="submit" class="btn btn btn-warning border-1 border-black"
-                                                    data-bs-toggle="modal"
-                                                    data-bs-target="#editPost">
-                                                Edit article
-                                            </button>
-                                        <form th:action="@{/articles/delete/{id}(id=${article.id})}" th:method="DELETE">
-                                            <button type="submit" class="btn btn btn-danger border-1 border-black">
-                                                Delete article
-                                            </button>
-                                        </form>
+                                        <button type="button" class="btn btn-warning border-1 border-black"
+                                                data-bs-toggle="modal"
+                                                data-bs-target="#editPost">
+                                            Edit article
+                                        </button>
+                                        <button type="button" class="btn btn-danger border-1 border-black"
+                                                data-bs-toggle="modal"
+                                                data-bs-target="#deleteArticleModal">
+                                            Delete article
+                                        </button>
                                     </div>
                                 </th:block>
                             </th:block>
@@ -122,6 +121,8 @@
 </div>
 
 <div th:replace="~{fragments/modal-edit-article.html :: modal-edit-article}"></div>
+
+<div th:replace="~{fragments/modal-delete-article.html :: modal-delete-article}"></div>
 
 <!-- Works - when entering full screen to exit on mobile or desktop click on the image again -->
 

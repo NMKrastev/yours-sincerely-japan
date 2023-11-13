@@ -1,6 +1,7 @@
 package com.yourssincerelyjapan.web;
 
 import com.yourssincerelyjapan.model.dto.NewArticleDTO;
+import com.yourssincerelyjapan.model.dto.index.GetArticleDTO;
 import com.yourssincerelyjapan.model.entity.Article;
 import com.yourssincerelyjapan.service.ArticleService;
 import jakarta.validation.Valid;
@@ -22,7 +23,7 @@ public class ArticleController {
     public ModelAndView getSingleArticle(ModelAndView modelAndView,
                                          @PathVariable("id") Long id) {
 
-        Article article = this.articleService.getSingleArticle(id);
+        final GetArticleDTO article = this.articleService.getSingleArticle(id);
 
         modelAndView.addObject("article", article);
 
@@ -40,4 +41,6 @@ public class ArticleController {
 
         return modelAndView;
     }
+
+
 }

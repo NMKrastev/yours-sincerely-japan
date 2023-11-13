@@ -11,7 +11,7 @@ public interface ArticleService {
 
     boolean createArticle(NewArticleDTO newArticleDTO);
 
-    Article getSingleArticle(Long id);
+    GetArticleDTO getSingleArticle(Long id);
 
     Page<GetArticleDTO> findUserArticles(Pageable pageable, String username);
 
