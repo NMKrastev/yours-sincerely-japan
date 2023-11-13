@@ -36,9 +36,9 @@ public class SecurityConfiguration {
                                 .requestMatchers("/articles/single-article/{id}").permitAll()
                                 .requestMatchers("/articles/new").hasRole(UserRoleEnum.USER.name())
                                 .requestMatchers("/users/articles").hasRole(UserRoleEnum.USER.name())
-                                .requestMatchers("/users/all").hasRole(UserRoleEnum.ADMIN.name())
-                                .requestMatchers(HttpMethod.PATCH, "/users/edit/{id}", "/users/delete/{id}").hasRole(UserRoleEnum.ADMIN.name())
-                                .requestMatchers(HttpMethod.PATCH, "/users/delete/{id}").hasRole(UserRoleEnum.ADMIN.name())
+                                .requestMatchers("/admin/users/all").hasRole(UserRoleEnum.ADMIN.name())
+                                .requestMatchers(HttpMethod.PATCH, "/admin/users/edit/{id}").hasRole(UserRoleEnum.ADMIN.name())
+                                .requestMatchers(HttpMethod.PATCH, "/admin/users/delete/{id}").hasRole(UserRoleEnum.ADMIN.name())
                                 // all other requests are authenticated.
                                 .anyRequest()
                                 .authenticated()

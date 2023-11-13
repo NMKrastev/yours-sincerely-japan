@@ -25,7 +25,7 @@
             </div>
 
             <form class="pb-5 mx-auto w-auto h-auto bg-blur needs-validation" id="edit-form"
-                  th:action="@{/users/edit/{id}(id=${userDTO.getId()})}" th:method="PATCH"
+                  th:action="@{/admin/users/edit/{id}(id=${userDTO.getId()})}" th:method="PATCH"
                   th:object="${userDTO}" novalidate>
 
                 <div class="form-group pb-3">

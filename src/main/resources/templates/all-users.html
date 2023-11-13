@@ -52,7 +52,7 @@
                 <th:block th:text="*{isEnabled()}"></th:block>
             </td>
             <td>
-                <form th:action="@{/users/edit/{id}(id=${user.id})}" th:method="GET">
+                <form th:action="@{/admin/users/edit/{id}(id=${user.id})}" th:method="GET">
                     <button type="submit" class="btn btn-sm btn-warning">
                         Edit user
                     </button>

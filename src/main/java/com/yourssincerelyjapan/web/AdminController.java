@@ -17,7 +17,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import java.util.List;
 
 @Controller
-@RequestMapping("/users")
+@RequestMapping("/admin/users")
 @SessionAttributes("userDTO")
 public class AdminController {
 
@@ -56,7 +56,7 @@ public class AdminController {
                                  HttpSession session) {
 
         UserDTO userDTO = (UserDTO) session.getAttribute("userDTOWithErrors");
-        Object badCredentials = session.getAttribute("badCredentials");
+        final Object badCredentials = session.getAttribute("badCredentials");
 
         if (userDTO == null) {
 
@@ -104,16 +104,16 @@ public class AdminController {
 
             session.setAttribute("userDTOWithErrors", userDTO);
 
-            modelAndView.setViewName(String.format("redirect:/users/edit/%d", userDTO.getId()));
+            modelAndView.setViewName(String.format("redirect:/admin/users/edit/%d", userDTO.getId()));
 
             return modelAndView;
         }
 
-        boolean isUpdated = this.adminService.saveEditedUser(userDTO, selectedRoles);
+        final boolean isUpdated = this.adminService.saveEditedUser(userDTO, selectedRoles);
 
         if (isUpdated) {
 
-            modelAndView.setViewName("redirect:/users/all");
+            modelAndView.setViewName("redirect:/admin/users/all");
 
         } else {
 
@@ -121,7 +121,7 @@ public class AdminController {
 
             session.setAttribute("badCredentials", true);
 
-            modelAndView.setViewName(String.format("redirect:/users/edit/%d", userDTO.getId()));
+            modelAndView.setViewName(String.format("redirect:/admin/users/edit/%d", userDTO.getId()));
         }
 
         return modelAndView;
@@ -131,17 +131,17 @@ public class AdminController {
     public ModelAndView deleteUser(ModelAndView modelAndView,
                                    @PathVariable("id") Long id) {
 
-        boolean isDeleted = this.adminService.deleteUser(id);
+        final boolean isDeleted = this.adminService.deleteUser(id);
 
         if (isDeleted) {
 
-            modelAndView.setViewName("redirect:/users/all");
+            modelAndView.setViewName("redirect:/admin/users/all");
 
         } else {
 
             modelAndView.addObject("userNotDeleted", true);
 
-            modelAndView.setViewName("redirect:/users/all");
+            modelAndView.setViewName("redirect:/admin/users/all");
 
         }
 
