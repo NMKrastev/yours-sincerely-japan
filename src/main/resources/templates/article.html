@@ -111,6 +111,7 @@
                         </article>
                         <!-- <div class="fullscreen-button" id="fullscreen-button"><i class="fa-solid fa-xmark"></i></div> -->
                     </div>
+
                 </section>
             </div>
         </main>
@@ -124,8 +125,15 @@
 
 <div th:replace="~{fragments/modal-delete-article.html :: modal-delete-article}"></div>
 
-<!-- Works - when entering full screen to exit on mobile or desktop click on the image again -->
+<!--<script>
+    function redirectToEditArticle(articleId) {
+        // Replace 'destination.html' with the actual URL you want to redirect to
+        window.location.href = `/articles/edit/${articleId}`;
+    }
+    th:onclick="'redirectToEditArticle(' + ${article.id} + ')'"
+</script>-->
 
+<!-- Works - when entering full screen to exit on mobile or desktop click on the image again -->
 <script>
 
     const fullscreenImages = document.querySelectorAll('img');

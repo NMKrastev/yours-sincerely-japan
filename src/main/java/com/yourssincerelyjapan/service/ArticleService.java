@@ -15,4 +15,8 @@ public interface ArticleService {
     Page<GetArticleDTO> findUserArticles(Pageable pageable, String username);
 
     Page<GetArticleDTO> findAllArticlesFromCategory(Pageable pageable, Category category);
+
+    boolean saveEditedArticle(Long id, ArticleDTO articleDTO);
+
+    boolean deleteArticle(Long id);
 }

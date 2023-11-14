@@ -47,6 +47,8 @@ public class CategoryServiceImpl implements CategoryService {
     public void saveCategories(List<Category> selectedCategories) {
 
         this.categoryRepository.saveAll(selectedCategories);
+
+        //this.checkForCategoriesWithoutArticles();
     }
 
     @Override
@@ -70,17 +72,6 @@ public class CategoryServiceImpl implements CategoryService {
                 .map(this.categoryMapper::categoryToGetCategoryDto)
                 .toList();
 
-        /*for (GetCategoryDTO category : categories) {
-            List<GetArticleDTO> articles = category.getArticles()
-                    .stream()
-                    .sorted(Comparator.comparing(GetArticleDTO::getCreatedOn).reversed())
-                    .limit(5)
-                    .toList();
-
-            category.setArticles(articles);
-        }*/
-
-//        return categories;
     }
 
     @Override
@@ -134,5 +125,34 @@ public class CategoryServiceImpl implements CategoryService {
                 .toList();
 
         return new PageImpl<>(allCategories, pageable, categories.getTotalElements());
+    }
+
+    @Override
+    public List<Category> getSelectedCategories(List<String> selected) {
+
+        if (!selected.isEmpty()) {
+
+            return selected
+                        .stream()
+                        .map(this::findCategoryByName)
+                        .toList();
+        } else {
+            throw new IllegalArgumentException("Categories cannot be empty or null!");
+        }
+    }
+
+    @Override
+    public void checkForCategoriesWithoutArticles() {
+
+        final List<Category> categories = this.categoryRepository.findAll();
+
+        for (Category category : categories) {
+
+            if (category.getArticles().isEmpty()) {
+                category.setLatestCreatedArticle(null);
+            }
+        }
+
+        this.categoryRepository.saveAll(categories);
     }
 }

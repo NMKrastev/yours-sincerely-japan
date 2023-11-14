@@ -22,4 +22,8 @@ public interface CategoryService {
     Page<GetArticleDTO> getSingleCategoryWithAllArticles(Pageable pageable, String categoryName);
 
     Page<GetCategoryDTO> getAllCategories(Pageable pageable);
+
+    List<Category> getSelectedCategories(List<String> selected);
+
+    void checkForCategoriesWithoutArticles();
 }

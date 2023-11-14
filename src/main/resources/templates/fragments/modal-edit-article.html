@@ -21,7 +21,7 @@
          aria-hidden="true">
         <div class="modal-dialog modal-xl modal-dialog-centered">
             <div class="modal-content">
-                <form th:action="@{/articles/edit/{id}(id=${article.id})}" th:method="PUT"
+                <form th:action="@{/articles/edit/{id}(id=${article.id})}" th:method="PATCH"
                       enctype="multipart/form-data" id="new-post-form">
                     <div class="modal-header">
                         <h1 class="modal-title fs-5" id="editPostLabel">
@@ -73,7 +73,7 @@
                             <input class="form-control" type="file" id="uploadImages" name="uploadImages" multiple>
                         </div>
                         <fieldset class="border rounded-2 p-3" id="fieldset">
-                            <legend class="float-none w-auto px-2">Categories:</legend>
+                            <legend class="float-none w-auto px-2">Choose new categories:</legend>
                             <div class="form-check form-check-inline"
                                  th:each="categoryName : ${allCategoriesNames}"
                                  th:object="${categoryName}">

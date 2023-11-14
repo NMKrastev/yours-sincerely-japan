@@ -1,5 +1,6 @@
 package com.yourssincerelyjapan.service.impl;
 
+import com.yourssincerelyjapan.model.entity.Article;
 import com.yourssincerelyjapan.model.entity.ArticlePicture;
 import com.yourssincerelyjapan.model.entity.UserProfilePicture;
 import com.yourssincerelyjapan.repository.ArticlePictureRepository;
@@ -28,6 +29,12 @@ public class ArticlePictureServiceImpl implements ArticlePictureService {
 
         return this.articlePictureRepository.saveAll(articlePictures);
 
+    }
+
+    @Override
+    public void deleteArticlePictures(Article article) {
+
+        this.articlePictureRepository.deleteAll(article.getPictures());
     }
 
     private List<ArticlePicture> getArticlePictures(List<MultipartFile> uploadImages) {

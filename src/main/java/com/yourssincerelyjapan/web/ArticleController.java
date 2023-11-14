@@ -1,10 +1,11 @@
 package com.yourssincerelyjapan.web;
 
+import com.yourssincerelyjapan.events.OnArticleChangeEvent;
 import com.yourssincerelyjapan.model.dto.ArticleDTO;
-import com.yourssincerelyjapan.model.dto.UserRegistrationDTO;
 import com.yourssincerelyjapan.model.dto.index.GetArticleDTO;
 import com.yourssincerelyjapan.service.ArticleService;
 import jakarta.validation.Valid;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -17,9 +18,11 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class ArticleController {
 
     private final ArticleService articleService;
+    private final ApplicationEventPublisher eventPublisher;
 
-    public ArticleController(ArticleService articleService) {
+    public ArticleController(ArticleService articleService, ApplicationEventPublisher eventPublisher) {
         this.articleService = articleService;
+        this.eventPublisher = eventPublisher;
     }
 
     @ModelAttribute("newArticleDTO")
@@ -67,20 +70,87 @@ public class ArticleController {
 
         boolean isArticleCreated = this.articleService.createArticle(newArticleDTO);
 
-        modelAndView.setViewName("redirect:/");
+        if (isArticleCreated) {
+
+            modelAndView.setViewName("redirect:/");
+
+        } else {
+
+            modelAndView.setViewName("redirect:/articles/new");
+
+        }
 
         return modelAndView;
     }
 
-    @PostMapping("/edit/{id}")
+    @GetMapping("/edit/{id}")
+    public ModelAndView editArticle(ModelAndView modelAndView,
+                                    @PathVariable("id") Long id) {
+
+        final GetArticleDTO articleDTO = this.articleService.getSingleArticle(id);
+
+        modelAndView.addObject("articleDTO", articleDTO);
+
+        modelAndView.setViewName("edit-article");
+
+        return modelAndView;
+    }
+
+    @PatchMapping("/edit/{id}")
     public ModelAndView editArticle(ModelAndView modelAndView,
                                     @PathVariable("id") Long id,
                                     @Valid ArticleDTO articleDTO,
                                     BindingResult bindingResult,
                                     RedirectAttributes redirectAttributes) {
 
+        if (bindingResult.hasErrors()) {
+
+            redirectAttributes.addFlashAttribute("articleDTO", articleDTO);
+
+            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.articleDTO", bindingResult);
+
+            modelAndView.setViewName("redirect:/articles/new");
+
+            return modelAndView;
+        }
+
+        final boolean isArticleSaved = this.articleService.saveEditedArticle(id, articleDTO);
+
+        if (isArticleSaved) {
+
+            modelAndView.setViewName("redirect:/");
+
+        } else {
+
+            redirectAttributes.addFlashAttribute("badCredentials", true);
+
+            modelAndView.setViewName(String.format("redirect:/articles/edit/%d", id));
+
+        }
 
         return modelAndView;
     }
 
+    @DeleteMapping("/delete/{id}")
+    public ModelAndView deleteArticle(ModelAndView modelAndView,
+                                      @PathVariable("id") Long id) {
+
+        boolean isDeleted = this.articleService.deleteArticle(id);
+
+        if (isDeleted) {
+
+            //TODO: Tried with @Aspect - didn't work; Tried with publishing the event in the service - didn't work;
+            //It works only from here (for now)
+            this.eventPublisher.publishEvent(new OnArticleChangeEvent(this));
+
+            modelAndView.setViewName("redirect:/");
+
+        } else {
+
+            modelAndView.setViewName(String.format("redirect:/articles/delete/%d", id));
+
+        }
+
+        return modelAndView;
+    }
 }
