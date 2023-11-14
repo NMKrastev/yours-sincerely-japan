@@ -6,5 +6,7 @@ public enum CategoryEnum {
     CARS,
     TIPS,
     GUIDES,
-    FOOD
+    FOOD,
+    LIFE,
+    WORK
 }

@@ -41,7 +41,9 @@
                     </th:block>
                 </div>
 
-                <nav th:replace="~{fragments/category-articles-paginaiton.html :: category-articles-pagination}"></nav>
+                <th:block th:if="${!#lists.isEmpty(allArticlesFromCategory.getContent())}">
+                    <nav th:replace="~{fragments/paginaiton-category-articles.html :: paginaiton-category-articles}"></nav>
+                </th:block>
 
                 <section class="section-category" id="section-categories">
 
@@ -80,7 +82,9 @@
                     </div>
                 </section>
 
-                <nav th:replace="~{fragments/category-articles-paginaiton.html :: category-articles-pagination}"></nav>
+                <th:block th:if="${!#lists.isEmpty(allArticlesFromCategory.getContent())}">
+                    <nav th:replace="~{fragments/paginaiton-category-articles.html :: paginaiton-category-articles}"></nav>
+                </th:block>
 
             </div>
         </main>

@@ -27,6 +27,8 @@
                 <div class="mt-2 pb-2 text-center border-bottom border-3 border-danger-subtle"><h2>All categories</h2>
                 </div>
 
+                <nav th:replace="~{fragments/pagination-all-categories.html :: pagination-all-categories}"></nav>
+
                 <section class="section-category" id="section-categories" th:each="category, categoryStat : ${allCategories}" th:object="${category}">
 
                     <!-- <p><h3 class="section-title">Travel <a href="#"><i class="fa-solid fa-plus"></i></a></h3></p> -->
@@ -80,6 +82,8 @@
                     </div>
                     <div th:classappend="${categoryStat.index != allCategories.size - 1} ? 'border-bottom border-2 border-danger-subtle' : ''"></div>
                 </section>
+
+                <nav th:replace="~{fragments/pagination-all-categories.html :: pagination-all-categories}"></nav>
 
             </div>
         </main>

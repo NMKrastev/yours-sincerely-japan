@@ -26,7 +26,9 @@
                 <h2 class="fst-italic">My articles</h2>
             </div>
 
-            <nav th:replace="~{fragments/user-articles-pagination.html :: user-articles-pagination}"></nav>
+            <th:block th:if="${!#lists.isEmpty(userArticles.getContent())}">
+                <nav th:replace="~{fragments/pagination-user-articles.html :: pagination-user-articles}"></nav>
+            </th:block>
 
             <div class="user-posts-main-section-content">
 
@@ -92,7 +94,9 @@
                 </section>
             </div>
 
-            <nav th:replace="~{fragments/user-articles-pagination.html :: user-articles-pagination}"></nav>
+            <th:block th:if="${!#lists.isEmpty(userArticles.getContent())}">
+                <nav th:replace="~{fragments/pagination-user-articles.html :: pagination-user-articles}"></nav>
+            </th:block>
 
         </main>
     </div>

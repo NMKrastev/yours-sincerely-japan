@@ -1,7 +1,7 @@
 .main {
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: flex-start;
   flex-grow: 1;
   flex-wrap: wrap;
   padding: 1em 2em;

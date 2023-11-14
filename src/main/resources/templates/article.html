@@ -93,7 +93,7 @@
                             </div>
 
                             <th:block sec:authorize="hasRole('USER')">
-                                <th:block th:if="${article.user.email == #authentication.name}">
+                                <th:block th:if="${article.user.email == #authentication.name || #authorization.expression('hasRole(''ADMIN'')')}">
                                     <div class="container d-flex justify-content-around pt-1 pb-4">
                                         <button type="button" class="btn btn-warning border-1 border-black"
                                                 data-bs-toggle="modal"
