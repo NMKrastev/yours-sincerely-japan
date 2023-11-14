@@ -27,6 +27,7 @@ public class AdminController {
 
     public AdminController(AdminService adminService, UserService userService,
                            UserRoleService userRoleService) {
+
         this.adminService = adminService;
         this.userService = userService;
         this.userRoleService = userRoleService;
@@ -34,7 +35,9 @@ public class AdminController {
 
     @ModelAttribute("allRoles")
     public void initUserRoles(Model model) {
+
         final List<UserRoleDTO> allRoles = this.userRoleService.getAllRoles();
+
         model.addAttribute("allRoles", allRoles);
     }
 

@@ -123,19 +123,4 @@ public class UserServiceImpl implements UserService {
                 .findByEmail(username)
                 .get();
     }
-
-   /* @Override
-    public void saveUserWithArticle(String username, Article savedArticle) {
-
-        final User articleOwner = this.userRepository.findByEmail(username).get();
-
-        articleOwner.getArticles().add(savedArticle);
-
-        this.userRepository.save(articleOwner);
-    }*/
-
-    /*@Override
-    public User findUserUser(Long id) {
-        return this.userRepository.findById(id).get();
-    }*/
 }

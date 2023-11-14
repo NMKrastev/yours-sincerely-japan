@@ -23,6 +23,7 @@ public class UserLoginController {
     public ModelAndView onLoginFailure(ModelAndView modelAndView, @ModelAttribute("email") String email) {
 
         modelAndView.addObject("email", email);
+
         modelAndView.addObject("badCredentials", true);
 
         modelAndView.setViewName("login");

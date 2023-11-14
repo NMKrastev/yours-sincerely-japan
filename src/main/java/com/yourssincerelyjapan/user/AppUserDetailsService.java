@@ -48,45 +48,4 @@ public class AppUserDetailsService implements UserDetailsService {
     private static GrantedAuthority getGranterAuthorities(UserRole userRole) {
         return new SimpleGrantedAuthority("ROLE_" + userRole.getName().name());
     }
-
-/*    @Override
-    public UserDetails loadUserByUsername(final String email) throws UsernameNotFoundException {
-
-        boolean enabled = true;
-        boolean accountNonExpired = true;
-        boolean credentialsNonExpired = true;
-        boolean accountNonLocked = true;
-
-        Optional<User> optUser = this.userRepository.findByEmailIgnoreCase(email);
-
-        if (optUser.isEmpty()) {
-            throw new UsernameNotFoundException("Email: " + email + " is not found!");
-        }
-
-        final User user = optUser.get();
-
-        return new org.springframework.security.core.userdetails.User(
-                user.getEmail(),
-                user.getPassword(),
-                user.isEnabled(),
-                accountNonExpired,
-                credentialsNonExpired,
-                accountNonLocked,
-                user.getRoles().stream().map(AppUserDetailsService::getGranterAuthorities).toList()
-        );
-    }*/
-
-    /*private Collection<? extends GrantedAuthority> getAuthorities(final List<UserRole> roles) {
-        return getGrantedAuthorities(roles);
-    }*/
-
-
-    //TODO: Might need to accept List instead of Collection
-    /*private List<GrantedAuthority> getGrantedAuthorities(final List<UserRole> roles) {
-        final List<GrantedAuthority> authorities = new ArrayList<>();
-        for (final UserRole role : roles) {
-            authorities.add(new SimpleGrantedAuthority(String.valueOf(role.getName())));
-        }
-        return authorities;
-    }*/
 }

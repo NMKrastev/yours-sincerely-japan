@@ -24,8 +24,6 @@
 
                 <section class="section-category" th:each="category: ${categories}" th:object="${category}">
 
-                    <!-- <p><h3 class="section-title">Travel <a href="#"><i class="fa-solid fa-plus"></i></a></h3></p> -->
-
                     <div class="section-title">
                         <h3><th:block th:text="*{#strings.capitalize(#strings.toLowerCase(name))}"></th:block></h3>
                         <th:block th:if="${#authorization.expression('hasRole(''USER'')')}">
@@ -83,10 +81,6 @@
     <footer th:replace="~{fragments/footer.html :: footer}"></footer>
 
 </div>
-
-<!--<script th:inline="text">
-    let articleDTO = /*[[${articleDTO}]]*/ null;
-</script>-->
 
 <div th:replace="~{fragments/modal-new-article.html :: modal-new-article}"></div>
 

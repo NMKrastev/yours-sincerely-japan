@@ -2,7 +2,6 @@ package com.yourssincerelyjapan.service.impl;
 
 import com.yourssincerelyjapan.model.entity.Article;
 import com.yourssincerelyjapan.model.entity.ArticlePicture;
-import com.yourssincerelyjapan.model.entity.UserProfilePicture;
 import com.yourssincerelyjapan.repository.ArticlePictureRepository;
 import com.yourssincerelyjapan.service.ArticlePictureService;
 import org.springframework.stereotype.Service;
@@ -59,7 +58,7 @@ public class ArticlePictureServiceImpl implements ArticlePictureService {
                 throw new RuntimeException(e.getMessage());
             }
 
-            ArticlePicture articlePicture = ArticlePicture
+            final ArticlePicture articlePicture = ArticlePicture
                     .builder()
                     .name(image.getOriginalFilename())
                     .type(image.getContentType())

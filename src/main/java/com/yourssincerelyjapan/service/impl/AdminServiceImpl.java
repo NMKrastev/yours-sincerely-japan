@@ -1,7 +1,6 @@
 package com.yourssincerelyjapan.service.impl;
 
 import com.yourssincerelyjapan.model.dto.UserDTO;
-import com.yourssincerelyjapan.model.entity.Article;
 import com.yourssincerelyjapan.model.entity.User;
 import com.yourssincerelyjapan.model.entity.UserRole;
 import com.yourssincerelyjapan.repository.*;

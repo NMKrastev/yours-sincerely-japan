@@ -3,9 +3,7 @@ package com.yourssincerelyjapan.web;
 import com.yourssincerelyjapan.model.dto.index.GetCategoryDTO;
 import com.yourssincerelyjapan.service.CategoryService;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;

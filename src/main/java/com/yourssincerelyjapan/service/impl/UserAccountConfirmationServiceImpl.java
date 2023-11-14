@@ -14,17 +14,20 @@ public class UserAccountConfirmationServiceImpl implements UserAccountConfirmati
     private final UserService userService;
 
     public UserAccountConfirmationServiceImpl(ConfirmationRepository confirmationRepository, UserService userService) {
+
         this.confirmationRepository = confirmationRepository;
         this.userService = userService;
     }
 
     @Override
     public void saveVerificationToken(UserAccountConfirmation confirmation) {
+
             this.confirmationRepository.save(confirmation);
     }
 
     @Override
     public UserAccountConfirmation getVerificationToken(String token) {
+
         return this.confirmationRepository.findByToken(token);
     }
 

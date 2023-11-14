@@ -44,6 +44,37 @@ function validateEditForm(event) {
         emailAlert.appendChild(smallEmail);
         event.preventDefault();
     }
+
+    let roleCheckboxFieldset = document.getElementById("fieldset");
+    let roleCheckboxes = document.querySelectorAll('input[type="checkbox"]');
+    let roleCheckedCheckboxes = Array.from(roleCheckboxes).filter(checkbox => checkbox.checked);
+    let roleCheckboxAlert = document.getElementById('role-alert');
+    let roleCheckboxError = document.getElementById('role-error');
+    let userRoleValue = "2";
+
+    if (!roleCheckboxError) {
+        roleCheckboxError = document.createElement('small');
+        roleCheckboxError.setAttribute('id', 'checkbox-error');
+    }
+
+    roleCheckboxFieldset.classList.remove("is-invalid");
+    roleCheckboxAlert.innerHTML = '';
+
+    let userRoleSelected = Array.from(roleCheckboxes).some(checkbox => checkbox.value === userRoleValue && checkbox.checked);
+
+    if (roleCheckedCheckboxes.length === 0 || !userRoleSelected) {
+        isValid = false;
+        roleCheckboxError.textContent = '\"USER\" role must always be selected.';
+        roleCheckboxFieldset.classList.add('is-invalid');
+        roleCheckboxAlert.appendChild(roleCheckboxError);
+        event.preventDefault();
+    }
+
+    if (isValid) {
+        return true;
+    }
+
+    event.preventDefault();
 }
 
 document.getElementById('edit-form').addEventListener('submit', validateEditForm);

@@ -21,12 +21,14 @@ public class ArticleController {
     private final ApplicationEventPublisher eventPublisher;
 
     public ArticleController(ArticleService articleService, ApplicationEventPublisher eventPublisher) {
+
         this.articleService = articleService;
         this.eventPublisher = eventPublisher;
     }
 
     @ModelAttribute("newArticleDTO")
     public void initUserRegistrationDTO(Model model) {
+
         model.addAttribute("newArticleDTO", new ArticleDTO());
     }
 

@@ -2,7 +2,6 @@ package com.yourssincerelyjapan.web;
 
 import com.yourssincerelyjapan.model.dto.index.GetArticleDTO;
 import com.yourssincerelyjapan.service.ArticleService;
-import com.yourssincerelyjapan.service.UserService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -11,8 +10,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.List;
-
 @Controller
 @RequestMapping("/users")
 public class UserArticleController {
@@ -20,6 +17,7 @@ public class UserArticleController {
     private final ArticleService articleService;
 
     public UserArticleController(ArticleService articleService) {
+
         this.articleService = articleService;
     }
 

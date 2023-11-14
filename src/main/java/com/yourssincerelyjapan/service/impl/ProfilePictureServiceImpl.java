@@ -15,6 +15,7 @@ public class ProfilePictureServiceImpl implements ProfilePictureService {
     private final ProfilePictureRepository pictureRepository;
 
     public ProfilePictureServiceImpl(ProfilePictureRepository pictureRepository) {
+
         this.pictureRepository = pictureRepository;
     }
 

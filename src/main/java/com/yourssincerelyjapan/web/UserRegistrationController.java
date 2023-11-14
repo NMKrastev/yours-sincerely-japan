@@ -1,24 +1,17 @@
 package com.yourssincerelyjapan.web;
 
 import com.yourssincerelyjapan.model.dto.UserRegistrationDTO;
-import com.yourssincerelyjapan.model.entity.User;
-import com.yourssincerelyjapan.model.entity.UserAccountConfirmation;
 import com.yourssincerelyjapan.service.UserAccountConfirmationService;
 import com.yourssincerelyjapan.service.UserService;
-import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import javax.swing.*;
 import java.io.UnsupportedEncodingException;
-import java.util.Locale;
 
 @Controller
 @RequestMapping("/users")
@@ -35,6 +28,7 @@ public class UserRegistrationController {
 
     @ModelAttribute("userRegistrationDTO")
     public void initUserRegistrationDTO(Model model) {
+
         model.addAttribute("userRegistrationDTO", new UserRegistrationDTO());
     }
 
@@ -102,5 +96,4 @@ public class UserRegistrationController {
         return modelAndView;
 
     }
-
 }
