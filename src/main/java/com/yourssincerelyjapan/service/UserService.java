@@ -20,4 +20,6 @@ public interface UserService {
     UserDTO findUser(Long id);
 
     User findUserByEmail(String username);
+
+    UserDTO getUserDtoByEmail(String username);
 }

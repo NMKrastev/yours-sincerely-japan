@@ -123,4 +123,14 @@ public class UserServiceImpl implements UserService {
                 .findByEmail(username)
                 .get();
     }
+
+    @Override
+    public UserDTO getUserDtoByEmail(String username) {
+
+        final User user = this.userRepository
+                .findByEmail(username)
+                .get();
+
+        return this.userMapper.userToUserDto(user);
+    }
 }

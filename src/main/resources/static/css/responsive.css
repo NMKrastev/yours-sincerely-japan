@@ -77,6 +77,10 @@
   .main-news .news-site-content .news-section-category article {
     flex: 1 1 45%;
   }
+
+  #main-profile-section .profile-section {
+    flex: 1 1 100%;
+  }
 }
 
 /* Footer */
