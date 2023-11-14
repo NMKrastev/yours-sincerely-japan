@@ -1,6 +1,6 @@
 package com.yourssincerelyjapan.web;
 
-import com.yourssincerelyjapan.events.OnArticleChangeEvent;
+import com.yourssincerelyjapan.event.OnArticleChangeEvent;
 import com.yourssincerelyjapan.model.dto.ArticleDTO;
 import com.yourssincerelyjapan.model.dto.index.GetArticleDTO;
 import com.yourssincerelyjapan.service.ArticleService;

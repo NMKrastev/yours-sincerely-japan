@@ -1,6 +1,6 @@
-package com.yourssincerelyjapan.events.listener;
+package com.yourssincerelyjapan.event.listener;
 
-import com.yourssincerelyjapan.events.OnArticleChangeEvent;
+import com.yourssincerelyjapan.event.OnArticleChangeEvent;
 import com.yourssincerelyjapan.service.CategoryService;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;

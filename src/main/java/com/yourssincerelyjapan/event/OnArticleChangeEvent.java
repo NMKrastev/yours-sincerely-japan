@@ -1,4 +1,4 @@
-package com.yourssincerelyjapan.events;
+package com.yourssincerelyjapan.event;
 
 import org.springframework.context.ApplicationEvent;
 

@@ -3,13 +3,12 @@ package com.yourssincerelyjapan.service.impl;
 import com.yourssincerelyjapan.config.AdminConfiguration;
 import com.yourssincerelyjapan.model.dto.UserDTO;
 import com.yourssincerelyjapan.model.dto.UserRegistrationDTO;
-import com.yourssincerelyjapan.model.entity.Article;
 import com.yourssincerelyjapan.model.entity.UserProfilePicture;
 import com.yourssincerelyjapan.model.entity.User;
 import com.yourssincerelyjapan.model.entity.UserRole;
 import com.yourssincerelyjapan.model.enums.UserRoleEnum;
 import com.yourssincerelyjapan.model.mapper.UserMapper;
-import com.yourssincerelyjapan.events.OnRegistrationCompleteEvent;
+import com.yourssincerelyjapan.event.OnRegistrationCompleteEvent;
 import com.yourssincerelyjapan.repository.UserRepository;
 import com.yourssincerelyjapan.repository.UserRoleRepository;
 import com.yourssincerelyjapan.service.ProfilePictureService;
@@ -19,7 +18,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
