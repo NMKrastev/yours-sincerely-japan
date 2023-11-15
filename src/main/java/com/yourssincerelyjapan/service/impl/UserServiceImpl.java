@@ -133,4 +133,14 @@ public class UserServiceImpl implements UserService {
 
         return this.userMapper.userToUserDto(user);
     }
+
+    @Override
+    public boolean updateFullName(String fullName, String username) {
+
+        if (fullName == null || fullName.isBlank() || fullName.length() > 30) {
+            return false;
+        }
+
+        return false;
+    }
 }

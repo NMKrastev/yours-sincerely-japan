@@ -22,4 +22,6 @@ public interface UserService {
     User findUserByEmail(String username);
 
     UserDTO getUserDtoByEmail(String username);
+
+    boolean updateFullName(String fullName, String username);
 }

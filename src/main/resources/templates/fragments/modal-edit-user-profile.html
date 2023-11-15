@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit user profile modal</title>
+</head>
+<body>
+
+<div th:fragment="modal-edit-user-profile">
+
+    <!-- Modal Full Name -->
+    <div class="modal fade" id="editUserFullName" tabindex="-1" aria-labelledby="editUserFullNameLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <form id="fullNameForm" th:action="@{/users/profile/{username}/fullName(username=${#authentication.name})}" th:method="PATCH">
+                    <div class="modal-header">
+                        <h2 class="modal-title fs-5" id="editUserFullNameLabel">
+                            Name:
+                        </h2>
+                        <button type="button"
+                                class="btn-close"
+                                data-bs-dismiss="modal"
+                                aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <input type="text"
+                               class="form-control"
+                               id="fullName"
+                               name="fullName"
+                               th:value="*{fullName}"/>
+                        <div class="invalid-feedback alert alert-danger" id="full-name-alert"></div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Email -->
+    <div class="modal fade" id="editUserEmail" tabindex="-1" aria-labelledby="editUserEmailLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <form id="emailForm" th:action="@{/users/profile/{username}/email(username=${#authentication.name})}" th:method="PATCH">
+                    <div class="modal-header">
+                        <h2 class="modal-title fs-5" id="editUserEmailLabel">
+                            Email:
+                        </h2>
+                        <button type="button"
+                                class="btn-close"
+                                data-bs-dismiss="modal"
+                                aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <input type="text"
+                               class="form-control"
+                               id="email"
+                               name="email"
+                               th:field="*{email}"/>
+                        <div class="invalid-feedback alert alert-danger" id="email-alert"></div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Delete Profile Picture -->
+    <div class="modal fade" id="deleteProfilePictureModal" tabindex="-1" aria-labelledby="deleteProfilePictureModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <form id="delete" th:if="${userDTO.profilePicture != null}" th:action="@{/users/profile/{username}/deleteProfilePicture/{id}(username=${#authentication.name}, id=${userDTO.profilePicture.id})}" th:method="DELETE">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="deleteProfilePictureModalLabel">Delete user</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Are you sure you want to delete your profile picture?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Delete</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Profile Picture -->
+    <div class="modal fade" id="editUserProfilePicture" tabindex="-1" aria-labelledby="editUserProfilePictureLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <form id="profilePictureForm" th:action="@{/users/profile/{username}/profilePicture(username=${#authentication.name})}" th:method="PUT" enctype="multipart/form-data">
+                    <div class="modal-header">
+                        <h2 class="modal-title fs-5" id="editUserProfilePictureLabel">
+                            Profile picture:
+                        </h2>
+                        <button type="button"
+                                class="btn-close"
+                                data-bs-dismiss="modal"
+                                aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <input class="form-control" type="file" id="formFile" name="profilePicture" accept="image/png, image/jpeg">
+                        <div class="invalid-feedback alert alert-danger" id="picture-alert"></div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Password -->
+    <div class="modal fade" id="editUserPassword" tabindex="-1" aria-labelledby="editUserPasswordLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <form id="passwordForm" th:action="@{/users/profile/{username}/password(username=${#authentication.name})}" th:method="PATCH">
+                    <div class="modal-header">
+                        <h2 class="modal-title fs-5" id="editUserPasswordLabel">
+                            Password:
+                        </h2>
+                        <button type="button"
+                                class="btn-close"
+                                data-bs-dismiss="modal"
+                                aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="text-black">
+                            <h6><label for="confirmPassword">Password</label></h6>
+                        </div>
+                        <input type="password"
+                               class="form-control"
+                               id="password"
+                               name="password"/>
+                        <div class="invalid-feedback alert alert-danger" id="password-alert"></div>
+                        <div class="text-black pt-3">
+                            <h6><label for="confirmPassword">Confirm password</label></h6>
+                        </div>
+                        <input type="password"
+                               class="form-control"
+                               id="confirmPassword"
+                               name="confirmPassword"
+                               required/>
+                        <div class="invalid-feedback alert alert-danger" id="confirm-password-alert"></div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

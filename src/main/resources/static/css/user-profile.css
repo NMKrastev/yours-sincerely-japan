@@ -30,3 +30,22 @@
     width: 75px;
     height: 75px;
 }
+
+#main-profile-section .profile-section a {
+        display: flex;
+        padding: 0.5em 1em;
+        text-decoration: none;
+        font-weight: bold;
+        color: #fff;
+        background: #ffb7c5;
+        border: 2px solid #bc002d;
+        border-radius: 0.5em;
+        transition: all 0.3s ease-in-out;
+        text-align: center;
+}
+
+#main-profile-section .profile-section a:hover {
+    color: #ffb7c5;
+    background: #fff;
+    border: 2px solid #ffb7c5;
+}
