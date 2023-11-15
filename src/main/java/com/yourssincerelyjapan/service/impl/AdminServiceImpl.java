@@ -5,6 +5,9 @@ import com.yourssincerelyjapan.model.entity.User;
 import com.yourssincerelyjapan.model.entity.UserRole;
 import com.yourssincerelyjapan.repository.*;
 import com.yourssincerelyjapan.service.AdminService;
+import org.springframework.security.core.session.SessionInformation;
+import org.springframework.security.core.session.SessionRegistry;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -20,16 +23,18 @@ public class AdminServiceImpl implements AdminService {
     private final ProfilePictureRepository profilePictureRepository;
     private final ArticlePictureRepository articlePictureRepository;
     private final ArticleRepository articleRepository;
+    private final SessionRegistry sessionRegistry;
 
     public AdminServiceImpl(UserRepository userRepository, UserRoleRepository userRoleRepository,
                             ProfilePictureRepository profilePictureRepository, ArticlePictureRepository articlePictureRepository,
-                            ArticleRepository articleRepository) {
+                            ArticleRepository articleRepository, SessionRegistry sessionRegistry) {
 
         this.userRepository = userRepository;
         this.userRoleRepository = userRoleRepository;
         this.profilePictureRepository = profilePictureRepository;
         this.articlePictureRepository = articlePictureRepository;
         this.articleRepository = articleRepository;
+        this.sessionRegistry = sessionRegistry;
     }
 
 
@@ -44,6 +49,7 @@ public class AdminServiceImpl implements AdminService {
 
         if (!userDTO.getEmail().equals(user.getEmail())) {
             if (this.userRepository.findByEmail(userDTO.getEmail()).isEmpty()) {
+                this.logoutUser(user.getEmail());
                 user.setEmail(userDTO.getEmail());
             } else {
                 return false;
@@ -76,6 +82,23 @@ public class AdminServiceImpl implements AdminService {
         final User saved = this.userRepository.save(user);
 
         return this.userRepository.findById(saved.getId()).isPresent();
+    }
+
+    private void logoutUser(String username) {
+
+        final List<Object> principals = this.sessionRegistry.getAllPrincipals();
+        for (Object principal : principals) {
+            if (principal instanceof UserDetails userDetails) {
+                if (userDetails.getUsername().equals(username)) {
+                    // Invalidate each session associated with the user
+                    final List<SessionInformation> sessions =
+                            this.sessionRegistry.getAllSessions(userDetails, false);
+                    for (SessionInformation sessionInformation : sessions) {
+                        sessionInformation.expireNow();
+                    }
+                }
+            }
+        }
     }
 
     @Override

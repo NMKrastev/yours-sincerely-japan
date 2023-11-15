@@ -9,10 +9,14 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.core.session.SessionRegistry;
+import org.springframework.security.core.session.SessionRegistryImpl;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.crypto.password.Pbkdf2PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.session.RegisterSessionAuthenticationStrategy;
+import org.springframework.security.web.session.HttpSessionEventPublisher;
 
 @Configuration
 public class SecurityConfiguration {
@@ -22,6 +26,8 @@ public class SecurityConfiguration {
         return httpSecurity
                 .sessionManagement(session -> {
                     session.sessionCreationPolicy(SessionCreationPolicy.ALWAYS);
+                    session.sessionAuthenticationStrategy(new RegisterSessionAuthenticationStrategy(sessionRegistry()));
+                    session.sessionConcurrency(s -> s.maximumSessions(1));
                 })
                 .authorizeHttpRequests(
                         // Define which urls are visible by which users
@@ -94,6 +100,16 @@ public class SecurityConfiguration {
         // This service translates the application users and roles
         // to representation which spring security understands.
         return new AppUserDetailsService(userRepository);
+    }
+
+    @Bean
+    public SessionRegistry sessionRegistry() {
+        return new SessionRegistryImpl();
+    }
+
+    @Bean
+    public HttpSessionEventPublisher httpSessionEventPublisher() {
+        return new HttpSessionEventPublisher();
     }
 
     @Bean
