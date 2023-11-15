@@ -27,6 +27,12 @@ public class ProfilePictureServiceImpl implements ProfilePictureService {
         return this.pictureRepository.save(profilePicture);
     }
 
+    @Override
+    public void deleteProfilePicture(UserProfilePicture profilePicture) {
+
+        this.pictureRepository.delete(profilePicture);
+    }
+
     private UserProfilePicture getProfilePicture(MultipartFile image) {
 
         final String base64String;

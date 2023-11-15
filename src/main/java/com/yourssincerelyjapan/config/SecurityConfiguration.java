@@ -38,7 +38,7 @@ public class SecurityConfiguration {
                                 .requestMatchers(HttpMethod.PATCH, "/users/profile/{username}/fullName").hasRole(UserRoleEnum.USER.name())
                                 .requestMatchers(HttpMethod.PATCH, "/users/profile/{username}/email").hasRole(UserRoleEnum.USER.name())
                                 .requestMatchers(HttpMethod.DELETE, "/users/profile/{username}/deleteProfilePicture/{id}").hasRole(UserRoleEnum.USER.name())
-                                .requestMatchers(HttpMethod.PUT, "/users/profile/{username}/profilePicture").hasRole(UserRoleEnum.USER.name())
+                                .requestMatchers(HttpMethod.PATCH, "/users/profile/{username}/profilePicture").hasRole(UserRoleEnum.USER.name())
                                 .requestMatchers(HttpMethod.PATCH, "/users/profile/{username}/password").hasRole(UserRoleEnum.USER.name())
                                 .requestMatchers(HttpMethod.PATCH, "/articles/edit/{id}").hasRole(UserRoleEnum.USER.name())
                                 .requestMatchers(HttpMethod.DELETE, "/articles/delete/{id}").hasRole(UserRoleEnum.USER.name())

@@ -14,11 +14,21 @@ import com.yourssincerelyjapan.repository.UserRoleRepository;
 import com.yourssincerelyjapan.service.ProfilePictureService;
 import com.yourssincerelyjapan.service.UserService;
 import org.springframework.context.ApplicationEventPublisher;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import static com.yourssincerelyjapan.constant.DTOValidationMessage.EMAIL_REGEX;
+import static com.yourssincerelyjapan.constant.DTOValidationMessage.PASSWORD_REGEX;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -135,12 +145,138 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public boolean updateFullName(String fullName, String username) {
+    public boolean updateFullName(String fullName, String email) {
 
         if (fullName == null || fullName.isBlank() || fullName.length() > 30) {
             return false;
         }
 
-        return false;
+        final User user = this.userRepository
+                .findByEmail(email)
+                .get();
+
+        user.setFullName(fullName);
+
+        final User saved = this.userRepository.save(user);
+
+        return this.userRepository
+                .findById(saved.getId())
+                .isPresent();
+    }
+
+    @Override
+    public boolean updateEmail(String username, String email) {
+
+        final Pattern pattern = Pattern.compile(EMAIL_REGEX);
+
+        final Matcher matcher = pattern.matcher(email);
+
+        if (!matcher.matches()) {
+            return false;
+        }
+
+        if (this.userRepository.findByEmail(email).isPresent()) {
+            return false;
+        }
+
+        final User user = this.userRepository
+                .findByEmail(username)
+                .get();
+
+        user.setEmail(email);
+
+        final User saved = this.userRepository.save(user);
+
+        return this.userRepository
+                .findById(saved.getId())
+                .isPresent();
+    }
+
+    @Override
+    public boolean updateProfilePicture(String email, MultipartFile profilePicture) {
+
+        if (profilePicture == null || profilePicture.isEmpty()) {
+            return false;
+        }
+
+        final User user = this.userRepository
+                .findByEmail(email)
+                .get();
+
+        final UserProfilePicture oldProfilePicture = user.getProfilePicture();
+
+        final UserProfilePicture userProfilePicture =
+                this.pictureService.saveProfilePicture(profilePicture);
+
+        user.setProfilePicture(userProfilePicture);
+
+        final User saved = this.userRepository.save(user);
+
+        if (oldProfilePicture != null) {
+            this.pictureService.deleteProfilePicture(oldProfilePicture);
+        }
+
+        return this.userRepository
+                .findById(saved.getId())
+                .isPresent();
+    }
+
+    @Override
+    @Transactional
+    public boolean deleteProfilePicture(String email, Long id) {
+
+        final User user = this.userRepository
+                .findByEmail(email)
+                .get();
+
+        final UserProfilePicture profilePicture = user.getProfilePicture();
+
+        user.setProfilePicture(null);
+
+        final User saved = this.userRepository.save(user);
+
+        this.pictureService.deleteProfilePicture(profilePicture);
+
+        return this.userRepository
+                .findById(saved.getId())
+                .isPresent();
+    }
+
+    @Override
+    public boolean updatePassword(String email, String password) {
+
+        if (password.length() < 8) {
+            return false;
+        }
+
+        final Pattern pattern = Pattern.compile(PASSWORD_REGEX);
+
+        final Matcher matcher = pattern.matcher(password);
+
+        if (!matcher.matches()) {
+            return false;
+        }
+
+        final User user = this.userRepository
+                .findByEmail(email)
+                .get();
+
+        user.setPassword(this.passwordEncoder.encode(password));
+
+        final User saved = this.userRepository.save(user);
+
+        return this.userRepository
+                .findById(saved.getId())
+                .isPresent();
+    }
+
+    @Override
+    public void logoutUser() {
+
+        final Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+
+        if (auth != null) {
+            SecurityContextHolder.getContext().setAuthentication(null);
+        }
     }
 }

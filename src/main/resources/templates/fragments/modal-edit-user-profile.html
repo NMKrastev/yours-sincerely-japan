@@ -14,7 +14,9 @@
     <div class="modal fade" id="editUserFullName" tabindex="-1" aria-labelledby="editUserFullNameLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
-                <form id="fullNameForm" th:action="@{/users/profile/{username}/fullName(username=${#authentication.name})}" th:method="PATCH">
+                <form id="fullNameForm"
+                      th:action="@{/users/profile/{username}/fullName(username=${#authentication.name})}"
+                      th:method="PATCH">
                     <div class="modal-header">
                         <h2 class="modal-title fs-5" id="editUserFullNameLabel">
                             Name:
@@ -45,7 +47,9 @@
     <div class="modal fade" id="editUserEmail" tabindex="-1" aria-labelledby="editUserEmailLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
-                <form id="emailForm" th:action="@{/users/profile/{username}/email(username=${#authentication.name})}" th:method="PATCH">
+                <form id="emailForm"
+                      th:action="@{/users/profile/{username}/email(username=${#authentication.name})}"
+                      th:method="PATCH">
                     <div class="modal-header">
                         <h2 class="modal-title fs-5" id="editUserEmailLabel">
                             Email:
@@ -63,6 +67,9 @@
                                th:field="*{email}"/>
                         <div class="invalid-feedback alert alert-danger" id="email-alert"></div>
                     </div>
+                    <p class="alert alert-warning mx-3">
+                        You will be logged out upon successful email change!
+                    </p>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                         <button type="submit" class="btn btn-primary">Save</button>
@@ -76,7 +83,9 @@
     <div class="modal fade" id="deleteProfilePictureModal" tabindex="-1" aria-labelledby="deleteProfilePictureModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
-                <form id="delete" th:if="${userDTO.profilePicture != null}" th:action="@{/users/profile/{username}/deleteProfilePicture/{id}(username=${#authentication.name}, id=${userDTO.profilePicture.id})}" th:method="DELETE">
+                <form id="delete" th:if="${userDTO.profilePicture != null}"
+                      th:action="@{/users/profile/{username}/deleteProfilePicture/{id}(username=${#authentication.name}, id=${userDTO.profilePicture.id})}"
+                      th:method="DELETE">
                     <div class="modal-header">
                         <h1 class="modal-title fs-5" id="deleteProfilePictureModalLabel">Delete user</h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -97,7 +106,10 @@
     <div class="modal fade" id="editUserProfilePicture" tabindex="-1" aria-labelledby="editUserProfilePictureLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
-                <form id="profilePictureForm" th:action="@{/users/profile/{username}/profilePicture(username=${#authentication.name})}" th:method="PUT" enctype="multipart/form-data">
+                <form id="profilePictureForm"
+                      th:action="@{/users/profile/{username}/profilePicture(username=${#authentication.name})}"
+                      th:method="PATCH"
+                      enctype="multipart/form-data">
                     <div class="modal-header">
                         <h2 class="modal-title fs-5" id="editUserProfilePictureLabel">
                             Profile picture:
@@ -108,7 +120,7 @@
                                 aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <input class="form-control" type="file" id="formFile" name="profilePicture" accept="image/png, image/jpeg">
+                        <input class="form-control" type="file" id="formFile" name="profilePicture" accept="image/png, image/jpeg, image/webp">
                         <div class="invalid-feedback alert alert-danger" id="picture-alert"></div>
                     </div>
                     <div class="modal-footer">
@@ -124,7 +136,9 @@
     <div class="modal fade" id="editUserPassword" tabindex="-1" aria-labelledby="editUserPasswordLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
-                <form id="passwordForm" th:action="@{/users/profile/{username}/password(username=${#authentication.name})}" th:method="PATCH">
+                <form id="passwordForm"
+                      th:action="@{/users/profile/{username}/password(username=${#authentication.name})}"
+                      th:method="PATCH">
                     <div class="modal-header">
                         <h2 class="modal-title fs-5" id="editUserPasswordLabel">
                             Password:

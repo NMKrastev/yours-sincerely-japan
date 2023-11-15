@@ -23,7 +23,7 @@
         <main class="site-content" id="main-profile">
 
             <div class="mt-2 pb-2 text-center border-bottom border-3 border-danger-subtle" id="main-categories">
-                <h2>Profile</h2>
+                <h2>My Profile</h2>
             </div>
 
             <th:block th:if="*{email.equals(#authentication.name)}">
@@ -31,16 +31,23 @@
                 <div class="main-section-content" id="main-profile-section">
 
                    <section class="profile-section">
-                           <h5>
-                               Name:
-                           </h5>
-                           <div class="container d-flex justify-content-between align-items-center">
-                               <p th:text="*{fullName}"></p>
-                               <!--<button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#editUserFullName">
-                                   Edit name
-                               </button>-->
-                               <a href="#" class="open-profile-modal" data-bs-toggle="modal" data-bs-target="#editUserFullName">Edit name</a>
+                       <h5>
+                           Name:
+                       </h5>
+                       <div class="container d-flex justify-content-between align-items-center">
+                           <p th:text="*{fullName}"></p>
+                           <!--<button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#editUserFullName">
+                                  Edit name
+                              </button>-->
+                           <a href="#" class="open-profile-modal" data-bs-toggle="modal" data-bs-target="#editUserFullName">Edit name</a>
+                       </div>
+                       <th:block th:if="${badNameData}">
+                           <div class="alert alert-danger mx-5">
+                               <small>
+                                   Please, provide correct data for your name.
+                               </small>
                            </div>
+                       </th:block>
                    </section>
 
                     <section class="profile-section">
@@ -54,6 +61,13 @@
                             </button>-->
                             <a href="#" class="open-profile-modal" data-bs-toggle="modal" data-bs-target="#editUserEmail">Edit email</a>
                         </div>
+                        <th:block th:if="${badEmailData}">
+                            <div class="alert alert-danger mx-5">
+                                <small>
+                                    The email you entered is either already in use or invalid. Please use a different email address.
+                                </small>
+                            </div>
+                        </th:block>
                     </section>
 
                     <section class="profile-section">
@@ -79,6 +93,20 @@
 
                             <a href="#" class="open-profile-modal" data-bs-toggle="modal" data-bs-target="#editUserProfilePicture">Add/Change picture</a>
                         </div>
+                        <th:block th:if="${badProfilePictureData}">
+                            <div class="alert alert-danger mx-5 mt-2">
+                                <small>
+                                    Please attach profile picture.
+                                </small>
+                            </div>
+                        </th:block>
+                        <th:block th:if="${badProfilePictureDelete}">
+                            <div class="alert alert-danger mx-5 mt-2">
+                                <small>
+                                    Your profile picture was not deleted. Please, try again later.
+                                </small>
+                            </div>
+                        </th:block>
                     </section>
 
                     <section class="profile-section">
@@ -92,6 +120,18 @@
                             </button>-->
                             <a href="#" class="open-profile-modal" data-bs-toggle="modal" data-bs-target="#editUserPassword">Change password</a>
                         </div>
+                        <th:block th:if="${badPasswordData}">
+                            <div class="alert alert-danger mx-5">
+                                <small>
+                                    Password length must be at least 8 characters.<br>
+                                    Password must contain at least:<br>
+                                    - One lower case<br>
+                                    - One uppercase<br>
+                                    - One number<br>
+                                    - One special symbol: !, @, #, %, &, $, *;
+                                </small>
+                            </div>
+                        </th:block>
                     </section>
 
                 </div>

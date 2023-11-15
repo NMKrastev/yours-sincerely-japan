@@ -6,4 +6,6 @@ import org.springframework.web.multipart.MultipartFile;
 public interface ProfilePictureService {
 
     UserProfilePicture saveProfilePicture(MultipartFile image);
+
+    void deleteProfilePicture(UserProfilePicture profilePicture);
 }
