@@ -145,7 +145,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public boolean updateFullName(String fullName, String email) {
+    public boolean updateFullName(String email, String fullName) {
 
         if (fullName == null || fullName.isBlank() || fullName.length() > 30) {
             return false;
