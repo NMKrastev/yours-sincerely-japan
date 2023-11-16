@@ -90,6 +90,7 @@ public class ArticleServiceImpl implements ArticleService {
                 .findUserByEmail(username)
                 .orElseThrow(() -> new IllegalArgumentException(String.format("User with username %s not found!", username)));
 
+        //TODO: This could return List<Article>, no need for Page at this stage;
         final Page<Article> articlePage = this.articleRepository
                 .findArticleByUserOrderByCreatedOnDesc(pageable, user);
 

@@ -4,6 +4,7 @@ import com.yourssincerelyjapan.event.OnArticleChangeEvent;
 import com.yourssincerelyjapan.model.dto.ArticleDTO;
 import com.yourssincerelyjapan.model.dto.index.GetArticleDTO;
 import com.yourssincerelyjapan.service.ArticleService;
+import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -35,8 +36,20 @@ public class ArticleController {
     }
 
     @GetMapping("/single-article/{id}")
-    public ModelAndView getSingleArticle(ModelAndView modelAndView,
-                                         @PathVariable("id") Long id) {
+    public ModelAndView getArticle(ModelAndView modelAndView,
+                                   @PathVariable("id") Long id,
+                                   HttpSession session) {
+
+        session.setAttribute("articleId", id);
+
+        modelAndView.setViewName("redirect:/articles/single-article");
+
+        return modelAndView;
+    }
+
+    @GetMapping("/single-article")
+    public ModelAndView getUserArticle(ModelAndView modelAndView,
+                                       @SessionAttribute("articleId") Long id) {
 
         final GetArticleDTO article = this.articleService.getSingleArticle(id);
 
