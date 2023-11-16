@@ -8,7 +8,7 @@ import org.springframework.data.domain.Pageable;
 
 public interface ArticleService {
 
-    boolean createArticle(ArticleDTO newArticleDTO);
+    boolean createArticle(ArticleDTO newArticleDTO, String username);
 
     GetArticleDTO getSingleArticle(Long id);
 
@@ -19,4 +19,5 @@ public interface ArticleService {
     boolean saveEditedArticle(Long id, ArticleDTO articleDTO);
 
     boolean deleteArticle(Long id);
+
 }

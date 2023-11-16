@@ -127,11 +127,10 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User findUserByEmail(String username) {
+    public Optional<User> findUserByEmail(String username) {
 
         return this.userRepository
-                .findByEmail(username)
-                .get();
+                .findByEmail(username);
     }
 
     @Override

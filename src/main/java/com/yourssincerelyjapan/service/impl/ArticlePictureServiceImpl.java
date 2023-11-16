@@ -24,6 +24,7 @@ public class ArticlePictureServiceImpl implements ArticlePictureService {
     @Override
     public List<ArticlePicture> saveArticlePictures(List<MultipartFile> uploadImages) {
 
+        //TODO: Throw error if the type of file is not jpg, jpeg, png or webp;
         final List<ArticlePicture> articlePictures = getArticlePictures(uploadImages);
 
         return this.articlePictureRepository.saveAll(articlePictures);

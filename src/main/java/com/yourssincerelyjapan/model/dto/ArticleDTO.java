@@ -34,5 +34,5 @@ public class ArticleDTO {
 
     private LocalDateTime createdOn;
 
-    private String username;
+    //private String username;
 }

@@ -57,7 +57,7 @@
                         </div>
                         <div class="mb-3">
                             <label for="uploadImages" class="form-label">Choose images:</label>
-                            <input class="form-control" type="file" id="uploadImages" name="uploadImages" multiple>
+                            <input class="form-control" type="file" id="uploadImages" name="uploadImages" multiple accept="image/png, image/jpeg, image/jpg image/webp">
                         </div>
                         <fieldset class="border rounded-2 p-3" id="fieldset">
                             <legend class="float-none w-auto px-2">Categories:</legend>
@@ -74,7 +74,7 @@
                             </div>
                         </fieldset>
                         <div class="invalid-feedback alert alert-danger" id="checkbox-alert"></div>
-                        <input type="hidden" th:value="${#authentication.getName()}" th:attr="name='username'">
+
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">

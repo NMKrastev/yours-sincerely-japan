@@ -46,7 +46,7 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
-    public boolean createArticle(ArticleDTO newArticleDTO) {
+    public boolean createArticle(ArticleDTO newArticleDTO, String username) {
 
         final Article newArticle = this.articleMapper.newArticleDtoToArticle(newArticleDTO);
 
@@ -59,7 +59,9 @@ public class ArticleServiceImpl implements ArticleService {
                 this.articlePictureService.saveArticlePictures(newArticleDTO.getUploadImages());
         newArticle.setPictures(savedArticlePictures);
 
-        final User articleOwner = this.userService.findUserByEmail(newArticleDTO.getUsername());
+        final User articleOwner = this.userService
+                .findUserByEmail(username)
+                .orElseThrow(() -> new IllegalArgumentException(String.format("User with username %s not found!", username)));
         newArticle.setUser(articleOwner);
 
         final Article savedArticle = this.articleRepository.save(newArticle);
@@ -84,7 +86,9 @@ public class ArticleServiceImpl implements ArticleService {
     @Override
     public Page<GetArticleDTO> findUserArticles(Pageable pageable, String username) {
 
-        final User user = this.userService.findUserByEmail(username);
+        final User user = this.userService
+                .findUserByEmail(username)
+                .orElseThrow(() -> new IllegalArgumentException(String.format("User with username %s not found!", username)));
 
         final Page<Article> articlePage = this.articleRepository
                 .findArticleByUserOrderByCreatedOnDesc(pageable, user);

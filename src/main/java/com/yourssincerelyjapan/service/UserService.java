@@ -7,6 +7,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.UnsupportedEncodingException;
 import java.util.List;
+import java.util.Optional;
 
 public interface UserService {
 
@@ -20,7 +21,7 @@ public interface UserService {
 
     UserDTO findUser(Long id);
 
-    User findUserByEmail(String username);
+    Optional<User> findUserByEmail(String username);
 
     UserDTO getUserDtoByEmail(String username);
 

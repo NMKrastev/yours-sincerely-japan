@@ -6,6 +6,8 @@ import com.yourssincerelyjapan.model.dto.index.GetArticleDTO;
 import com.yourssincerelyjapan.service.ArticleService;
 import jakarta.validation.Valid;
 import org.springframework.context.ApplicationEventPublisher;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -57,7 +59,8 @@ public class ArticleController {
     public ModelAndView createNewArticle(ModelAndView modelAndView,
                                          @Valid ArticleDTO newArticleDTO,
                                          BindingResult bindingResult,
-                                         RedirectAttributes redirectAttributes) {
+                                         RedirectAttributes redirectAttributes,
+                                         @AuthenticationPrincipal UserDetails principal) {
 
         if (bindingResult.hasErrors()) {
 
@@ -70,7 +73,7 @@ public class ArticleController {
             return modelAndView;
         }
 
-        boolean isArticleCreated = this.articleService.createArticle(newArticleDTO);
+        final boolean isArticleCreated = this.articleService.createArticle(newArticleDTO, principal.getUsername());
 
         if (isArticleCreated) {
 
@@ -141,7 +144,8 @@ public class ArticleController {
 
         if (isDeleted) {
 
-            //TODO: Tried with @Aspect - didn't work; Tried with publishing the event in the service - didn't work;
+            //TODO: Implement it in the service.
+            // Tried with @Aspect - didn't work; Tried with publishing the event in the service - didn't work;
             //It works only from here (for now)
             this.eventPublisher.publishEvent(new OnArticleChangeEvent(this));
 

@@ -65,11 +65,11 @@
                                 </div>
                             </div>
                             <div class="mb-3 text-start">
-                                <label for="uploadImages" class="form-label">Choose images:</label>
-                                <input class="form-control" type="file" id="uploadImages" name="uploadImages" multiple>
+                                <label for="uploadImages" class="form-label">Choose additional images:</label>
+                                <input class="form-control" type="file" id="uploadImages" name="uploadImages" multiple accept="image/png, image/jpeg, image/jpg image/webp">
                             </div>
                             <fieldset class="border rounded-2 p-3 d-flex" id="fieldset">
-                                <legend class="float-none w-auto px-2 text-start">Categories:</legend>
+                                <legend class="float-none w-auto px-2 text-start">Choose new categories:</legend>
                                 <div class="form-check form-check-inline"
                                      th:each="categoryName : ${allCategoriesNames}"
                                      th:object="${categoryName}">
