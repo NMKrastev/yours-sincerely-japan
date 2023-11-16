@@ -107,7 +107,7 @@ public class EmailServiceImpl implements EmailService {
             context.setVariable("name", name);
             context.setVariable("url", EmailUtils.getVerificationUrl(token));
 
-            String text = templateEngine.process("verify-email", context);
+            String text = this.templateEngine.process("verify-email", context);
 
             final MimeMessageHelper helper = new MimeMessageHelper(message, true, "UTF-8");
 
