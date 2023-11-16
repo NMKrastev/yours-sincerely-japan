@@ -1,5 +1,7 @@
 package com.yourssincerelyjapan.init;
 
+import com.yourssincerelyjapan.repository.ArticlePictureRepository;
+import com.yourssincerelyjapan.repository.ArticleRepository;
 import com.yourssincerelyjapan.service.UserService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.core.io.ClassPathResource;
@@ -17,10 +19,15 @@ public class ApplicationInit implements CommandLineRunner {
 
     private final UserService userService;
     private final JdbcTemplate jdbcTemplate;
+    private final ArticleRepository articleRepository;
+    private final ArticlePictureRepository pictureRepository;
 
-    public ApplicationInit(UserService userService, JdbcTemplate jdbcTemplate) {
+    public ApplicationInit(UserService userService, JdbcTemplate jdbcTemplate,
+                           ArticleRepository articleRepository, ArticlePictureRepository pictureRepository) {
         this.userService = userService;
         this.jdbcTemplate = jdbcTemplate;
+        this.articleRepository = articleRepository;
+        this.pictureRepository = pictureRepository;
     }
 
     @Override
@@ -28,9 +35,13 @@ public class ApplicationInit implements CommandLineRunner {
 
         this.userService.administratorInit();
 
-        this.initializeArticles();
+        if (this.articleRepository.count()  == 0) {
+            this.initializeArticles();
+        }
 
-        this.initializeArticlesPictures();
+        if (this.pictureRepository.count() == 0) {
+            this.initializeArticlesPictures();
+        }
     }
 
     private void initializeArticlesPictures() {
