@@ -61,8 +61,7 @@ public class UserRegistrationController {
 
         if (isUserRegistered) {
 
-            //TODO: redirect the registered user to a page saying that he/she has to check email.
-            modelAndView.setViewName("redirect:/users/login-info");
+            modelAndView.setViewName("redirect:/users/login?isRegistered=true");
 
         } else {
 

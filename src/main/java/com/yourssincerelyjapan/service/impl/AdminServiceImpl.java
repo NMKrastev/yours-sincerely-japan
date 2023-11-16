@@ -2,6 +2,7 @@ package com.yourssincerelyjapan.service.impl;
 
 import com.yourssincerelyjapan.model.dto.UserDTO;
 import com.yourssincerelyjapan.model.entity.User;
+import com.yourssincerelyjapan.model.entity.UserAccountConfirmation;
 import com.yourssincerelyjapan.model.entity.UserRole;
 import com.yourssincerelyjapan.repository.*;
 import com.yourssincerelyjapan.service.AdminService;
@@ -14,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class AdminServiceImpl implements AdminService {
@@ -23,17 +25,20 @@ public class AdminServiceImpl implements AdminService {
     private final ProfilePictureRepository profilePictureRepository;
     private final ArticlePictureRepository articlePictureRepository;
     private final ArticleRepository articleRepository;
+    private final ConfirmationRepository confirmationRepository;
     private final SessionRegistry sessionRegistry;
 
     public AdminServiceImpl(UserRepository userRepository, UserRoleRepository userRoleRepository,
                             ProfilePictureRepository profilePictureRepository, ArticlePictureRepository articlePictureRepository,
-                            ArticleRepository articleRepository, SessionRegistry sessionRegistry) {
+                            ArticleRepository articleRepository, ConfirmationRepository confirmationRepository,
+                            SessionRegistry sessionRegistry) {
 
         this.userRepository = userRepository;
         this.userRoleRepository = userRoleRepository;
         this.profilePictureRepository = profilePictureRepository;
         this.articlePictureRepository = articlePictureRepository;
         this.articleRepository = articleRepository;
+        this.confirmationRepository = confirmationRepository;
         this.sessionRegistry = sessionRegistry;
     }
 
@@ -106,6 +111,10 @@ public class AdminServiceImpl implements AdminService {
     public boolean deleteUser(Long id) {
 
         final User user = this.userRepository.findById(id).get();
+
+        final Optional<UserAccountConfirmation> confirmation = this.confirmationRepository.findByUser(user);
+
+        confirmation.ifPresent(this.confirmationRepository::delete);
 
         this.profilePictureRepository.delete(user.getProfilePicture());
 

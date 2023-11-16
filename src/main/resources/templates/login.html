@@ -75,8 +75,16 @@
                     </button>
                 </div>
 
-            </form>
+                <th:block th:if="${param.isRegistered}">
+                    <div class="alert alert-success text-center" role="alert">
+                        <strong>Thank you for signing up!</strong></br>
+                        A confirmation email has been sent to your email address.</br>
+                        Please check your inbox and follow the instructions to activate your account.</br>
+                        If you don't receive the email within a few minutes, please check your spam folder.
+                    </div>
+                </th:block>
 
+            </form>
         </main>
     </div>
 
