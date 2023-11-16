@@ -29,7 +29,7 @@ public class ArticleController {
     }
 
     @ModelAttribute("newArticleDTO")
-    public void initUserRegistrationDTO(Model model) {
+    public void initNewArticleDTO(Model model) {
 
         model.addAttribute("newArticleDTO", new ArticleDTO());
     }
