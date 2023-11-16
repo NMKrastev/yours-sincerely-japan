@@ -3,6 +3,7 @@ package com.yourssincerelyjapan.service;
 import com.yourssincerelyjapan.model.dto.UserDTO;
 import com.yourssincerelyjapan.model.dto.UserRegistrationDTO;
 import com.yourssincerelyjapan.model.entity.User;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.UnsupportedEncodingException;
@@ -23,15 +24,15 @@ public interface UserService {
 
     Optional<User> findUserByEmail(String username);
 
-    UserDTO getUserDtoByEmail(String username);
+    UserDTO getUserDtoByEmail(UserDetails principal);
 
-    boolean updateFullName(String username, String fullName);
+    boolean updateFullName(UserDetails principal, String fullName);
 
-    boolean updateEmail(String username, String email);
+    boolean updateEmail(UserDetails principal, String email);
 
-    boolean updateProfilePicture(String username, MultipartFile profilePicture);
+    boolean updateProfilePicture(UserDetails principal, MultipartFile profilePicture);
 
-    boolean deleteProfilePicture(String username, Long id);
+    boolean deleteProfilePicture(UserDetails principal);
 
-    boolean updatePassword(String username, String password);
+    boolean updatePassword(UserDetails principal, String password);
 }

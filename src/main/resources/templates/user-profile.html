@@ -42,7 +42,7 @@
                            <a href="#" class="open-profile-modal" data-bs-toggle="modal" data-bs-target="#editUserFullName">Edit name</a>
                        </div>
                        <th:block th:if="${badNameData}">
-                           <div class="alert alert-danger mx-5">
+                           <div class="alert alert-danger mx-3">
                                <small>
                                    Please, provide correct data for your name.
                                </small>
@@ -62,7 +62,7 @@
                             <a href="#" class="open-profile-modal" data-bs-toggle="modal" data-bs-target="#editUserEmail">Edit email</a>
                         </div>
                         <th:block th:if="${badEmailData}">
-                            <div class="alert alert-danger mx-5">
+                            <div class="alert alert-danger mx-3">
                                 <small>
                                     The email you entered is either already in use or invalid. Please use a different email address.
                                 </small>
@@ -94,14 +94,14 @@
                             <a href="#" class="open-profile-modal" data-bs-toggle="modal" data-bs-target="#editUserProfilePicture">Add/Change picture</a>
                         </div>
                         <th:block th:if="${badProfilePictureData}">
-                            <div class="alert alert-danger mx-5 mt-2">
+                            <div class="alert alert-danger mx-3 mt-2">
                                 <small>
                                     Please attach profile picture.
                                 </small>
                             </div>
                         </th:block>
                         <th:block th:if="${badProfilePictureDelete}">
-                            <div class="alert alert-danger mx-5 mt-2">
+                            <div class="alert alert-danger mx-3 mt-2">
                                 <small>
                                     Your profile picture was not deleted. Please, try again later.
                                 </small>
@@ -121,7 +121,7 @@
                             <a href="#" class="open-profile-modal" data-bs-toggle="modal" data-bs-target="#editUserPassword">Change password</a>
                         </div>
                         <th:block th:if="${badPasswordData}">
-                            <div class="alert alert-danger mx-5">
+                            <div class="alert alert-danger mx-3">
                                 <small>
                                     Password length must be at least 8 characters.<br>
                                     Password must contain at least:<br>

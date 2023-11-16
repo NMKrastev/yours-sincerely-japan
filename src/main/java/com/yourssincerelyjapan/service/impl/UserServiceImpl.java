@@ -16,6 +16,7 @@ import com.yourssincerelyjapan.service.UserService;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -134,24 +135,24 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserDTO getUserDtoByEmail(String username) {
+    public UserDTO getUserDtoByEmail(UserDetails principal) {
 
         final User user = this.userRepository
-                .findByEmail(username)
+                .findByEmail(principal.getUsername())
                 .get();
 
         return this.userMapper.userToUserDto(user);
     }
 
     @Override
-    public boolean updateFullName(String email, String fullName) {
+    public boolean updateFullName(UserDetails principal, String fullName) {
 
         if (fullName == null || fullName.isBlank() || fullName.length() > 30) {
             return false;
         }
 
         final User user = this.userRepository
-                .findByEmail(email)
+                .findByEmail(principal.getUsername())
                 .get();
 
         user.setFullName(fullName);
@@ -164,7 +165,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public boolean updateEmail(String username, String email) {
+    public boolean updateEmail(UserDetails principal, String email) {
 
         final Pattern pattern = Pattern.compile(EMAIL_REGEX);
 
@@ -181,7 +182,7 @@ public class UserServiceImpl implements UserService {
         this.invalidateUserAuthentication();
 
         final User user = this.userRepository
-                .findByEmail(username)
+                .findByEmail(principal.getUsername())
                 .get();
 
         user.setEmail(email);
@@ -194,14 +195,14 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public boolean updateProfilePicture(String email, MultipartFile profilePicture) {
+    public boolean updateProfilePicture(UserDetails principal, MultipartFile profilePicture) {
 
         if (profilePicture == null || profilePicture.isEmpty()) {
             return false;
         }
 
         final User user = this.userRepository
-                .findByEmail(email)
+                .findByEmail(principal.getUsername())
                 .get();
 
         final UserProfilePicture oldProfilePicture = user.getProfilePicture();
@@ -224,10 +225,10 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Transactional
-    public boolean deleteProfilePicture(String email, Long id) {
+    public boolean deleteProfilePicture(UserDetails principal) {
 
         final User user = this.userRepository
-                .findByEmail(email)
+                .findByEmail(principal.getUsername())
                 .get();
 
         final UserProfilePicture profilePicture = user.getProfilePicture();
@@ -244,7 +245,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public boolean updatePassword(String email, String password) {
+    public boolean updatePassword(UserDetails principal, String password) {
 
         if (password.length() < 8) {
             return false;
@@ -259,7 +260,7 @@ public class UserServiceImpl implements UserService {
         }
 
         final User user = this.userRepository
-                .findByEmail(email)
+                .findByEmail(principal.getUsername())
                 .get();
 
         user.setPassword(this.passwordEncoder.encode(password));

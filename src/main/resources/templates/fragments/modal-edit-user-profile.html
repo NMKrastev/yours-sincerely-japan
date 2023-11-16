@@ -15,7 +15,7 @@
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <form id="fullNameForm"
-                      th:action="@{/users/profile/{username}/fullName(username=${#authentication.name})}"
+                      th:action="@{/users/profile/fullName}"
                       th:method="PATCH">
                     <div class="modal-header">
                         <h2 class="modal-title fs-5" id="editUserFullNameLabel">
@@ -48,7 +48,7 @@
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <form id="emailForm"
-                      th:action="@{/users/profile/{username}/email(username=${#authentication.name})}"
+                      th:action="@{/users/profile/email}"
                       th:method="PATCH">
                     <div class="modal-header">
                         <h2 class="modal-title fs-5" id="editUserEmailLabel">
@@ -84,7 +84,7 @@
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <form id="delete" th:if="${userDTO.profilePicture != null}"
-                      th:action="@{/users/profile/{username}/deleteProfilePicture/{id}(username=${#authentication.name}, id=${userDTO.profilePicture.id})}"
+                      th:action="@{/users/profile/deleteProfilePicture}"
                       th:method="DELETE">
                     <div class="modal-header">
                         <h1 class="modal-title fs-5" id="deleteProfilePictureModalLabel">Delete user</h1>
@@ -107,7 +107,7 @@
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <form id="profilePictureForm"
-                      th:action="@{/users/profile/{username}/profilePicture(username=${#authentication.name})}"
+                      th:action="@{/users/profile/profilePicture}"
                       th:method="PATCH"
                       enctype="multipart/form-data">
                     <div class="modal-header">
@@ -137,7 +137,7 @@
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <form id="passwordForm"
-                      th:action="@{/users/profile/{username}/password(username=${#authentication.name})}"
+                      th:action="@{/users/profile/password}"
                       th:method="PATCH">
                     <div class="modal-header">
                         <h2 class="modal-title fs-5" id="editUserPasswordLabel">
