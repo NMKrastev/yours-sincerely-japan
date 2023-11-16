@@ -36,9 +36,6 @@
                        </h5>
                        <div class="container d-flex justify-content-between align-items-center">
                            <p th:text="*{fullName}"></p>
-                           <!--<button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#editUserFullName">
-                                  Edit name
-                              </button>-->
                            <a href="#" class="open-profile-modal" data-bs-toggle="modal" data-bs-target="#editUserFullName">Edit name</a>
                        </div>
                        <th:block th:if="${badNameData}">
@@ -56,9 +53,6 @@
                         </h5>
                         <div class="container-fluid d-flex justify-content-between align-items-center">
                             <p th:text="*{email}"></p>
-                            <!--<button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#editUserEmail">
-                                Edit email
-                            </button>-->
                             <a href="#" class="open-profile-modal" data-bs-toggle="modal" data-bs-target="#editUserEmail">Edit email</a>
                         </div>
                         <th:block th:if="${badEmailData}">
@@ -84,9 +78,6 @@
                                  th:unless="*{profilePicture != null}">
                                 <img th:src="@{/images/blank-profile-picture.webp}">
                             </div>
-                            <!--<button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#editUserProfilePicture">
-                                Change picture
-                            </button>-->
                             <th:block th:if="*{profilePicture != null}">
                                 <a href="#" class="open-profile-modal" data-bs-toggle="modal" data-bs-target="#deleteProfilePictureModal">Delete picture</a>
                             </th:block>
@@ -115,9 +106,6 @@
                         </h5>
                         <div class="container-fluid d-flex justify-content-between align-items-center">
                             <p>********</p>
-                            <!--<button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#editUserPassword">
-                                Change password
-                            </button>-->
                             <a href="#" class="open-profile-modal" data-bs-toggle="modal" data-bs-target="#editUserPassword">Change password</a>
                         </div>
                         <th:block th:if="${badPasswordData}">

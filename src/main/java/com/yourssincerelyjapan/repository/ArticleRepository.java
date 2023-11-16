@@ -12,6 +12,7 @@ import java.util.List;
 
 @Repository
 public interface ArticleRepository extends JpaRepository<Article, Long> {
+
     Page<Article> findArticleByUserOrderByCreatedOnDesc(Pageable pageable, User user);
 
     Page<Article> findArticleByCategoriesOrderByCreatedOnDesc(Pageable pageable, Category category);

@@ -46,25 +46,31 @@ public class AdminServiceImpl implements AdminService {
     @Override
     public boolean saveEditedUser(UserDTO userDTO, List<Long> selectedRoles) {
 
-        User user = this.userRepository.findById(userDTO.getId()).get();
+        final User user = this.userRepository.findById(userDTO.getId()).get();
 
         if (!user.getFullName().equals(userDTO.getFullName())) {
+
             user.setFullName(userDTO.getFullName());
         }
 
         if (!userDTO.getEmail().equals(user.getEmail())) {
+
             if (this.userRepository.findByEmail(userDTO.getEmail()).isEmpty()) {
+
                 this.invalidateUserSession(user.getEmail());
                 user.setEmail(userDTO.getEmail());
+
             } else {
                 return false;
             }
         }
 
         final List<UserRole> roles = new ArrayList<>();
+
         if (selectedRoles != null) {
 
             for (Long selectedRole : selectedRoles) {
+
                 final UserRole userRole = this.userRoleRepository.findById(selectedRole).get();
                 roles.add(userRole);
             }
@@ -83,7 +89,6 @@ public class AdminServiceImpl implements AdminService {
 
         user.setModifiedOn(LocalDateTime.now());
 
-        //TODO: maybe do it with try/catch
         final User saved = this.userRepository.save(user);
 
         return this.userRepository.findById(saved.getId()).isPresent();
@@ -109,8 +114,6 @@ public class AdminServiceImpl implements AdminService {
         user.getArticles()
                 .forEach(a -> this.articleRepository.deleteById(a.getId()));
 
-        //final User saved = this.userRepository.save(user);
-
         this.invalidateUserSession(user.getEmail());
 
         this.userRepository.deleteById(user.getId());
@@ -130,7 +133,7 @@ public class AdminServiceImpl implements AdminService {
 
                 if (userDetails.getUsername().equals(username)) {
 
-                    // Invalidate each session associated with the user
+                    //Invalidate each session associated with the user
                     final List<SessionInformation> sessions =
                             this.sessionRegistry.getAllSessions(userDetails, false);
 

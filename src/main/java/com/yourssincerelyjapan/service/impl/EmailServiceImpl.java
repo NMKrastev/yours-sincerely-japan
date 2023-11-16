@@ -29,8 +29,8 @@ public class EmailServiceImpl implements EmailService {
 
     public EmailServiceImpl(EmailRepository emailRepository, EmailConfiguration emailConfiguration,
                             JavaMailSender javaMailSender, TemplateEngine templateEngine) {
-        this.emailRepository = emailRepository;
 
+        this.emailRepository = emailRepository;
         this.emailConfiguration = emailConfiguration;
         this.javaMailSender = javaMailSender;
         this.templateEngine = templateEngine;
@@ -57,6 +57,7 @@ public class EmailServiceImpl implements EmailService {
     public void sendSimpleVerificationEmail(String name, String emailTo, String token) throws UnsupportedEncodingException {
 
         final InternetAddress fromAddress = new InternetAddress(this.emailConfiguration.getUsername(), "Yours Sincerely Japan");
+
         final MimeMessage message = this.javaMailSender.createMimeMessage();
 
         try {

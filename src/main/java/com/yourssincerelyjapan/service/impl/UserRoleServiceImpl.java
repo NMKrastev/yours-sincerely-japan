@@ -39,7 +39,7 @@ public class UserRoleServiceImpl implements UserRoleService {
         final List<UserRole> allRoles = this.userRoleRepository
                 .findAll();
 
-        Map<Long, UserRoleDTO> allRolesMap = new HashMap<>();
+        final Map<Long, UserRoleDTO> allRolesMap = new HashMap<>();
 
         for (UserRole role : allRoles) {
 

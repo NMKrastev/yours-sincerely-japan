@@ -41,9 +41,10 @@ public class ArticlePictureServiceImpl implements ArticlePictureService {
 
         final List<ArticlePicture> articlePictures = new ArrayList<>();
 
-
         if (uploadImages.size() == 1) {
+
             if (uploadImages.get(0).isEmpty()) {
+
                 return articlePictures;
             }
         }
@@ -53,8 +54,10 @@ public class ArticlePictureServiceImpl implements ArticlePictureService {
             final String base64String;
 
             try {
+
                 byte[] fileBytes = image.getBytes();
                 base64String = Base64.getEncoder().encodeToString(fileBytes);
+
             } catch (IOException e) {
                 throw new RuntimeException(e.getMessage());
             }

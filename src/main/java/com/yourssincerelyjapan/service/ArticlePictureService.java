@@ -9,7 +9,6 @@ import java.util.List;
 
 public interface ArticlePictureService {
 
-
     List<ArticlePicture> saveArticlePictures(List<MultipartFile> uploadImages);
 
     void deleteArticlePictures(Article article);

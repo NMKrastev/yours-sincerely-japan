@@ -31,8 +31,6 @@
 
                 <section class="section-category" id="section-categories" th:each="category, categoryStat : ${allCategories}" th:object="${category}">
 
-                    <!-- <p><h3 class="section-title">Travel <a href="#"><i class="fa-solid fa-plus"></i></a></h3></p> -->
-
                     <div class="section-title">
                         <h3><th:block th:text="*{#strings.capitalize(#strings.toLowerCase(name))}"></th:block></h3>
                         <th:block th:if="${#authorization.expression('hasRole(''USER'')')}">

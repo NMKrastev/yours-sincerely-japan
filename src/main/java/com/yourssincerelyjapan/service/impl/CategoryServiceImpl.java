@@ -14,7 +14,6 @@ import com.yourssincerelyjapan.service.CategoryService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
-import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Service;
 
 import java.util.Comparator;
@@ -48,8 +47,6 @@ public class CategoryServiceImpl implements CategoryService {
     public void saveCategories(List<Category> selectedCategories) {
 
         this.categoryRepository.saveAll(selectedCategories);
-
-        //this.checkForCategoriesWithoutArticles();
     }
 
     @Override
@@ -138,6 +135,7 @@ public class CategoryServiceImpl implements CategoryService {
                         .map(this::findCategoryByName)
                         .toList();
         } else {
+
             throw new IllegalArgumentException("Categories cannot be empty or null!");
         }
     }
@@ -150,7 +148,9 @@ public class CategoryServiceImpl implements CategoryService {
         for (Category category : categories) {
 
             if (category.getArticles().isEmpty()) {
+
                 category.setLatestCreatedArticle(null);
+
             } else {
 
                 final Article article = category.getArticles()
@@ -160,6 +160,7 @@ public class CategoryServiceImpl implements CategoryService {
                         .get(0);
 
                 if (!article.getCreatedOn().toString().equals(category.getLatestCreatedArticle().toString())) {
+
                     category.setLatestCreatedArticle(article.getCreatedOn());
                 }
             }
