@@ -74,21 +74,17 @@ public class UserRegistrationController {
 
     @GetMapping("/account-verification")
     public ModelAndView confirmRegistration(ModelAndView modelAndView,
-                                            @RequestParam("token") String token,
-                                            RedirectAttributes redirectAttributes) {
+                                            @RequestParam("token") String token) {
 
         boolean isVerificationSuccess = this.confirmationService.accountVerification(token);
 
         if (!isVerificationSuccess) {
 
-            modelAndView.addObject("badToken", true);
             //TODO: create token-not-exist.html page;
-            modelAndView.setViewName("redirect:/users/account-verification/token-not-exist");
+            modelAndView.setViewName("redirect:/users/login?isInvalidToken=true");
 
             return modelAndView;
         }
-
-        redirectAttributes.addFlashAttribute("badToken", false);
 
         modelAndView.setViewName("redirect:/users/login");
 

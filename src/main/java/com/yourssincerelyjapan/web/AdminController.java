@@ -138,6 +138,7 @@ public class AdminController {
 
         if (isDeleted) {
 
+            //TODO: Implement event listener with the method for clearing categories
             modelAndView.setViewName("redirect:/admin/users/all");
 
         } else {

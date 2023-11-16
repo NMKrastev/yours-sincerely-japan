@@ -116,7 +116,9 @@ public class AdminServiceImpl implements AdminService {
 
         confirmation.ifPresent(this.confirmationRepository::delete);
 
-        this.profilePictureRepository.delete(user.getProfilePicture());
+        if (user.getProfilePicture() != null) {
+            this.profilePictureRepository.delete(user.getProfilePicture());
+        }
 
         user.getArticles()
                 .forEach(a -> a.getPictures().forEach(p -> this.articlePictureRepository.deleteById(p.getId())));

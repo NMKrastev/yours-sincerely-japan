@@ -84,6 +84,13 @@
                     </div>
                 </th:block>
 
+                <th:block th:if="${param.isInvalidToken}">
+                    <div class="alert alert-danger text-center" role="alert">
+                        Oops! It seems like the confirmation link is invalid.</br>
+                        Please make sure you are using the correct link.
+                    </div>
+                </th:block>
+
             </form>
         </main>
     </div>
