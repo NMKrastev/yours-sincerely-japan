@@ -94,7 +94,7 @@ public class ArticleController {
 
         } else {
 
-            modelAndView.setViewName("redirect:/articles/new");
+            modelAndView.setViewName("redirect:/articles/new?articleNotCreated=true");
 
         }
 
@@ -103,7 +103,14 @@ public class ArticleController {
 
     @GetMapping("/edit/{id}")
     public ModelAndView editArticle(ModelAndView modelAndView,
-                                    @PathVariable("id") Long id) {
+                                    @PathVariable("id") Long id,
+                                    @SessionAttribute(value = "badCredentials", required = false) boolean badCredentials) {
+
+        if (badCredentials) {
+
+            modelAndView.addObject("badCredentials", true);
+
+        }
 
         final GetArticleDTO articleDTO = this.articleService.getSingleArticle(id);
 
@@ -119,7 +126,9 @@ public class ArticleController {
                                     @PathVariable("id") Long id,
                                     @Valid ArticleDTO articleDTO,
                                     BindingResult bindingResult,
-                                    RedirectAttributes redirectAttributes) {
+                                    RedirectAttributes redirectAttributes,
+                                    @AuthenticationPrincipal UserDetails principal,
+                                    HttpSession session) {
 
         if (bindingResult.hasErrors()) {
 
@@ -132,7 +141,7 @@ public class ArticleController {
             return modelAndView;
         }
 
-        final boolean isArticleSaved = this.articleService.saveEditedArticle(id, articleDTO);
+        final boolean isArticleSaved = this.articleService.saveEditedArticle(id, articleDTO, principal);
 
         if (isArticleSaved) {
 
@@ -140,7 +149,7 @@ public class ArticleController {
 
         } else {
 
-            redirectAttributes.addFlashAttribute("badCredentials", true);
+            session.setAttribute("badCredentials", true);
 
             modelAndView.setViewName(String.format("redirect:/articles/edit/%d", id));
 

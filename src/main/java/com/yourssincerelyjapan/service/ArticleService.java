@@ -5,6 +5,7 @@ import com.yourssincerelyjapan.model.dto.index.GetArticleDTO;
 import com.yourssincerelyjapan.model.entity.Category;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.core.userdetails.UserDetails;
 
 public interface ArticleService {
 
@@ -16,7 +17,7 @@ public interface ArticleService {
 
     Page<GetArticleDTO> findAllArticlesFromCategory(Pageable pageable, Category category);
 
-    boolean saveEditedArticle(Long id, ArticleDTO articleDTO);
+    boolean saveEditedArticle(Long id, ArticleDTO articleDTO, UserDetails principal);
 
     boolean deleteArticle(Long id);
 

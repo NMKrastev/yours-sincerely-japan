@@ -33,6 +33,4 @@ public class ArticleDTO {
     private List<String> selected;
 
     private LocalDateTime createdOn;
-
-    //private String username;
 }

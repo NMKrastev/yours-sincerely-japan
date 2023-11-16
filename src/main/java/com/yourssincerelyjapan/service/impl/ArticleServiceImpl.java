@@ -17,6 +17,7 @@ import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -119,9 +120,13 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
-    public boolean saveEditedArticle(Long id, ArticleDTO articleDTO) {
+    public boolean saveEditedArticle(Long id, ArticleDTO articleDTO, UserDetails principal) {
 
         final Article article = this.articleRepository.findById(id).get();
+
+        if (!article.getUser().getEmail().equals(principal.getUsername())) {
+            return false;
+        }
 
         final Article editedArticle = mapToEditedArticle(article, articleDTO);
 
