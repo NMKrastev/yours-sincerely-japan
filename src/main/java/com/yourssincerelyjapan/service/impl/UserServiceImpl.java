@@ -178,6 +178,8 @@ public class UserServiceImpl implements UserService {
             return false;
         }
 
+        this.invalidateUserAuthentication();
+
         final User user = this.userRepository
                 .findByEmail(username)
                 .get();
@@ -269,8 +271,7 @@ public class UserServiceImpl implements UserService {
                 .isPresent();
     }
 
-    @Override
-    public void logoutUser() {
+    public void invalidateUserAuthentication() {
 
         final Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 

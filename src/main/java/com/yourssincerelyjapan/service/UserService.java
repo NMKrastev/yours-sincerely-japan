@@ -34,6 +34,4 @@ public interface UserService {
     boolean deleteProfilePicture(String username, Long id);
 
     boolean updatePassword(String username, String password);
-
-    void logoutUser();
 }

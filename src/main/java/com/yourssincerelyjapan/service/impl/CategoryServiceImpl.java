@@ -14,6 +14,7 @@ import com.yourssincerelyjapan.service.CategoryService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Service;
 
 import java.util.Comparator;
@@ -150,6 +151,17 @@ public class CategoryServiceImpl implements CategoryService {
 
             if (category.getArticles().isEmpty()) {
                 category.setLatestCreatedArticle(null);
+            } else {
+
+                final Article article = category.getArticles()
+                        .stream()
+                        .sorted(Comparator.comparing(Article::getCreatedOn).reversed())
+                        .toList()
+                        .get(0);
+
+                if (!article.getCreatedOn().toString().equals(category.getLatestCreatedArticle().toString())) {
+                    category.setLatestCreatedArticle(article.getCreatedOn());
+                }
             }
         }
 

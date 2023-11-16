@@ -159,6 +159,7 @@ public class ArticleController {
 
             //TODO: Implement it in the service.
             // Tried with @Aspect - didn't work; Tried with publishing the event in the service - didn't work;
+            // I think this is due to the @Transactional in the delete method;
             //It works only from here (for now)
             this.eventPublisher.publishEvent(new OnArticleChangeEvent(this));
 

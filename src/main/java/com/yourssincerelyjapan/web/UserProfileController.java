@@ -3,8 +3,6 @@ package com.yourssincerelyjapan.web;
 import com.yourssincerelyjapan.model.dto.UserDTO;
 import com.yourssincerelyjapan.service.UserService;
 import jakarta.servlet.http.HttpSession;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -108,8 +106,6 @@ public class UserProfileController {
         final boolean isEmailUpdated = this.userService.updateEmail(username, email);
 
         if (isEmailUpdated) {
-
-            this.userService.logoutUser();
 
             modelAndView.setViewName("redirect:/users/login");
 

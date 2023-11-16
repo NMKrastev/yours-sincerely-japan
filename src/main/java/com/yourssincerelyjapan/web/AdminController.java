@@ -1,5 +1,6 @@
 package com.yourssincerelyjapan.web;
 
+import com.yourssincerelyjapan.event.OnArticleChangeEvent;
 import com.yourssincerelyjapan.model.dto.UserDTO;
 import com.yourssincerelyjapan.model.dto.UserRoleDTO;
 import com.yourssincerelyjapan.service.AdminService;
@@ -7,6 +8,7 @@ import com.yourssincerelyjapan.service.UserRoleService;
 import com.yourssincerelyjapan.service.UserService;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -24,13 +26,15 @@ public class AdminController {
     private final AdminService adminService;
     private final UserService userService;
     private final UserRoleService userRoleService;
+    private final ApplicationEventPublisher eventPublisher;
 
     public AdminController(AdminService adminService, UserService userService,
-                           UserRoleService userRoleService) {
+                           UserRoleService userRoleService, ApplicationEventPublisher eventPublisher) {
 
         this.adminService = adminService;
         this.userService = userService;
         this.userRoleService = userRoleService;
+        this.eventPublisher = eventPublisher;
     }
 
     @ModelAttribute("allRoles")
@@ -138,7 +142,11 @@ public class AdminController {
 
         if (isDeleted) {
 
-            //TODO: Implement event listener with the method for clearing categories
+            //TODO: Implement it in the service.
+            // Tried with @Aspect - didn't work; Tried with publishing the event in the service - didn't work;
+            // I think this is due to the @Transactional in the delete method;
+            //It works only from here (for now)
+            this.eventPublisher.publishEvent(new OnArticleChangeEvent(this));
             modelAndView.setViewName("redirect:/admin/users/all");
 
         } else {
