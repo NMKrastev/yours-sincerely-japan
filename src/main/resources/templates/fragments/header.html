@@ -24,7 +24,7 @@
                     <a href="#"><i class="fa-regular fa-user"></i></a>
                     <ul>
                         <li><a th:href="@{/users/profile/{username}(username=${#authentication.name})}">Settings</a></li>
-                        <li><a th:href="@{/users/articles/{username}(username=${#authentication.name})}">My articles</a></li>
+                        <li><a th:href="@{/users/articles}">My articles</a></li>
                         <li>
                             <form id="logout"
                                   th:method="POST"

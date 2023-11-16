@@ -85,13 +85,12 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
-    public Page<GetArticleDTO> findUserArticles(Pageable pageable, String username) {
+    public Page<GetArticleDTO> findUserArticles(Pageable pageable, UserDetails principal) {
 
         final User user = this.userService
-                .findUserByEmail(username)
-                .orElseThrow(() -> new IllegalArgumentException(String.format("User with username %s not found!", username)));
+                .findUserByEmail(principal.getUsername())
+                .orElseThrow(() -> new IllegalArgumentException(String.format("User with username %s not found!", principal.getUsername())));
 
-        //TODO: This could return List<Article>, no need for Page at this stage;
         final Page<Article> articlePage = this.articleRepository
                 .findArticleByUserOrderByCreatedOnDesc(pageable, user);
 

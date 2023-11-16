@@ -13,7 +13,7 @@ public interface ArticleService {
 
     GetArticleDTO getSingleArticle(Long id);
 
-    Page<GetArticleDTO> findUserArticles(Pageable pageable, String username);
+    Page<GetArticleDTO> findUserArticles(Pageable pageable, UserDetails principal);
 
     Page<GetArticleDTO> findAllArticlesFromCategory(Pageable pageable, Category category);
 
