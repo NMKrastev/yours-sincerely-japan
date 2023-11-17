@@ -36,65 +36,6 @@ public class EmailServiceImpl implements EmailService {
         this.templateEngine = templateEngine;
     }
 
-/*    @Override
-    public void sendMail(String emailTo, String subject, String emailContent) throws MessagingException, UnsupportedEncodingException {
-
-        final MimeMessage message = this.javaMailSender.createMimeMessage();
-
-        final MimeMessageHelper helper = new MimeMessageHelper(message, true);
-
-        final InternetAddress fromAddress = new InternetAddress(this.emailConfiguration.getUsername(), "Yours Sincerely Japan");
-
-        helper.setFrom(fromAddress);
-        helper.setTo(emailTo);
-        helper.setSubject(subject);
-        helper.setText(emailContent);
-
-        this.javaMailSender.send(message);
-    }*/
-
-    @Override
-    public void sendSimpleVerificationEmail(String name, String emailTo, String token) throws UnsupportedEncodingException {
-
-        final InternetAddress fromAddress = new InternetAddress(this.emailConfiguration.getUsername(), "Yours Sincerely Japan");
-
-        final MimeMessage message = this.javaMailSender.createMimeMessage();
-
-        try {
-
-            final MimeMessageHelper helper = new MimeMessageHelper(message, true, "UTF-8");
-
-            helper.setPriority(1);
-            helper.setFrom(fromAddress);
-            helper.setSubject(SUBJECT_WELCOME);
-            helper.setTo(emailTo);
-            helper.setText(EmailUtils.getEmailMessage(name, token));
-
-            this.javaMailSender.send(message);
-
-            final Email sentEmail = Email
-                    .builder()
-                    .fromEmail(this.emailConfiguration.getUsername())
-                    .toEmail(emailTo)
-                    .subjectEmail(SUBJECT_WELCOME)
-                    .contentEmail(EmailUtils.getEmailMessage(name, token))
-                    .createdOn(LocalDateTime.now())
-                    .sent(true)
-                    .build();
-
-            this.emailRepository.save(sentEmail);
-
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            throw new RuntimeException(e.getMessage());
-        }
-    }
-
-    @Override
-    public void sendMimeEmailWithAttachments(String name, String to, String token) throws UnsupportedEncodingException {
-
-    }
-
     @Override
     @Async
     public void sendHtmlVerificationEmail(String name, String emailTo, String token) throws UnsupportedEncodingException {

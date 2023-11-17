@@ -11,6 +11,7 @@ public class ArticleChangeListener {
     private final CategoryService categoryService;
 
     public ArticleChangeListener(CategoryService categoryService) {
+
         this.categoryService = categoryService;
     }
 
