@@ -42,7 +42,8 @@
 }
 
 .site-content .latest-posts,
-.article-container .posted-by {
+.article-container .posted-by,
+.comment-container .posted-by {
   font-style: italic;
   font-size: 13px;
 }
@@ -165,6 +166,7 @@
 }
 
 .article-container,
+.comment-container,
 .form-container {
   /* border: 2px solid red; */
   display: flex;
@@ -181,6 +183,7 @@
 }
 
 .article-container article,
+.comment-container article,
 .form-container form {
   display: flex;
   flex-direction: column;
@@ -232,7 +235,8 @@
   object-position: center;
 }
 
-.article-container article .posted-by {
+.article-container article .posted-by,
+.comment-container article .posted-by{
   color: #cccccc;
   padding-top: 0.1em;
   padding-bottom: 0.3em;

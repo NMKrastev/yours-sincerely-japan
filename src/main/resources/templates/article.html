@@ -7,11 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Post</title>
     <link rel="stylesheet" href="/css/site.css"/>
-    <script
-            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-            crossorigin="anonymous"
-    ></script>
+            crossorigin="anonymous" ></script>
     <script src="/js/toggleMobileMenu.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
 </head>
@@ -111,6 +109,94 @@
                     </div>
 
                 </section>
+
+                <section class="single-post-comments">
+                    <!--th:each="comment : ${article.comments}"-->
+                    <div class="comment-container">
+                        <article>
+                            <div class="person-info pt-3">
+                                <div class="ratio in-article ratio-1x1 rounded-circle overflow-hidden"
+                                     th:if="*{user.profilePicture != null}">
+                                    <img th:src="'data:' + *{user.profilePicture.type} + ';base64,' + *{user.profilePicture.imageDataBase64}"
+                                         th:alt="*{user.profilePicture.name}" class="card-img-top img-cover">
+                                </div>
+                                <p class="posted-by">Posted by:
+                                    <th:block th:text="*{user.fullName}"></th:block>
+                                    on
+                                    <th:block th:text="*{#temporals.format(createdOn, 'dd-MM-yyyy')}"></th:block>
+                                </p>
+                            </div>
+                            <div class="comment-content">
+                                <div class="comment-text">
+                                    <p class="text-start pre">
+                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ultrices in iaculis nunc sed. Justo donec enim diam vulputate. Nisl condimentum id venenatis a condimentum. Id leo in vitae turpis massa sed. Mi ipsum faucibus vitae aliquet nec ullamcorper. Tellus cras adipiscing enim eu turpis. A iaculis at erat pellentesque. Phasellus egestas tellus rutrum tellus pellentesque eu. Neque convallis a cras semper auctor neque vitae tempus quam. Ridiculus mus mauris vitae ultricies leo integer malesuada nunc vel. Nunc sed velit dignissim sodales. Ante metus dictum at tempor commodo. Non diam phasellus vestibulum lorem sed. Congue nisi vitae suscipit tellus mauris a diam maecenas. Magna etiam tempor orci eu lobortis elementum. Nec sagittis aliquam malesuada bibendum arcu vitae elementum curabitur. Vulputate sapien nec sagittis aliquam malesuada bibendum arcu. Suspendisse interdum consectetur libero id faucibus nisl tincidunt. Ut morbi tincidunt augue interdum velit euismod in.
+                                    </p>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+
+                    <div class="comment-container">
+                        <article>
+                            <div class="person-info pt-3">
+                                <div class="ratio in-article ratio-1x1 rounded-circle overflow-hidden"
+                                     th:if="*{user.profilePicture != null}">
+                                    <img th:src="'data:' + *{user.profilePicture.type} + ';base64,' + *{user.profilePicture.imageDataBase64}"
+                                         th:alt="*{user.profilePicture.name}" class="card-img-top img-cover">
+                                </div>
+                                <p class="posted-by">Posted by:
+                                    <th:block th:text="*{user.fullName}"></th:block>
+                                    on
+                                    <th:block th:text="*{#temporals.format(createdOn, 'dd-MM-yyyy')}"></th:block>
+                                </p>
+                            </div>
+                            <div class="comment-content">
+                                <div class="comment-text">
+                                    <p class="text-start pre">
+                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ultrices in iaculis nunc sed. Justo donec enim diam vulputate. Nisl condimentum id venenatis a condimentum. Id leo in vitae turpis massa sed. Mi ipsum faucibus vitae aliquet nec ullamcorper. Tellus cras adipiscing enim eu turpis. A iaculis at erat pellentesque. Phasellus egestas tellus rutrum tellus pellentesque eu. Neque convallis a cras semper auctor neque vitae tempus quam. Ridiculus mus mauris vitae ultricies leo integer malesuada nunc vel. Nunc sed velit dignissim sodales. Ante metus dictum at tempor commodo. Non diam phasellus vestibulum lorem sed. Congue nisi vitae suscipit tellus mauris a diam maecenas. Magna etiam tempor orci eu lobortis elementum. Nec sagittis aliquam malesuada bibendum arcu vitae elementum curabitur. Vulputate sapien nec sagittis aliquam malesuada bibendum arcu. Suspendisse interdum consectetur libero id faucibus nisl tincidunt. Ut morbi tincidunt augue interdum velit euismod in.
+                                    </p>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+
+                    <div class="comment-container">
+                        <article>
+                            <form th:method="POST" th:action="@{/articles/single-article/comment}">
+
+                                <th:block th:if="${param.articleNotCreated}">
+                                    <div class="alert alert-danger text-center mt-2 mb-3" role="alert">
+                                        <small>Something went wrong! Please try again!</small>
+                                    </div>
+                                </th:block>
+
+                                <div class="mb-3 text-start">
+                                    <label for="commentContent" class="form-label m-3">Comment:</label>
+                                    <textarea class="form-control m-auto mw-90"
+                                              id="commentContent"
+                                              name="commentContent"
+                                              rows="5"
+                                              placeholder="Write your comment here..."></textarea>
+                                    <div class="invalid-feedback alert alert-danger" id="article-content-alert">
+                                        <th:block th:if="${#fields.hasErrors()}"
+                                                  th:errorclass="error"
+                                                  th:errors="*{content}"></th:block>
+                                    </div>
+                                </div>
+
+                                <div class="invalid-feedback alert alert-danger" id="checkbox-alert"></div>
+
+                                <div class="modal-footer justify-content-around border-top mt-3 mb-3">
+                                    <button type="button" class="btn btn-secondary mt-3" onclick="redirectToHome()">
+                                        Go to Home page
+                                    </button>
+                                    <button type="submit" class="btn btn-primary mt-3">Post comment</button>
+                                </div>
+                            </form>
+
+                        </article>
+                    </div>
+                </section>
             </div>
         </main>
     </div>
@@ -124,47 +210,9 @@
 <div th:replace="~{fragments/modal-delete-article.html :: modal-delete-article}"></div>
 
 <!-- Works - when entering full screen to exit on mobile or desktop click on the image again -->
-<script>
+<script th:src="@{/js/enterAndExitFullScreenImage.js}"></script>
 
-    const fullscreenImages = document.querySelectorAll('img');
+<script th:src="@{/js/redirectToHomeButton.js}"></script>
 
-    // Function to enter full-screen
-    function enterFullscreen(element) {
-        if (element.requestFullscreen) {
-            element.requestFullscreen();
-        } else if (element.mozRequestFullScreen) {
-            element.mozRequestFullScreen(); // Firefox
-        } else if (element.webkitRequestFullscreen) {
-            element.webkitRequestFullscreen(); // Chrome, Safari, and Opera
-        } else if (element.msRequestFullscreen) {
-            element.msRequestFullscreen(); // Internet Explorer
-        }
-    }
-
-    // Function to exit full-screen
-    function exitFullscreen() {
-        if (document.exitFullscreen) {
-            document.exitFullscreen();
-        } else if (document.mozCancelFullScreen) {
-            document.mozCancelFullScreen(); // Firefox
-        } else if (document.webkitExitFullscreen) {
-            document.webkitExitFullscreen(); // Chrome, Safari, and Opera
-        } else if (document.msExitFullscreen) {
-            document.msExitFullscreen(); // Internet Explorer
-        }
-    }
-
-    // Toggle full-screen mode when images are clicked
-    fullscreenImages.forEach((img) => {
-        img.addEventListener('click', () => {
-            if (!document.fullscreenElement) {
-                enterFullscreen(img);
-            } else {
-                exitFullscreen();
-            }
-        });
-    });
-
-</script>
 </body>
 </html>
