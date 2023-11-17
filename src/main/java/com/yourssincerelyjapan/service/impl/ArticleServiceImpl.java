@@ -1,6 +1,7 @@
 package com.yourssincerelyjapan.service.impl;
 
 import com.yourssincerelyjapan.event.OnArticleChangeEvent;
+import com.yourssincerelyjapan.event.OnArticleDeletionEvent;
 import com.yourssincerelyjapan.model.dto.ArticleDTO;
 import com.yourssincerelyjapan.model.dto.index.GetArticleDTO;
 import com.yourssincerelyjapan.model.entity.Article;
@@ -139,6 +140,8 @@ public class ArticleServiceImpl implements ArticleService {
     public boolean deleteArticle(Long id) {
 
         final Article article = this.articleRepository.findById(id).get();
+
+        this.eventPublisher.publishEvent(new OnArticleDeletionEvent(article.getComments()));
 
         this.articlePictureService.deleteArticlePictures(article);
 

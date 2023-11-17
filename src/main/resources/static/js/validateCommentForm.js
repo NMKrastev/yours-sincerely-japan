@@ -15,7 +15,7 @@ function validateCommentForm(event) {
     commentContentInput.classList.remove('is-invalid');
     commentContentAlert.innerHTML = '';
 
-    if (commentContentValue.length < 20) {
+    if (commentContentValue.length < 1) {
         isValid = false;
         commentContentError.textContent = 'Comment length must be at least 1 character long.';
         commentContentInput.classList.add('is-invalid');

@@ -72,4 +72,16 @@ public class CommentServiceImpl implements CommentService {
 
         return new PageImpl<>(articleComments, pageable, comments.getTotalElements());
     }
+
+    @Override
+    public void deleteCommentsFromDeletedArticle(List<Comment> comments) {
+
+        comments.forEach(c -> c.setArticle(null));
+        comments.forEach(c -> c.setUser(null));
+
+        this.commentRepository.saveAll(comments);
+
+        this.commentRepository.deleteAll(comments);
+
+    }
 }
