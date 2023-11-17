@@ -78,7 +78,8 @@
   flex: 1 1 50%;
 }
 
-#commentContent {
+#commentContent,
+#comment-content-alert {
   max-width: 90%;
   margin: auto;
 }

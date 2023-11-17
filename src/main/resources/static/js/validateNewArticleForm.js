@@ -30,7 +30,7 @@ function validateNewArticleForm(event) {
 
     if (!articleContentError) {
         articleContentError = document.createElement('small');
-        articleContentError.setAttribute('id', 'email-error');
+        articleContentError.setAttribute('id', 'article-content-error');
     }
 
     articleContentInput.classList.remove('is-invalid');

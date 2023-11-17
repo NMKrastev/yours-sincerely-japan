@@ -151,7 +151,9 @@
 
                     <div class="comment-container" sec:authorize="isAuthenticated()">
                         <article>
-                            <form th:method="POST" th:action="@{/articles/single-article/comment/{articleId}(articleId=${article.id})}">
+                            <form th:method="POST"
+                                  th:action="@{/articles/single-article/comment/{articleId}(articleId=${article.id})}"
+                                  id="comment-form">
 
                                 <!--<th:block th:if="${param.articleNotCreated}">
                                     <div class="alert alert-danger text-center mt-2 mb-3" role="alert">
@@ -166,15 +168,16 @@
                                               name="commentContent"
                                               rows="5"
                                               placeholder="Write your comment here..."></textarea>
+                                    <div class="invalid-feedback alert alert-danger mt-2" id="comment-content-alert">
+
+                                    </div>
                                     <th:block th:if="${badCommentContent}">
                                         <div class="alert alert-danger text-center mx-5" role="alert">
                                             The field is mandatory.</br>
                                             Comment length must be at least 1 character long.
                                         </div>
                                     </th:block>
-
-
-                                <div class="invalid-feedback alert alert-danger" id="checkbox-alert"></div>
+                                </div>
 
                                 <div class="modal-footer justify-content-around border-top mt-3 mb-3">
                                     <button type="button" class="btn btn-secondary mt-3" onclick="redirectToHome()">
@@ -203,6 +206,8 @@
 <script th:src="@{/js/enterAndExitFullScreenImage.js}"></script>
 
 <script th:src="@{/js/redirectToHomeButton.js}"></script>
+
+<script th:src="@{/js/validateCommentForm.js}"></script>
 
 </body>
 </html>
