@@ -44,18 +44,18 @@ public class EmailServiceImpl implements EmailService {
     @Async
     public void sendHtmlVerificationEmail(String name, String emailTo, String token) throws UnsupportedEncodingException {
 
-        final InternetAddress fromAddress = new InternetAddress(this.emailConfiguration.getUsername(), "Yours Sincerely Japan");
+        final InternetAddress fromAddress = new InternetAddress(this.emailConfiguration.getUsername(), YOURS_SINCERELY_JAPAN);
         final MimeMessage message = this.javaMailSender.createMimeMessage();
 
         try {
 
             final Context context = new Context();
-            context.setVariable("name", name);
-            context.setVariable("url", EmailUtils.getVerificationUrl(token));
+            context.setVariable(NAME, name);
+            context.setVariable(URL, EmailUtils.getVerificationUrl(token));
 
-            String text = this.templateEngine.process("verify-email", context);
+            String text = this.templateEngine.process(VERIFY_EMAIL_TEMPLATE, context);
 
-            final MimeMessageHelper helper = new MimeMessageHelper(message, true, "UTF-8");
+            final MimeMessageHelper helper = new MimeMessageHelper(message, true, EMAIL_ENCODING);
 
             helper.setPriority(1);
             helper.setFrom(fromAddress);
