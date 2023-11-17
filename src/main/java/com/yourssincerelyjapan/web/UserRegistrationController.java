@@ -80,7 +80,6 @@ public class UserRegistrationController {
 
         if (!isVerificationSuccess) {
 
-            //TODO: create token-not-exist.html page;
             modelAndView.setViewName("redirect:/users/login?isInvalidToken=true");
 
             return modelAndView;

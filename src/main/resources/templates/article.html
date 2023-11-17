@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Post</title>
+    <title>Article</title>
     <link rel="stylesheet" href="/css/site.css"/>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
@@ -112,63 +112,52 @@
 
                 <section class="single-post-comments">
                     <!--th:each="comment : ${article.comments}"-->
-                    <div class="comment-container">
-                        <article>
-                            <div class="person-info pt-3">
-                                <div class="ratio in-article ratio-1x1 rounded-circle overflow-hidden"
-                                     th:if="*{user.profilePicture != null}">
-                                    <img th:src="'data:' + *{user.profilePicture.type} + ';base64,' + *{user.profilePicture.imageDataBase64}"
-                                         th:alt="*{user.profilePicture.name}" class="card-img-top img-cover">
-                                </div>
-                                <p class="posted-by">Posted by:
-                                    <th:block th:text="*{user.fullName}"></th:block>
-                                    on
-                                    <th:block th:text="*{#temporals.format(createdOn, 'dd-MM-yyyy')}"></th:block>
-                                </p>
-                            </div>
-                            <div class="comment-content">
-                                <div class="comment-text">
-                                    <p class="text-start pre">
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ultrices in iaculis nunc sed. Justo donec enim diam vulputate. Nisl condimentum id venenatis a condimentum. Id leo in vitae turpis massa sed. Mi ipsum faucibus vitae aliquet nec ullamcorper. Tellus cras adipiscing enim eu turpis. A iaculis at erat pellentesque. Phasellus egestas tellus rutrum tellus pellentesque eu. Neque convallis a cras semper auctor neque vitae tempus quam. Ridiculus mus mauris vitae ultricies leo integer malesuada nunc vel. Nunc sed velit dignissim sodales. Ante metus dictum at tempor commodo. Non diam phasellus vestibulum lorem sed. Congue nisi vitae suscipit tellus mauris a diam maecenas. Magna etiam tempor orci eu lobortis elementum. Nec sagittis aliquam malesuada bibendum arcu vitae elementum curabitur. Vulputate sapien nec sagittis aliquam malesuada bibendum arcu. Suspendisse interdum consectetur libero id faucibus nisl tincidunt. Ut morbi tincidunt augue interdum velit euismod in.
+
+                    <th:block th:if="${!#lists.isEmpty(comments.getContent())}">
+
+                        <div class="mt-2 mb-4 pb-2 text-start fst-italic border-bottom border-3 border-danger-subtle">
+                            <h4>
+                                Comments
+                            </h4>
+                        </div>
+
+                        <div class="comment-container" th:each="comment : ${comments}">
+                            <article>
+                                <div class="person-info pt-3">
+                                    <div class="ratio in-comment ratio-1x1 rounded-circle overflow-hidden"
+                                         th:if="${comment.user.profilePicture != null}">
+                                        <img th:src="'data:' + ${comment.user.profilePicture.type} + ';base64,' + ${comment.user.profilePicture.imageDataBase64}"
+                                             th:alt="${comment.user.profilePicture.name}" class="card-img-top img-cover">
+                                    </div>
+                                    <p class="posted-by">Posted by:
+                                        <th:block th:text="${comment.user.fullName}"></th:block>
+                                        on
+                                        <th:block th:text="${#temporals.format(comment.createdOn, 'dd-MM-yyyy')}"></th:block>
                                     </p>
                                 </div>
-                            </div>
-                        </article>
-                    </div>
-
-                    <div class="comment-container">
-                        <article>
-                            <div class="person-info pt-3">
-                                <div class="ratio in-article ratio-1x1 rounded-circle overflow-hidden"
-                                     th:if="*{user.profilePicture != null}">
-                                    <img th:src="'data:' + *{user.profilePicture.type} + ';base64,' + *{user.profilePicture.imageDataBase64}"
-                                         th:alt="*{user.profilePicture.name}" class="card-img-top img-cover">
+                                <div class="comment-content">
+                                    <div class="comment-text">
+                                        <p class="text-start pre">
+                                            <th:block th:text="${comment.commentContent}"></th:block>
+                                        </p>
+                                    </div>
                                 </div>
-                                <p class="posted-by">Posted by:
-                                    <th:block th:text="*{user.fullName}"></th:block>
-                                    on
-                                    <th:block th:text="*{#temporals.format(createdOn, 'dd-MM-yyyy')}"></th:block>
-                                </p>
-                            </div>
-                            <div class="comment-content">
-                                <div class="comment-text">
-                                    <p class="text-start pre">
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ultrices in iaculis nunc sed. Justo donec enim diam vulputate. Nisl condimentum id venenatis a condimentum. Id leo in vitae turpis massa sed. Mi ipsum faucibus vitae aliquet nec ullamcorper. Tellus cras adipiscing enim eu turpis. A iaculis at erat pellentesque. Phasellus egestas tellus rutrum tellus pellentesque eu. Neque convallis a cras semper auctor neque vitae tempus quam. Ridiculus mus mauris vitae ultricies leo integer malesuada nunc vel. Nunc sed velit dignissim sodales. Ante metus dictum at tempor commodo. Non diam phasellus vestibulum lorem sed. Congue nisi vitae suscipit tellus mauris a diam maecenas. Magna etiam tempor orci eu lobortis elementum. Nec sagittis aliquam malesuada bibendum arcu vitae elementum curabitur. Vulputate sapien nec sagittis aliquam malesuada bibendum arcu. Suspendisse interdum consectetur libero id faucibus nisl tincidunt. Ut morbi tincidunt augue interdum velit euismod in.
-                                    </p>
-                                </div>
-                            </div>
-                        </article>
-                    </div>
+                            </article>
+                        </div>
 
-                    <div class="comment-container">
+                        <nav th:replace="~{fragments/pagination-article-comments.html :: pagination-article-comments}"></nav>
+
+                    </th:block>
+
+                    <div class="comment-container" sec:authorize="isAuthenticated()">
                         <article>
-                            <form th:method="POST" th:action="@{/articles/single-article/comment}">
+                            <form th:method="POST" th:action="@{/articles/single-article/comment/{articleId}(articleId=${article.id})}">
 
-                                <th:block th:if="${param.articleNotCreated}">
+                                <!--<th:block th:if="${param.articleNotCreated}">
                                     <div class="alert alert-danger text-center mt-2 mb-3" role="alert">
                                         <small>Something went wrong! Please try again!</small>
                                     </div>
-                                </th:block>
+                                </th:block>-->
 
                                 <div class="mb-3 text-start">
                                     <label for="commentContent" class="form-label m-3">Comment:</label>
@@ -177,12 +166,13 @@
                                               name="commentContent"
                                               rows="5"
                                               placeholder="Write your comment here..."></textarea>
-                                    <div class="invalid-feedback alert alert-danger" id="article-content-alert">
-                                        <th:block th:if="${#fields.hasErrors()}"
-                                                  th:errorclass="error"
-                                                  th:errors="*{content}"></th:block>
-                                    </div>
-                                </div>
+                                    <th:block th:if="${badCommentContent}">
+                                        <div class="alert alert-danger text-center mx-5" role="alert">
+                                            The field is mandatory.</br>
+                                            Comment length must be at least 1 character long.
+                                        </div>
+                                    </th:block>
+
 
                                 <div class="invalid-feedback alert alert-danger" id="checkbox-alert"></div>
 

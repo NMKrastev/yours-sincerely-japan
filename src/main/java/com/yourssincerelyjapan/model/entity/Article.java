@@ -47,4 +47,7 @@ public class Article extends BaseEntity {
 
     @ManyToOne(fetch = FetchType.EAGER)
     private User user;
+
+    @OneToMany(mappedBy = "article", fetch = FetchType.EAGER)
+    private List<Comment> comments = new ArrayList<>();
 }

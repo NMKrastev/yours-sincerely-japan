@@ -1,29 +1,22 @@
 package com.yourssincerelyjapan.model.dto.index;
 
-import com.yourssincerelyjapan.model.dto.CommentDTO;
+import com.yourssincerelyjapan.model.dto.UserDTO;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class GetArticleDTO {
+public class GetCommentDTO {
 
-    private Long id;
-
-    private String title;
-
-    private String content;
+    private String commentContent;
 
     private LocalDateTime createdOn;
-
-    private List<GetArticlePictureDTO> pictures;
 
     private GetUserDTO user;
 }

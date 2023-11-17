@@ -3,10 +3,15 @@ package com.yourssincerelyjapan.web;
 import com.yourssincerelyjapan.event.OnArticleChangeEvent;
 import com.yourssincerelyjapan.model.dto.ArticleDTO;
 import com.yourssincerelyjapan.model.dto.index.GetArticleDTO;
+import com.yourssincerelyjapan.model.dto.index.GetCommentDTO;
 import com.yourssincerelyjapan.service.ArticleService;
+import com.yourssincerelyjapan.service.CommentService;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import org.springframework.context.ApplicationEventPublisher;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
@@ -16,16 +21,21 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.util.List;
+
 @Controller
 @RequestMapping("/articles")
 public class ArticleController {
 
     private final ArticleService articleService;
+    private final CommentService commentService;
     private final ApplicationEventPublisher eventPublisher;
 
-    public ArticleController(ArticleService articleService, ApplicationEventPublisher eventPublisher) {
+    public ArticleController(ArticleService articleService, CommentService commentService,
+                             ApplicationEventPublisher eventPublisher) {
 
         this.articleService = articleService;
+        this.commentService = commentService;
         this.eventPublisher = eventPublisher;
     }
 
@@ -49,11 +59,23 @@ public class ArticleController {
 
     @GetMapping("/single-article")
     public ModelAndView getUserArticle(ModelAndView modelAndView,
-                                       @SessionAttribute("articleId") Long id) {
+                                       @SessionAttribute("articleId") Long id,
+                                       @SessionAttribute(value = "badCommentContent", required = false) boolean badCommentContent,
+                                       HttpSession session,
+                                       @PageableDefault(size = 5) Pageable pageable) {
+
+        if (badCommentContent) {
+
+            modelAndView.addObject("badCommentContent", true);
+
+            session.removeAttribute("badCommentContent");
+        }
 
         final GetArticleDTO article = this.articleService.getSingleArticle(id);
+        final Page<GetCommentDTO> comments = this.commentService.getArticleComments(pageable, id);
 
         modelAndView.addObject("article", article);
+        modelAndView.addObject("comments", comments);
 
         modelAndView.setViewName("article");
 
