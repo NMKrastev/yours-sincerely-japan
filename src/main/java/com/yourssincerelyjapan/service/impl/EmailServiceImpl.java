@@ -7,9 +7,11 @@ import com.yourssincerelyjapan.service.EmailService;
 import com.yourssincerelyjapan.utils.EmailUtils;
 import jakarta.mail.internet.InternetAddress;
 import jakarta.mail.internet.MimeMessage;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.scheduling.annotation.Async;
+import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.stereotype.Service;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.Context;
@@ -20,6 +22,8 @@ import java.time.LocalDateTime;
 import static com.yourssincerelyjapan.constant.EmailConstant.*;
 
 @Service
+@Configuration
+@EnableAsync
 public class EmailServiceImpl implements EmailService {
 
     private final EmailRepository emailRepository;
