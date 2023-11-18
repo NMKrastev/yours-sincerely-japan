@@ -9,10 +9,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -62,6 +59,51 @@ public class CommentController {
         } else {
 
             //TODO: implement logic if false;
+        }
+
+        return modelAndView;
+    }
+
+    @PatchMapping("/comment/edit/{id}")
+    public ModelAndView editComment(ModelAndView modelAndView,
+                                    @PathVariable("id") Long id,
+                                    @RequestParam("commentContent") String commentContent,
+                                    HttpSession session) {
+
+        final Long articleId = this.commentService.editComment(id, commentContent);
+
+        if (articleId != null) {
+
+            modelAndView.setViewName(String.format("redirect:/articles/single-article/%d", articleId));
+
+        } else {
+
+            session.setAttribute("badCommentEditContent", true);
+
+            //TODO: implement logic;
+
+        }
+
+        return modelAndView;
+    }
+
+    @DeleteMapping("/comment/delete/{id}")
+    public ModelAndView deleteComment(ModelAndView modelAndView,
+                                      @PathVariable("id") Long id,
+                                      HttpSession session) {
+
+        final Long articleId = this.commentService.deleteComment(id);
+
+        if (articleId != null) {
+
+            modelAndView.setViewName(String.format("redirect:/articles/single-article/%d", articleId));
+
+        } else {
+
+            session.setAttribute("badCommentDeletion", true);
+
+            //TODO: implement logic;
+
         }
 
         return modelAndView;

@@ -24,6 +24,9 @@ public class Comment extends BaseEntity {
     @Column(name = "created_on")
     private LocalDateTime createdOn;
 
+    @Column(name = "modified_on")
+    private LocalDateTime modifiedOn;
+
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinTable(name = "users_comments",
             joinColumns = @JoinColumn(name = "user_id"),

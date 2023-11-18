@@ -61,6 +61,8 @@ public class ArticleController {
     public ModelAndView getUserArticle(ModelAndView modelAndView,
                                        @SessionAttribute("articleId") Long id,
                                        @SessionAttribute(value = "badCommentContent", required = false) boolean badCommentContent,
+                                       @SessionAttribute(value = "badCommentEditContent", required = false) boolean badCommentEditContent,
+                                       @SessionAttribute(value = "badCommentDeletion", required = false) boolean badCommentDeletion,
                                        HttpSession session,
                                        @PageableDefault(size = 5) Pageable pageable) {
 
@@ -69,6 +71,20 @@ public class ArticleController {
             modelAndView.addObject("badCommentContent", true);
 
             session.removeAttribute("badCommentContent");
+        }
+
+        if (badCommentEditContent) {
+
+            modelAndView.addObject("badCommentEditContent", true);
+
+            session.removeAttribute("badCommentEditContent");
+        }
+
+        if (badCommentDeletion) {
+
+            modelAndView.addObject("badCommentDeletion", true);
+
+            session.removeAttribute("badCommentDeletion");
         }
 
         final GetArticleDTO article = this.articleService.getSingleArticle(id);

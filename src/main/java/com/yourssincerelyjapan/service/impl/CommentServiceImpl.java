@@ -1,7 +1,6 @@
 package com.yourssincerelyjapan.service.impl;
 
 import com.yourssincerelyjapan.model.dto.CommentDTO;
-import com.yourssincerelyjapan.model.dto.index.GetArticleDTO;
 import com.yourssincerelyjapan.model.dto.index.GetCommentDTO;
 import com.yourssincerelyjapan.model.entity.Article;
 import com.yourssincerelyjapan.model.entity.Comment;
@@ -16,8 +15,9 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Comparator;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -83,5 +83,48 @@ public class CommentServiceImpl implements CommentService {
 
         this.commentRepository.deleteAll(comments);
 
+    }
+
+    @Override
+    public Long editComment(Long id, String commentContent) {
+
+        if (commentContent.isEmpty()) {
+            return null;
+        }
+
+        final Optional<Comment> optComment = this.commentRepository.findById(id);
+
+        if (optComment.isEmpty()) {
+            return null;
+        }
+
+        final Comment comment = optComment.get();
+        comment.setCommentContent(commentContent);
+        comment.setModifiedOn(LocalDateTime.now());
+
+        this.commentRepository.save(comment);
+
+        return comment.getArticle().getId();
+    }
+
+    @Override
+    @Transactional
+    public Long deleteComment(Long id) {
+
+        final Optional<Comment> optComment = this.commentRepository.findById(id);
+
+        if (optComment.isEmpty()) {
+            return null;
+        }
+
+        final Long articleId = optComment.get().getArticle().getId();
+
+        final Comment comment = optComment.get();
+        comment.setUser(null);
+        comment.setArticle(null);
+
+        this.commentRepository.delete(comment);
+
+        return articleId;
     }
 }

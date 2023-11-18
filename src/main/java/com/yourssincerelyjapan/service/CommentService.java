@@ -16,4 +16,8 @@ public interface CommentService {
     Page<GetCommentDTO> getArticleComments(Pageable pageable, Long id);
 
     void deleteCommentsFromDeletedArticle(List<Comment> comments);
+
+    Long editComment(Long id, String commentContent);
+
+    Long deleteComment(Long id);
 }

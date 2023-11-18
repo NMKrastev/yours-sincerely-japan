@@ -42,6 +42,8 @@ public class SecurityConfiguration {
                                 .requestMatchers("/articles/single-article/{id}").permitAll()
                                 .requestMatchers("/articles/new").hasRole(UserRoleEnum.USER.name())
                                 .requestMatchers("/articles/single-article/comment/{articleID}").hasRole(UserRoleEnum.USER.name())
+                                .requestMatchers("/articles/single-article/comment/edit/{id}").hasRole(UserRoleEnum.USER.name())
+                                .requestMatchers("/articles/single-article/comment/delete/{id}").hasRole(UserRoleEnum.USER.name())
                                 .requestMatchers(HttpMethod.PATCH, "/articles/edit/{id}").hasRole(UserRoleEnum.USER.name())
                                 .requestMatchers(HttpMethod.DELETE, "/articles/delete/{id}").hasRole(UserRoleEnum.USER.name())
                                 .requestMatchers("/users/profile", "/users/profile").hasRole(UserRoleEnum.USER.name())

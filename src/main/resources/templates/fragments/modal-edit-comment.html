@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit comment modal</title>
+</head>
+<body>
+
+<div th:fragment="modal-edit-comment">
+
+    <!-- Modal Edit Comment -->
+    <div class="modal fade" id="editComment" tabindex="-1" aria-labelledby="editCommentLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <form id="edit-comment-form"
+                      th:action="@{/articles/single-article/comment/edit/{id}(id=${comment.id})}"
+                      th:method="PATCH">
+                    <div class="modal-header">
+                        <h2 class="modal-title fs-5" id="editCommentLabel">
+                            Comment:
+                        </h2>
+                        <button type="button"
+                                class="btn-close"
+                                data-bs-dismiss="modal"
+                                aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <textarea class="form-control m-auto mw-90"
+                                  id="editCommentContent"
+                                  name="commentContent"
+                                  rows="5"
+                                  th:text="${comment.commentContent}"></textarea>
+                        <div class="invalid-feedback alert alert-danger" id="edit-comment-content-alert"></div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script th:src="@{/js/validateEditCommentForm.js}"></script>
+
+</div>
+
+</body>
+</html>

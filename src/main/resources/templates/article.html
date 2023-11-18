@@ -142,6 +142,41 @@
                                         </p>
                                     </div>
                                 </div>
+
+                                <th:block sec:authorize="hasRole('USER')">
+                                    <th:block th:if="${comment.user.email == #authentication.name || #authorization.expression('hasRole(''ADMIN'')')}">
+                                        <div class="container d-flex justify-content-around pt-1 pb-4">
+                                            <button type="button" class="btn btn-warning btn-sm border-1 border-black"
+                                                    data-bs-toggle="modal"
+                                                    data-bs-target="#editComment">
+                                                Edit comment
+                                            </button>
+                                            <button type="button" class="btn btn-danger btn-sm border-1 border-black"
+                                                    data-bs-toggle="modal"
+                                                    data-bs-target="#deleteCommentModal">
+                                                Delete comment
+                                            </button>
+                                        </div>
+                                    </th:block>
+                                </th:block>
+
+                                <div th:replace="~{fragments/modal-edit-comment.html :: modal-edit-comment}"></div>
+                                <div th:replace="~{fragments/modal-delete-comment.html :: modal-delete-comment}"></div>
+
+                                <th:block th:if="${badCommentEditContent}">
+                                    <div class="alert alert-danger text-center mt-2 mx-5" role="alert">
+                                        The field is mandatory.</br>
+                                        Comment length must be at least 1 character long.
+                                        Please make sure you are entering correct data.
+                                    </div>
+                                </th:block>
+
+                                <th:block th:if="${badCommentDeletion}">
+                                    <div class="alert alert-danger text-center mt-2 mx-5" role="alert">
+                                        Something went wrong. Please try to delete your comment again.
+                                    </div>
+                                </th:block>
+
                             </article>
                         </div>
 
@@ -172,7 +207,7 @@
 
                                     </div>
                                     <th:block th:if="${badCommentContent}">
-                                        <div class="alert alert-danger text-center mx-5" role="alert">
+                                        <div class="alert alert-danger text-center mt-2 mx-5" role="alert">
                                             The field is mandatory.</br>
                                             Comment length must be at least 1 character long.
                                         </div>

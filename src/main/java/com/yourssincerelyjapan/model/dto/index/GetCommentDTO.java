@@ -1,6 +1,5 @@
 package com.yourssincerelyjapan.model.dto.index;
 
-import com.yourssincerelyjapan.model.dto.UserDTO;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,6 +12,8 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 public class GetCommentDTO {
+
+    private Long id;
 
     private String commentContent;
 
