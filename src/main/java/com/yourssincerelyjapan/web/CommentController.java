@@ -70,19 +70,16 @@ public class CommentController {
                                     @RequestParam("commentContent") String commentContent,
                                     HttpSession session) {
 
+
         final Long articleId = this.commentService.editComment(id, commentContent);
 
-        if (articleId != null) {
-
-            modelAndView.setViewName(String.format("redirect:/articles/single-article/%d", articleId));
-
-        } else {
+        if (commentContent.isEmpty()) {
 
             session.setAttribute("badCommentEditContent", true);
-
-            //TODO: implement logic;
-
+            session.setAttribute("commentId", id);
         }
+
+        modelAndView.setViewName(String.format("redirect:/articles/single-article/%d", articleId));
 
         return modelAndView;
     }
@@ -101,8 +98,6 @@ public class CommentController {
         } else {
 
             session.setAttribute("badCommentDeletion", true);
-
-            //TODO: implement logic;
 
         }
 

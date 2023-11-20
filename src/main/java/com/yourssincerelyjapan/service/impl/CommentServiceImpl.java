@@ -17,6 +17,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.nio.file.attribute.UserPrincipalNotFoundException;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
@@ -88,38 +89,34 @@ public class CommentServiceImpl implements CommentService {
     @Override
     public Long editComment(Long id, String commentContent) {
 
+        final Comment comment = this.commentRepository
+                .findById(id)
+                .orElseThrow(() -> new IllegalArgumentException(String.format("Username with id %d not found!", id)));
+
+        final Long articleId = comment.getArticle().getId();
+
         if (commentContent.isEmpty()) {
-            return null;
+            return articleId;
         }
 
-        final Optional<Comment> optComment = this.commentRepository.findById(id);
-
-        if (optComment.isEmpty()) {
-            return null;
-        }
-
-        final Comment comment = optComment.get();
         comment.setCommentContent(commentContent);
         comment.setModifiedOn(LocalDateTime.now());
 
         this.commentRepository.save(comment);
 
-        return comment.getArticle().getId();
+        return articleId;
     }
 
     @Override
     @Transactional
-    public Long deleteComment(Long id) {
+    public Long deleteComment(Long id) throws IllegalArgumentException {
 
-        final Optional<Comment> optComment = this.commentRepository.findById(id);
+        final Comment comment = this.commentRepository
+                .findById(id)
+                .orElseThrow(() -> new IllegalArgumentException(String.format("Comment with id %d not found!", id)));
 
-        if (optComment.isEmpty()) {
-            return null;
-        }
+        final Long articleId = comment.getArticle().getId();
 
-        final Long articleId = optComment.get().getArticle().getId();
-
-        final Comment comment = optComment.get();
         comment.setUser(null);
         comment.setArticle(null);
 

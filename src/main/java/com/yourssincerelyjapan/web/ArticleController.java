@@ -62,6 +62,7 @@ public class ArticleController {
                                        @SessionAttribute("articleId") Long id,
                                        @SessionAttribute(value = "badCommentContent", required = false) boolean badCommentContent,
                                        @SessionAttribute(value = "badCommentEditContent", required = false) boolean badCommentEditContent,
+                                       @SessionAttribute(value = "commentId", required = false) Long commentId,
                                        @SessionAttribute(value = "badCommentDeletion", required = false) boolean badCommentDeletion,
                                        HttpSession session,
                                        @PageableDefault(size = 5) Pageable pageable) {
@@ -76,8 +77,10 @@ public class ArticleController {
         if (badCommentEditContent) {
 
             modelAndView.addObject("badCommentEditContent", true);
+            modelAndView.addObject("commentId", commentId);
 
             session.removeAttribute("badCommentEditContent");
+            session.removeAttribute("commentId");
         }
 
         if (badCommentDeletion) {
