@@ -8,6 +8,7 @@ import com.yourssincerelyjapan.utils.EmailUtils;
 import jakarta.mail.internet.InternetAddress;
 import jakarta.mail.internet.MimeMessage;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.scheduling.annotation.Async;
@@ -42,6 +43,21 @@ public class EmailServiceImpl implements EmailService {
 
     @Override
     @Async
+    public void sendSimpleEmail(String name, String from, String messageContent) {
+
+        final SimpleMailMessage message = new SimpleMailMessage();
+
+        message.setSubject(String.format("Message from User: %s", name));
+        message.setFrom(from);
+        message.setTo(this.emailConfiguration.getUsername());
+        message.setText(messageContent);
+
+        this.javaMailSender.send(message);
+
+    }
+
+    @Override
+    @Async
     public void sendHtmlVerificationEmail(String name, String emailTo, String token) throws UnsupportedEncodingException {
 
         final InternetAddress fromAddress = new InternetAddress(this.emailConfiguration.getUsername(), YOURS_SINCERELY_JAPAN);
@@ -53,7 +69,7 @@ public class EmailServiceImpl implements EmailService {
             context.setVariable(NAME, name);
             context.setVariable(URL, EmailUtils.getVerificationUrl(token));
 
-            String text = this.templateEngine.process(VERIFY_EMAIL_TEMPLATE, context);
+            final String text = this.templateEngine.process(VERIFY_EMAIL_TEMPLATE, context);
 
             final MimeMessageHelper helper = new MimeMessageHelper(message, true, EMAIL_ENCODING);
 

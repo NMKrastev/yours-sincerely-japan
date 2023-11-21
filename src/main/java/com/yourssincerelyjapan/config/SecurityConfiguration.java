@@ -34,8 +34,9 @@ public class SecurityConfiguration {
                         authorizeRequests -> authorizeRequests
                                 // All static resources which are situated in js, images, css are available for anyone
                                 .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
+                                .requestMatchers("/contacts").permitAll()
                                 // Allow anyone to see the home page, the registration page and the login form
-                                .requestMatchers("/", "/users/registration", "/users/login", "/users/login-error", "/users/account-verification").permitAll()
+                                .requestMatchers("/", "/contacts", "/users/registration", "/users/login", "/users/login-error", "/users/account-verification").permitAll()
                                 .requestMatchers("/japan/api/news", "/japan/news", "/japan/history").permitAll()
                                 .requestMatchers("/categories/all", "/categories/{category}").permitAll()
                                 .requestMatchers("/articles/single-article").permitAll()
