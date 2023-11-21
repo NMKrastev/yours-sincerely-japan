@@ -40,6 +40,14 @@
   .required-asterisk {
     font-size: 20px;
   }
+
+  .about-text p {
+    padding: 2em 6em;
+  }
+
+  .about-text p strong {
+    font-size: 1.2em;
+  }
 }
 
 @media (max-width: 900px) {
@@ -62,6 +70,14 @@
 
   .main-news .news-site-content .news-section-category article {
     flex: 1 1 40%;
+  }
+
+  .about-text p {
+    padding: 1em 3em;
+  }
+
+  .about-text p strong {
+    font-size: 1.1em;
   }
 }
 
@@ -89,6 +105,10 @@
 
   #main-profile-section .profile-section {
     flex: 1 1 100%;
+  }
+
+  .about-text p {
+    padding: 1em 1em;
   }
 }
 

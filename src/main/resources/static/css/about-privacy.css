@@ -1,0 +1,70 @@
+.main-about {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    flex-wrap: wrap;
+    padding: 1em 2em;
+    text-align: center;
+}
+
+.about-main-section-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.about-site-content > div h2,
+.about-text p strong {
+    color: #bc002d;
+}
+
+.about-section {
+    display: flex;
+    /*flex: 1 1 80%;*/
+    flex-direction: column;
+    margin-top: 1em;
+    /* margin-bottom: 1em; */
+    overflow-wrap: anywhere;
+    max-width: 70vw;
+}
+
+.about-container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+.about-container article {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 350px; /* when wrapped on a new line the box remains same as the others if this is "turned off". */
+    flex-wrap: nowrap;
+    margin: 0 1.5em 1.5em 1.5em;
+    border-radius: 0.5em;
+    box-shadow: 0 0 1em 0.2em rgba(0, 0, 0, 0.2);
+}
+
+.about-container article .about-content {
+    padding-top: 0.3em;
+}
+
+.about-text {
+    display: flex;
+    max-width: 100%;
+    flex: 1 1 50%;
+}
+
+.about-text p {
+    padding: 3em 9em;
+}
+
+.about-text p strong {
+    font-size: 1.4em;
+}
+
+.about-text p a {
+    text-decoration: none;
+    color: #BC002D;
+}
