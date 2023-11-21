@@ -41,11 +41,13 @@
     font-size: 20px;
   }
 
-  .about-text p {
+  .about-text p,
+  .privacy-text p {
     padding: 2em 6em;
   }
 
-  .about-text p strong {
+  .about-text p strong,
+  .privacy-text p strong {
     font-size: 1.2em;
   }
 }
@@ -72,11 +74,13 @@
     flex: 1 1 40%;
   }
 
-  .about-text p {
+  .about-text p,
+  .privacy-text p {
     padding: 1em 3em;
   }
 
-  .about-text p strong {
+  .about-text p strong,
+  .privacy-text p strong {
     font-size: 1.1em;
   }
 }
@@ -107,7 +111,8 @@
     flex: 1 1 100%;
   }
 
-  .about-text p {
+  .about-text p,
+  .privacy-text p {
     padding: 1em 1em;
   }
 }
