@@ -2,24 +2,24 @@ function validateRegistrationForm(event) {
 
 let isValid = true;
 
-let nameInput = document.getElementById('name');
-let nameValue = nameInput.value.trim();
-let nameAlert = document.getElementById('name-alert');
-let smallName = document.getElementById('name-error');
+let fullNameInput = document.getElementById('fullName');
+let fullNameValue = fullNameInput.value.trim();
+let fullNameAlert = document.getElementById('fullName-alert');
+let smallFullName = document.getElementById('fullName-error');
 
-if (!smallName) {
-    smallName = document.createElement('small');
-    smallName.setAttribute('id', 'name-error');
+if (!smallFullName) {
+    smallFullName = document.createElement('small');
+    smallFullName.setAttribute('id', 'fullName-error');
 }
 
-nameInput.classList.remove('is-invalid');
-nameAlert.innerHTML = '';
+fullNameInput.classList.remove('is-invalid');
+fullNameAlert.innerHTML = '';
 
-if (nameValue.length < 1 || nameValue.length > 30) {
+if (fullNameValue.length < 1 || fullNameValue.length > 30) {
     isValid = false;
-    smallName.textContent = 'Full name must be between 1 and 30 characters.';
-    nameInput.classList.add('is-invalid');
-    nameAlert.appendChild(smallName);
+    smallFullName.textContent = 'Full name must be between 1 and 30 characters.';
+    fullNameInput.classList.add('is-invalid');
+    fullNameAlert.appendChild(smallFullName);
     event.preventDefault();
 }
 

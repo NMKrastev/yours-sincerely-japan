@@ -19,4 +19,5 @@ public enum DTOValidationMessage {
     public static final String ARTICLE_CATEGORIES_SELECT = "You must select at least one category.";
     public static final String CHOOSE_ROLE = "Choose a role!";
     public static final String COMMENT_LENGTH = "Comment length must be at least 1 character long.";
+    public static final String CONTACT_CONTENT_LENGTH = "Your message must not be empty.";
 }

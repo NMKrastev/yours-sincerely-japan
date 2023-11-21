@@ -1,4 +1,6 @@
-#main-registration, #main-login {
+#main-registration,
+#main-login,
+#main-contact {
     background-image: url(../images/flag-japan.jpg);
     background-repeat: no-repeat;
     background-size: cover;
@@ -7,7 +9,8 @@
 }
 
 .site-registration,
-.site-login {
+.site-login,
+.site-contact {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -17,6 +20,8 @@
 .site-registration h3,
 .site-login h2,
 .site-login h3,
+.site-contact h2,
+.site-contact h3,
 .label-holder label {
     color: #ffb7c5;
     text-shadow:

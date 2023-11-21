@@ -1,10 +1,13 @@
 package com.yourssincerelyjapan.service.impl;
 
 import com.yourssincerelyjapan.config.EmailConfiguration;
+import com.yourssincerelyjapan.model.dto.ContactDTO;
 import com.yourssincerelyjapan.model.entity.Email;
 import com.yourssincerelyjapan.repository.EmailRepository;
 import com.yourssincerelyjapan.service.EmailService;
 import com.yourssincerelyjapan.utils.EmailUtils;
+import jakarta.mail.MessagingException;
+import jakarta.mail.internet.AddressException;
 import jakarta.mail.internet.InternetAddress;
 import jakarta.mail.internet.MimeMessage;
 import org.springframework.context.annotation.Configuration;
@@ -43,17 +46,32 @@ public class EmailServiceImpl implements EmailService {
 
     @Override
     @Async
-    public void sendSimpleEmail(String name, String from, String messageContent) {
+    public void sendSimpleEmail(ContactDTO contactDTO) {
 
-        final SimpleMailMessage message = new SimpleMailMessage();
+        try {
 
-        message.setSubject(String.format("Message from User: %s", name));
-        message.setFrom(from);
-        message.setTo(this.emailConfiguration.getUsername());
-        message.setText(messageContent);
+            final MimeMessage mimeMessage = this.javaMailSender.createMimeMessage();
 
-        this.javaMailSender.send(message);
+            final MimeMessageHelper mimeMessageHelper = getMimeMessageHelper(contactDTO, mimeMessage);
 
+            this.javaMailSender.send(mimeMessageHelper.getMimeMessage());
+
+            final Email sentEmail = Email
+                    .builder()
+                    .fromEmail(contactDTO.getEmail())
+                    .toEmail(this.emailConfiguration.getUsername())
+                    .subjectEmail(String.format("Message from User: %s", contactDTO.getFullName()))
+                    .contentEmail(contactDTO.getContactContent())
+                    .receivedOn(LocalDateTime.now())
+                    .received(true)
+                    .build();
+
+            this.emailRepository.save(sentEmail);
+
+        } catch (Exception e) {
+
+            System.out.println(e.getMessage());
+        }
     }
 
     @Override
@@ -61,6 +79,7 @@ public class EmailServiceImpl implements EmailService {
     public void sendHtmlVerificationEmail(String name, String emailTo, String token) throws UnsupportedEncodingException {
 
         final InternetAddress fromAddress = new InternetAddress(this.emailConfiguration.getUsername(), YOURS_SINCERELY_JAPAN);
+
         final MimeMessage message = this.javaMailSender.createMimeMessage();
 
         try {
@@ -95,7 +114,21 @@ public class EmailServiceImpl implements EmailService {
 
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            throw new RuntimeException(e.getMessage());
         }
+    }
+
+    private MimeMessageHelper getMimeMessageHelper(ContactDTO contactDTO, MimeMessage mimeMessage) throws MessagingException {
+
+        final InternetAddress emailFrom = new InternetAddress(contactDTO.getEmail());
+
+        final MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage, true);
+
+        mimeMessageHelper.setSubject(String.format("Message from User: %s", contactDTO.getFullName()));
+        mimeMessageHelper.setFrom(emailFrom);
+        mimeMessageHelper.setTo(this.emailConfiguration.getUsername());
+        mimeMessageHelper.setText(contactDTO.getContactContent());
+        mimeMessageHelper.setReplyTo(emailFrom);
+
+        return mimeMessageHelper;
     }
 }

@@ -1,0 +1,19 @@
+.site-contact form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1em;
+}
+
+#full-name,
+#email-id {
+    flex: 1 1 45%;
+}
+
+#contact-content {
+    flex: 1 1 100%;
+}
+
+.site-contact form input,
+.site-contact form textarea {
+    border: 2px solid #ffb7c5;
+}
