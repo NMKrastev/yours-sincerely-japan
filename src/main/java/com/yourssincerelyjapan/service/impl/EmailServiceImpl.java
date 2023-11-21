@@ -58,10 +58,10 @@ public class EmailServiceImpl implements EmailService {
 
             final Email sentEmail = Email
                     .builder()
-                    .fromEmail(contactDTO.getEmail())
-                    .toEmail(this.emailConfiguration.getUsername())
-                    .subjectEmail(String.format("Message from User: %s", contactDTO.getFullName()))
-                    .contentEmail(contactDTO.getContactContent())
+                    .emailFrom(contactDTO.getEmail())
+                    .emailTo(this.emailConfiguration.getUsername())
+                    .emailSubject(String.format(MESSAGE_FROM, contactDTO.getFullName()))
+                    .emailContent(contactDTO.getContactContent())
                     .receivedOn(LocalDateTime.now())
                     .received(true)
                     .build();
@@ -102,10 +102,10 @@ public class EmailServiceImpl implements EmailService {
 
             final Email sentEmail = Email
                     .builder()
-                    .fromEmail(this.emailConfiguration.getUsername())
-                    .toEmail(emailTo)
-                    .subjectEmail(SUBJECT_WELCOME)
-                    .contentEmail(EmailUtils.getEmailMessage(name, token))
+                    .emailFrom(this.emailConfiguration.getUsername())
+                    .emailTo(emailTo)
+                    .emailSubject(SUBJECT_WELCOME)
+                    .emailContent(EmailUtils.getEmailMessage(name, token))
                     .createdOn(LocalDateTime.now())
                     .sent(true)
                     .build();
@@ -123,7 +123,7 @@ public class EmailServiceImpl implements EmailService {
 
         final MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage, true);
 
-        mimeMessageHelper.setSubject(String.format("Message from User: %s", contactDTO.getFullName()));
+        mimeMessageHelper.setSubject(String.format(MESSAGE_FROM, contactDTO.getFullName()));
         mimeMessageHelper.setFrom(emailFrom);
         mimeMessageHelper.setTo(this.emailConfiguration.getUsername());
         mimeMessageHelper.setText(contactDTO.getContactContent());

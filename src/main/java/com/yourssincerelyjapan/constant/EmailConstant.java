@@ -15,4 +15,5 @@ public enum EmailConstant {
     public static final String URL = "url";
     public static final String VERIFY_EMAIL_TEMPLATE = "verify-email";
     public static final String EMAIL_ENCODING = "UTF-8";
+    public static final String MESSAGE_FROM = "Message from: %s";
 }

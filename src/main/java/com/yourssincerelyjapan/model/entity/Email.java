@@ -16,17 +16,17 @@ import java.time.LocalDateTime;
 @Table(name = "emails")
 public class Email extends BaseEntity {
 
-    @Column(name = "from_email")
-    private String fromEmail;
+    @Column(name = "email_from")
+    private String emailFrom;
 
-    @Column(name = "to_email")
-    private String toEmail;
+    @Column(name = "email_to")
+    private String emailTo;
 
     @Column(name = "subject")
-    private String subjectEmail;
+    private String emailSubject;
 
     @Column(name = "content")
-    private String contentEmail;
+    private String emailContent;
 
     @Column
     private boolean sent;
