@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class StringToLocalDateTimeMapper {
 
-    @StringToLocalDateTime
+    @StringToLocalDateTimeMapping
     public LocalDateTime convertToLocalDateTime(String value) {
 
         final String date = value.split("\\s+")[0];

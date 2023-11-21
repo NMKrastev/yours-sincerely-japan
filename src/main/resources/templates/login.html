@@ -75,6 +75,18 @@
                     </button>
                 </div>
 
+                <!--<th:block th:if="${param.isRegistered}">
+                    <div class="alert alert-success text-center" role="alert">
+                        <strong>Thank you for signing up!</strong></br>
+                        A confirmation email has been sent to your email address.</br>
+                        Please check your inbox and follow the instructions to activate your account.</br>
+                        If you don't receive the email within a few minutes, please check your spam folder.
+                    </div>
+                </th:block>-->
+
+            </form>
+
+            <div class="d-flex mw-50 justify-content-center align-content-center">
                 <th:block th:if="${param.isRegistered}">
                     <div class="alert alert-success text-center" role="alert">
                         <strong>Thank you for signing up!</strong></br>
@@ -83,15 +95,14 @@
                         If you don't receive the email within a few minutes, please check your spam folder.
                     </div>
                 </th:block>
-
                 <th:block th:if="${param.isInvalidToken}">
                     <div class="alert alert-danger text-center" role="alert">
                         Oops! It seems like the confirmation link is invalid.</br>
                         Please make sure you are using the correct link.
                     </div>
                 </th:block>
+            </div>
 
-            </form>
         </main>
     </div>
 

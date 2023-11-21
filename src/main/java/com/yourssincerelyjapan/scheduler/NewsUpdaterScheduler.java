@@ -20,6 +20,6 @@ public class NewsUpdaterScheduler {
 
     @Scheduled(fixedRate = 15, timeUnit = TimeUnit.MINUTES)
     public void fetchNews() {
-        this.newsDataService.fetchNews();
+        //this.newsDataService.fetchNews();
     }
 }

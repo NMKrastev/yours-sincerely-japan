@@ -8,10 +8,11 @@ import com.yourssincerelyjapan.utils.*;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
-@Mapper(componentModel = "spring", uses = PasswordEncoderMapper.class)
+@Mapper(componentModel = "spring", uses = {PasswordEncoderMapper.class, StringToLowerCaseMapper.class})
 public interface UserMapper {
 
     @Mapping(target = "password", qualifiedBy = PasswordEncoderMapping.class)
+    @Mapping(target = "email", qualifiedBy = StringToLowerCaseMapping.class)
     User userRegistrationDtoToUserEntity(UserRegistrationDTO userDTO);
 
     UserDTO userToUserDto(User user);

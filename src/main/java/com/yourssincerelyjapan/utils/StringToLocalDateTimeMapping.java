@@ -10,5 +10,5 @@ import java.lang.annotation.Target;
 @Qualifier // org.mapstruct.Qualifier
 @Target({ElementType.TYPE, ElementType.METHOD})
 @Retention(RetentionPolicy.CLASS)
-public @interface StringToLocalDateTime {
+public @interface StringToLocalDateTimeMapping {
 }
