@@ -11,6 +11,7 @@ import com.yourssincerelyjapan.model.mapper.CategoryMapper;
 import com.yourssincerelyjapan.repository.ArticleRepository;
 import com.yourssincerelyjapan.repository.CategoryRepository;
 import com.yourssincerelyjapan.service.CategoryService;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
@@ -72,6 +73,7 @@ public class CategoryServiceImpl implements CategoryService {
 
     }
 
+    @Cacheable("categories")
     @Override
     public List<GetCategoryNameDTO> findAllCategoriesByName() {
 
