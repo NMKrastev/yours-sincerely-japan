@@ -111,6 +111,11 @@
     flex: 1 1 100%;
   }
 
+  .main-single-post .single-post-site-content .single-post-section-category,
+  .main-single-post .single-post-site-content .single-post-comments {
+    max-width: 90%;
+  }
+
   .about-text p,
   .privacy-text p {
     padding: 1em 1em;
