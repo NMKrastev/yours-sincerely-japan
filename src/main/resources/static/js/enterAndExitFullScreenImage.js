@@ -1,4 +1,4 @@
-const fullscreenImages = document.querySelectorAll('img');
+const fullscreenImages = document.querySelectorAll('img:not(.exclude)');
 
 // Function to enter full-screen
 function enterFullscreen(element) {

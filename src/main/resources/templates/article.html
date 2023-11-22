@@ -30,7 +30,7 @@
                                 <div class="ratio in-article ratio-1x1 rounded-circle overflow-hidden"
                                      th:if="*{user.profilePicture != null}">
                                     <img th:src="'data:' + *{user.profilePicture.type} + ';base64,' + *{user.profilePicture.imageDataBase64}"
-                                         th:alt="*{user.profilePicture.name}" class="card-img-top img-cover">
+                                         th:alt="*{user.profilePicture.name}" class="exclude card-img-top img-cover">
                                 </div>
                                 <p class="posted-by">Posted by:
                                     <th:block th:text="*{user.fullName}"></th:block>
@@ -53,7 +53,7 @@
                                              th:each="picture, iterStat : *{pictures}"
                                              th:classappend="${iterStat.index == 0} ? 'active' : ''">
                                             <img th:src="'data:' + ${picture.type} + ';base64,' + ${picture.imageData}"
-                                                 th:alt="${picture.name}" class="d-block w-100">
+                                                 th:alt="${picture.name}" class="image-slideshow d-block w-100">
                                         </div>
 
                                         <div class="carousel-indicators">
