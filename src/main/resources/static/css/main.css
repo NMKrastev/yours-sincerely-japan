@@ -269,6 +269,13 @@
   justify-content: center;
 }
 
+.fa-angle-left,
+.fa-angles-left,
+.fa-angle-right,
+.fa-angles-right {
+  color: #bc002d;
+}
+
 /*.article-text p {
   white-space: pre-wrap; !* Preserve line breaks and wrap long lines *!
   font-family: inherit;

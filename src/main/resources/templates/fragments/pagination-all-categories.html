@@ -10,13 +10,13 @@
     <ul class="pagination justify-content-center">
         <li class="page-item" th:classappend="${allCategories.isFirst()} ? 'disabled' : ''">
             <a th:unless="${allCategories.isFirst()}" class="page-link"
-               th:href="@{/categories/all(page=0)}">First</a>
-            <a th:if="${allCategories.isFirst()}" class="page-link" href="#">First</a>
+               th:href="@{/categories/all(page=0)}"><i class="fa-solid fa-angles-left"></i></a>
+            <a th:if="${allCategories.isFirst()}" class="page-link" href="#"><i class="fa-solid fa-angles-left"></i></a>
         </li>
         <li class="page-item" th:classappend="${allCategories.hasPrevious()} ? '' : 'disabled'">
             <a th:if="${allCategories.hasPrevious()}" class="page-link"
-               th:href="@{/categories/all(page=${allCategories.getNumber() - 1})}">Previous</a>
-            <a th:unless="${allCategories.hasPrevious()}" class="page-link" href="#">Previous</a>
+               th:href="@{/categories/all(page=${allCategories.getNumber() - 1})}"><i class="fa-solid fa-angle-left"></i></a>
+            <a th:unless="${allCategories.hasPrevious()}" class="page-link" href="#"><i class="fa-solid fa-angle-left"></i></a>
         </li>
         <th:block th:each="pageNumber : ${#numbers.sequence(1, allCategories.getTotalPages())}">
             <li class="page-item" th:classappend="${pageNumber == allCategories.getNumber() + 1} ? 'active' : ''">
@@ -25,13 +25,13 @@
         </th:block>
         <li class="page-item" th:classappend="${allCategories.hasNext() ? '' : 'disabled'}">
             <a th:if="${allCategories.hasNext()}" class="page-link"
-               th:href="@{/categories/all(page=${allCategories.getNumber() + 1})}">Next</a>
-            <a th:unless="${allCategories.hasNext()}" class="page-link" href="#">Next</a>
+               th:href="@{/categories/all(page=${allCategories.getNumber() + 1})}"><i class="fa-solid fa-angle-right"></i></a>
+            <a th:unless="${allCategories.hasNext()}" class="page-link" href="#"><i class="fa-solid fa-angle-right"></i></a>
         </li>
         <li class="page-item" th:classappend="${allCategories.isLast()} ? 'disabled' : ''">
             <a th:unless="${allCategories.isLast()}" class="page-link"
-               th:href="@{/categories/all(page=${allCategories.getTotalPages() - 1})}">Last</a>
-            <a th:if="${allCategories.isLast()}" class="page-link" href="#">Last</a>
+               th:href="@{/categories/all(page=${allCategories.getTotalPages() - 1})}"><i class="fa-solid fa-angles-right"></i></a>
+            <a th:if="${allCategories.isLast()}" class="page-link" href="#"><i class="fa-solid fa-angles-right"></i></a>
         </li>
     </ul>
 </nav>
