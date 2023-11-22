@@ -69,7 +69,7 @@
                             </div>
                         </article>
                     </div>
-                    <div th:classappend="${categoryStat.index != allCategories.size - 1} ? 'border-bottom border-2 border-danger-subtle' : ''"></div>
+                    <div th:classappend="${categoryStat.index != allCategories.getContent().size() - 1} ? 'border-bottom border-2 border-danger-subtle' : ''"></div>
                 </section>
 
                 <nav th:replace="~{fragments/pagination-all-categories.html :: pagination-all-categories}"></nav>
