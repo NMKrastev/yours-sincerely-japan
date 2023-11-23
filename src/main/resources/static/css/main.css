@@ -33,8 +33,13 @@
   flex-wrap: wrap;
 }
 
+.site-content div > h2,
 #main-categories > div > h2 {
   color: #bc002d;
+}
+
+.site-content div > .category-name {
+  margin-right: 0.5em;
 }
 
 .site-content > p {

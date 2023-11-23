@@ -50,6 +50,11 @@
   .privacy-text p strong {
     font-size: 1.2em;
   }
+
+  .about-section,
+  .privacy-section {
+    max-width: 80vw;
+  }
 }
 
 @media (max-width: 900px) {
@@ -82,6 +87,11 @@
   .about-text p strong,
   .privacy-text p strong {
     font-size: 1.1em;
+  }
+
+  .about-section,
+  .privacy-section{
+    max-width: 90vw;
   }
 }
 
