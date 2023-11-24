@@ -2,6 +2,7 @@ package com.yourssincerelyjapan.init;
 
 import com.yourssincerelyjapan.repository.ArticlePictureRepository;
 import com.yourssincerelyjapan.repository.ArticleRepository;
+import com.yourssincerelyjapan.repository.NewsDataRepository;
 import com.yourssincerelyjapan.service.UserService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.core.io.ClassPathResource;
@@ -21,13 +22,16 @@ public class ApplicationInit implements CommandLineRunner {
     private final JdbcTemplate jdbcTemplate;
     private final ArticleRepository articleRepository;
     private final ArticlePictureRepository pictureRepository;
+    private final NewsDataRepository newsDataRepository;
 
     public ApplicationInit(UserService userService, JdbcTemplate jdbcTemplate,
-                           ArticleRepository articleRepository, ArticlePictureRepository pictureRepository) {
+                           ArticleRepository articleRepository, ArticlePictureRepository pictureRepository,
+                           NewsDataRepository newsDataRepository) {
         this.userService = userService;
         this.jdbcTemplate = jdbcTemplate;
         this.articleRepository = articleRepository;
         this.pictureRepository = pictureRepository;
+        this.newsDataRepository = newsDataRepository;
     }
 
     @Override
@@ -42,6 +46,14 @@ public class ApplicationInit implements CommandLineRunner {
         if (this.pictureRepository.count() == 0) {
             this.initializeArticlesPictures();
         }
+
+        if (this.newsDataRepository.count() == 0) {
+            this.initializeNews();
+        }
+    }
+
+    private void initializeNews() {
+        executeScript(NEWS);
     }
 
     private void initializeArticlesPictures() {
