@@ -13,6 +13,8 @@ import org.springframework.web.util.UriBuilder;
 import java.net.URI;
 import java.util.Optional;
 
+import static com.yourssincerelyjapan.constant.ReCaptchaConstant.*;
+
 @Service
 public class ReCaptchaServiceImpl implements ReCaptchaService {
 
@@ -33,11 +35,11 @@ public class ReCaptchaServiceImpl implements ReCaptchaService {
                 .post()
                 .uri(this::buildReCaptchaURI)
                 .body(BodyInserters
-                        .fromFormData("secret", this.reCaptchaConfig.getSecretKey())
-                        .with("response", token))
+                        .fromFormData(SECRET, this.reCaptchaConfig.getSecretKey())
+                        .with(RESPONSE, token))
                 .retrieve()
                 .bodyToMono(ReCaptchaResponseDTO.class)
-                .doOnError(t -> LOGGER.error("Error fetching google response... ", t))
+                .doOnError(t -> LOGGER.error(ON_ERROR_MESSAGE, t))
                 .onErrorComplete()
                 .block());
     }
@@ -45,9 +47,9 @@ public class ReCaptchaServiceImpl implements ReCaptchaService {
     private URI buildReCaptchaURI(UriBuilder uriBuilder) {
 
         return uriBuilder
-                .scheme("https")
-                .host("www.google.com")
-                .path("/recaptcha/api/siteverify")
+                .scheme(SCHEMA)
+                .host(HOST)
+                .path(PATH)
                 .build();
 
     }
