@@ -51,6 +51,9 @@ function loadNews() {
             divText.appendChild(pText);
             if (news.imageUrl !== null) {
                     divText.appendChild(img);
+            } else {
+                    img.setAttribute('src', '/images/news.jpg');
+                    divText.appendChild(img);
             }
             divContent.appendChild(divText);
             h4.appendChild(a);
