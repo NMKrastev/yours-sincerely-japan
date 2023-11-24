@@ -106,10 +106,14 @@
                 </div>
 
                 <div class="button-holder d-flex justify-content-center">
-                    <button type="submit"
+                    <!--<button type="submit"
                             class="btn btn-lg btn-primary mt-3 mb-2 border">
                         Sign up
-                    </button>
+                    </button>-->
+                    <button class="g-recaptcha btn btn-lg btn-primary mt-3 mb-2 border"
+                            th:attr="data-sitekey=${@reCaptchaConfig.getSiteKey()}"
+                            data-callback ='validateRegistrationForm'
+                            data-action='submit'>Sign up</button>
                 </div>
 
             </form>
@@ -122,13 +126,20 @@
 </div>
 
 <script th:src="@{/js/validateRegistrationForm.js}"></script>
+
+<!-- SO reCAPTCHA -->
+
+<script src="https://www.google.com/recaptcha/api.js"></script>
+
+<!-- EO reCAPTCHA -->
+
 <!--<script>
     // Example starter JavaScript for disabling form submissions if there are invalid fields
     (() => {
         'use strict'
 
         // Fetch all the forms we want to apply custom Bootstrap validation styles to
-        const forms = document.querySelectorAll('.needs-validation')
+        const forms = registrationForm.querySelectorAll('.needs-validation')
 
         // Loop over them and prevent submission
         Array.from(forms).forEach(form => {

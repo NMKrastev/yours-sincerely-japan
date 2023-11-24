@@ -1,6 +1,8 @@
 package com.yourssincerelyjapan.web;
 
+import com.yourssincerelyjapan.model.dto.ReCaptchaResponseDTO;
 import com.yourssincerelyjapan.model.dto.UserRegistrationDTO;
+import com.yourssincerelyjapan.service.ReCaptchaService;
 import com.yourssincerelyjapan.service.UserAccountConfirmationService;
 import com.yourssincerelyjapan.service.UserService;
 import jakarta.validation.Valid;
@@ -19,11 +21,14 @@ public class UserRegistrationController {
 
     private final UserService userService;
     private final UserAccountConfirmationService confirmationService;
+    private final ReCaptchaService reCaptchaService;
 
-    public UserRegistrationController(UserService userService, UserAccountConfirmationService confirmationService) {
+    public UserRegistrationController(UserService userService, UserAccountConfirmationService confirmationService,
+                                      ReCaptchaService reCaptchaService) {
 
         this.userService = userService;
         this.confirmationService = confirmationService;
+        this.reCaptchaService = reCaptchaService;
     }
 
     @ModelAttribute("userRegistrationDTO")
@@ -44,7 +49,19 @@ public class UserRegistrationController {
     public ModelAndView userRegistration(ModelAndView modelAndView,
                                          @Valid UserRegistrationDTO userRegistrationDTO,
                                          BindingResult bindingResult,
-                                         RedirectAttributes redirectAttributes) throws UnsupportedEncodingException {
+                                         RedirectAttributes redirectAttributes,
+                                         @RequestParam("g-recaptcha-response") String reCaptchaResponse) throws UnsupportedEncodingException {
+
+        boolean isBot = !this.reCaptchaService.verify(reCaptchaResponse)
+                .map(ReCaptchaResponseDTO::isSuccess)
+                .orElse(false);
+
+        if (isBot) {
+
+            modelAndView.setViewName("redirect:/");
+
+            return modelAndView;
+        }
 
         if (bindingResult.hasErrors()) {
 

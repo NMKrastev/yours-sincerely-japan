@@ -60,3 +60,7 @@ p {
             0px -1px 0px #ffffff,
             0px 1px 0px #ffffff;
 }
+
+.grecaptcha-badge {
+    visibility: hidden;
+}
