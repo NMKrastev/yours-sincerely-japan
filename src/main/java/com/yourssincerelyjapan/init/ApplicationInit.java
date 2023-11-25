@@ -39,7 +39,7 @@ public class ApplicationInit implements CommandLineRunner {
 
         this.userService.administratorInit();
 
-        if (this.articleRepository.count()  == 0) {
+        if (this.articleRepository.count() == 0) {
             this.initializeArticles();
         }
 
