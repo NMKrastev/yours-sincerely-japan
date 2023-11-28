@@ -16,6 +16,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.mock.web.MockMultipartFile;
@@ -34,7 +35,6 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
-@SpringBootTest
 class UserServiceImplTest {
 
     @Mock
@@ -58,12 +58,21 @@ class UserServiceImplTest {
     @Mock
     private UserMapper userMapper;
 
-    @InjectMocks
+    @Mock
     private UserServiceImpl userService;
 
     @BeforeEach
     void setup() {
+        MockitoAnnotations.openMocks(this);
 
+        userService =
+                new UserServiceImpl(userRepository,
+                        userRoleRepository,
+                        pictureService,
+                        userMapper,
+                        adminConfiguration,
+                        passwordEncoder,
+                        eventPublisher);
     }
 
     @Test
