@@ -175,6 +175,10 @@ class ArticleServiceImplTest {
         boolean result = articleService.deleteArticle(articleId);
 
         assertTrue(result);
+        verify(eventPublisher, times(1)).publishEvent(any(OnArticleDeletionEvent.class));
+        verify(articlePictureService, times(1)).deleteArticlePictures(article);
+        verify(articleRepository, times(1)).delete(article);
+        verify(articleRepository, times(1)).findById(article.getId());
     }
 
     private ArticleDTO createTestArticleDTO() {
