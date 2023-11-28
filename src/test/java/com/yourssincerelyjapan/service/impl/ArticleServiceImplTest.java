@@ -14,7 +14,6 @@ import com.yourssincerelyjapan.service.CategoryService;
 import com.yourssincerelyjapan.service.UserService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.context.ApplicationEventPublisher;
@@ -123,13 +122,6 @@ class ArticleServiceImplTest {
         assertEquals("Test Title", result.getContent().get(0).getTitle());
     }
 
-    private Collection<? extends GrantedAuthority> getAuthorities() {
-
-        GrantedAuthority authority = new SimpleGrantedAuthority("ROLE_USER");
-
-        return Collections.singletonList(authority);
-    }
-
     @Test
     void findAllArticlesFromCategory() {
 
@@ -179,6 +171,13 @@ class ArticleServiceImplTest {
         verify(articlePictureService, times(1)).deleteArticlePictures(article);
         verify(articleRepository, times(1)).delete(article);
         verify(articleRepository, times(1)).findById(article.getId());
+    }
+
+    private Collection<? extends GrantedAuthority> getAuthorities() {
+
+        GrantedAuthority authority = new SimpleGrantedAuthority("ROLE_USER");
+
+        return Collections.singletonList(authority);
     }
 
     private ArticleDTO createTestArticleDTO() {
