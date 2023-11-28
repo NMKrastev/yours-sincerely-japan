@@ -21,18 +21,6 @@ public class UserProfileController {
         this.userService = userService;
     }
 
-/*    @GetMapping("/profile/{username}")
-    public ModelAndView getUser(ModelAndView modelAndView,
-                                @PathVariable("username") String username,
-                                HttpSession session) {
-
-        session.setAttribute("username", username);
-
-        modelAndView.setViewName("redirect:/users/profile");
-
-        return modelAndView;
-    }*/
-
     @GetMapping("/profile")
     public ModelAndView getUserProfile(ModelAndView modelAndView,
                                        @AuthenticationPrincipal UserDetails principal,

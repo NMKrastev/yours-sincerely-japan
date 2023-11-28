@@ -2,16 +2,13 @@ package com.yourssincerelyjapan.web;
 
 import com.icegreen.greenmail.util.GreenMail;
 import com.icegreen.greenmail.util.ServerSetup;
+import com.yourssincerelyjapan.model.dto.ReCaptchaResponseDTO;
 import com.yourssincerelyjapan.model.dto.UserRegistrationDTO;
-import com.yourssincerelyjapan.model.entity.User;
-import com.yourssincerelyjapan.model.entity.UserAccountConfirmation;
+import com.yourssincerelyjapan.model.dto.UserRoleDTO;
 import com.yourssincerelyjapan.model.entity.UserRole;
 import com.yourssincerelyjapan.model.enums.UserRoleEnum;
-import com.yourssincerelyjapan.repository.ConfirmationRepository;
-import com.yourssincerelyjapan.service.UserAccountConfirmationService;
+import com.yourssincerelyjapan.service.ReCaptchaService;
 import com.yourssincerelyjapan.service.UserService;
-import com.yourssincerelyjapan.service.impl.UserAccountConfirmationServiceImpl;
-import jakarta.mail.internet.MimeMessage;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -23,17 +20,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.mock.web.MockHttpServletResponse;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.springframework.validation.BindingResult;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.lenient;
 import static org.mockito.Mockito.when;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
@@ -61,7 +60,7 @@ class UserRegistrationControllerTestIT {
     private GreenMail greenMail;
 
     @Mock
-    private ConfirmationRepository confirmationRepository;
+    private ReCaptchaService reCaptchaService;
 
     @BeforeEach
     void setUp() {
@@ -84,7 +83,11 @@ class UserRegistrationControllerTestIT {
     }
 
     @Test
-    void testUserRegistration() throws Exception {
+    void testUserRegistrationIT() throws Exception {
+
+        ReCaptchaResponseDTO responseDTO = new ReCaptchaResponseDTO();
+
+        lenient().when(this.reCaptchaService.verify(any(String.class))).thenReturn(Optional.of(responseDTO));
 
         mockMvc.perform(
                 MockMvcRequestBuilders
@@ -93,8 +96,26 @@ class UserRegistrationControllerTestIT {
                         .param("email", "pesho@example.com")
                         .param("password", "Qwerty1@")
                         .param("confirmPassword", "Qwerty1@")
+                        .param("g-recaptcha-response", "validResponse")
                         .with(csrf())
         ).andExpect(status().is3xxRedirection());
+    }
+
+    private UserRegistrationDTO createUserRegistrationDTO() {
+
+        List<UserRoleDTO> userRoles = List.of(new UserRoleDTO(1L, "USER"));
+
+        return UserRegistrationDTO
+                .builder()
+                .fullName("Pesho")
+                .email("pesho@example.com")
+                .password("Qwerty1@")
+                .confirmPassword("Qwerty1@")
+                .createdOn(LocalDateTime.now())
+                .roles(userRoles)
+                .build();
+
+
     }
 
     @Test
@@ -105,18 +126,5 @@ class UserRegistrationControllerTestIT {
                                 .param("token", UUID.randomUUID().toString())
                 ).andExpect(status().is3xxRedirection())
                 .andExpect(view().name("redirect:/users/login?isInvalidToken=true"));
-    }
-
-    private User createUser() {
-
-        return User
-                .builder()
-                .fullName("Pesho")
-                .email("pesho@example.bg")
-                .password("test")
-                .createdOn(LocalDateTime.now())
-                .enabled(false)
-                .roles(List.of(new UserRole(UserRoleEnum.USER), new UserRole(UserRoleEnum.ADMIN)))
-                .build();
     }
 }

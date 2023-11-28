@@ -75,11 +75,10 @@ public class AdminServiceImpl implements AdminService {
                 roles.add(userRole);
             }
 
-            user.getRoles().clear();
+            //user.getRoles().clear();
             user.setRoles(roles);
 
         } else {
-            //TODO: see how to tell that the user has to have selected roles
             return false;
         }
 

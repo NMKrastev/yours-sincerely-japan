@@ -17,6 +17,7 @@ import static com.yourssincerelyjapan.constant.DTOValidationMessage.*;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 @FieldMatch(first = "password", second = "confirmPassword", message = PASSWORD_DOES_NOT_MATCH)
 public class UserRegistrationDTO {
 
