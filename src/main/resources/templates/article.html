@@ -140,12 +140,12 @@
                                         <div class="container d-flex justify-content-around pt-1 pb-4">
                                             <button type="button" class="btn btn-warning btn-sm border-1 border-black"
                                                     data-bs-toggle="modal"
-                                                    data-bs-target="#editComment">
+                                                    th:data-bs-target="'#editComment' + ${commentStat.index}">
                                                 Edit comment
                                             </button>
                                             <button type="button" class="btn btn-danger btn-sm border-1 border-black"
                                                     data-bs-toggle="modal"
-                                                    data-bs-target="#deleteCommentModal">
+                                                    th:data-bs-target="'#deleteCommentModal' + ${commentStat.index}">
                                                 Delete comment
                                             </button>
                                         </div>

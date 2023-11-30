@@ -9,8 +9,8 @@
 
 <div th:fragment="modal-delete-comment">
 
-    <!-- Modal -->
-    <div class="modal fade" id="deleteCommentModal" tabindex="-1" aria-labelledby="deleteCommentModalLabel" aria-hidden="true">
+    <!-- Modal Delete Comment-->
+    <div class="modal fade" th:id="'deleteCommentModal' + ${commentStat.index}" tabindex="-1" aria-labelledby="deleteCommentModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
