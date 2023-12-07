@@ -49,6 +49,6 @@ public class AppUserDetailsService implements UserDetailsService {
     }
 
     private static GrantedAuthority getGranterAuthorities(UserRole userRole) {
-        return new SimpleGrantedAuthority(String.format(ROLE_, userRole.getName().name()));
+        return new SimpleGrantedAuthority(ROLE_ + userRole.getName().name());
     }
 }

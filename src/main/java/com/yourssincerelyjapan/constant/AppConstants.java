@@ -4,7 +4,7 @@ public enum AppConstants {
 
     ;
 
-    public static final String ROLE_ = "ROLE_%s";
+    public static final String ROLE_ = "ROLE_";
     public static final String ROLE_ADMIN = "ROLE_ADMIN";
     public static final String USER_WITH_USERNAME_NOT_FOUND = "User with username %s not found!";
     public static final String USER_WITH_ID_NOT_FOUND = "User with id %s not found!";
