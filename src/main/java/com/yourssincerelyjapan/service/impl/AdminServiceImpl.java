@@ -113,6 +113,9 @@ public class AdminServiceImpl implements AdminService {
                 .forEach(a -> a.getPictures().forEach(p -> this.articlePictureRepository.deleteById(p.getId())));
 
         user.getArticles()
+                        .forEach(a -> this.commentRepository.deleteAll(a.getComments()));
+
+        user.getArticles()
                 .forEach(a -> this.articleRepository.deleteById(a.getId()));
 
         this.commentRepository.deleteAll(user.getComments());

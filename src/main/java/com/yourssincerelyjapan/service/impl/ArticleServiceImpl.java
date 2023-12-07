@@ -28,6 +28,8 @@ import org.springframework.transaction.annotation.Transactional;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import static com.yourssincerelyjapan.constant.AppConstants.*;
+
 @Service
 public class ArticleServiceImpl implements ArticleService {
 
@@ -66,7 +68,7 @@ public class ArticleServiceImpl implements ArticleService {
 
         final User articleOwner = this.userService
                 .findUserByEmail(username)
-                .orElseThrow(() -> new IllegalArgumentException(String.format("User with username %s not found!", username)));
+                .orElseThrow(() -> new IllegalArgumentException(String.format(USER_WITH_USERNAME_NOT_FOUND, username)));
         newArticle.setUser(articleOwner);
 
         final Article savedArticle = this.articleRepository.save(newArticle);
@@ -93,7 +95,7 @@ public class ArticleServiceImpl implements ArticleService {
 
         final User user = this.userService
                 .findUserByEmail(principal.getUsername())
-                .orElseThrow(() -> new IllegalArgumentException(String.format("User with username %s not found!", principal.getUsername())));
+                .orElseThrow(() -> new IllegalArgumentException(String.format(USER_WITH_USERNAME_NOT_FOUND, principal.getUsername())));
 
         final Page<Article> articlePage = this.articleRepository
                 .findArticleByUserOrderByCreatedOnDesc(pageable, user);
@@ -125,10 +127,12 @@ public class ArticleServiceImpl implements ArticleService {
     @Override
     public boolean saveEditedArticle(Long id, ArticleDTO articleDTO, UserDetails principal) {
 
-        final Article article = this.articleRepository.findById(id).get();
+        final Article article = this.articleRepository
+                .findById(id)
+                .orElseThrow(() -> new IllegalArgumentException(String.format(ARTICLE_WITH_ID_NOT_FOUND, id)));
 
         if (!article.getUser().getEmail().equals(principal.getUsername())) {
-            if (!principal.getAuthorities().stream().toList().get(0).toString().equals("ROLE_ADMIN")) {
+            if (!principal.getAuthorities().stream().toList().get(0).toString().equals(ROLE_ADMIN)) {
                 return false;
             }
         }

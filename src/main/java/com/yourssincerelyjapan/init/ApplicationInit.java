@@ -13,6 +13,7 @@ import org.springframework.util.FileCopyUtils;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 
+import static com.yourssincerelyjapan.constant.AppConstants.DATABASE_INITIALIZATION_COMPLETED;
 import static com.yourssincerelyjapan.constant.SQLScripts.*;
 
 @Component
@@ -80,7 +81,7 @@ public class ApplicationInit implements CommandLineRunner {
                 this.jdbcTemplate.execute(statement);
             }
 
-            System.out.println("Database initialization complete!!!");
+            System.out.println(DATABASE_INITIALIZATION_COMPLETED);
 
         } catch (IOException e) {
 

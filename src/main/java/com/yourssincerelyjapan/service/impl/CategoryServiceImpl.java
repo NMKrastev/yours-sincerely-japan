@@ -20,6 +20,8 @@ import org.springframework.stereotype.Service;
 import java.util.Comparator;
 import java.util.List;
 
+import static com.yourssincerelyjapan.constant.AppConstants.CATEGORIES_CANNOT_BE_NULL_EMPTY;
+
 @Service
 public class CategoryServiceImpl implements CategoryService {
 
@@ -138,7 +140,7 @@ public class CategoryServiceImpl implements CategoryService {
                         .toList();
         } else {
 
-            throw new IllegalArgumentException("Categories cannot be empty or null!");
+            throw new IllegalArgumentException(CATEGORIES_CANNOT_BE_NULL_EMPTY);
         }
     }
 

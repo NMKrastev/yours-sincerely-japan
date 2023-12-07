@@ -13,6 +13,7 @@ import org.springframework.security.core.session.SessionRegistry;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -41,6 +42,9 @@ class AdminServiceImplTest {
     private ConfirmationRepository confirmationRepository;
 
     @Mock
+    private CommentRepository commentRepository;
+
+    @Mock
     private SessionRegistry sessionRegistry;
 
     @InjectMocks
@@ -65,11 +69,11 @@ class AdminServiceImplTest {
 
         UserRole userRole = new UserRole(UserRoleEnum.USER);
 
-        when(userRepository.findById(1L)).thenReturn(Optional.of(existingUser));
-        when(userRoleRepository.findById(1L)).thenReturn(Optional.of(userRole));
-        when(userRepository.save(any())).thenReturn(savedUser);
+        when(this.userRepository.findById(1L)).thenReturn(Optional.of(existingUser));
+        when(this.userRoleRepository.findById(1L)).thenReturn(Optional.of(userRole));
+        when(this.userRepository.save(any())).thenReturn(savedUser);
 
-        boolean result = !adminService.saveEditedUser(userDTO, selectedRoles);
+        boolean result = !this.adminService.saveEditedUser(userDTO, selectedRoles);
 
         assertTrue(result);
         assertEquals("New Full Name", savedUser.getFullName());
@@ -86,25 +90,28 @@ class AdminServiceImplTest {
         User user = createdExistingUser();
 
         List<Article> articles = getArticles();
+        List<Comment> comments = getComments();
         UserProfilePicture userProfilePicture = getUserProfilePicture(user);
 
         user.setArticles(articles);
+        user.setComments(comments);
         user.setProfilePicture(userProfilePicture);
 
         UserAccountConfirmation confirmation = new UserAccountConfirmation(user);
 
-        when(userRepository.findById(1L)).thenReturn(Optional.of(user));
-        when(confirmationRepository.findByUser(user)).thenReturn(Optional.of(confirmation));
-        doNothing().when(profilePictureRepository).delete(user.getProfilePicture());
-        doNothing().when(articlePictureRepository).delete(any(ArticlePicture.class));
-        doNothing().when(articleRepository).delete(any(Article.class));
+        when(this.userRepository.findById(1L)).thenReturn(Optional.of(user));
+        when(this.confirmationRepository.findByUser(user)).thenReturn(Optional.of(confirmation));
+        doNothing().when(this.profilePictureRepository).delete(user.getProfilePicture());
+        doNothing().when(this.articlePictureRepository).delete(any(ArticlePicture.class));
+        doNothing().when(this.articleRepository).delete(any(Article.class));
+        doNothing().when(this.commentRepository).deleteAll(Collections.singleton(any(Comment.class)));
 
-        boolean result = !adminService.deleteUser(1L);
+        boolean result = !this.adminService.deleteUser(1L);
 
         assertTrue(result);
-        verify(confirmationRepository).delete(confirmation);
-        verify(profilePictureRepository).delete(user.getProfilePicture());
-        verify(sessionRegistry).getAllPrincipals();
+        verify(this.confirmationRepository).delete(confirmation);
+        verify(this.profilePictureRepository).delete(user.getProfilePicture());
+        verify(this.sessionRegistry).getAllPrincipals();
     }
 
     private List<Article> getArticles() {
@@ -115,6 +122,17 @@ class AdminServiceImplTest {
                 .content("test 123 123")
                 .pictures(getArticlePicture())
                 .build());
+    }
+
+    private List<Comment> getComments() {
+
+        return List.of(
+                Comment
+                        .builder()
+                        .commentContent("Test comment Content")
+                        .createdOn(LocalDateTime.now())
+                        .build()
+        );
     }
 
     private List<ArticlePicture> getArticlePicture() {

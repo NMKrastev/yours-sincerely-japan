@@ -22,6 +22,8 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
+import static com.yourssincerelyjapan.constant.AppConstants.*;
+
 @Service
 public class CommentServiceImpl implements CommentService {
 
@@ -45,11 +47,11 @@ public class CommentServiceImpl implements CommentService {
 
         final User user = this.userRepository
                 .findByEmail(principal.getUsername())
-                .orElseThrow(() -> new IllegalArgumentException(String.format("User with email %s not found!", principal.getUsername())));
+                .orElseThrow(() -> new IllegalArgumentException(String.format(USER_WITH_EMAIL_NOT_FOUND, principal.getUsername())));
 
         final Article article = this.articleRepository
                 .findById(articleId)
-                .orElseThrow(() -> new IllegalArgumentException(String.format("Article with id %d not found!", articleId)));
+                .orElseThrow(() -> new IllegalArgumentException(String.format(ARTICLE_WITH_ID_NOT_FOUND, articleId)));
 
         comment.setUser(user);
         comment.setArticle(article);
@@ -91,7 +93,7 @@ public class CommentServiceImpl implements CommentService {
 
         final Comment comment = this.commentRepository
                 .findById(id)
-                .orElseThrow(() -> new IllegalArgumentException(String.format("Username with id %d not found!", id)));
+                .orElseThrow(() -> new IllegalArgumentException(String.format(USER_WITH_ID_NOT_FOUND, id)));
 
         final Long articleId = comment.getArticle().getId();
 
@@ -113,7 +115,7 @@ public class CommentServiceImpl implements CommentService {
 
         final Comment comment = this.commentRepository
                 .findById(id)
-                .orElseThrow(() -> new IllegalArgumentException(String.format("Comment with id %d not found!", id)));
+                .orElseThrow(() -> new IllegalArgumentException(String.format(COMMENT_WITH_ID_NOT_FOUND, id)));
 
         final Long articleId = comment.getArticle().getId();
 
