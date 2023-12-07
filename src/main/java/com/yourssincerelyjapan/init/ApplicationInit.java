@@ -40,7 +40,7 @@ public class ApplicationInit implements CommandLineRunner {
 
         this.userService.administratorInit();
 
-        /*if (this.articleRepository.count() == 0) {
+        if (this.articleRepository.count() == 0) {
             this.initializeArticles();
         }
 
@@ -48,7 +48,7 @@ public class ApplicationInit implements CommandLineRunner {
             this.initializeArticlesPictures();
         }
 
-        if (this.newsDataRepository.count() == 0) {
+        /*if (this.newsDataRepository.count() == 0) {
             this.initializeNews();
         }*/
     }
