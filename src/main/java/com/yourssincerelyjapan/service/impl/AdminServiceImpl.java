@@ -26,12 +26,13 @@ public class AdminServiceImpl implements AdminService {
     private final ArticlePictureRepository articlePictureRepository;
     private final ArticleRepository articleRepository;
     private final ConfirmationRepository confirmationRepository;
+    private final CommentRepository commentRepository;
     private final SessionRegistry sessionRegistry;
 
     public AdminServiceImpl(UserRepository userRepository, UserRoleRepository userRoleRepository,
                             ProfilePictureRepository profilePictureRepository, ArticlePictureRepository articlePictureRepository,
                             ArticleRepository articleRepository, ConfirmationRepository confirmationRepository,
-                            SessionRegistry sessionRegistry) {
+                            CommentRepository commentRepository, SessionRegistry sessionRegistry) {
 
         this.userRepository = userRepository;
         this.userRoleRepository = userRoleRepository;
@@ -39,6 +40,7 @@ public class AdminServiceImpl implements AdminService {
         this.articlePictureRepository = articlePictureRepository;
         this.articleRepository = articleRepository;
         this.confirmationRepository = confirmationRepository;
+        this.commentRepository = commentRepository;
         this.sessionRegistry = sessionRegistry;
     }
 
@@ -112,6 +114,8 @@ public class AdminServiceImpl implements AdminService {
 
         user.getArticles()
                 .forEach(a -> this.articleRepository.deleteById(a.getId()));
+
+        this.commentRepository.deleteAll(user.getComments());
 
         this.invalidateUserSession(user.getEmail());
 

@@ -186,7 +186,7 @@ public class ArticleController {
 
         if (isArticleSaved) {
 
-            modelAndView.setViewName("redirect:/");
+            modelAndView.setViewName(String.format("redirect:/articles/single-article/%d", id));
 
         } else {
 

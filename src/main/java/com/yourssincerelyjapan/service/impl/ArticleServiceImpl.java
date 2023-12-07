@@ -8,6 +8,7 @@ import com.yourssincerelyjapan.model.entity.Article;
 import com.yourssincerelyjapan.model.entity.ArticlePicture;
 import com.yourssincerelyjapan.model.entity.Category;
 import com.yourssincerelyjapan.model.entity.User;
+import com.yourssincerelyjapan.model.enums.UserRoleEnum;
 import com.yourssincerelyjapan.model.mapper.ArticleMapper;
 import com.yourssincerelyjapan.repository.ArticleRepository;
 import com.yourssincerelyjapan.service.ArticlePictureService;
@@ -18,6 +19,8 @@ import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -125,7 +128,9 @@ public class ArticleServiceImpl implements ArticleService {
         final Article article = this.articleRepository.findById(id).get();
 
         if (!article.getUser().getEmail().equals(principal.getUsername())) {
-            return false;
+            if (!principal.getAuthorities().stream().toList().get(0).toString().equals("ROLE_ADMIN")) {
+                return false;
+            }
         }
 
         final Article editedArticle = mapToEditedArticle(article, articleDTO);
