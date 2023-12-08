@@ -85,6 +85,7 @@ public class AdminServiceImpl implements AdminService {
         }
 
         if (user.isEnabled() != userDTO.isEnabled()) {
+            this.invalidateUserSession(user.getEmail());
             user.setEnabled(userDTO.isEnabled());
         }
 

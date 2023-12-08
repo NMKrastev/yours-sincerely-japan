@@ -119,3 +119,9 @@ img.align-right {
     float: right;
     margin-left: 0.5em;
 }
+
+.comment-text {
+    background: #f5f5f5;
+    margin: 1em 2em;
+    border-radius: 0.5em;
+}
