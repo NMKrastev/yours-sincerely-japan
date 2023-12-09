@@ -23,6 +23,7 @@ public class SecurityConfiguration {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
+
         return httpSecurity
                 .sessionManagement(session -> {
                     session.sessionCreationPolicy(SessionCreationPolicy.ALWAYS);
@@ -109,11 +110,13 @@ public class SecurityConfiguration {
 
     @Bean
     public SessionRegistry sessionRegistry() {
+
         return new SessionRegistryImpl();
     }
 
     @Bean
     public HttpSessionEventPublisher httpSessionEventPublisher() {
+
         return new HttpSessionEventPublisher();
     }
 

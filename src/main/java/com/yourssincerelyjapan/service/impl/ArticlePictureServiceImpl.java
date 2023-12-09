@@ -18,6 +18,7 @@ public class ArticlePictureServiceImpl implements ArticlePictureService {
     private final ArticlePictureRepository articlePictureRepository;
 
     public ArticlePictureServiceImpl(ArticlePictureRepository articlePictureRepository) {
+
         this.articlePictureRepository = articlePictureRepository;
     }
 
@@ -28,7 +29,6 @@ public class ArticlePictureServiceImpl implements ArticlePictureService {
         final List<ArticlePicture> articlePictures = getArticlePictures(uploadImages);
 
         return this.articlePictureRepository.saveAll(articlePictures);
-
     }
 
     @Override

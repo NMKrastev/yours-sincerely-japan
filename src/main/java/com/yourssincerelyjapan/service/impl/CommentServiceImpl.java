@@ -34,6 +34,7 @@ public class CommentServiceImpl implements CommentService {
 
     public CommentServiceImpl(CommentRepository commentRepository, UserRepository userRepository,
                               ArticleRepository articleRepository, CommentMapper commentMapper) {
+
         this.commentRepository = commentRepository;
         this.userRepository = userRepository;
         this.articleRepository = articleRepository;
@@ -85,7 +86,6 @@ public class CommentServiceImpl implements CommentService {
         this.commentRepository.saveAll(comments);
 
         this.commentRepository.deleteAll(comments);
-
     }
 
     @Override
